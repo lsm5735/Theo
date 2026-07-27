@@ -1,0 +1,112 @@
+[
+  {
+    "id": "m1",
+    "name": "코발트블루 유화물감 세트",
+    "description": "밤 연작의 주조색이에요. 윈저앤뉴턴 전문가용 12색 세트.",
+    "usageNote": "밤 연작의 주조색이에요",
+    "price": 32000,
+    "category": "물감",
+    "image": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=400&fit=crop&q=80",
+    "compatibleGenres": ["유화", "아크릴화"],
+    "isFunded": true
+  },
+  {
+    "id": "m2",
+    "name": "리넨 캔버스 10호 × 3장",
+    "description": "다음 연작의 바탕입니다. 전문가용 고급 리넨 소재.",
+    "usageNote": "다음 연작의 바탕입니다",
+    "price": 28000,
+    "category": "캔버스",
+    "image": "https://images.unsplash.com/photo-1579783483458-83d02161294e?w=400&h=400&fit=crop&q=80",
+    "compatibleGenres": ["유화", "아크릴화"],
+    "isFunded": true
+  },
+  {
+    "id": "m3",
+    "name": "바니시 & 임파스토 미디엄",
+    "description": "임파스토 마감용. 두터운 물감층의 광택과 보호를 위해.",
+    "usageNote": "임파스토 마감용",
+    "price": 19000,
+    "category": "미디엄",
+    "image": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=400&fit=crop&q=80",
+    "compatibleGenres": ["유화"],
+    "isFunded": false
+  },
+  {
+    "id": "m4",
+    "name": "돈피 붓 세트 5종",
+    "description": "거친 스트로크의 도구. 임파스토 표현에 최적입니다.",
+    "usageNote": "거친 스트로크의 도구",
+    "price": 24000,
+    "category": "붓",
+    "image": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=400&fit=crop&q=80",
+    "compatibleGenres": ["유화", "아크릴화"],
+    "isFunded": false
+  },
+  {
+    "id": "m5",
+    "name": "빌라 헤레디아 목탄 대형 세트",
+    "description": "굵기별 목탄 12종. 번짐 표현에 최적화된 전문가용.",
+    "usageNote": "번짐 표현의 핵심 도구예요",
+    "price": 22000,
+    "category": "목탄",
+    "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=400&fit=crop&q=80",
+    "compatibleGenres": ["드로잉"],
+    "isFunded": false
+  },
+  {
+    "id": "m6",
+    "name": "무사 드로잉지 A2 패드 (20장)",
+    "description": "목탄 전용 200g 드로잉지. 번짐이 아름답게 잡힙니다.",
+    "usageNote": "이 작품의 종이 재료예요",
+    "price": 18000,
+    "category": "종이",
+    "image": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=400&fit=crop&q=80",
+    "compatibleGenres": ["드로잉"],
+    "isFunded": true
+  },
+  {
+    "id": "m7",
+    "name": "홀베인 수채화물감 36색",
+    "description": "일본 홀베인 전문가용. 투명도와 발색이 탁월합니다.",
+    "usageNote": "새벽빛 수채를 위한 물감이에요",
+    "price": 52000,
+    "category": "물감",
+    "image": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=400&fit=crop&q=80",
+    "compatibleGenres": ["수채화"],
+    "isFunded": true
+  },
+  {
+    "id": "m8",
+    "name": "아르슈 수채화지 블록 A3 (20장)",
+    "description": "300g 콜드프레스. 수채화 작업의 기준이 되는 종이.",
+    "usageNote": "이 작품의 종이 재료예요",
+    "price": 38000,
+    "category": "종이",
+    "image": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=400&fit=crop&q=80",
+    "compatibleGenres": ["수채화"],
+    "isFunded": true
+  },
+  {
+    "id": "m9",
+    "name": "골든 아크릴 Heavy Body 10색",
+    "description": "미국 골든 브랜드 Heavy Body. 레이어링 질감 표현에 최고.",
+    "usageNote": "지층 레이어링의 핵심 물감이에요",
+    "price": 58000,
+    "category": "물감",
+    "image": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=400&fit=crop&q=80",
+    "compatibleGenres": ["아크릴화"],
+    "isFunded": false
+  },
+  {
+    "id": "m10",
+    "name": "대형 캔버스 30호",
+    "description": "감정 시리즈의 스케일을 위한 대형 캔버스.",
+    "usageNote": "이 작품의 규모를 위한 캔버스예요",
+    "price": 37000,
+    "category": "캔버스",
+    "image": "https://images.unsplash.com/photo-1579783483458-83d02161294e?w=400&h=400&fit=crop&q=80",
+    "compatibleGenres": ["아크릴화", "유화"],
+    "isFunded": false
+  }
+]

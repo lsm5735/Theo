@@ -1,26 +1,67 @@
+@import url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Regal Navy — 9단 램프 */
+  --navy-900: #07223C;
+  --navy-800: #0D3B66;
+  --navy-700: #20517E;
+  --navy-600: #376590;
+  --navy-500: #517CA4;
+  --navy-400: #7D9AB5;
+  --navy-300: #A6B8C9;
+  --navy-200: #CFD9E3;
+  --navy-100: #EBF0F4;
+
+  /* Sunflower Velvet */
+  --sv:      #F4D35E;
+  --sv-deep: #C2A43F;
+  --sv-soft: #F8D07A;
+  --gold-text: #58450E;
+
+  /* Paper / Neutral */
+  --paper:   #FDFAF0;
+  --chiffon: #FAF0CA;
+  --ink:     #141414;
+  --muted:   #6B7280;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
+  --color-navy-700: var(--navy-700);
+  --color-navy-600: var(--navy-600);
+  --color-navy-500: var(--navy-500);
+  --color-navy-400: var(--navy-400);
+  --color-navy-300: var(--navy-300);
+  --color-navy-200: var(--navy-200);
+  --color-navy-100: var(--navy-100);
+  --color-sv:       var(--sv);
+  --color-sv-deep:  var(--sv-deep);
+  --color-sv-soft:  var(--sv-soft);
+  --color-gold-text: var(--gold-text);
+  --color-paper:    var(--paper);
+  --color-chiffon:  var(--chiffon);
+  --color-ink:      var(--ink);
+  --font-suit: 'SUIT', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --font-myeongjo: 'Nanum Myeongjo', 'NanumMyeongjo', serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: 'SUIT', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-myeongjo {
+  font-family: 'Nanum Myeongjo', 'NanumMyeongjo', serif;
+  line-height: 2.05;
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .shadow-card  { box-shadow: 0 8px 22px rgba(23,29,43,.06); }
+  .shadow-modal { box-shadow: 0 24px 60px rgba(20,24,36,.18); }
 }
