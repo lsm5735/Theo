@@ -233,82 +233,56 @@ export default function Home() {
       </section>
 
       {/* ─── PROBLEM BAND ─── */}
-      <section className="bg-navy-900 text-chiffon mt-16 py-20">
+      <section className="bg-navy-900 text-chiffon mt-16 py-24">
         <div className="max-w-[1080px] mx-auto px-5 md:px-8">
-          <div className="text-center mb-10">
-            <p className="text-xs tracking-[0.24em] text-sv font-semibold uppercase mb-3">THE GAP</p>
-            <h2 className="font-medium text-2xl md:text-3xl text-chiffon leading-[1.35] mb-4">
-              보는 시장은 커지는데,<br />창작자에게 돈이 흐르지 않는다
+          <div className="text-center mb-14">
+            <p className="text-xs tracking-[0.24em] text-sv font-semibold uppercase mb-4">THE GAP</p>
+            <h2 className="font-bold text-2xl md:text-[32px] text-chiffon leading-[1.4] mb-5">
+              미술 시장은 커지는데,<br />
+              그 성장의 과실이 젊은 예술가에게 흐르지 않습니다
             </h2>
-            <p className="text-[14.5px] text-chiffon/70 leading-[1.85] max-w-[520px] mx-auto">
-              팬은 응원하고 싶지만 방법을 모르고, 작가는 창작비가 없어 멈춰 서 있습니다.
+            <p className="text-[14.5px] text-chiffon/65 leading-[1.9] max-w-[540px] mx-auto">
+              전시 관람객은 매년 늘어나고 아트페어는 성황을 이루지만,
+              정작 그 작품을 만든 신진 작가의 수입은 제자리입니다.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 items-center mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
             {/* Fan side */}
-            <div className="bg-chiffon/6 border border-chiffon/14 rounded-2xl p-6 md:p-7">
-              <div className="w-8 h-8 rounded-lg bg-navy-700 flex items-center justify-center mb-3 text-chiffon">
+            <div className="bg-chiffon/6 border border-chiffon/14 rounded-2xl p-8">
+              <div className="w-8 h-8 rounded-lg bg-navy-700 flex items-center justify-center mb-5 text-chiffon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
                 </svg>
               </div>
-              <h4 className="text-[16.5px] font-semibold text-chiffon mb-2.5">팬의 딜레마</h4>
-              <p className="text-[13.5px] text-chiffon/70 leading-[1.9]">
-                좋아하는 작가의 작품을 사고 싶지만 가격 부담이 크다.
-                응원 방법을 몰라 SNS 좋아요로 그친다.
+              <h4 className="text-[17px] font-bold text-chiffon mb-4">팬의 딜레마</h4>
+              <p className="text-[14px] text-chiffon/70 leading-[2.0]">
+                전시를 찾아다니고, 인스타그램에서 작가를 팔로우하고, 작품을 스크랩합니다.
+                응원하는 마음은 확실하지만 그 마음을 전할 방법이 없습니다.
+                완성작을 사기엔 수십만 원이 부담스럽고, SNS 좋아요 한 번으로는 아무것도 전해지지 않는 것 같아 아쉽습니다.
+                팬과 작가 사이에는 마음을 행동으로 옮길 수 있는 접점이 없습니다.
               </p>
-              <span className="font-bold text-3xl text-sv mt-4 block">
-                75.1%
-                <small className="block font-normal text-[11.5px] text-chiffon/60 mt-1">
-                  "사고 싶었던 적 있다"
-                </small>
-              </span>
-              <span className="font-bold text-xl text-navy-400 mt-2 block">
-                vs 13.3%
-                <small className="block font-normal text-[11.5px] text-chiffon/60 mt-1">
-                  "실제 구매 경험"
-                </small>
-              </span>
-            </div>
-
-            {/* VS */}
-            <div className="hidden md:flex items-center justify-center">
-              <span
-                className="text-navy-400 text-xs tracking-[0.2em]"
-                style={{ writingMode: 'vertical-rl' }}
-              >
-                V S
-              </span>
             </div>
 
             {/* Artist side */}
-            <div className="bg-chiffon/6 border border-chiffon/14 rounded-2xl p-6 md:p-7">
-              <div className="w-8 h-8 rounded-lg bg-navy-700 flex items-center justify-center mb-3 text-chiffon">
+            <div className="bg-chiffon/6 border border-chiffon/14 rounded-2xl p-8">
+              <div className="w-8 h-8 rounded-lg bg-navy-700 flex items-center justify-center mb-5 text-chiffon">
                 <IconPen />
               </div>
-              <h4 className="text-[16.5px] font-semibold text-chiffon mb-2.5">작가의 현실</h4>
-              <p className="text-[13.5px] text-chiffon/70 leading-[1.9]">
-                창작을 계속하고 싶지만 재료비조차 부담스럽다.
-                좋아하는 일로 생계를 잇기 어렵다.
+              <h4 className="text-[17px] font-bold text-chiffon mb-4">작가의 현실</h4>
+              <p className="text-[14px] text-chiffon/70 leading-[2.0]">
+                새 작업을 시작하려면 재료비가 먼저 나갑니다.
+                캔버스, 물감, 붓 — 작품이 팔리기 전까지는 전부 자비입니다.
+                지원사업을 찾아보지만 경쟁률은 높고 서류는 많습니다.
+                그래서 많은 신진 작가들이 창작보다 생계를 먼저 생각하게 되고,
+                결국 작업을 멈추거나 속도를 줄입니다.
+                응원해 주는 팬이 있다는 건 알지만, 그 에너지가 창작으로 이어지지 않습니다.
               </p>
-              <span className="font-bold text-3xl text-sv mt-4 block">
-                60만원
-                <small className="block font-normal text-[11.5px] text-chiffon/60 mt-1">
-                  창작 연수입 중앙값
-                </small>
-              </span>
-              <span className="font-bold text-xl text-navy-400 mt-2 block">
-                vs 100만원
-                <small className="block font-normal text-[11.5px] text-chiffon/60 mt-1">
-                  연간 재료비 지출
-                </small>
-              </span>
             </div>
           </div>
 
-          <p className="font-medium text-xl md:text-[22px] text-chiffon text-center mt-10 leading-[1.7]">
-            THEO는 그 간격을 잇는 <em className="not-italic text-sv">현물 후원</em>을 설계했습니다.
+          <p className="font-medium text-[18px] md:text-[22px] text-chiffon text-center mt-14 leading-[1.75]">
+            THEO는 그 사이를 잇는 <em className="not-italic text-sv">현물 후원</em>을 설계했습니다.
           </p>
         </div>
       </section>
