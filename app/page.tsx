@@ -54,189 +54,98 @@ export default function Home() {
 
       {/* ─── HERO ─── */}
       <header className="max-w-[1080px] mx-auto px-8" id="start">
-        <div className="pt-[34px] pb-0 text-center">
+        <div className="pt-24 md:pt-36 pb-0 text-center">
 
           {/* Headline */}
-          <h1 className="font-medium text-[64px] leading-[1.1] tracking-[-0.02em] text-navy-900 mb-6"
+          <h1 className="font-bold text-4xl md:text-[60px] leading-[1.15] tracking-tight text-navy-900 mb-10"
             style={{ wordBreak: 'keep-all' }}>
             모두의 고흐가 되기 전,<br />
-            <span className="italic text-navy-700">나만의</span>{" "}
-            <span className="relative inline-block">
+            나만의{" "}
+            <span className="relative inline-block italic text-navy-700">
               고흐
               <HeroUnderlineSvg />
             </span>를 만난다.
           </h1>
 
           {/* Subtext */}
-          <p className="text-[16.5px] text-muted leading-[1.85] max-w-[540px] mx-auto mb-5" style={{ wordBreak: 'keep-all' }}>
-            완성된 작품을 사는 대신, <strong className="text-navy-800">지금 그려지고 있는 작품의 재료를 선물</strong>하세요.<br />
-            개인정보 노출 없이 작가에게 전달되고, 작가는 그 과정을 편지로 답합니다.
+          <p className="text-[16px] md:text-[17px] text-muted leading-[1.95] max-w-[540px] mx-auto mb-14" style={{ wordBreak: 'keep-all' }}>
+            반 고흐에게는 평생 그를 응원해준 동생 테오가 있었기에
+            세계가 사랑하는 명작이 탄생할 수 있었습니다.
           </p>
 
-          {/* Free tag */}
-          <p className="inline-flex items-center gap-2 font-bold text-[14.5px] mb-5 text-navy-800">
-            작가 수수료 0% · 시작은 무료예요
-          </p>
-
-          {/* Join bar */}
-          <div
-            className="flex gap-2 max-w-[452px] mx-auto bg-card rounded-[13px] p-[7px_7px_7px_10px] mb-4"
-            style={{ border: '1.5px solid var(--navy-200)', boxShadow: '0 10px 30px rgba(13,59,102,.08)' }}
-          >
-            <span className="flex items-center text-[13.5px] text-navy-400 shrink-0">theo.kr/</span>
-            <input
-              type="text"
-              placeholder="활동명을 입력하세요"
-              aria-label="아틀리에 주소"
-              className="flex-1 border-none outline-none text-sm bg-transparent text-navy-900 min-w-0 placeholder:text-navy-400"
-              readOnly
-            />
+          {/* Role selection */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
             <Link
               href="/onboarding/artist"
-              className="shrink-0 bg-navy-800 text-chiffon font-bold rounded-[8px] hover:bg-navy-700 transition-colors"
-              style={{ fontSize: '13px', padding: '9px 17px' }}
+              className="group w-full sm:w-auto min-w-[220px] border-2 border-navy-800 text-navy-800 font-bold text-[15px] px-8 py-4 rounded-xl hover:bg-navy-800 hover:text-chiffon transition-all duration-200 text-center"
             >
-              아틀리에 열기
+              나는 <span className="text-navy-600 group-hover:text-sv transition-colors">고흐</span>입니다
+              <span className="block text-xs font-normal text-muted group-hover:text-chiffon/70 mt-0.5 transition-colors">작가로 시작하기</span>
+            </Link>
+            <Link
+              href="/bot"
+              className="group w-full sm:w-auto min-w-[220px] bg-navy-800 text-chiffon font-bold text-[15px] px-8 py-4 rounded-xl hover:bg-navy-700 transition-all duration-200 text-center"
+            >
+              나는 <span className="text-sv">테오</span>입니다
+              <span className="block text-xs font-normal text-chiffon/60 group-hover:text-chiffon/80 mt-0.5 transition-colors">후원자로 시작하기</span>
             </Link>
           </div>
 
-          {/* Patron link */}
-          <p className="text-xs text-muted mb-9">
-            후원자로 오셨나요?{" "}
-            <Link href="/bot" className="text-navy-700 font-bold hover:underline">테오 봇으로 나만의 고흐 찾기 →</Link>
+          <p className="text-xs text-navy-400 mb-9">
+            이미 계정이 있으신가요?{" "}
+            <Link href="#" className="text-navy-600 font-semibold hover:underline">로그인</Link>
           </p>
 
-          {/* ─── Artband / Night Sky ─── */}
-          <div className="mt-2 relative">
-            <div
-              className="h-[264px] rounded-[20px] relative overflow-hidden"
-              style={{ background: 'linear-gradient(168deg,#061A2E 0%,#07223C 26%,#0D3B66 62%,#376590 108%)' }}
-            >
-              {/* Moon */}
-              <div
-                className="absolute rounded-full"
-                style={{ width: '104px', height: '104px', top: '-22px', right: '8%', background: 'radial-gradient(circle,rgba(248,208,122,.85) 0 26%,rgba(244,211,94,.32) 48%,transparent 70%)' }}
-              />
-              {/* Stars */}
-              {[
-                { top: '34px', left: '12%' },
-                { top: '96px', left: '27%' },
-                { top: '150px', left: '76%' },
-                { top: '52px', left: '64%' },
-              ].map((s, i) => (
-                <div
-                  key={i}
-                  className="absolute w-1.5 h-1.5 rounded-full bg-sv-soft opacity-70"
-                  style={{ top: s.top, left: s.left }}
-                />
-              ))}
-              {/* Cypress trees */}
-              <div
-                className="absolute bottom-0"
-                style={{ left: '5%', width: '18px', height: '80px', background: 'linear-gradient(180deg,#0a2f0a,#061A2E)', clipPath: 'polygon(50% 0%,100% 100%,0% 100%)', opacity: 0.6 }}
-              />
-              <div
-                className="absolute bottom-0"
-                style={{ left: '9%', width: '14px', height: '60px', background: 'linear-gradient(180deg,#0a2f0a,#061A2E)', clipPath: 'polygon(50% 0%,100% 100%,0% 100%)', opacity: 0.5 }}
-              />
-
-              {/* Letter floating card */}
-              <div
-                className="absolute bg-paper rounded-[13px] p-[15px_17px]"
-                style={{ left: '50%', top: '44px', transform: 'translateX(-62%)', width: '288px', boxShadow: '0 18px 44px rgba(6,26,46,.42)' }}
-              >
-                <div className="flex justify-between items-center mb-2.5">
-                  <div
-                    className="flex items-center justify-center rounded-sm"
-                    style={{ width: '36px', height: '36px', border: '1px solid var(--navy-200)', borderRadius: '50%', transform: 'rotate(-9deg)' }}
-                  >
-                    <span className="text-navy-400 text-[7px] leading-tight text-center">SEOUL<br />THEO</span>
-                  </div>
-                  <div
-                    className="flex items-center justify-center rounded-sm"
-                    style={{ width: '28px', height: '34px', background: 'var(--sv-soft)', border: '1px solid var(--sv-deep)', borderRadius: '2px' }}
-                  >
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                      <path d="M1 5h8M5 1v8" stroke="#C2A43F" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                  </div>
-                </div>
-                <p className="font-myeongjo text-[12.5px] text-navy-900 leading-[1.85]">
-                  "보내주신 코발트블루가 어제 도착했습니다. 밤 연작 세 번째 캔버스의 하늘부터 올렸어요…"
-                </p>
-              </div>
-
-              {/* Project floating card */}
-              <div
-                className="absolute bg-paper rounded-[13px] p-[15px_17px] hidden sm:block"
-                style={{ right: '5%', bottom: '20px', width: '186px', boxShadow: '0 18px 44px rgba(6,26,46,.42)' }}
-              >
-                <div
-                  className="rounded-lg mb-2.5 relative overflow-hidden"
-                  style={{ height: '56px', background: 'linear-gradient(150deg,var(--navy-800),#061A2E)' }}
-                />
-                <h6 className="text-[12px] font-semibold text-navy-900 leading-snug mb-2">밤 연작 No.3</h6>
-                <div className="h-1.5 rounded-full bg-navy-100 overflow-hidden mb-1.5">
-                  <div className="h-full rounded-full" style={{ width: '64%', background: 'linear-gradient(90deg,var(--sv),var(--sv-deep))' }} />
-                </div>
-                <div className="flex justify-between text-[10px] text-muted">
-                  <span>66,000 / 103,000원</span>
-                  <span>테오 3명</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </header>
 
       {/* ─── PROBLEM BAND ─── */}
-      <section className="bg-navy-900 text-chiffon mt-[76px] py-[78px]">
+      <section className="bg-navy-900 text-chiffon mt-16 py-24">
         <div className="max-w-[1080px] mx-auto px-8">
-          <div className="text-center mb-10">
-            <p className="text-[11px] tracking-[0.24em] text-sv font-semibold uppercase mb-3">THE GAP</p>
-            <h2 className="font-medium text-[36px] text-chiffon leading-[1.35] mb-4" style={{ wordBreak: 'keep-all' }}>
-              응원은 넘치는데,<br />창작으로 흐르지 않습니다
+          <div className="text-center mb-14">
+            <p className="text-[11px] tracking-[0.24em] text-sv font-semibold uppercase mb-4">THE GAP</p>
+            <h2 className="font-bold text-[28px] md:text-[32px] text-chiffon leading-[1.4] mb-5" style={{ wordBreak: 'keep-all' }}>
+              미술 시장은 커지는데,<br />그 성장의 과실이 젊은 예술가에게 흐르지 않습니다
             </h2>
             <p className="text-[14.5px] leading-[1.9] max-w-[540px] mx-auto" style={{ color: 'rgba(250,240,202,.68)', wordBreak: 'keep-all' }}>
-              7년간 전시를 기획하며 같은 두 장면을 반복해서 봤습니다.
+              전시 관람객은 매년 늘어나고 아트페어는 성황을 이루지만,
+              정작 그 작품을 만든 신진 작가의 수입은 제자리입니다.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 items-center mt-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Fan */}
-            <div className="rounded-[16px] p-[26px_24px]" style={{ background: 'rgba(250,240,202,.06)', border: '1px solid rgba(250,240,202,.14)' }}>
-              <div className="text-[26px] mb-3">&#128144;</div>
-              <h4 className="text-[16.5px] font-bold text-chiffon mb-2.5" style={{ wordBreak: 'keep-all' }}>팬 — 살 방법이 없어 꽃다발을 든다</h4>
-              <p className="text-[13.5px] leading-[1.9]" style={{ color: 'rgba(250,240,202,.7)', wordBreak: 'keep-all' }}>
-                작품 앞에 오래 머물고 "이 작가 좋다"고 말하지만, 결국 빈손으로 돌아섭니다.
-                마음은 하루면 시드는 꽃과 그 자리에서 비워지는 와인으로 표현됩니다.
+            <div className="rounded-[16px] p-8" style={{ background: 'rgba(250,240,202,.06)', border: '1px solid rgba(250,240,202,.14)' }}>
+              <div className="w-8 h-8 rounded-lg bg-navy-700 flex items-center justify-center mb-5 text-chiffon">
+                <IconUser />
+              </div>
+              <h4 className="text-[17px] font-bold text-chiffon mb-4" style={{ wordBreak: 'keep-all' }}>팬의 딜레마</h4>
+              <p className="text-[14px] leading-[2.0]" style={{ color: 'rgba(250,240,202,.7)', wordBreak: 'keep-all' }}>
+                전시를 찾아다니고, 인스타그램에서 작가를 팔로우하고, 작품을 스크랩합니다.
+                응원하는 마음은 확실하지만 그 마음을 전할 방법이 없습니다.
+                완성작을 사기엔 수십만 원이 부담스럽고, SNS 좋아요 한 번으로는 아무것도 전해지지 않는 것 같아 아쉽습니다.
+                팬과 작가 사이에는 마음을 행동으로 옮길 수 있는 접점이 없습니다.
               </p>
             </div>
 
-            {/* VS divider */}
-            <div className="hidden md:flex items-center justify-center">
-              <span className="text-[12px] tracking-[0.2em] text-navy-400" style={{ writingMode: 'vertical-rl' }}>VS</span>
-            </div>
-            <div className="md:hidden text-center">
-              <span className="text-[12px] tracking-[0.2em] text-navy-400">VS</span>
-            </div>
-
             {/* Artist */}
-            <div className="rounded-[16px] p-[26px_24px]" style={{ background: 'rgba(250,240,202,.06)', border: '1px solid rgba(250,240,202,.14)' }}>
-              <div className="mb-3 text-chiffon">
+            <div className="rounded-[16px] p-8" style={{ background: 'rgba(250,240,202,.06)', border: '1px solid rgba(250,240,202,.14)' }}>
+              <div className="w-8 h-8 rounded-lg bg-navy-700 flex items-center justify-center mb-5 text-chiffon">
                 <IconPen />
               </div>
-              <h4 className="text-[16.5px] font-bold text-chiffon mb-2.5" style={{ wordBreak: 'keep-all' }}>작가 — 전시가 끝나면 텅 빈 작업실</h4>
-              <p className="text-[13.5px] leading-[1.9]" style={{ color: 'rgba(250,240,202,.7)', wordBreak: 'keep-all' }}>
-                재료비는 작품이 팔리기 훨씬 전, 창작이 시작되는 순간에 선불로 나갑니다.
-                관심은 받았지만 다음 작품을 시작할 물감이 없습니다.
+              <h4 className="text-[17px] font-bold text-chiffon mb-4" style={{ wordBreak: 'keep-all' }}>작가의 현실</h4>
+              <p className="text-[14px] leading-[2.0]" style={{ color: 'rgba(250,240,202,.7)', wordBreak: 'keep-all' }}>
+                새 작업을 시작하려면 재료비가 먼저 나갑니다.
+                캔버스, 물감, 붓 — 작품이 팔리기 전까지는 전부 자비입니다.
+                지원사업을 찾아보지만 경쟁률은 높고 서류는 많습니다.
+                그래서 많은 신진 작가들이 창작보다 생계를 먼저 생각하게 되고,
+                결국 작업을 멈추거나 속도를 줄입니다.
               </p>
             </div>
           </div>
 
-          <p className="text-center mt-10 font-medium text-[22px] text-chiffon leading-[1.7]" style={{ wordBreak: 'keep-all' }}>
-            저 선물이 <em className="not-italic text-sv">다음 작품을 시작할 물감과 캔버스</em>였다면 어땠을까.<br />
-            테오는 이 질문에서 시작되었습니다.
+          <p className="text-center mt-14 font-medium text-[18px] md:text-[22px] text-chiffon leading-[1.75]" style={{ wordBreak: 'keep-all' }}>
+            THEO는 그 사이를 잇는 <em className="not-italic text-sv">현물 후원</em>을 설계했습니다.
           </p>
         </div>
       </section>
@@ -438,6 +347,39 @@ export default function Home() {
             </div>
           )}
         </div>
+
+        {/* ─── Artband ─── */}
+        <div className="mt-16 max-w-[1080px] mx-auto px-8">
+          <div className="h-[264px] rounded-[20px] relative overflow-hidden" style={{ background: 'linear-gradient(168deg,#061A2E 0%,#07223C 26%,#0D3B66 62%,#376590 108%)' }}>
+            <div className="absolute rounded-full" style={{ width: '104px', height: '104px', top: '-22px', right: '8%', background: 'radial-gradient(circle,rgba(248,208,122,.85) 0 26%,rgba(244,211,94,.32) 48%,transparent 70%)' }} />
+            {[{ top: '34px', left: '12%' },{ top: '96px', left: '27%' },{ top: '150px', left: '76%' },{ top: '52px', left: '64%' }].map((s, i) => (
+              <div key={i} className="absolute w-1.5 h-1.5 rounded-full bg-sv-soft opacity-70" style={{ top: s.top, left: s.left }} />
+            ))}
+            <div className="absolute bottom-0" style={{ left: '5%', width: '18px', height: '80px', background: 'linear-gradient(180deg,#0a2f0a,#061A2E)', clipPath: 'polygon(50% 0%,100% 100%,0% 100%)', opacity: 0.6 }} />
+            <div className="absolute bottom-0" style={{ left: '9%', width: '14px', height: '60px', background: 'linear-gradient(180deg,#0a2f0a,#061A2E)', clipPath: 'polygon(50% 0%,100% 100%,0% 100%)', opacity: 0.5 }} />
+            <div className="absolute bg-paper rounded-[13px] p-[15px_17px]" style={{ left: '50%', top: '44px', transform: 'translateX(-62%)', width: '288px', boxShadow: '0 18px 44px rgba(6,26,46,.42)' }}>
+              <div className="flex justify-between items-center mb-2.5">
+                <div className="flex items-center justify-center" style={{ width: '36px', height: '36px', border: '1px solid var(--navy-200)', borderRadius: '50%', transform: 'rotate(-9deg)' }}>
+                  <span className="text-navy-400 text-[7px] leading-tight text-center">SEOUL<br />THEO</span>
+                </div>
+                <div className="flex items-center justify-center" style={{ width: '28px', height: '34px', background: 'var(--sv-soft)', border: '1px solid var(--sv-deep)', borderRadius: '2px' }}>
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M5 1v8" stroke="#C2A43F" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                </div>
+              </div>
+              <p className="font-myeongjo text-[12.5px] text-navy-900 leading-[1.85]">
+                "보내주신 코발트블루가 어제 도착했습니다. 밤 연작 세 번째 캔버스의 하늘부터 올렸어요…"
+              </p>
+            </div>
+            <div className="absolute bg-paper rounded-[13px] p-[15px_17px] hidden sm:block" style={{ right: '5%', bottom: '20px', width: '186px', boxShadow: '0 18px 44px rgba(6,26,46,.42)' }}>
+              <div className="rounded-lg mb-2.5" style={{ height: '56px', background: 'linear-gradient(150deg,var(--navy-800),#061A2E)' }} />
+              <p className="text-[12px] font-semibold text-navy-900 mb-2">밤 연작 No.3</p>
+              <div className="h-1.5 rounded-full bg-navy-100 overflow-hidden mb-1.5">
+                <div className="h-full rounded-full" style={{ width: '64%', background: 'linear-gradient(90deg,var(--sv),var(--sv-deep))' }} />
+              </div>
+              <div className="flex justify-between text-[10px] text-muted"><span>64%</span><span>테오 12명</span></div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ─── THEO BOT BAND ─── */}
@@ -617,41 +559,6 @@ export default function Home() {
                 <h5 className="text-[15px] font-bold text-navy-900 mb-1.5">{b.name}</h5>
                 <p className="text-[11.5px] font-semibold text-gold-text mb-3">{b.cond}</p>
                 <p className="text-[11.5px] text-muted leading-[1.75]" style={{ wordBreak: 'keep-all' }}>{b.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TRUST / WHY TRUST ─── */}
-      <section className="py-[78px] bg-paper">
-        <div className="max-w-[1080px] mx-auto px-8">
-          <div className="text-center mb-12">
-            <p className="text-[11px] tracking-[0.24em] text-navy-600 font-semibold uppercase mb-3">WHY TRUST</p>
-            <h2 className="font-medium text-[36px] text-navy-900 leading-[1.35]">후원이 어디로 갔는지 보이게</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[
-              {
-                big: '0%',
-                title: '작가 수수료 없음',
-                desc: '재료값은 전액 작가에게 갑니다. 테오의 수익은 제휴 미술재료 브랜드 커미션과 결제 수수료에서 나옵니다.',
-              },
-              {
-                big: '비공개',
-                title: '작가 주소는 보호됩니다',
-                desc: '배송지는 후원자에게 공개되지 않습니다. 테오가 중개해 전달하므로 작가는 개인정보 노출 걱정이 없습니다.',
-              },
-              {
-                big: '4단계',
-                title: '전달까지 확인',
-                desc: '후원 완료 → 재료 준비 → 발송 → 작가 수령 확인까지 보입니다. 5영업일을 넘기면 테오가 직접 확인합니다.',
-              },
-            ].map((tc) => (
-              <div key={tc.title} className="bg-card border border-line rounded-[16px] p-[28px_24px]">
-                <div className="font-bold text-[32px] text-navy-800 mb-2.5">{tc.big}</div>
-                <h5 className="text-[15px] font-bold text-navy-900 mb-2.5">{tc.title}</h5>
-                <p className="text-[12.5px] text-muted leading-[1.8]" style={{ wordBreak: 'keep-all' }}>{tc.desc}</p>
               </div>
             ))}
           </div>
