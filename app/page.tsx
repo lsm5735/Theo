@@ -343,10 +343,10 @@ export default function Home() {
           {artists.length > 3 && (
             <div className="text-center mt-10">
               <Link
-                href="#"
+                href="/atelier"
                 className="inline-flex items-center gap-2 border border-navy-400 text-navy-700 font-semibold px-6 py-3 rounded-lg hover:border-navy-700 hover:bg-navy-100 transition-colors text-sm"
               >
-                전체 작가 보기 ({artists.length}명)
+                전체 작가 보기 ({artists.length}명) →
               </Link>
             </div>
           )}

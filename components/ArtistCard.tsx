@@ -40,7 +40,7 @@ export default function ArtistCard({ artist, project }: { artist: Artist; projec
 
   return (
     <Link
-      href={`/artists/${artist.id}`}
+      href={`/atelier/${artist.slug}`}
       className="block group outline-none focus-visible:ring-2 focus-visible:ring-navy-800 rounded-2xl"
     >
       <article
