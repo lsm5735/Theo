@@ -15,10 +15,21 @@ function ProgressBar({ pct }: { pct: number }) {
   return (
     <div className="w-full bg-navy-100 rounded-full h-2 overflow-hidden">
       <div
-        className="h-full rounded-full bg-[--sv] transition-all duration-700"
-        style={{ width: `${Math.min(pct, 100)}%` }}
+        className="h-full rounded-full transition-all duration-700"
+        style={{
+          width: `${Math.min(pct, 100)}%`,
+          background: 'linear-gradient(90deg,var(--sv),var(--sv-deep))',
+        }}
       />
     </div>
+  );
+}
+
+function IconMapPin() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+    </svg>
   );
 }
 
@@ -50,7 +61,7 @@ export default async function ArtistPage({ params }: Props) {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[--navy-900]/70 via-[--navy-800]/20 to-transparent" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(7,34,60,.7) 0%,rgba(13,59,102,.2) 50%,transparent 100%)' }} />
 
         {/* Back */}
         <div className="absolute top-4 left-5 md:left-8">
@@ -64,7 +75,7 @@ export default async function ArtistPage({ params }: Props) {
 
         {/* Genre / Media badges */}
         <div className="absolute bottom-5 left-5 md:left-8 flex flex-wrap gap-2">
-          <span className="bg-[--navy-800] text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+          <span className="bg-navy-800 text-chiffon text-xs font-semibold px-3 py-1.5 rounded-full">
             {artist.genre}
           </span>
           {artist.media.map((m) => (
@@ -80,19 +91,19 @@ export default async function ArtistPage({ params }: Props) {
 
         {/* Profile card (overlapping cover) */}
         <div className="relative -mt-14 mb-10">
-          <div className="bg-white rounded-xl p-6 shadow-card border border-navy-100">
+          <div className="bg-card rounded-xl p-6 border border-line" style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}>
             <div className="flex items-start gap-4 mb-5">
-              <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-[--sv-soft] shrink-0 shadow-sm">
+              <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-sv-soft shrink-0 shadow-sm">
                 <Image src={artist.profileImage} alt={artist.name} fill sizes="80px" className="object-cover" />
               </div>
               <div className="flex-1 min-w-0 pt-1">
                 <div className="flex flex-wrap items-baseline gap-2 mb-1">
-                  <h1 className="text-2xl font-black text-[--navy-800]">{artist.name}</h1>
-                  <span className="text-sm text-[--muted]">{artist.nameEn}</span>
+                  <h1 className="text-2xl font-black text-navy-800">{artist.name}</h1>
+                  <span className="text-sm text-muted">{artist.nameEn}</span>
                 </div>
-                <p className="text-[--navy-600] font-medium text-sm mb-2">{artist.oneLiner}</p>
-                <div className="flex items-center gap-1.5 text-xs text-[--muted]">
-                  <span>📍</span>
+                <p className="text-navy-600 font-medium text-sm mb-2">{artist.oneLiner}</p>
+                <div className="flex items-center gap-1.5 text-xs text-muted">
+                  <IconMapPin />
                   <span>{artist.location}</span>
                   <span className="mx-1 text-navy-300">·</span>
                   <span>{artist.careerStage} 작가</span>
@@ -103,27 +114,27 @@ export default async function ArtistPage({ params }: Props) {
             {/* Tags */}
             <div className="flex flex-wrap gap-1.5 mb-5">
               {artist.tags.map((tag) => (
-                <span key={tag} className="text-xs text-[--navy-600] bg-navy-100 px-2.5 py-1 rounded-full font-medium">
+                <span key={tag} className="text-xs text-navy-600 bg-navy-100 px-2.5 py-1 rounded-full font-medium">
                   {tag}
                 </span>
               ))}
             </div>
 
             {/* Artist note */}
-            <p className="text-sm text-[--ink] leading-[1.9] text-balance mb-5 pb-5 border-b border-navy-100">
+            <p className="text-sm text-ink leading-[1.9] text-balance mb-5 pb-5 border-b border-navy-100">
               {artist.artistNote}
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 text-center">
               {[
-                { value: artist.followers, label: "팔로워" },
-                { value: artist.totalSponsors, label: "총 테오" },
-                { value: artistLetters.length, label: "편지" },
+                { value: artist.followers,      label: "팔로워" },
+                { value: artist.totalSponsors,  label: "총 테오" },
+                { value: artistLetters.length,  label: "편지" },
               ].map((s) => (
                 <div key={s.label}>
-                  <p className="text-xl font-black text-[--navy-800]">{s.value}</p>
-                  <p className="text-xs text-[--muted] mt-0.5">{s.label}</p>
+                  <p className="font-bold text-xl text-navy-800">{s.value}</p>
+                  <p className="text-xs text-muted mt-0.5">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -138,8 +149,8 @@ export default async function ArtistPage({ params }: Props) {
 
             {/* Current Project */}
             <section>
-              <h2 className="text-lg font-black text-[--navy-800] mb-4">진행 중인 프로젝트</h2>
-              <div className="bg-white rounded-xl overflow-hidden border border-navy-100 shadow-card">
+              <h2 className="text-lg font-black text-navy-800 mb-4">진행 중인 프로젝트</h2>
+              <div className="bg-card rounded-xl overflow-hidden border border-line" style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}>
                 <div className="relative h-52">
                   <Image
                     src={artist.currentProject.sketchImage}
@@ -148,24 +159,24 @@ export default async function ArtistPage({ params }: Props) {
                     sizes="(max-width: 1024px) 100vw, 720px"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[--navy-900]/60 to-transparent" />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(7,34,60,.6) 0%,transparent 60%)' }} />
                   <div className="absolute bottom-4 left-4 right-4">
                     <p className="text-white font-bold text-lg leading-tight">{artist.currentProject.title}</p>
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-sm text-[--ink] leading-relaxed mb-6">{artist.currentProject.concept}</p>
+                  <p className="text-sm text-ink leading-relaxed mb-6">{artist.currentProject.concept}</p>
 
                   {/* Progress */}
                   <div className="mb-2">
                     <div className="flex justify-between text-sm mb-2">
-                      <span className="font-semibold text-[--navy-800]">
+                      <span className="font-semibold text-navy-800">
                         {artist.currentProject.fundedAmount.toLocaleString()}원 모였어요
                       </span>
-                      <span className="font-black text-[--navy-700]">{pct}%</span>
+                      <span className="font-black text-navy-700">{pct}%</span>
                     </div>
                     <ProgressBar pct={pct} />
-                    <div className="flex justify-between text-xs text-[--muted] mt-1.5">
+                    <div className="flex justify-between text-xs text-muted mt-1.5">
                       <span>목표 {artist.currentProject.targetAmount.toLocaleString()}원</span>
                       <span>테오 {artist.currentProject.sponsorCount}명</span>
                     </div>
@@ -176,7 +187,7 @@ export default async function ArtistPage({ params }: Props) {
 
             {/* Materials */}
             <section>
-              <h2 className="text-lg font-black text-[--navy-800] mb-4">재료 위시리스트</h2>
+              <h2 className="text-lg font-black text-navy-800 mb-4">재료 위시리스트</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {compatibleMaterials.slice(0, 6).map((m) => (
                   <div
@@ -184,19 +195,20 @@ export default async function ArtistPage({ params }: Props) {
                     className={`flex items-center gap-3 p-4 rounded-xl border transition-colors ${
                       m.isFunded
                         ? "bg-navy-100/50 border-navy-200 opacity-60"
-                        : "bg-white border-navy-100 shadow-card"
+                        : "bg-card border-line"
                     }`}
+                    style={!m.isFunded ? { boxShadow: '0 8px 22px rgba(23,29,43,.06)' } : undefined}
                   >
                     <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-navy-100">
                       <Image src={m.image} alt={m.name} fill sizes="48px" className="object-cover" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-semibold text-[--navy-800] line-clamp-1">{m.name}</p>
-                      <p className="text-xs text-[--muted] line-clamp-1 mt-0.5">{m.usageNote}</p>
+                      <p className="text-sm font-semibold text-navy-800 line-clamp-1">{m.name}</p>
+                      <p className="text-xs text-muted line-clamp-1 mt-0.5">{m.usageNote}</p>
                       <div className="flex items-center gap-2 mt-1.5">
-                        <p className="text-sm font-bold text-[--gold-text]">{m.price.toLocaleString()}원</p>
+                        <p className="text-sm font-bold text-gold-text">{m.price.toLocaleString()}원</p>
                         {m.isFunded && (
-                          <span className="text-xs bg-navy-200 text-[--navy-600] px-1.5 py-0.5 rounded font-medium">선물 완료</span>
+                          <span className="text-xs bg-navy-200 text-navy-600 px-1.5 py-0.5 rounded font-medium">선물 완료</span>
                         )}
                       </div>
                     </div>
@@ -209,8 +221,8 @@ export default async function ArtistPage({ params }: Props) {
             {artistLetters.length > 0 && (
               <section>
                 <div className="flex items-baseline gap-3 mb-4">
-                  <h2 className="text-lg font-black text-[--navy-800]">Dear Theo</h2>
-                  <span className="text-sm text-[--muted]">작가의 편지 {artistLetters.length}통</span>
+                  <h2 className="text-lg font-black text-navy-800">Dear Theo</h2>
+                  <span className="text-sm text-muted">작가의 편지 {artistLetters.length}통</span>
                 </div>
                 <div className="space-y-5">
                   {artistLetters.map((letter) => (
@@ -224,37 +236,49 @@ export default async function ArtistPage({ params }: Props) {
 
           {/* Right: sticky CTA */}
           <div className="lg:sticky lg:top-24 lg:self-start space-y-4">
-            <div className="bg-[--navy-800] rounded-xl p-6 text-white text-center shadow-card">
-              <p className="text-[--sv] text-xs font-bold tracking-widest uppercase mb-2">재료 선물하기</p>
-              <p className="text-lg font-black mb-1">{artist.name} 작가</p>
+            <div className="bg-navy-800 rounded-xl p-6 text-center" style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}>
+              <p className="text-sv text-xs font-bold tracking-[0.16em] uppercase mb-2">재료 선물하기</p>
+              <p className="text-lg font-black text-white mb-1">{artist.name} 작가</p>
               <p className="text-white/60 text-sm mb-5 leading-relaxed">
                 재료를 선물하면 작가가<br />창작 과정을 편지로 답합니다.
               </p>
               <Link
                 href={`/sponsor/${artist.id}`}
-                className="w-full block bg-[--sv] text-[--ink] font-bold py-3.5 rounded-lg hover:bg-[--sv-soft] transition-colors text-sm"
+                className="w-full block bg-sv text-ink font-bold py-3.5 rounded-lg hover:bg-sv-soft transition-colors text-sm"
               >
                 재료 선물하기 →
               </Link>
             </div>
 
             {/* Fee info */}
-            <div className="bg-white rounded-xl p-4 border border-navy-100 text-center">
-              <p className="text-xs text-[--muted] leading-relaxed">
-                💰 재료값 전액이 작가에게 전달됩니다.<br />
+            <div className="bg-card rounded-xl p-4 border border-line text-center">
+              <div className="flex items-center justify-center gap-1.5 text-navy-600 mb-1.5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><path d="M8 12h8"/>
+                </svg>
+                <span className="text-xs font-semibold text-navy-700">수수료 정책</span>
+              </div>
+              <p className="text-xs text-muted leading-relaxed">
+                재료값 전액이 작가에게 전달됩니다.<br />
                 작가 수수료는 0%예요.
               </p>
             </div>
 
             {/* Delivery info */}
-            <div className="bg-white rounded-xl p-4 border border-navy-100">
-              <p className="text-xs font-bold text-[--navy-700] mb-3">전달 4단계 추적</p>
+            <div className="bg-card rounded-xl p-4 border border-line">
+              <p className="text-xs font-bold text-navy-700 mb-3">전달 4단계 추적</p>
               {["후원 완료", "재료 준비 중", "작가에게 가는 중", "작가가 받았어요"].map((step, i) => (
                 <div key={step} className="flex items-center gap-2.5 py-1.5">
-                  <div className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${i === 0 ? "bg-[--sv] text-[--ink]" : "bg-navy-100 text-[--navy-400]"}`}>
+                  <div
+                    className={`w-5 h-5 rounded-full flex items-center justify-center font-black text-xs shrink-0 ${
+                      i === 0 ? "bg-sv text-ink" : "bg-navy-100 text-navy-400"
+                    }`}
+                  >
                     {i + 1}
                   </div>
-                  <span className={`text-xs ${i === 0 ? "font-semibold text-[--navy-800]" : "text-[--muted]"}`}>{step}</span>
+                  <span className={`text-xs ${i === 0 ? "font-semibold text-navy-800" : "text-muted"}`}>
+                    {step}
+                  </span>
                 </div>
               ))}
             </div>

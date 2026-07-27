@@ -1,9 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap');
 @import url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* Regal Navy — 9단 램프 */
   --navy-900: #07223C;
   --navy-800: #0D3B66;
   --navy-700: #20517E;
@@ -14,54 +13,59 @@
   --navy-200: #CFD9E3;
   --navy-100: #EBF0F4;
 
-  /* Sunflower Velvet */
-  --sv:      #F4D35E;
-  --sv-deep: #C2A43F;
-  --sv-soft: #F8D07A;
+  --sv:       #F4D35E;
+  --sv-deep:  #C2A43F;
+  --sv-soft:  #F8D07A;
   --gold-text: #58450E;
 
-  /* Paper / Neutral */
   --paper:   #FDFAF0;
   --chiffon: #FAF0CA;
+  --card:    #ffffff;
+  --line:    #E8E2CD;
   --ink:     #141414;
-  --muted:   #6B7280;
+  --muted:   #5E7284;
 }
 
 @theme inline {
-  --color-navy-900: var(--navy-900);
-  --color-navy-800: var(--navy-800);
-  --color-navy-700: var(--navy-700);
-  --color-navy-600: var(--navy-600);
-  --color-navy-500: var(--navy-500);
-  --color-navy-400: var(--navy-400);
-  --color-navy-300: var(--navy-300);
-  --color-navy-200: var(--navy-200);
-  --color-navy-100: var(--navy-100);
-  --color-sv:       var(--sv);
-  --color-sv-deep:  var(--sv-deep);
-  --color-sv-soft:  var(--sv-soft);
+  --color-navy-900:  var(--navy-900);
+  --color-navy-800:  var(--navy-800);
+  --color-navy-700:  var(--navy-700);
+  --color-navy-600:  var(--navy-600);
+  --color-navy-500:  var(--navy-500);
+  --color-navy-400:  var(--navy-400);
+  --color-navy-300:  var(--navy-300);
+  --color-navy-200:  var(--navy-200);
+  --color-navy-100:  var(--navy-100);
+  --color-sv:        var(--sv);
+  --color-sv-deep:   var(--sv-deep);
+  --color-sv-soft:   var(--sv-soft);
   --color-gold-text: var(--gold-text);
-  --color-paper:    var(--paper);
-  --color-chiffon:  var(--chiffon);
-  --color-ink:      var(--ink);
-  --font-suit: 'SUIT', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-  --font-myeongjo: 'Nanum Myeongjo', 'NanumMyeongjo', serif;
+  --color-paper:     var(--paper);
+  --color-chiffon:   var(--chiffon);
+  --color-card:      var(--card);
+  --color-line:      var(--line);
+  --color-ink:       var(--ink);
+  --color-muted:     var(--muted);
+
+  --font-myeongjo: 'Nanum Myeongjo', serif;
+  --font-suit:     'SUIT', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
 }
 
 body {
-  background-color: var(--paper);
+  background: var(--paper);
   color: var(--ink);
   font-family: 'SUIT', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 .font-myeongjo {
-  font-family: 'Nanum Myeongjo', 'NanumMyeongjo', serif;
+  font-family: 'Nanum Myeongjo', serif;
   line-height: 2.05;
 }
 
 @layer utilities {
-  .text-balance { text-wrap: balance; }
-  .shadow-card  { box-shadow: 0 8px 22px rgba(23,29,43,.06); }
-  .shadow-modal { box-shadow: 0 24px 60px rgba(20,24,36,.18); }
+  .text-balance    { text-wrap: balance; }
+  .shadow-card     { box-shadow: 0 8px 22px rgba(23,29,43,.06); }
+  .shadow-modal    { box-shadow: 0 24px 60px rgba(20,24,36,.18); }
+  .shadow-float    { box-shadow: 0 18px 44px rgba(6,26,46,.42); }
 }
