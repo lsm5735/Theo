@@ -4,8 +4,10 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import LetterCard from "@/components/LetterCard";
 import artists from "@/data/artists.json";
-import letters from "@/data/letters.json";
+import projects from "@/data/projects.json";
+import artworks from "@/data/artworks.json";
 import materials from "@/data/materials.json";
+import letters from "@/data/letters.json";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -38,14 +40,14 @@ export default async function ArtistPage({ params }: Props) {
   const artist = artists.find((a) => a.id === id);
   if (!artist) notFound();
 
+  const project = projects.find((p) => p.artistId === id);
+  const artistArtworks = artworks.filter((w) => w.artistId === id);
+  const artistMaterials = materials.filter((m) => m.artistId === id);
   const artistLetters = letters.filter((l) => l.artistId === id);
-  const compatibleMaterials = materials.filter((m) =>
-    m.compatibleGenres.includes(artist.genre)
-  );
 
-  const pct = Math.round(
-    (artist.currentProject.fundedAmount / artist.currentProject.targetAmount) * 100
-  );
+  const pct = project
+    ? Math.round((project.fundedAmount / project.targetAmount) * 100)
+    : 0;
 
   return (
     <div className="min-h-screen bg-paper">
@@ -99,7 +101,6 @@ export default async function ArtistPage({ params }: Props) {
               <div className="flex-1 min-w-0 pt-1">
                 <div className="flex flex-wrap items-baseline gap-2 mb-1">
                   <h1 className="text-2xl font-black text-navy-800">{artist.name}</h1>
-                  <span className="text-sm text-muted">{artist.nameEn}</span>
                 </div>
                 <p className="text-navy-600 font-medium text-sm mb-2">{artist.oneLiner}</p>
                 <div className="flex items-center gap-1.5 text-xs text-muted">
@@ -148,74 +149,104 @@ export default async function ArtistPage({ params }: Props) {
           <div className="space-y-10">
 
             {/* Current Project */}
-            <section>
-              <h2 className="text-lg font-black text-navy-800 mb-4">진행 중인 프로젝트</h2>
-              <div className="bg-card rounded-xl overflow-hidden border border-line" style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}>
-                <div className="relative h-52">
-                  <Image
-                    src={artist.currentProject.sketchImage}
-                    alt={artist.currentProject.title}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 720px"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(7,34,60,.6) 0%,transparent 60%)' }} />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <p className="text-white font-bold text-lg leading-tight">{artist.currentProject.title}</p>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-sm text-ink leading-relaxed mb-6">{artist.currentProject.concept}</p>
-
-                  {/* Progress */}
-                  <div className="mb-2">
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="font-semibold text-navy-800">
-                        {artist.currentProject.fundedAmount.toLocaleString()}원 모였어요
-                      </span>
-                      <span className="font-black text-navy-700">{pct}%</span>
-                    </div>
-                    <ProgressBar pct={pct} />
-                    <div className="flex justify-between text-xs text-muted mt-1.5">
-                      <span>목표 {artist.currentProject.targetAmount.toLocaleString()}원</span>
-                      <span>테오 {artist.currentProject.sponsorCount}명</span>
+            {project && (
+              <section>
+                <h2 className="text-lg font-black text-navy-800 mb-4">진행 중인 프로젝트</h2>
+                <div className="bg-card rounded-xl overflow-hidden border border-line" style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}>
+                  <div className="relative h-52">
+                    <Image
+                      src={project.sketchImage}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 720px"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(7,34,60,.6) 0%,transparent 60%)' }} />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <p className="text-white font-bold text-lg leading-tight">{project.title}</p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </section>
+                  <div className="p-6">
+                    <p className="text-sm text-ink leading-relaxed mb-6">{project.concept}</p>
 
-            {/* Materials */}
-            <section>
-              <h2 className="text-lg font-black text-navy-800 mb-4">재료 위시리스트</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {compatibleMaterials.slice(0, 6).map((m) => (
-                  <div
-                    key={m.id}
-                    className={`flex items-center gap-3 p-4 rounded-xl border transition-colors ${
-                      m.isFunded
-                        ? "bg-navy-100/50 border-navy-200 opacity-60"
-                        : "bg-card border-line"
-                    }`}
-                    style={!m.isFunded ? { boxShadow: '0 8px 22px rgba(23,29,43,.06)' } : undefined}
-                  >
-                    <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-navy-100">
-                      <Image src={m.image} alt={m.name} fill sizes="48px" className="object-cover" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-semibold text-navy-800 line-clamp-1">{m.name}</p>
-                      <p className="text-xs text-muted line-clamp-1 mt-0.5">{m.usageNote}</p>
-                      <div className="flex items-center gap-2 mt-1.5">
-                        <p className="text-sm font-bold text-gold-text">{m.price.toLocaleString()}원</p>
-                        {m.isFunded && (
-                          <span className="text-xs bg-navy-200 text-navy-600 px-1.5 py-0.5 rounded font-medium">선물 완료</span>
-                        )}
+                    {/* Progress */}
+                    <div className="mb-2">
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="font-semibold text-navy-800">
+                          {project.fundedAmount.toLocaleString()}원 모였어요
+                        </span>
+                        <span className="font-black text-navy-700">{pct}%</span>
+                      </div>
+                      <ProgressBar pct={pct} />
+                      <div className="flex justify-between text-xs text-muted mt-1.5">
+                        <span>목표 {project.targetAmount.toLocaleString()}원</span>
+                        <span>테오 {project.sponsorCount}명</span>
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </section>
+                </div>
+              </section>
+            )}
+
+            {/* Artworks */}
+            {artistArtworks.length > 0 && (
+              <section>
+                <h2 className="text-lg font-black text-navy-800 mb-4">대표 작품</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {artistArtworks.map((work) => (
+                    <div key={work.id} className="rounded-xl overflow-hidden border border-line bg-card" style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}>
+                      <div className="relative h-40">
+                        <Image
+                          src={work.imageUrl}
+                          alt={work.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, 33vw"
+                          className="object-cover"
+                        />
+                        {work.isRepresentative && (
+                          <span className="absolute top-2 left-2 bg-sv text-ink text-[10px] font-bold px-2 py-0.5 rounded-full">대표작</span>
+                        )}
+                      </div>
+                      <div className="p-3">
+                        <p className="font-semibold text-navy-800 text-sm">{work.title}</p>
+                        <p className="text-xs text-muted mt-0.5 leading-relaxed line-clamp-2">{work.caption}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Materials */}
+            {artistMaterials.length > 0 && (
+              <section>
+                <h2 className="text-lg font-black text-navy-800 mb-4">재료 위시리스트</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {artistMaterials.map((m) => (
+                    <div
+                      key={m.id}
+                      className={`flex items-center gap-3 p-4 rounded-xl border transition-colors ${
+                        m.isFunded
+                          ? "bg-navy-100/50 border-navy-200 opacity-60"
+                          : "bg-card border-line"
+                      }`}
+                      style={!m.isFunded ? { boxShadow: '0 8px 22px rgba(23,29,43,.06)' } : undefined}
+                    >
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold text-navy-800 line-clamp-1">{m.name}</p>
+                        <p className="text-xs text-muted line-clamp-1 mt-0.5">{m.usageNote}</p>
+                        <div className="flex items-center gap-2 mt-1.5">
+                          <p className="text-sm font-bold text-gold-text">{m.price.toLocaleString()}원</p>
+                          {m.isFunded && (
+                            <span className="text-xs bg-navy-200 text-navy-600 px-1.5 py-0.5 rounded font-medium">선물 완료</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Dear Theo letters */}
             {artistLetters.length > 0 && (

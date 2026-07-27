@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import artists from "@/data/artists.json";
+import projects from "@/data/projects.json";
 import materials from "@/data/materials.json";
 
 interface Props {
@@ -29,6 +30,7 @@ function IconMail() {
 
 export default function SponsorClient({ artistId }: Props) {
   const artist = artists.find((a) => a.id === artistId);
+  const project = projects.find((p) => p.artistId === artistId);
 
   const [selected, setSelected] = useState<string | null>(null);
   const [message, setMessage] = useState("");
@@ -42,13 +44,15 @@ export default function SponsorClient({ artistId }: Props) {
     );
   }
 
-  const compatibleMaterials = materials.filter(
-    (m) => m.compatibleGenres.includes(artist.genre) && !m.isFunded
+  const availableMaterials = materials.filter(
+    (m) => m.artistId === artistId && !m.isFunded
   );
 
   const selectedMaterial = materials.find((m) => m.id === selected);
   const fee = selectedMaterial ? Math.round(selectedMaterial.price * 0.03) : 0;
   const total = selectedMaterial ? selectedMaterial.price + fee : 0;
+
+  const sponsorCount = project?.sponsorCount ?? 0;
 
   /* ─── Done screen ─── */
   if (done && selectedMaterial) {
@@ -73,7 +77,7 @@ export default function SponsorClient({ artistId }: Props) {
             <p className="text-sv font-bold text-xs tracking-[0.16em] mb-2 uppercase">씨앗 배지 획득</p>
             <p className="font-black text-lg">
               당신은 이제 {artist.name} 작가의<br />
-              <span className="text-sv text-2xl">{artist.currentProject.sponsorCount + 1}번째 테오</span>입니다.
+              <span className="text-sv text-2xl">{sponsorCount + 1}번째 테오</span>입니다.
             </p>
           </div>
 
@@ -132,7 +136,9 @@ export default function SponsorClient({ artistId }: Props) {
           <div>
             <p className="text-sv font-bold text-xs tracking-[0.16em] uppercase mb-1">재료 선물하기</p>
             <p className="text-white font-black text-base">{artist.name}</p>
-            <p className="text-white/60 text-xs mt-0.5">{artist.currentProject.title}</p>
+            {project && (
+              <p className="text-white/60 text-xs mt-0.5">{project.title}</p>
+            )}
           </div>
         </div>
 
@@ -146,10 +152,10 @@ export default function SponsorClient({ artistId }: Props) {
           </div>
 
           <div className="space-y-3">
-            {compatibleMaterials.length === 0 ? (
+            {availableMaterials.length === 0 ? (
               <p className="text-sm text-muted text-center py-8">현재 선물 가능한 재료가 없습니다.</p>
             ) : (
-              compatibleMaterials.map((m) => (
+              availableMaterials.map((m) => (
                 <button
                   key={m.id}
                   onClick={() => setSelected(m.id)}
@@ -160,9 +166,6 @@ export default function SponsorClient({ artistId }: Props) {
                   }`}
                   style={selected === m.id ? { boxShadow: '0 8px 22px rgba(23,29,43,.06)' } : undefined}
                 >
-                  <div className="relative w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-navy-100">
-                    <Image src={m.image} alt={m.name} fill sizes="56px" className="object-cover" />
-                  </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-navy-800 text-sm leading-snug">{m.name}</p>
                     <p className="text-xs text-muted mt-0.5 line-clamp-1">{m.usageNote}</p>

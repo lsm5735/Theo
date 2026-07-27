@@ -3,6 +3,7 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import ArtistCard from "@/components/ArtistCard";
 import artists from "@/data/artists.json";
+import projects from "@/data/projects.json";
 
 /* ─── Hero underline SVG ─── */
 function HeroUnderlineSvg() {
@@ -47,6 +48,7 @@ function IconUser() {
 
 export default function Home() {
   const featuredArtists = artists.slice(0, 3);
+  const projectMap = Object.fromEntries(projects.map((p) => [p.artistId, p]));
 
   return (
     <div className="min-h-screen bg-paper">
@@ -331,9 +333,11 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {featuredArtists.map((artist) => (
-              <ArtistCard key={artist.id} artist={artist} />
-            ))}
+            {featuredArtists.map((artist) => {
+              const project = projectMap[artist.id];
+              if (!project) return null;
+              return <ArtistCard key={artist.id} artist={artist} project={project} />;
+            })}
           </div>
 
           {artists.length > 3 && (
@@ -469,8 +473,8 @@ export default function Home() {
                 <div className="flex-1 min-w-0">
                   <h6 className="text-[13.5px] font-semibold text-navy-900">{artists[0].name} · {artists[0].genre} / {artists[0].media[0]}</h6>
                   <p className="text-[11.5px] text-muted leading-[1.6] mt-1" style={{ wordBreak: 'keep-all' }}>
-                    작가노트의 "두터운 임파스토로 쌓는 도시의 밤"이 말씀하신 결과 맞닿아요. 지금{" "}
-                    <strong>{artists[0].currentProject.title}</strong>을 진행 중입니다.
+                    작가노트의 "도시의 물가를 오래 바라보다 남은 잔상"이 말씀하신 결과 맞닿아요. 지금{" "}
+                    <strong>{projectMap[artists[0].id]?.title ?? ""}</strong>을 진행 중입니다.
                   </p>
                 </div>
                 <span className="font-bold text-[12.5px] text-navy-700 ml-2 shrink-0">92%</span>

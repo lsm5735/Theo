@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface Project {
+  id: string;
   title: string;
   targetAmount: number;
   fundedAmount: number;
@@ -18,10 +19,9 @@ interface Artist {
   tags: string[];
   location: string;
   profileImage: string;
-  recentWork: string;
+  coverImage: string;
   followers: number;
   totalSponsors: number;
-  currentProject: Project;
 }
 
 const statusLabel: Record<string, { text: string; color: string }> = {
@@ -30,13 +30,13 @@ const statusLabel: Record<string, { text: string; color: string }> = {
   completed:   { text: "완성",          color: "bg-navy-200 text-navy-700" },
 };
 
-export default function ArtistCard({ artist }: { artist: Artist }) {
+export default function ArtistCard({ artist, project }: { artist: Artist; project: Project }) {
   const pct = Math.round(
-    (artist.currentProject.fundedAmount / artist.currentProject.targetAmount) * 100
+    (project.fundedAmount / project.targetAmount) * 100
   );
   const status =
-    statusLabel[artist.currentProject.status] ??
-    { text: artist.currentProject.status, color: "bg-navy-100 text-navy-600" };
+    statusLabel[project.status] ??
+    { text: project.status, color: "bg-navy-100 text-navy-600" };
 
   return (
     <Link
@@ -50,8 +50,8 @@ export default function ArtistCard({ artist }: { artist: Artist }) {
         {/* Thumbnail */}
         <div className="relative h-[132px] overflow-hidden bg-navy-100">
           <Image
-            src={artist.recentWork}
-            alt={`${artist.name}의 최근 작품`}
+            src={artist.coverImage}
+            alt={`${artist.name}의 작품`}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
@@ -103,7 +103,7 @@ export default function ArtistCard({ artist }: { artist: Artist }) {
 
           {/* Project */}
           <div className="border-t border-navy-100 pt-4">
-            <p className="text-[12px] font-myeongjo text-muted mb-1 truncate">{artist.currentProject.title}</p>
+            <p className="text-[12px] font-myeongjo text-muted mb-1 truncate">{project.title}</p>
 
             {/* Progress bar */}
             <div
@@ -123,7 +123,7 @@ export default function ArtistCard({ artist }: { artist: Artist }) {
               <span>
                 <b className="text-navy-800">{pct}%</b> 달성
               </span>
-              <span>테오 {artist.currentProject.sponsorCount}명</span>
+              <span>테오 {project.sponsorCount}명</span>
             </div>
           </div>
         </div>

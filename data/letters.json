@@ -1,67 +1,67 @@
 [
   {
     "id": "l1",
-    "artistId": "1",
+    "artistId": "artist_theo_001",
     "fromSponsor": "지수",
     "patronOrder": 3,
-    "sponsoredMaterial": "코발트블루 유화물감 세트",
+    "sponsoredMaterial": "윈저앤뉴튼 아티스트 오일 3색 200ml",
     "letter": {
-      "title": "밤 연작 No.3 — 첫 번째 편지",
-      "content": "안녕하세요, 지수님.\n\n물감이 도착했습니다. 상자를 열자마자 특유의 기름 냄새가 났어요. 그 냄새가 참 좋아요. 아틀리에 창문을 열어두고 팔레트에 Cobalt Blue와 Ultramarine을 짜며 오늘 아침을 시작했습니다.\n\n지금 작업 중인 세 번째 폭은 새벽 세 시 편의점 불빛이 남은 골목입니다. 그 코발트 블루가 이 작품의 주조색이 될 거예요. 덕분에 마음껏 물감을 쌓을 수 있게 됐습니다.\n\n\"밤 연작 응원해요. 이 파랑이 다음 그림의 하늘이 되면 좋겠어요.\" — 보내주신 메시지, 작업실에 붙여뒀습니다. 그림이 완성되면 제일 먼저 사진 보내드릴게요.\n\nDear Theo,\n윤도희 드림",
+      "title": "겨울 한강 결빙 직전 — 첫 번째 편지",
+      "content": "안녕하세요, 지수님.\n\n물감이 도착했습니다. 상자를 열자마자 특유의 기름 냄새가 났어요. 그 냄새가 참 좋아요. 아틀리에 창문을 열어두고 팔레트에 프러시안 블루와 티타늄 화이트를 짜며 오늘 아침을 시작했습니다.\n\n지금 작업 중인 것은 겨울 한강의 결빙 직전 수면입니다. 그 프러시안 블루가 이 작품의 주조색이 될 거예요. 덕분에 마음껏 겹칠 수 있게 됐습니다.\n\n\"물빛을 오래 바라보는 작업 응원해요\"라고 보내주신 메시지, 작업실에 붙여뒀습니다. 그림이 완성되면 제일 먼저 사진 보내드릴게요.\n\nDear Theo,\n서윤재 드림",
       "wipImage": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=700&h=400&fit=crop&q=80",
       "createdAt": "2026-07-20"
     }
   },
   {
     "id": "l2",
-    "artistId": "1",
+    "artistId": "artist_theo_002",
     "fromSponsor": "민준",
     "patronOrder": 1,
-    "sponsoredMaterial": "리넨 캔버스 10호 × 3장",
+    "sponsoredMaterial": "리퀴텍스 헤비바디 아크릴 6색 세트 138ml",
     "letter": {
-      "title": "밤 연작 No.2 — 완성 보고",
-      "content": "민준님, 안녕하세요.\n\n리넨 두 장을 보내주셨는데 한 장은 이미 프라이밍을 마쳤어요.\n\n리넨 질감이 정말 달라요. 면 캔버스랑 비교하면 붓이 더 잘 미끄러지는 느낌이 나서 넓은 배경을 칠할 때 훨씬 편합니다. 앞으로 제 작업의 주 재료가 될 것 같아요.\n\n이번 밤 연작 두 번째 작품이 완성됐습니다. 가로등 아래 물웅덩이에 하늘이 담긴 장면이에요. 사진 첨부합니다.\n\nDear Theo,\n윤도희 드림",
-      "wipImage": "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=700&h=400&fit=crop&q=80",
-      "createdAt": "2026-06-30"
-    }
-  },
-  {
-    "id": "l3",
-    "artistId": "2",
-    "fromSponsor": "서영",
-    "patronOrder": 2,
-    "sponsoredMaterial": "무사 드로잉지 A2 패드",
-    "letter": {
-      "title": "골목의 문 — 첫 번째 편지",
-      "content": "서영님, 안녕하세요.\n\n종이 패드 잘 받았습니다. 200g 중량의 종이에 목탄을 얹으니 번짐이 훨씬 아름답게 잡혀요. 보내주신 종이 덕분에 오늘 세 점을 완성했습니다.\n\n오늘 작업한 골목은 인천 십정동 골목이에요. 낡은 파란색 철문 하나가 있었는데, 그 문 너머로 어떤 이야기가 있을까 생각하면서 그렸습니다.\n\n\"번지는 목탄이 좋아요\"라고 하셨는데, 저도 그 번짐이 제일 좋아요. 다음에는 비 오는 날 목탄을 써볼까 생각 중입니다.\n\nDear Theo,\n김서안 드림",
-      "wipImage": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&h=400&fit=crop&q=80",
+      "title": "이웃 작가 다섯 명의 뒷모습 — 착수 보고",
+      "content": "민준님, 안녕하세요.\n\n아크릴 세트 잘 받았습니다.\n\n헤비바디라는 이름답게 물감이 묵직해서 캔버스에 올렸을 때 붓자국이 살아있는 느낌이 납니다. 뒷모습 연작에 꼭 맞는 재료예요.\n\n오늘 첫 번째 인물을 시작했습니다. 창가에 서 있다가 짐을 챙기는 순간의 어깨선인데, 아크릴 특유의 빠른 건조 덕분에 감정이 식기 전에 한 번에 끝낼 수 있었어요.\n\nDear Theo,\n문하람 드림",
+      "wipImage": "https://images.unsplash.com/photo-1549490349-8643362247b5?w=700&h=400&fit=crop&q=80",
       "createdAt": "2026-07-15"
     }
   },
   {
-    "id": "l4",
-    "artistId": "3",
+    "id": "l3",
+    "artistId": "artist_theo_007",
     "fromSponsor": "하은",
-    "patronOrder": 5,
-    "sponsoredMaterial": "홀베인 수채화물감 36색",
+    "patronOrder": 2,
+    "sponsoredMaterial": "쉔넬리에 유화물감 대용량 4색",
     "letter": {
-      "title": "새벽 강 — 여름편 중간 보고",
-      "content": "하은님, 안녕하세요.\n\n물감 36색이 도착했어요. 이렇게 많은 색을 한꺼번에 펼쳐두니 팔레트가 작품처럼 보입니다.\n\n지금 여름 새벽 한강을 작업 중인데, Cerulean Blue와 Yellow Ochre를 섞어서 여름 아침 강의 색을 만들고 있어요. 홀베인의 투명도가 정말 다릅니다. 물이 비치는 느낌이 훨씬 잘 나요.\n\n이번 주 안에 여름편을 완성하고 싶어요. 완성되면 바로 소식 드릴게요.\n\nDear Theo,\n박이레 드림",
-      "wipImage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&h=400&fit=crop&q=80",
+      "title": "백 번째 등반 — 중간 보고",
+      "content": "하은님, 안녕하세요.\n\n물감 4색이 도착했어요. 코발트 블루와 마젠타를 팔레트에 나란히 두니 바로 그 능선의 색감이 떠올랐습니다.\n\n지금 F60호 캔버스에 밑칠을 마쳤어요. 나이프로 큰 면을 밀어 올리는 방식이라 물감이 충분해야 하는데, 덕분에 걱정 없이 작업할 수 있게 됐습니다.\n\n이번 주 안에 두 번째 면을 완성하고 싶어요. 완성되면 바로 소식 드릴게요.\n\nDear Theo,\n진세아 드림",
+      "wipImage": "https://images.unsplash.com/photo-1580136607671-c37e43f8f2e4?w=700&h=400&fit=crop&q=80",
       "createdAt": "2026-07-22"
     }
   },
   {
+    "id": "l4",
+    "artistId": "artist_theo_005",
+    "fromSponsor": "서영",
+    "patronOrder": 1,
+    "sponsoredMaterial": "홀베인 아티스트 과슈 24색 세트",
+    "letter": {
+      "title": "시드는 화분 50일 연작 — 시작 편지",
+      "content": "서영님, 안녕하세요.\n\n과슈 24색 잘 받았습니다. 뚜껑을 열고 색들을 늘어놓으니 이미 작업이 시작된 것 같아서 기분이 좋았어요.\n\n오늘 첫 번째 화분을 사 왔습니다. 이미 잎끝이 말라가는 작은 고무나무예요. 앞으로 열흘 동안 이 아이와 함께 진행합니다.\n\n탁한 초록과 바랜 분홍 계열이 이번 연작의 주조색이 될 것 같아요. 물감이 마르면서 가라앉는 색이 식물이 시드는 것과 딱 닮았습니다.\n\nDear Theo,\n하연우 드림",
+      "wipImage": "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=700&h=400&fit=crop&q=80",
+      "createdAt": "2026-07-18"
+    }
+  },
+  {
     "id": "l5",
-    "artistId": "4",
+    "artistId": "artist_theo_013",
     "fromSponsor": "준혁",
     "patronOrder": 1,
-    "sponsoredMaterial": "골든 아크릴 Heavy Body 10색",
+    "sponsoredMaterial": "캔버스 F100호 2점",
     "letter": {
-      "title": "감정의 지층 — 슬픔 편 착수",
-      "content": "준혁님, 안녕하세요.\n\n골든 물감을 처음 써봤어요. Heavy Body라는 이름처럼 무게감이 다릅니다. 이렇게 두꺼운 물감이면 지층처럼 쌓이겠다 싶었어요.\n\n'슬픔'을 색으로 표현한다는 게 어렵기도 하고 솔직하기도 합니다. 지금 캔버스에는 짙은 군청색과 퍼플 계열이 층층이 쌓여 있어요. 아직 건조 중이라 최종 색감이 어떻게 나올지 모르지만, 분명히 슬픔처럼 보입니다.\n\n다음 달 초에 완성 사진 보내드릴게요. 첫 번째 테오로 함께해 주셔서 고마워요.\n\nDear Theo,\n최우진 드림",
-      "wipImage": "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=700&h=400&fit=crop&q=80",
-      "createdAt": "2026-07-18"
+      "title": "2호선 군상 프로젝트 — 착수",
+      "content": "준혁님, 안녕하세요.\n\nF100호 캔버스 두 점을 받았어요. 이렇게 큰 판형을 작업실에 세워두니 지하철 한 칸을 그대로 옮겨온 것 같은 기분이 들었습니다.\n\n오늘부터 출근 시간 버전을 시작합니다. 아크릴로 넓은 면을 빠르게 칠하고 마르기 전에 다음 인물을 겹쳐 올리는 방식이라, 큰 화면이 꼭 필요했어요.\n\n첫 번째 테오로 함께해 주셔서 감사합니다.\n\nDear Theo,\n백서린 드림",
+      "wipImage": "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=700&h=400&fit=crop&q=80",
+      "createdAt": "2026-07-25"
     }
   }
 ]
