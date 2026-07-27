@@ -68,10 +68,6 @@ export default function Home() {
       <section className="bg-paper pt-24 md:pt-36 pb-0 text-center">
         <div className="max-w-[720px] mx-auto px-5 md:px-8">
 
-          <p className="text-xs font-semibold tracking-[0.24em] text-navy-400 mb-8 uppercase">
-            관계형 현물 후원 플랫폼
-          </p>
-
           {/* Slogan */}
           <h1 className="text-4xl md:text-[60px] leading-[1.15] tracking-tight text-navy-900 mb-10 font-bold">
             모두의 고흐가 되기 전,<br />
@@ -87,14 +83,9 @@ export default function Home() {
           </h1>
 
           {/* Description */}
-          <p className="text-[15px] md:text-[16px] text-muted leading-[1.95] max-w-[560px] mx-auto mb-4">
-            화가 반 고흐에게는 평생 그를 응원해 준 동생 테오가 있었기에
+          <p className="text-[16px] md:text-[17px] text-muted leading-[1.95] max-w-[540px] mx-auto mb-14">
+            반 고흐에게는 평생 그를 응원해준 동생 테오가 있었기에
             세계가 사랑하는 명작이 탄생할 수 있었습니다.
-          </p>
-          <p className="text-[15px] md:text-[16px] text-muted leading-[1.95] max-w-[560px] mx-auto mb-14">
-            <strong className="text-navy-800 font-semibold">테오(후원자)</strong>는 작가에게 창작에 필요한 재료를 선물하고,{" "}
-            <strong className="text-navy-800 font-semibold">고흐(작가)</strong>는 창작 과정을 담은 콘텐츠와
-            영감을 담은 편지를 통해 관계가 쌓입니다.
           </p>
 
           {/* Role selection */}
@@ -123,112 +114,6 @@ export default function Home() {
             이미 계정이 있으신가요?{" "}
             <Link href="#" className="text-navy-600 font-semibold hover:underline">로그인</Link>
           </p>
-        </div>
-
-        {/* Artband — dark sky with floating cards */}
-        <div className="mt-10 max-w-[1080px] mx-auto px-5 md:px-8 relative">
-          <div
-            className="relative overflow-hidden rounded-2xl"
-            style={{
-              height: '264px',
-              background: 'linear-gradient(168deg,#061A2E 0%,#07223C 26%,#0D3B66 62%,#376590 108%)',
-            }}
-          >
-            {/* Moon */}
-            <div
-              className="absolute rounded-full"
-              style={{
-                width: '104px', height: '104px',
-                top: '-22px', right: '8%',
-                background: 'radial-gradient(circle,rgba(248,208,122,.85) 0 26%,rgba(244,211,94,.32) 48%,transparent 70%)',
-              }}
-            />
-            {/* Stars */}
-            {[
-              { top: '18%', left: '12%', size: 2 },
-              { top: '32%', left: '25%', size: 1.5 },
-              { top: '12%', left: '42%', size: 2.5 },
-              { top: '45%', left: '60%', size: 1.5 },
-              { top: '20%', left: '72%', size: 2 },
-            ].map((s, i) => (
-              <div
-                key={i}
-                className="absolute rounded-full bg-sv-soft opacity-70"
-                style={{ top: s.top, left: s.left, width: s.size, height: s.size }}
-              />
-            ))}
-            {/* Cypress silhouettes */}
-            <div
-              className="absolute bottom-0 left-8"
-              style={{
-                width: '18px', height: '80px',
-                background: 'linear-gradient(180deg,#0a2f0a 0%,#061A2E 100%)',
-                clipPath: 'polygon(50% 0%,100% 100%,0% 100%)',
-                opacity: 0.6,
-              }}
-            />
-            <div
-              className="absolute bottom-0 left-14"
-              style={{
-                width: '14px', height: '60px',
-                background: 'linear-gradient(180deg,#0a2f0a 0%,#061A2E 100%)',
-                clipPath: 'polygon(50% 0%,100% 100%,0% 100%)',
-                opacity: 0.5,
-              }}
-            />
-
-            {/* Letter card */}
-            <div
-              className="absolute bg-paper rounded-xl shadow-float p-4"
-              style={{ left: '50%', top: '44px', transform: 'translateX(-62%)', width: '280px' }}
-            >
-              <div className="flex justify-between items-center mb-2.5">
-                <div
-                  className="w-7 h-8 bg-sv-soft border border-sv-deep rounded-sm flex items-center justify-center"
-                >
-                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                    <path d="M1 5h8M5 1v8" stroke="#C2A43F" strokeWidth="1.5" strokeLinecap="round"/>
-                  </svg>
-                </div>
-                <div
-                  className="w-9 h-9 border border-navy-200 rounded-full flex items-center justify-center text-navy-400"
-                  style={{ fontFamily: "'Jost'", fontSize: '7px', lineHeight: 1.2, transform: 'rotate(-9deg)', textAlign: 'center' }}
-                >
-                  THEO<br />MAIL
-                </div>
-              </div>
-              <p className="font-myeongjo text-[12.5px] text-navy-900 leading-[1.85]">
-                이번 주에 드디어 코발트블루를 주문했어요.
-                물감이 도착하면 바로 작업을 시작할게요.
-                Dear Theo, 감사합니다.
-              </p>
-            </div>
-
-            {/* Project card */}
-            <div
-              className="absolute bg-paper rounded-xl shadow-float p-4 hidden sm:block"
-              style={{ right: '5%', bottom: '20px', width: '186px' }}
-            >
-              <div
-                className="h-14 rounded-lg mb-2.5 relative overflow-hidden"
-                style={{ background: 'linear-gradient(150deg,#0D3B66,#061A2E)' }}
-              >
-                <div
-                  className="absolute top-2 left-2 text-[10.5px] font-bold px-2 py-0.5 rounded-full bg-paper/90 text-navy-800"
-                >
-                  후원 모집 중
-                </div>
-              </div>
-              <p className="text-[12px] leading-snug font-semibold text-navy-900 mb-2.5">밤 연작 No.3</p>
-              <div className="h-1.5 rounded-full bg-navy-100 overflow-hidden mb-1.5">
-                <div className="h-full w-[64%] rounded-full" style={{ background: 'linear-gradient(90deg,var(--sv),var(--sv-deep))' }} />
-              </div>
-              <div className="flex justify-between text-[10px] text-muted">
-                <span>64%</span>
-                <span>테오 12명</span>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -480,6 +365,49 @@ export default function Home() {
             </div>
           )}
         </div>
+
+        {/* Artband */}
+        <div className="mt-16 max-w-[1080px] mx-auto px-5 md:px-8">
+          <div
+            className="relative overflow-hidden rounded-2xl"
+            style={{
+              height: '264px',
+              background: 'linear-gradient(168deg,#061A2E 0%,#07223C 26%,#0D3B66 62%,#376590 108%)',
+            }}
+          >
+            <div className="absolute rounded-full" style={{ width: '104px', height: '104px', top: '-22px', right: '8%', background: 'radial-gradient(circle,rgba(248,208,122,.85) 0 26%,rgba(244,211,94,.32) 48%,transparent 70%)' }} />
+            {[{ top: '18%', left: '12%', s: 2 },{ top: '32%', left: '25%', s: 1.5 },{ top: '12%', left: '42%', s: 2.5 },{ top: '45%', left: '60%', s: 1.5 },{ top: '20%', left: '72%', s: 2 }].map((p, i) => (
+              <div key={i} className="absolute rounded-full bg-sv-soft opacity-70" style={{ top: p.top, left: p.left, width: p.s, height: p.s }} />
+            ))}
+            <div className="absolute bottom-0 left-8" style={{ width: '18px', height: '80px', background: 'linear-gradient(180deg,#0a2f0a,#061A2E)', clipPath: 'polygon(50% 0%,100% 100%,0% 100%)', opacity: 0.6 }} />
+            <div className="absolute bottom-0 left-14" style={{ width: '14px', height: '60px', background: 'linear-gradient(180deg,#0a2f0a,#061A2E)', clipPath: 'polygon(50% 0%,100% 100%,0% 100%)', opacity: 0.5 }} />
+
+            {/* Letter card */}
+            <div className="absolute bg-paper rounded-xl p-4" style={{ left: '50%', top: '44px', transform: 'translateX(-62%)', width: '280px', boxShadow: '0 18px 44px rgba(6,26,46,.42)' }}>
+              <div className="flex justify-between items-center mb-2.5">
+                <div className="w-7 h-8 bg-sv-soft border border-sv-deep rounded-sm flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M5 1v8" stroke="#C2A43F" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                </div>
+                <div className="w-9 h-9 border border-navy-200 rounded-full flex items-center justify-center text-navy-400 text-[7px] leading-tight text-center" style={{ transform: 'rotate(-9deg)' }}>THEO<br />MAIL</div>
+              </div>
+              <p className="font-myeongjo text-[12.5px] text-navy-900 leading-[1.85]">
+                이번 주에 드디어 코발트블루를 주문했어요. 물감이 도착하면 바로 작업을 시작할게요. Dear Theo, 감사합니다.
+              </p>
+            </div>
+
+            {/* Project card */}
+            <div className="absolute bg-paper rounded-xl p-4 hidden sm:block" style={{ right: '5%', bottom: '20px', width: '186px', boxShadow: '0 18px 44px rgba(6,26,46,.42)' }}>
+              <div className="h-14 rounded-lg mb-2.5 relative overflow-hidden" style={{ background: 'linear-gradient(150deg,#0D3B66,#061A2E)' }}>
+                <div className="absolute top-2 left-2 text-[10.5px] font-bold px-2 py-0.5 rounded-full bg-paper/90 text-navy-800">후원 모집 중</div>
+              </div>
+              <p className="text-[12px] font-semibold text-navy-900 mb-2.5">밤 연작 No.3</p>
+              <div className="h-1.5 rounded-full bg-navy-100 overflow-hidden mb-1.5">
+                <div className="h-full w-[64%] rounded-full" style={{ background: 'linear-gradient(90deg,var(--sv),var(--sv-deep))' }} />
+              </div>
+              <div className="flex justify-between text-[10px] text-muted"><span>64%</span><span>테오 12명</span></div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ─── BADGE SECTION ─── */}
@@ -516,22 +444,20 @@ export default function Home() {
                 desc: '신작 48시간 선공개. 일반 공개 전 먼저 감상하세요.',
                 symbol: (
                   <div className="w-10 h-10 mx-auto flex items-center justify-center">
-                    {/* Sunflower: circle + petals via box-shadow */}
-                    <div className="relative">
-                      <div className="w-4 h-4 rounded-full bg-sv border-2 border-sv-deep mx-auto" />
-                      {/* 8 petals */}
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                      {/* petals */}
                       {[0,45,90,135,180,225,270,315].map((deg) => (
-                        <div
+                        <ellipse
                           key={deg}
-                          className="absolute w-1.5 h-3 rounded-full bg-sv opacity-80"
-                          style={{
-                            top: '50%', left: '50%',
-                            transformOrigin: '50% 100%',
-                            transform: `rotate(${deg}deg) translateX(-50%) translateY(-100%)`,
-                          }}
+                          cx="18" cy="8" rx="3" ry="5.5"
+                          fill="#F4D35E" opacity="0.85"
+                          transform={`rotate(${deg} 18 18)`}
                         />
                       ))}
-                    </div>
+                      {/* center */}
+                      <circle cx="18" cy="18" r="6.5" fill="#C2A43F" />
+                      <circle cx="18" cy="18" r="4.5" fill="#58450E" opacity="0.5" />
+                    </svg>
                   </div>
                 ),
               },
@@ -579,50 +505,6 @@ export default function Home() {
                 <h5 className="text-[15px] font-bold text-navy-900 mb-1.5">{b.name}</h5>
                 <p className="text-[11.5px] font-semibold text-gold-text mb-3">{b.cond}</p>
                 <p className="text-[11.5px] text-muted leading-[1.75]">{b.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TRUST ─── */}
-      <section className="py-20 bg-paper">
-        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
-          <div className="text-center mb-12">
-            <p className="text-xs tracking-[0.24em] text-navy-600 font-semibold uppercase mb-3">WHY THEO</p>
-            <h2 className="font-medium text-2xl md:text-[36px] text-navy-900 leading-[1.35]">
-              테오가 설계한 신뢰
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[
-              {
-                big: '0%',
-                title: '작가 수수료',
-                desc: '재료값 전액이 작가에게 전달됩니다. 플랫폼 운영비는 제휴 화방 커미션으로만 충당합니다.',
-                icon: <IconCoin />,
-              },
-              {
-                big: '100%',
-                title: '주소 비공개',
-                desc: '작가의 배송지는 절대 공개되지 않습니다. 테오가 안전하게 중개하고, 팬에게 주소를 노출하지 않습니다.',
-                icon: <IconLock />,
-              },
-              {
-                big: '4단계',
-                title: '전달 추적',
-                desc: '후원 완료 → 재료 준비 중 → 작가에게 가는 중 → 작가가 받았어요. 전 과정을 투명하게 확인합니다.',
-                icon: <IconBox />,
-              },
-            ].map((t) => (
-              <div key={t.title} className="bg-card border border-line rounded-2xl p-7">
-                <div className="w-9 h-9 rounded-lg bg-navy-100 flex items-center justify-center text-navy-600 mb-4">
-                  {t.icon}
-                </div>
-                <p className="font-bold text-[32px] text-navy-800 mb-2.5">{t.big}</p>
-                <h5 className="text-[15px] font-bold text-navy-900 mb-2.5">{t.title}</h5>
-                <p className="text-[12.5px] text-muted leading-[1.8]">{t.desc}</p>
               </div>
             ))}
           </div>
