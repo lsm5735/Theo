@@ -46,9 +46,14 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-7">
-          <Link href="#about" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
+          <a
+            href="https://www.okrr.art/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase"
+          >
             About
-          </Link>
+          </a>
           <Link href="#projects" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
             Atelier
           </Link>
