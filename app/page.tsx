@@ -357,7 +357,10 @@ export default function Home() {
             ))}
             <div className="absolute bottom-0" style={{ left: '5%', width: '18px', height: '80px', background: 'linear-gradient(180deg,#0a2f0a,#061A2E)', clipPath: 'polygon(50% 0%,100% 100%,0% 100%)', opacity: 0.6 }} />
             <div className="absolute bottom-0" style={{ left: '9%', width: '14px', height: '60px', background: 'linear-gradient(180deg,#0a2f0a,#061A2E)', clipPath: 'polygon(50% 0%,100% 100%,0% 100%)', opacity: 0.5 }} />
-            <div className="absolute bg-paper rounded-[13px] p-[15px_17px]" style={{ left: '50%', top: '44px', transform: 'translateX(-62%)', width: '288px', boxShadow: '0 18px 44px rgba(6,26,46,.42)' }}>
+            <div
+              className="absolute bg-paper rounded-[13px] p-[15px_17px] w-[220px] sm:w-[288px]"
+              style={{ left: '50%', top: '44px', transform: 'translateX(-50%)', boxShadow: '0 18px 44px rgba(6,26,46,.42)' }}
+            >
               <div className="flex justify-between items-center mb-2.5">
                 <div className="flex items-center justify-center" style={{ width: '36px', height: '36px', border: '1px solid var(--navy-200)', borderRadius: '50%', transform: 'rotate(-9deg)' }}>
                   <span className="text-navy-400 text-[7px] leading-tight text-center">SEOUL<br />THEO</span>
@@ -366,7 +369,7 @@ export default function Home() {
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M5 1v8" stroke="#C2A43F" strokeWidth="1.5" strokeLinecap="round" /></svg>
                 </div>
               </div>
-              <p className="font-myeongjo text-[12.5px] text-navy-900 leading-[1.85]">
+              <p className="font-myeongjo text-[11.5px] sm:text-[12.5px] text-navy-900 leading-[1.85]">
                 "보내주신 코발트블루가 어제 도착했습니다. 밤 연작 세 번째 캔버스의 하늘부터 올렸어요…"
               </p>
             </div>
