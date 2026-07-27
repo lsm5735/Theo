@@ -65,64 +65,63 @@ export default function Home() {
       <Header />
 
       {/* ─── HERO ─── */}
-      <section className="bg-paper pt-10 md:pt-14 pb-0 text-center">
-        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
+      <section className="bg-paper pt-24 md:pt-36 pb-0 text-center">
+        <div className="max-w-[720px] mx-auto px-5 md:px-8">
 
-          <p className="text-xs font-semibold tracking-[0.24em] text-navy-600 mb-5 uppercase">
+          <p className="text-xs font-semibold tracking-[0.24em] text-navy-400 mb-8 uppercase">
             관계형 현물 후원 플랫폼
           </p>
 
-          {/* Main headline */}
-          <h1
-            className="font-medium text-4xl md:text-[64px] leading-[1.1] tracking-tight text-navy-900 mb-6"
-          >
+          {/* Slogan */}
+          <h1 className="text-4xl md:text-[60px] leading-[1.15] tracking-tight text-navy-900 mb-10 font-bold">
             모두의 고흐가 되기 전,<br />
             나만의{" "}
             <span className="relative inline-block italic text-navy-700">
               고흐
               <span
-                className="absolute left-0 right-0 bottom-[2px] h-[0.4em] -z-10 rounded"
-                style={{ background: 'var(--sv-soft)', opacity: 0.7 }}
+                className="absolute left-0 right-0 bottom-[2px] h-[0.38em] -z-10 rounded"
+                style={{ background: 'var(--sv-soft)', opacity: 0.75 }}
               />
             </span>
             를 만난다.
           </h1>
 
-          <p className="text-base md:text-[16.5px] text-muted leading-[1.85] max-w-[580px] mx-auto mb-5">
-            작품을 사는 대신 창작에 필요한 재료를 선물하세요.<br />
-            <strong className="text-navy-800 font-semibold">개인정보 노출 없이</strong> 전달되고, 작가는 그 과정을 편지로 답합니다.
+          {/* Description */}
+          <p className="text-[15px] md:text-[16px] text-muted leading-[1.95] max-w-[560px] mx-auto mb-4">
+            화가 반 고흐에게는 평생 그를 응원해 준 동생 테오가 있었기에
+            세계가 사랑하는 명작이 탄생할 수 있었습니다.
+          </p>
+          <p className="text-[15px] md:text-[16px] text-muted leading-[1.95] max-w-[560px] mx-auto mb-14">
+            <strong className="text-navy-800 font-semibold">테오(후원자)</strong>는 작가에게 창작에 필요한 재료를 선물하고,{" "}
+            <strong className="text-navy-800 font-semibold">고흐(작가)</strong>는 창작 과정을 담은 콘텐츠와
+            영감을 담은 편지를 통해 관계가 쌓입니다.
           </p>
 
-          <p className="inline-flex items-center gap-2 font-semibold text-[14.5px] text-navy-800 mb-5">
-            <span className="w-2 h-2 rounded-full bg-sv inline-block" />
-            작가 수수료 0% — 재료값 전액이 작가에게
-          </p>
-
-          {/* Join bar */}
-          <div
-            className="flex gap-2 max-w-[452px] mx-auto bg-card border border-navy-200 rounded-xl p-2"
-            style={{ boxShadow: '0 10px 30px rgba(13,59,102,.08)' }}
-          >
-            <div className="flex items-center pl-1 shrink-0">
-              <span className="text-[13.5px] text-navy-400">theo.kr /</span>
-            </div>
-            <input
-              type="text"
-              placeholder="활동명"
-              className="flex-1 border-none outline-none text-sm text-navy-900 bg-transparent placeholder:text-navy-300 min-w-0"
-              readOnly
-            />
+          {/* Role selection */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
             <Link
-              href="#artists"
-              className="shrink-0 bg-navy-800 text-chiffon font-bold text-sm px-5 py-2.5 rounded-lg hover:bg-navy-700 transition-colors"
+              href="/onboarding/artist"
+              className="group w-full sm:w-auto min-w-[220px] border-2 border-navy-800 text-navy-800 font-bold text-[15px] px-8 py-4 rounded-xl hover:bg-navy-800 hover:text-chiffon transition-all duration-200 text-center"
             >
-              시작하기
+              나는 <span className="text-navy-600 group-hover:text-sv transition-colors">고흐</span>입니다
+              <span className="block text-xs font-normal text-muted group-hover:text-chiffon/70 mt-0.5 transition-colors">
+                작가로 시작하기
+              </span>
+            </Link>
+            <Link
+              href="/bot"
+              className="group w-full sm:w-auto min-w-[220px] bg-navy-800 text-chiffon font-bold text-[15px] px-8 py-4 rounded-xl hover:bg-navy-700 transition-all duration-200 text-center"
+            >
+              나는 <span className="text-sv">테오</span>입니다
+              <span className="block text-xs font-normal text-chiffon/60 group-hover:text-chiffon/80 mt-0.5 transition-colors">
+                후원자로 시작하기
+              </span>
             </Link>
           </div>
 
-          <p className="text-xs text-muted mt-4">
+          <p className="text-xs text-navy-400">
             이미 계정이 있으신가요?{" "}
-            <Link href="#" className="text-navy-700 font-bold hover:underline">로그인</Link>
+            <Link href="#" className="text-navy-600 font-semibold hover:underline">로그인</Link>
           </p>
         </div>
 
