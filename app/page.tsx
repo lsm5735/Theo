@@ -53,11 +53,11 @@ export default function Home() {
       <Header />
 
       {/* ─── HERO ─── */}
-      <header className="max-w-[1080px] mx-auto px-8" id="start">
-        <div className="pt-24 md:pt-36 pb-0 text-center">
+      <header className="max-w-[1080px] mx-auto px-5 md:px-8" id="start">
+        <div className="pt-14 md:pt-32 pb-0 text-center">
 
           {/* Headline */}
-          <h1 className="font-bold text-4xl md:text-[60px] leading-[1.15] tracking-tight text-navy-900 mb-10"
+          <h1 className="font-bold text-[30px] sm:text-[42px] md:text-[60px] leading-[1.2] md:leading-[1.15] tracking-tight text-navy-900 mb-6 md:mb-10"
             style={{ wordBreak: 'keep-all' }}>
             모두의 고흐가 되기 전,<br />
             나만의{" "}
@@ -68,23 +68,23 @@ export default function Home() {
           </h1>
 
           {/* Subtext */}
-          <p className="text-[16px] md:text-[17px] text-muted leading-[1.95] max-w-[540px] mx-auto mb-14" style={{ wordBreak: 'keep-all' }}>
+          <p className="text-[14px] md:text-[17px] text-muted leading-[1.9] max-w-[540px] mx-auto mb-10 md:mb-14" style={{ wordBreak: 'keep-all' }}>
             반 고흐에게는 평생 그를 응원해준 동생 테오가 있었기에
             세계가 사랑하는 명작이 탄생할 수 있었습니다.
           </p>
 
           {/* Role selection */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center mb-5 md:mb-6">
             <Link
               href="/onboarding/artist"
-              className="group w-full sm:w-auto min-w-[220px] border-2 border-navy-800 text-navy-800 font-bold text-[15px] px-8 py-4 rounded-xl hover:bg-navy-800 hover:text-chiffon transition-all duration-200 text-center"
+              className="group w-full sm:w-auto border-2 border-navy-800 text-navy-800 font-bold text-[14px] md:text-[15px] px-6 py-3.5 md:py-4 rounded-xl hover:bg-navy-800 hover:text-chiffon transition-all duration-200 text-center"
             >
               나는 <span className="text-navy-600 group-hover:text-sv transition-colors">고흐</span>입니다
               <span className="block text-xs font-normal text-muted group-hover:text-chiffon/70 mt-0.5 transition-colors">작가로 시작하기</span>
             </Link>
             <Link
               href="/bot"
-              className="group w-full sm:w-auto min-w-[220px] bg-navy-800 text-chiffon font-bold text-[15px] px-8 py-4 rounded-xl hover:bg-navy-700 transition-all duration-200 text-center"
+              className="group w-full sm:w-auto bg-navy-800 text-chiffon font-bold text-[14px] md:text-[15px] px-6 py-3.5 md:py-4 rounded-xl hover:bg-navy-700 transition-all duration-200 text-center"
             >
               나는 <span className="text-sv">테오</span>입니다
               <span className="block text-xs font-normal text-chiffon/60 group-hover:text-chiffon/80 mt-0.5 transition-colors">후원자로 시작하기</span>
@@ -101,7 +101,7 @@ export default function Home() {
 
       {/* ─── PROBLEM BAND ─── */}
       <section className="bg-navy-900 text-chiffon mt-16 py-24">
-        <div className="max-w-[1080px] mx-auto px-8">
+        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
           <div className="text-center mb-14">
             <p className="text-[11px] tracking-[0.24em] text-sv font-semibold uppercase mb-4">THE GAP</p>
             <h2 className="font-bold text-[28px] md:text-[32px] text-chiffon leading-[1.4] mb-5" style={{ wordBreak: 'keep-all' }}>
@@ -151,11 +151,11 @@ export default function Home() {
       </section>
 
       {/* ─── HOW IT WORKS ─── */}
-      <section className="py-[82px] bg-paper" id="how">
-        <div className="max-w-[1080px] mx-auto px-8">
+      <section className="py-14 md:py-[82px] bg-paper" id="how">
+        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
           <div className="text-center mb-12">
             <p className="text-[11px] tracking-[0.24em] text-navy-600 font-semibold uppercase mb-3">HOW IT WORKS</p>
-            <h2 className="font-medium text-[36px] text-navy-900 leading-[1.35] mb-4">재료가 작품이 되기까지</h2>
+            <h2 className="font-medium text-[26px] md:text-[36px] text-navy-900 leading-[1.35] mb-4">재료가 작품이 되기까지</h2>
             <p className="text-[14.5px] text-muted leading-[1.9] max-w-[480px] mx-auto" style={{ wordBreak: 'keep-all' }}>
               후원은 재료 낱개가 아니라 <strong className="text-navy-800">하나의 작품 프로젝트</strong>를 완성시키는 일입니다.
             </p>
@@ -169,7 +169,7 @@ export default function Home() {
                   <b className="w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs font-bold text-navy-700" style={{ border: '1.5px solid var(--navy-300)' }}>01</b>
                   <span className="text-[11px] tracking-[0.18em] text-navy-400 uppercase">Artist</span>
                 </div>
-                <h3 className="font-medium text-[27px] text-navy-900 mb-[14px] leading-snug" style={{ wordBreak: 'keep-all' }}>
+                <h3 className="font-medium text-[22px] md:text-[27px] text-navy-900 mb-[14px] leading-snug" style={{ wordBreak: 'keep-all' }}>
                   작가가 그릴 작품을 등록한다
                 </h3>
                 <p className="text-[14.5px] text-muted leading-[1.95] max-w-[410px]" style={{ wordBreak: 'keep-all' }}>
@@ -225,7 +225,7 @@ export default function Home() {
                   <b className="w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs font-bold text-navy-700" style={{ border: '1.5px solid var(--navy-300)' }}>02</b>
                   <span className="text-[11px] tracking-[0.18em] text-navy-400 uppercase">Patron</span>
                 </div>
-                <h3 className="font-medium text-[27px] text-navy-900 mb-[14px] leading-snug" style={{ wordBreak: 'keep-all' }}>
+                <h3 className="font-medium text-[22px] md:text-[27px] text-navy-900 mb-[14px] leading-snug" style={{ wordBreak: 'keep-all' }}>
                   재료를 선물하고 한마디를 남긴다
                 </h3>
                 <p className="text-[14.5px] text-muted leading-[1.95] max-w-[410px]" style={{ wordBreak: 'keep-all' }}>
@@ -242,7 +242,7 @@ export default function Home() {
                   <b className="w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs font-bold text-navy-700" style={{ border: '1.5px solid var(--navy-300)' }}>03</b>
                   <span className="text-[11px] tracking-[0.18em] text-navy-400 uppercase">Process</span>
                 </div>
-                <h3 className="font-medium text-[27px] text-navy-900 mb-[14px] leading-snug" style={{ wordBreak: 'keep-all' }}>
+                <h3 className="font-medium text-[22px] md:text-[27px] text-navy-900 mb-[14px] leading-snug" style={{ wordBreak: 'keep-all' }}>
                   전달을 확인하고, 편지로 답이 온다
                 </h3>
                 <p className="text-[14.5px] text-muted leading-[1.95] max-w-[410px]" style={{ wordBreak: 'keep-all' }}>
@@ -307,7 +307,7 @@ export default function Home() {
                   <b className="w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs font-bold text-navy-700" style={{ border: '1.5px solid var(--navy-300)' }}>04</b>
                   <span className="text-[11px] tracking-[0.18em] text-navy-400 uppercase">Complete</span>
                 </div>
-                <h3 className="font-medium text-[27px] text-navy-900 mb-[14px] leading-snug" style={{ wordBreak: 'keep-all' }}>
+                <h3 className="font-medium text-[22px] md:text-[27px] text-navy-900 mb-[14px] leading-snug" style={{ wordBreak: 'keep-all' }}>
                   작품이 완성되면, 그 자리에 초대된다
                 </h3>
                 <p className="text-[14.5px] text-muted leading-[1.95] max-w-[410px]" style={{ wordBreak: 'keep-all' }}>
@@ -322,8 +322,8 @@ export default function Home() {
       </section>
 
       {/* ─── OPEN PROJECTS ─── */}
-      <section className="py-[82px] bg-paper" id="projects">
-        <div className="max-w-[1080px] mx-auto px-8">
+      <section className="py-14 md:py-[82px] bg-paper" id="projects">
+        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
           <div className="text-center mb-12">
             <p className="text-[11px] tracking-[0.24em] text-navy-600 font-semibold uppercase mb-3">OPEN PROJECTS</p>
             <h2 className="font-medium text-[36px] text-navy-900 leading-[1.35] mb-4">지금 시작되고 있는 작업</h2>
@@ -349,7 +349,7 @@ export default function Home() {
         </div>
 
         {/* ─── Artband ─── */}
-        <div className="mt-16 max-w-[1080px] mx-auto px-8">
+        <div className="mt-16 max-w-[1080px] mx-auto px-5 md:px-8">
           <div className="h-[264px] rounded-[20px] relative overflow-hidden" style={{ background: 'linear-gradient(168deg,#061A2E 0%,#07223C 26%,#0D3B66 62%,#376590 108%)' }}>
             <div className="absolute rounded-full" style={{ width: '104px', height: '104px', top: '-22px', right: '8%', background: 'radial-gradient(circle,rgba(248,208,122,.85) 0 26%,rgba(244,211,94,.32) 48%,transparent 70%)' }} />
             {[{ top: '34px', left: '12%' },{ top: '96px', left: '27%' },{ top: '150px', left: '76%' },{ top: '52px', left: '64%' }].map((s, i) => (
@@ -388,7 +388,7 @@ export default function Home() {
         id="bot"
         style={{ background: 'linear-gradient(150deg,var(--navy-900) 0%,var(--navy-800) 55%,var(--navy-700) 100%)' }}
       >
-        <div className="max-w-[1080px] mx-auto px-8">
+        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
           <div className="text-center mb-12">
             <p className="text-[11px] tracking-[0.24em] text-sv font-semibold uppercase mb-3">MEET THEO BOT</p>
             <h2 className="font-medium text-[36px] text-chiffon leading-[1.35] mb-4" style={{ wordBreak: 'keep-all' }}>
@@ -483,10 +483,10 @@ export default function Home() {
 
       {/* ─── BADGE SECTION ─── */}
       <section className="bg-navy-100 border-t border-navy-200 border-b border-navy-200 py-[78px]" id="badges">
-        <div className="max-w-[1080px] mx-auto px-8">
+        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
           <div className="text-center mb-10">
             <p className="text-[11px] tracking-[0.24em] text-navy-600 font-semibold uppercase mb-3">THEO BADGE</p>
-            <h2 className="font-medium text-[36px] text-navy-900 leading-[1.35] mb-4">후원할수록 쌓이는 나의 이야기</h2>
+            <h2 className="font-medium text-[24px] md:text-[36px] text-navy-900 leading-[1.35] mb-4">후원할수록 쌓이는 나의 이야기</h2>
             <p className="text-sm text-muted max-w-[400px] mx-auto leading-relaxed" style={{ wordBreak: 'keep-all' }}>
               유명해지기 전에 먼저 알아본 사람. 그 기록이 배지로 남습니다.
             </p>
@@ -567,7 +567,7 @@ export default function Home() {
 
       {/* ─── ARTY / LOOP ─── */}
       <section className="bg-card border-t border-line py-[78px]" id="community">
-        <div className="max-w-[1080px] mx-auto px-8">
+        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
             <div>
               <p className="text-[11px] tracking-[0.24em] text-navy-600 font-semibold uppercase mb-3">ARTY · 아띠</p>
@@ -671,7 +671,7 @@ export default function Home() {
 
       {/* ─── FOOTER ─── */}
       <footer style={{ background: '#061A2E' }} className="text-chiffon pt-14 pb-9" id="about">
-        <div className="max-w-[1080px] mx-auto px-8">
+        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-10">
             {/* Brand col */}
             <div className="col-span-2 md:col-span-1">

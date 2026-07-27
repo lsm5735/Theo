@@ -36,7 +36,7 @@ function BrandLogoSvg() {
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-paper/90 backdrop-blur-[12px] border-b border-line">
-      <div className="max-w-[1080px] mx-auto px-8 flex items-center justify-between py-3">
+      <div className="max-w-[1080px] mx-auto px-5 md:px-8 flex items-center justify-between py-3">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
