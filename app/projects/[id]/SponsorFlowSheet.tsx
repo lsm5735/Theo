@@ -3,6 +3,57 @@
 import { useState } from "react";
 import Link from "next/link";
 
+/* ─ 배경 별 시드 데이터 [left%, top%, size(px), opacity, delay(s)] ─ */
+const BG_STARS: [number, number, number, number, number][] = [
+  [7, 12, 1.5, 0.55, 0.08], [18, 6, 1, 0.35, 0.28],
+  [30, 21, 1.5, 0.48, 0.15], [45, 9, 1, 0.38, 0.42],
+  [58, 18, 2, 0.44, 0.2],   [72, 6, 1.5, 0.5, 0.35],
+  [84, 24, 1, 0.32, 0.07],  [93, 13, 1.5, 0.46, 0.22],
+  [12, 40, 1, 0.30, 0.48],  [26, 53, 1.5, 0.40, 0.12],
+  [40, 47, 1, 0.33, 0.38],  [67, 51, 1.5, 0.38, 0.18],
+  [78, 41, 1, 0.28, 0.53],  [88, 56, 1.5, 0.40, 0.16],
+  [5,  66, 1, 0.28, 0.30],  [52, 63, 2,  0.36, 0.24],
+  [95, 34, 1, 0.26, 0.44],  [22, 76, 1.5, 0.30, 0.32],
+];
+
+/* ─ 렌즈플레어 스타일 별 SVG ─ */
+function StarSVG() {
+  return (
+    <svg width="60" height="60" viewBox="-30 -30 60 60" style={{ overflow: "visible" }}>
+      <defs>
+        <radialGradient id="sc" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stopColor="#FFFFFF" stopOpacity="1" />
+          <stop offset="35%"  stopColor="#F8D07A" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="#F4D35E" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="rH" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stopColor="#F4D35E" stopOpacity="0" />
+          <stop offset="50%"  stopColor="#F4D35E" stopOpacity="0.72" />
+          <stop offset="100%" stopColor="#F4D35E" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id="rV" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stopColor="#F4D35E" stopOpacity="0" />
+          <stop offset="50%"  stopColor="#F4D35E" stopOpacity="0.72" />
+          <stop offset="100%" stopColor="#F4D35E" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {/* 헤일로 */}
+      <circle r="28" fill="#F4D35E" opacity="0.05" />
+      <circle r="18" fill="#F4D35E" opacity="0.10" />
+      <circle r="10" fill="url(#sc)" />
+      {/* 십자 광선 */}
+      <rect x="-28" y="-1.3" width="56" height="2.6" rx="1.3" fill="url(#rH)" />
+      <rect x="-1.3" y="-28" width="2.6" height="56" rx="1.3" fill="url(#rV)" />
+      {/* 대각 광선 (짧고 흐리게) */}
+      <line x1="-17" y1="-17" x2="17" y2="17"  stroke="#F4D35E" strokeWidth="1.3" strokeLinecap="round" opacity="0.28" />
+      <line x1="17"  y1="-17" x2="-17" y2="17" stroke="#F4D35E" strokeWidth="1.3" strokeLinecap="round" opacity="0.28" />
+      {/* 코어 */}
+      <circle r="4.5" fill="#F8D07A" opacity="0.95" />
+      <circle r="2.2" fill="white" />
+    </svg>
+  );
+}
+
 export interface SheetMaterial {
   id: string;
   name: string;
@@ -147,34 +198,73 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
       {isOpen && active && (
         <>
           <style>{`
+            /* ── 시트 진입 ── */
             @keyframes sheet-up {
-              from { transform: translateY(100%); opacity: 0.8; }
+              from { transform: translateY(100%); opacity: .8; }
               to   { transform: translateY(0);    opacity: 1; }
             }
+
+            /* ── 배지 ── */
             @keyframes badge-pop {
               0%   { transform: scale(0) rotate(-18deg); opacity: 0; }
               60%  { transform: scale(1.28) rotate(4deg); opacity: 1; }
-              100% { transform: scale(1) rotate(0deg);  opacity: 1; }
+              100% { transform: scale(1) rotate(0deg); opacity: 1; }
             }
             @keyframes ring-pulse {
-              0%   { box-shadow: 0 0 0 0   rgba(244,211,94,.55); }
-              70%  { box-shadow: 0 0 0 22px rgba(244,211,94,.0); }
-              100% { box-shadow: 0 0 0 0   rgba(244,211,94,.0); }
+              0%   { box-shadow: 0 0 0 0    rgba(244,211,94,.55); }
+              70%  { box-shadow: 0 0 0 22px rgba(244,211,94,.0);  }
+              100% { box-shadow: 0 0 0 0    rgba(244,211,94,.0);  }
             }
+
+            /* ── 공용 fade-up ── */
             @keyframes fade-up {
               from { opacity: 0; transform: translateY(14px); }
               to   { opacity: 1; transform: translateY(0); }
             }
-            .sheet-enter { animation: sheet-up .36s cubic-bezier(.32,.72,0,1) both; }
-            .badge-anim  {
-              animation:
-                badge-pop   .55s cubic-bezier(.175,.885,.32,1.275) both,
-                ring-pulse  1.8s ease .55s infinite;
+
+            /* ── 밤하늘 ── */
+            @keyframes sky-appear {
+              from { opacity: 0; }
+              to   { opacity: 1; }
             }
-            .fu1 { animation: fade-up .4s ease .65s both; }
-            .fu2 { animation: fade-up .4s ease .85s both; }
-            .fu3 { animation: fade-up .4s ease 1.05s both; }
-            .fu4 { animation: fade-up .4s ease 1.25s both; }
+            @keyframes bg-dot-in {
+              from { opacity: 0; transform: scale(.3); }
+              to   { transform: scale(1); }
+            }
+            @keyframes star-rise {
+              0%   { transform: translateY(68px) scale(.12);
+                     opacity: 0; filter: blur(8px); }
+              35%  { opacity: .6; filter: blur(2px); }
+              100% { transform: translateY(0) scale(1);
+                     opacity: 1; filter: blur(0); }
+            }
+            @keyframes star-twinkle {
+              0%, 100% { transform: scale(1);    opacity: 1; }
+              50%       { transform: scale(.82);  opacity: .72; }
+            }
+            @keyframes sky-text-in {
+              from { opacity: 0; transform: translateY(5px); }
+              to   { opacity: 1; transform: translateY(0); }
+            }
+
+            /* ── 클래스 바인딩 ── */
+            .sheet-enter  { animation: sheet-up .36s cubic-bezier(.32,.72,0,1) both; }
+            .sky-enter    { animation: sky-appear .5s ease both; }
+            .star-main    {
+              animation:
+                star-rise    1.8s cubic-bezier(.16,1,.3,1) .5s both,
+                star-twinkle 3.2s ease 2.4s infinite;
+            }
+            .sky-caption  { animation: sky-text-in .5s ease 2.1s both; }
+            .badge-anim   {
+              animation:
+                badge-pop  .5s cubic-bezier(.175,.885,.32,1.275) 2.5s both,
+                ring-pulse 1.8s ease 3.1s infinite;
+            }
+            .fu1 { animation: fade-up .4s ease 2.6s both; }
+            .fu2 { animation: fade-up .4s ease 2.9s both; }
+            .fu3 { animation: fade-up .4s ease 3.2s both; }
+            .fu4 { animation: fade-up .4s ease 3.5s both; }
           `}</style>
 
           {/* Backdrop */}
@@ -453,88 +543,145 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   STEP 4 · 완료
               ══════════════════════════════════════ */}
             {step === 4 && (
-              <div className="px-5 pt-8 pb-12 text-center">
-                {/* 씨앗 배지 점등 */}
-                <div className="mb-2">
-                  <div className="badge-anim w-32 h-32 bg-navy-800 rounded-full flex flex-col items-center justify-center mx-auto">
-                    <span className="text-4xl leading-none mb-1">⭐</span>
-                    <span
-                      className="text-xs font-black tracking-widest"
-                      style={{ color: "var(--sv)" }}
+              <div className="pb-12 text-center">
+
+                {/* ── 밤하늘 (full-bleed) ── */}
+                <div
+                  className="sky-enter relative overflow-hidden"
+                  style={{
+                    height: 212,
+                    background:
+                      "linear-gradient(180deg,#020c1b 0%,#061229 55%,#0c1c3a 100%)",
+                  }}
+                >
+                  {/* 배경 별들 */}
+                  {BG_STARS.map(([l, t, s, o, d], i) => (
+                    <div
+                      key={i}
+                      className="absolute rounded-full pointer-events-none"
+                      style={{
+                        left: `${l}%`,
+                        top: `${t}%`,
+                        width: `${s}px`,
+                        height: `${s}px`,
+                        background: "white",
+                        opacity: o,
+                        animation: `bg-dot-in .5s ease ${d}s both`,
+                      }}
+                    />
+                  ))}
+
+                  {/* 메인 별 — 아래에서 떠오름 */}
+                  <div className="absolute" style={{ left: "50%", top: "40%" }}>
+                    <div
+                      className="star-main"
+                      style={{ transform: "translate(-50%, -50%)" }}
                     >
-                      씨앗
-                    </span>
+                      <StarSVG />
+                    </div>
                   </div>
-                </div>
 
-                <p className="fu1 text-xs text-muted mb-6">씨앗 배지 획득</p>
-
-                {/* Main message */}
-                <div className="fu2 mb-6">
-                  <p className="text-3xl font-black text-navy-800 leading-tight">
-                    {displayName}은 이제
-                  </p>
-                  <p className="text-navy-500 text-sm mt-2 mb-0.5 font-medium">
-                    {artist.name} 작가님
-                  </p>
-                  <p className="text-navy-700 font-bold text-base leading-snug mb-2">
-                    "{project.title}"의
-                  </p>
+                  {/* 하늘 캡션 */}
                   <p
-                    className="text-3xl font-black"
-                    style={{ color: "var(--sv)", textShadow: "0 2px 12px rgba(244,211,94,.4)" }}
+                    className="sky-caption absolute bottom-4 left-0 right-0 text-center text-xs font-medium pointer-events-none"
+                    style={{ color: "rgba(244,211,94,.55)" }}
                   >
-                    테오입니다.
+                    이 하늘의 첫 별이 됐어요
                   </p>
                 </div>
 
-                {/* Gifted material */}
-                <div className="fu3 bg-chiffon border border-sv/25 rounded-xl p-4 text-left mb-3">
-                  <p className="text-[11px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
-                    선물한 재료
-                  </p>
-                  <p className="text-sm font-semibold text-navy-800 leading-snug">
-                    {active.name}
-                  </p>
-                  <p className="text-xs text-navy-600 mt-0.5">{active.usageNote}</p>
-                  <p className="text-sm font-black mt-2" style={{ color: "var(--gold-text)" }}>
-                    재료값 {active.price.toLocaleString()}원이 작가에게 전달됩니다.
-                  </p>
-                </div>
+                {/* ── 콘텐츠 ── */}
+                <div className="px-5">
 
-                {/* Message receipt */}
-                {message.trim() && (
+                  {/* 씨앗 배지 */}
+                  <div className="mt-7 mb-2">
+                    <div className="badge-anim w-20 h-20 bg-navy-800 rounded-full flex flex-col items-center justify-center mx-auto">
+                      <span className="text-2xl leading-none mb-0.5">⭐</span>
+                      <span
+                        className="text-[10px] font-black tracking-widest"
+                        style={{ color: "var(--sv)" }}
+                      >
+                        씨앗
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="fu1 text-xs text-muted mb-5">씨앗 배지 획득</p>
+
+                  {/* 메인 문구 */}
+                  <div className="fu2 mb-6">
+                    <p className="text-3xl font-black text-navy-800 leading-tight">
+                      {displayName}은 이제
+                    </p>
+                    <p className="text-navy-500 text-sm mt-2 mb-0.5 font-medium">
+                      {artist.name} 작가님
+                    </p>
+                    <p className="text-navy-700 font-bold text-base leading-snug mb-2">
+                      "{project.title}"의
+                    </p>
+                    <p
+                      className="text-3xl font-black"
+                      style={{
+                        color: "var(--sv)",
+                        textShadow: "0 2px 12px rgba(244,211,94,.4)",
+                      }}
+                    >
+                      테오입니다.
+                    </p>
+                  </div>
+
+                  {/* 선물한 재료 */}
                   <div className="fu3 bg-chiffon border border-sv/25 rounded-xl p-4 text-left mb-3">
                     <p className="text-[11px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
-                      Dear Gogh 메시지
+                      선물한 재료
                     </p>
-                    <p className="font-myeongjo text-sm text-ink leading-relaxed">
-                      "{message.trim()}"
+                    <p className="text-sm font-semibold text-navy-800 leading-snug">
+                      {active.name}
+                    </p>
+                    <p className="text-xs text-navy-600 mt-0.5">{active.usageNote}</p>
+                    <p
+                      className="text-sm font-black mt-2"
+                      style={{ color: "var(--gold-text)" }}
+                    >
+                      재료값 {active.price.toLocaleString()}원이 작가에게 전달됩니다.
                     </p>
                   </div>
-                )}
 
-                <p className="fu3 text-xs text-muted mb-8 leading-relaxed">
-                  재료가 준비되면 {artist.name} 작가에게 전달됩니다.
-                  <br />
-                  작가가 받으면 Dear Theo 편지가 도착할 거예요.
-                </p>
+                  {/* 메시지 영수증 */}
+                  {message.trim() && (
+                    <div className="fu3 bg-chiffon border border-sv/25 rounded-xl p-4 text-left mb-3">
+                      <p className="text-[11px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
+                        Dear Gogh 메시지
+                      </p>
+                      <p className="font-myeongjo text-sm text-ink leading-relaxed">
+                        "{message.trim()}"
+                      </p>
+                    </div>
+                  )}
 
-                {/* CTAs */}
-                <div className="fu4 flex flex-col gap-3">
-                  <button
-                    onClick={closeFlow}
-                    className="w-full bg-navy-800 text-white font-bold py-3.5 rounded-xl hover:bg-navy-700 transition-colors text-sm"
-                  >
-                    프로젝트로 돌아가기
-                  </button>
-                  <Link
-                    href="/"
-                    onClick={closeFlow}
-                    className="w-full bg-card border border-navy-200 text-navy-700 font-semibold py-3.5 rounded-xl hover:bg-navy-100 transition-colors text-sm text-center block"
-                  >
-                    다른 작가 보기
-                  </Link>
+                  <p className="fu3 text-xs text-muted mb-8 leading-relaxed">
+                    재료가 준비되면 {artist.name} 작가에게 전달됩니다.
+                    <br />
+                    작가가 받으면 Dear Theo 편지가 도착할 거예요.
+                  </p>
+
+                  {/* CTA */}
+                  <div className="fu4 flex flex-col gap-3">
+                    <button
+                      onClick={closeFlow}
+                      className="w-full bg-navy-800 text-white font-bold py-3.5 rounded-xl hover:bg-navy-700 transition-colors text-sm"
+                    >
+                      프로젝트로 돌아가기
+                    </button>
+                    <Link
+                      href="/"
+                      onClick={closeFlow}
+                      className="w-full bg-card border border-navy-200 text-navy-700 font-semibold py-3.5 rounded-xl hover:bg-navy-100 transition-colors text-sm text-center block"
+                    >
+                      다른 작가 보기
+                    </Link>
+                  </div>
+
                 </div>
               </div>
             )}
