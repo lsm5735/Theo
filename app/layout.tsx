@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import FloatingChatbot from "@/components/FloatingChatbot";
 
 export const metadata: Metadata = {
   title: "Theo — 모두의 고흐가 되기 전, 나만의 고흐를 만난다",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="h-full scroll-smooth">
-      <body className="min-h-full flex flex-col bg-paper text-ink antialiased">{children}</body>
+      <body className="min-h-full flex flex-col bg-paper text-ink antialiased">
+        {children}
+        <FloatingChatbot />
+      </body>
     </html>
   );
 }
