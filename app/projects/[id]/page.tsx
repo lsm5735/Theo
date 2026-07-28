@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
+import SponsorFlowSheet from "./SponsorFlowSheet";
 import artists from "@/data/artists.json";
 import projects from "@/data/projects.json";
 import materials from "@/data/materials.json";
@@ -25,28 +26,6 @@ function ProgressBar({ pct }: { pct: number }) {
   );
 }
 
-function MaterialIcon({ note }: { note: string }) {
-  if (note.includes("주조색")) {
-    return (
-      <svg className="w-4 h-4 text-sv shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor">
-        <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="6" r="3"/>
-        <circle cx="18" cy="18" r="3"/><circle cx="12" cy="12" r="4"/>
-      </svg>
-    );
-  }
-  if (note.includes("바탕") || note.includes("종이")) {
-    return (
-      <svg className="w-4 h-4 text-navy-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="3" y="3" width="18" height="18" rx="2"/>
-      </svg>
-    );
-  }
-  return (
-    <svg className="w-4 h-4 text-navy-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-    </svg>
-  );
-}
 
 function SponsorAvatar({ nickname }: { nickname: string }) {
   const colors = [
@@ -87,9 +66,6 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   const pct = Math.round((project.fundedAmount / project.targetAmount) * 100);
   const remaining = project.targetAmount - project.fundedAmount;
-
-  const fundedCount = projectMaterials.filter((m) => m.isFunded).length;
-  const totalCount = projectMaterials.length;
 
   return (
     <div className="min-h-screen bg-paper">
@@ -262,59 +238,19 @@ export default async function ProjectDetailPage({ params }: Props) {
               </div>
             </section>
 
-            {/* 재료 위시리스트 */}
+            {/* 재료 위시리스트 + 후원 플로우 (클라이언트) */}
             {projectMaterials.length > 0 && (
-              <section>
-                <div className="flex items-baseline justify-between mb-1">
-                  <h2 className="text-lg font-black text-navy-800">재료 위시리스트</h2>
-                  {fundedCount > 0 && (
-                    <span className="text-xs text-navy-600 font-medium">
-                      {totalCount}개 중 {fundedCount}개 선물됨
-                    </span>
-                  )}
-                </div>
-                <p className="text-xs text-muted mb-4">
-                  후원금은 아래 재료를 구입하는 데 사용됩니다
-                </p>
-
-                <div className="space-y-3">
-                  {projectMaterials.map((m) => (
-                    <div
-                      key={m.id}
-                      className={`flex items-start gap-3 p-4 rounded-xl border transition-colors ${
-                        m.isFunded
-                          ? "bg-navy-100/40 border-navy-200"
-                          : "bg-card border-line hover:border-navy-300"
-                      }`}
-                      style={!m.isFunded ? { boxShadow: "0 8px 22px rgba(23,29,43,.06)" } : undefined}
-                    >
-                      <MaterialIcon note={m.usageNote} />
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
-                          <p
-                            className={`text-sm font-semibold leading-snug ${
-                              m.isFunded ? "text-navy-500 line-through" : "text-navy-800"
-                            }`}
-                          >
-                            {m.name}
-                          </p>
-                          {m.isFunded && (
-                            <span className="shrink-0 text-xs bg-navy-200 text-navy-600 px-2 py-0.5 rounded-full font-medium">
-                              선물 완료 ✓
-                            </span>
-                          )}
-                        </div>
-                        <p className={`text-xs mt-1 leading-relaxed ${m.isFunded ? "text-navy-400" : "text-navy-600 font-medium"}`}>
-                          {m.usageNote}
-                        </p>
-                        <p className={`text-sm font-bold mt-1.5 ${m.isFunded ? "text-navy-400" : "text-gold-text"}`}>
-                          {m.price.toLocaleString()}원
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
+              <SponsorFlowSheet
+                materials={projectMaterials.map((m) => ({
+                  id: m.id,
+                  name: m.name,
+                  price: m.price,
+                  usageNote: m.usageNote,
+                  isFunded: m.isFunded,
+                }))}
+                artist={{ id: artist.id, name: artist.name, slug: artist.slug }}
+                project={{ id: project.id, title: project.title, sponsorCount: project.sponsorCount }}
+              />
             )}
 
             {/* 후원자 명단 */}
