@@ -9,20 +9,22 @@ import projects from "@/data/projects.json";
 function HeroUnderlineSvg() {
   return (
     <svg
-      viewBox="0 0 280 22"
+      viewBox="0 0 280 30"
       preserveAspectRatio="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="absolute left-[-4px] right-[-4px] bottom-[2px] h-[0.42em] w-full -z-10"
+      className="absolute left-[-10px] right-[-10px] bottom-[-3px] h-[0.68em] w-[calc(100%+20px)] -z-10"
     >
       <defs>
-        <filter id="bu1" x="-8%" y="-40%" width="116%" height="180%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.02 0.09" numOctaves={3} seed={7} result="n" />
-          <feDisplacementMap in="SourceGraphic" in2="n" scale={4.2} xChannelSelector="R" yChannelSelector="G" />
+        <filter id="bu1" x="-10%" y="-40%" width="120%" height="200%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.018 0.07" numOctaves={3} seed={7} result="n" />
+          <feDisplacementMap in="SourceGraphic" in2="n" scale={3.8} xChannelSelector="R" yChannelSelector="G" />
         </filter>
       </defs>
       <g filter="url(#bu1)">
-        <path d="M4 14 Q84 9 154 12 T274 11 L274 19 Q168 21 90 18 T4 20 Z" fill="#F4D35E" />
-        <path d="M34 13 Q126 11 224 13" fill="none" stroke="#F8D07A" strokeWidth="2" opacity={0.55} strokeLinecap="round" />
+        {/* 메인 하이라이트 면 */}
+        <path d="M2 7 Q80 3 154 5 T278 4 L278 24 Q168 27 88 25 T2 26 Z" fill="#F4D35E" opacity="0.88" />
+        {/* 상단 붓질 강조선 */}
+        <path d="M8 6 Q120 2 272 5" fill="none" stroke="#F8D07A" strokeWidth="2" opacity={0.45} strokeLinecap="round" />
       </g>
     </svg>
   );
@@ -70,9 +72,9 @@ export default function Home() {
           </h1>
 
           {/* Subtext */}
-          <p className="text-[14px] md:text-[17px] text-muted leading-[1.9] max-w-[540px] mx-auto mb-10 md:mb-14" style={{ wordBreak: 'keep-all' }}>
-            반 고흐에게는 평생 그를 응원해준 동생 테오가 있었기에
-            세계가 사랑하는 명작이 탄생할 수 있었습니다.
+          <p className="text-[14px] md:text-[17px] text-muted leading-[1.9] max-w-[560px] mx-auto mb-10 md:mb-14" style={{ wordBreak: 'keep-all' }}>
+            반 고흐에게는 평생 그를 응원해준 동생 테오가 있었기에 세계가 사랑하는 명작이 탄생할 수 있었습니다.<br />
+            세상이 알아보기 전, 당신이 먼저 발견한 예술가에게 재료를 선물하고, 위대한 작품이 태어나는 과정을 함께 만들어 보세요.
           </p>
 
           {/* Role selection */}
