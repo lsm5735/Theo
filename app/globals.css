@@ -74,3 +74,118 @@ body {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-7px); }
 }
+
+/* ── Neo-Brutal Soft UI ── */
+:root { --brutal: #07223C; }   /* navy-900 — 하드 섀도우 앵커 */
+
+/* 카드 */
+.nb-card {
+  border: 2px solid var(--brutal);
+  box-shadow: 4px 4px 0 var(--brutal), 0 10px 28px rgba(7,34,60,.10);
+  border-radius: 14px;
+  background: #fff;
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+.nb-card:hover {
+  transform: translate(-3px,-3px);
+  box-shadow: 7px 7px 0 var(--brutal), 0 16px 36px rgba(7,34,60,.14);
+}
+
+/* 다크 배경 위 카드 (THE GAP 섹션 등) */
+.nb-card-dark {
+  border: 2px solid rgba(250,240,202,.35);
+  box-shadow: 4px 4px 0 rgba(250,240,202,.18), 0 10px 28px rgba(0,0,0,.22);
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+.nb-card-dark:hover {
+  transform: translate(-3px,-3px);
+  box-shadow: 7px 7px 0 rgba(250,240,202,.30), 0 16px 36px rgba(0,0,0,.30);
+}
+
+/* 섹션 태그 뱃지 */
+.nb-tag {
+  display: inline-flex; align-items: center;
+  background: var(--sv); color: var(--brutal);
+  border: 2px solid var(--brutal);
+  box-shadow: 2px 2px 0 var(--brutal);
+  font-weight: 800; font-size: 10px;
+  letter-spacing: .18em; padding: 4px 12px;
+  border-radius: 6px; text-transform: uppercase;
+}
+
+/* 다크 배경 태그 */
+.nb-tag-light {
+  display: inline-flex; align-items: center;
+  background: var(--sv); color: var(--brutal);
+  border: 2px solid var(--brutal);
+  box-shadow: 2px 2px 0 var(--brutal);
+  font-weight: 800; font-size: 10px;
+  letter-spacing: .18em; padding: 4px 12px;
+  border-radius: 6px; text-transform: uppercase;
+}
+
+/* 주 버튼 (골드) */
+.nb-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--sv); color: var(--brutal);
+  border: 2.5px solid var(--brutal);
+  box-shadow: 4px 4px 0 var(--brutal);
+  font-weight: 900;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.nb-btn:hover  { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--brutal); }
+.nb-btn:active { transform: translate(1px,1px);   box-shadow: 1px 1px 0 var(--brutal); }
+
+/* 아웃라인 버튼 */
+.nb-btn-outline {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--paper); color: var(--brutal);
+  border: 2.5px solid var(--brutal);
+  box-shadow: 4px 4px 0 var(--brutal);
+  font-weight: 900;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.nb-btn-outline:hover  { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--brutal); background: var(--navy-100); }
+.nb-btn-outline:active { transform: translate(1px,1px);   box-shadow: 1px 1px 0 var(--brutal); }
+
+/* 스텝 번호 뱃지 */
+.nb-step {
+  background: var(--sv); color: var(--brutal);
+  border: 2.5px solid var(--brutal);
+  box-shadow: 3px 3px 0 var(--brutal);
+  border-radius: 50%;
+  width: 42px; height: 42px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 13px;
+}
+
+/* 소프트 표면 */
+.soft-surface {
+  background: linear-gradient(145deg,#ffffff,var(--paper));
+  box-shadow: 0 8px 24px rgba(7,34,60,.08), 0 2px 6px rgba(7,34,60,.04);
+}
+
+/* ── Scroll-Telling 애니메이션 ── */
+@keyframes srUp    { from { opacity:0; transform:translateY(40px); }  to { opacity:1; transform:translateY(0); } }
+@keyframes srLeft  { from { opacity:0; transform:translateX(-44px); } to { opacity:1; transform:translateX(0); } }
+@keyframes srRight { from { opacity:0; transform:translateX(44px); }  to { opacity:1; transform:translateX(0); } }
+@keyframes srScale { from { opacity:0; transform:scale(.88); }         to { opacity:1; transform:scale(1); } }
+@keyframes srFade  { from { opacity:0; }                               to { opacity:1; } }
+
+[data-sr]          { opacity: 0; }
+[data-sr].sr-on    { animation-fill-mode: both; animation-timing-function: cubic-bezier(.22,1,.36,1); animation-duration: .75s; }
+
+[data-sr="up"].sr-on    { animation-name: srUp; }
+[data-sr="left"].sr-on  { animation-name: srLeft; }
+[data-sr="right"].sr-on { animation-name: srRight; }
+[data-sr="scale"].sr-on { animation-name: srScale; }
+[data-sr="fade"].sr-on  { animation-name: srFade; }
+
+[data-sr].sr-on[data-d="1"] { animation-delay:.08s; }
+[data-sr].sr-on[data-d="2"] { animation-delay:.16s; }
+[data-sr].sr-on[data-d="3"] { animation-delay:.24s; }
+[data-sr].sr-on[data-d="4"] { animation-delay:.32s; }
+[data-sr].sr-on[data-d="5"] { animation-delay:.40s; }
+[data-sr].sr-on[data-d="6"] { animation-delay:.50s; }

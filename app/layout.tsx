@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import FloatingChatbot from "@/components/FloatingChatbot";
+import ScrollObserver from "@/components/ScrollObserver";
 
 export const metadata: Metadata = {
   title: "Theo — 모두의 고흐가 되기 전, 나만의 고흐를 만난다",
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-paper text-ink antialiased">
         {children}
         <FloatingChatbot />
+        <ScrollObserver />
       </body>
     </html>
   );
