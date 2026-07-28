@@ -183,6 +183,14 @@ export default async function ArtistPage({ params }: Props) {
                         <span>테오 {project.sponsorCount}명</span>
                       </div>
                     </div>
+                    <div className="pt-4 border-t border-navy-100">
+                      <Link
+                        href={`/projects/${project.id}`}
+                        className="text-xs text-navy-600 hover:text-navy-800 font-semibold transition-colors"
+                      >
+                        프로젝트 상세 보기 →
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </section>

@@ -178,6 +178,14 @@ export default async function AtelierDetailPage({ params }: Props) {
                       <span>목표 {project.targetAmount.toLocaleString()}원</span>
                       <span>테오 {project.sponsorCount}명</span>
                     </div>
+                    <div className="mt-4 pt-4 border-t border-navy-100">
+                      <Link
+                        href={`/projects/${project.id}`}
+                        className="text-xs text-navy-600 hover:text-navy-800 font-semibold transition-colors"
+                      >
+                        프로젝트 상세 보기 →
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </section>

@@ -5,7 +5,7 @@
     "artistId": "artist_theo_001",
     "name": "클레센스 린넨 캔버스 F50호 1점",
     "price": 45000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "작품 바탕 — 린넨 결이 수면 떨림을 살림",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -15,7 +15,7 @@
     "artistId": "artist_theo_001",
     "name": "윈저앤뉴튼 아티스트 오일 3색(프러시안 블루·티타늄 화이트·바이리디언) 200ml",
     "price": 18000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "작품 주조색 — 한강 결빙 직전의 회청빛",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -25,7 +25,7 @@
     "artistId": "artist_theo_001",
     "name": "라파엘 8404 코시레 세이블 평붓 12호",
     "price": 12000,
-    "usageNote": "마감·도구류",
+    "usageNote": "얇은 겹칠 여덟 번을 마무리하는 붓",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -35,7 +35,7 @@
     "artistId": "artist_theo_002",
     "name": "리퀴텍스 헤비바디 아크릴 6색 세트 138ml",
     "price": 40000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "작품 주조색 — 살구빛과 먹빛으로 뒷모습을",
     "isFunded": true,
     "compatibleGenres": ["회화"]
   },
@@ -45,7 +45,7 @@
     "artistId": "artist_theo_002",
     "name": "면 캔버스 F20호 5점",
     "price": 90000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "5명의 뒷모습이 올라갈 연작 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -55,7 +55,7 @@
     "artistId": "artist_theo_002",
     "name": "에스꼬다 페리네 평붓 3호·8호·14호 세트",
     "price": 18000,
-    "usageNote": "마감·도구류",
+    "usageNote": "감정이 식기 전에 빠르게 끝내는 붓 세트",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -65,7 +65,7 @@
     "artistId": "artist_theo_003",
     "name": "문영당 유화물감 대용량 세트(울트라마린·카드뮴 옐로 중심)",
     "price": 58000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "작품 주조색 — 군청 바탕에 형광 연두 빛",
     "isFunded": true,
     "compatibleGenres": ["회화"]
   },
@@ -75,7 +75,7 @@
     "artistId": "artist_theo_003",
     "name": "캔버스 F12호 6점",
     "price": 78000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "6장면 골목 야경이 올라갈 연작 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -85,7 +85,7 @@
     "artistId": "artist_theo_003",
     "name": "테레빈 대체 무취 용해유 1L",
     "price": 12000,
-    "usageNote": "마감·도구류",
+    "usageNote": "한 획 임파스토 후 팔레트·붓 세척용",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -95,7 +95,7 @@
     "artistId": "artist_theo_004",
     "name": "대리석 가루(마블 더스트) 5kg",
     "price": 15000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "흐름을 멈추는 지점 찾기 — 물감 되기 조절",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -105,7 +105,7 @@
     "artistId": "artist_theo_004",
     "name": "면 캔버스 F100호 1점",
     "price": 92000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "물감이 바닥에 닿기 직전 멈추는 대작 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -115,7 +115,7 @@
     "artistId": "artist_theo_004",
     "name": "유화용 스탠드 오일·댐머 바니시 각 500ml",
     "price": 12000,
-    "usageNote": "마감·도구류",
+    "usageNote": "완성 후 중력 자취 보호하는 마감 바니시",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -125,7 +125,7 @@
     "artistId": "artist_theo_005",
     "name": "홀베인 아티스트 과슈 24색 세트",
     "price": 58000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "작품 주조색 — 탁한 초록·바랜 분홍의 시듦",
     "isFunded": true,
     "compatibleGenres": ["회화"]
   },
@@ -135,7 +135,7 @@
     "artistId": "artist_theo_005",
     "name": "아르쉬 수채 종이 640g 시트 10장",
     "price": 25000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "물 많이 먹어도 안 휘는 두꺼운 시트 종이",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -145,7 +145,7 @@
     "artistId": "artist_theo_005",
     "name": "화흥 세필·평붓 8종 세트",
     "price": 18000,
-    "usageNote": "마감·도구류",
+    "usageNote": "시드는 잎 끝 세부 묘사용 세필 세트",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -155,7 +155,7 @@
     "artistId": "artist_theo_006",
     "name": "린넨 캔버스 F8호 12점",
     "price": 108000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "30점 초상 중 12점 — 결이 드러나는 린넨 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -165,7 +165,7 @@
     "artistId": "artist_theo_006",
     "name": "올드홀랜드 유화물감 5색(옐로 오커·번트 엄버 중심)",
     "price": 58000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "작품 주조색 — 황토빛 피부와 린넨 결 사이",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -175,7 +175,7 @@
     "artistId": "artist_theo_006",
     "name": "이젤용 팔레트·미디엄 컵 세트",
     "price": 12000,
-    "usageNote": "마감·도구류",
+    "usageNote": "두 시간 안에 끝내는 초상 작업용 팔레트",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -185,7 +185,7 @@
     "artistId": "artist_theo_007",
     "name": "캔버스 F60호 1점",
     "price": 58000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "100번째 등반의 능선을 담을 대작 바탕",
     "isFunded": true,
     "compatibleGenres": ["회화"]
   },
@@ -195,7 +195,7 @@
     "artistId": "artist_theo_007",
     "name": "쉔넬리에 유화물감 대용량 4색(코발트 블루·마젠타 중심)",
     "price": 40000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "작품 주조색 — 쪽빛 능선·흐린 자주 하늘",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -205,7 +205,7 @@
     "artistId": "artist_theo_007",
     "name": "페인팅 나이프 5종 세트(넓은 면 작업용)",
     "price": 18000,
-    "usageNote": "마감·도구류",
+    "usageNote": "넓은 능선면을 한 번에 밀어 올리는 나이프",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -215,7 +215,7 @@
     "artistId": "artist_theo_008",
     "name": "골든 헤비바디 아크릴 6색 237ml",
     "price": 58000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "작품 주조색 — 선명한 주황·청자색 두 색",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -225,7 +225,7 @@
     "artistId": "artist_theo_008",
     "name": "정사각 캔버스 S40호 3점",
     "price": 96000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "면적비 여섯 단계 비교 실험의 연작 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -235,7 +235,7 @@
     "artistId": "artist_theo_008",
     "name": "폼롤러·스퀴지 세트(평면 도포용)",
     "price": 15000,
-    "usageNote": "마감·도구류",
+    "usageNote": "붓자국 완전히 없애는 평면 도포 도구",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -245,7 +245,7 @@
     "artistId": "artist_theo_009",
     "name": "캔버스 F50호 2점",
     "price": 90000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "재난 장면 다섯 번 반복이 올라갈 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -255,7 +255,7 @@
     "artistId": "artist_theo_009",
     "name": "홀베인 유화물감 형광계열 6색 110ml",
     "price": 40000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "작품 주조색 — 재난 위에 얹히는 형광 산호빛",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -265,7 +265,7 @@
     "artistId": "artist_theo_009",
     "name": "대형 나이프·하드 브리슬 브러시 세트",
     "price": 18000,
-    "usageNote": "마감·도구류",
+    "usageNote": "어두운 밑칠 위 두꺼운 겹침 작업 도구",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -275,7 +275,7 @@
     "artistId": "artist_theo_010",
     "name": "윈저앤뉴튼 아티스트 수채 24색 세트",
     "price": 40000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "작품 주조색 — 연한 하늘·우유색의 사소한 순간",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -285,7 +285,7 @@
     "artistId": "artist_theo_010",
     "name": "파브리아노 수채 종이 300g 블록 3권",
     "price": 30000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "A4 판형으로 서른 개 사소한 순간을 담을 종이",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -295,7 +295,7 @@
     "artistId": "artist_theo_010",
     "name": "홀베인 과슈 화이트·오프화이트 대용량",
     "price": 25000,
-    "usageNote": "마감·도구류",
+    "usageNote": "수채 위 부분 불투명 덮기 — 순간을 잡는 농도",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -305,7 +305,7 @@
     "artistId": "artist_theo_011",
     "name": "목재 패널 F40호 3점",
     "price": 96000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "버려진 물건 확대 3점이 올라갈 평평한 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -315,7 +315,7 @@
     "artistId": "artist_theo_011",
     "name": "젯소 4L·사포 세트(밑작업용)",
     "price": 15000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "여섯 번 올리고 갈아내는 완전 평탄 밑작업",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -325,7 +325,7 @@
     "artistId": "artist_theo_011",
     "name": "루카스 유화물감 은회색계 5색·세필 3종",
     "price": 15000,
-    "usageNote": "마감·도구류",
+    "usageNote": "작품 주조색 — 금속·플라스틱 반사 묘사용",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -335,7 +335,7 @@
     "artistId": "artist_theo_012",
     "name": "캔버스 F50호 3점",
     "price": 135000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "북한산 삼면화 — 세 지점이 올라갈 연작 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -345,7 +345,7 @@
     "artistId": "artist_theo_012",
     "name": "쉔넬리에 유화물감 그린계열 8색 200ml",
     "price": 40000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "작품 주조색 — 숲 안쪽 열 가지 초록 단계",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -355,7 +355,7 @@
     "artistId": "artist_theo_012",
     "name": "라운드·필버트 붓 각 4종(잔붓질용)",
     "price": 18000,
-    "usageNote": "마감·도구류",
+    "usageNote": "촘촘한 초록 겹침의 잔붓질 마무리용",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -365,7 +365,7 @@
     "artistId": "artist_theo_013",
     "name": "캔버스 F100호 2점",
     "price": 184000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "출근·막차 대비 두 장면의 대작 바탕",
     "isFunded": true,
     "compatibleGenres": ["회화"]
   },
@@ -375,7 +375,7 @@
     "artistId": "artist_theo_013",
     "name": "리퀴텍스 아크릴 대용량 8색 946ml",
     "price": 58000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "작품 주조색 — 채도 낮은 다색의 군상",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -385,7 +385,7 @@
     "artistId": "artist_theo_013",
     "name": "대형 평붓 3종·리타더 미디엄",
     "price": 15000,
-    "usageNote": "마감·도구류",
+    "usageNote": "젖은 상태에서 인물 겹침 작업용 도구",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -395,7 +395,7 @@
     "artistId": "artist_theo_014",
     "name": "정사각 캔버스 S40호 5점",
     "price": 160000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "5점 연작 — 손으로 그은 직선이 올라갈 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -405,7 +405,7 @@
     "artistId": "artist_theo_014",
     "name": "캔손 컬러 페이퍼 대형 팩·아카이벌 접착제",
     "price": 25000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "직선으로 오려 붙이는 콜라주 색종이",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -415,7 +415,7 @@
     "artistId": "artist_theo_014",
     "name": "골든 아크릴 머스터드·코발트 계열 6색",
     "price": 40000,
-    "usageNote": "마감·도구류",
+    "usageNote": "작품 주조색 — 머스터드·코발트 직선의 온기",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -425,7 +425,7 @@
     "artistId": "artist_theo_015",
     "name": "캔버스 F60호 2점",
     "price": 116000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "뿌리·혈관 대칭 두 점이 올라갈 대작 바탕",
     "isFunded": true,
     "compatibleGenres": ["회화"]
   },
@@ -435,7 +435,7 @@
     "artistId": "artist_theo_015",
     "name": "윈저앤뉴튼 유화물감 적갈·크림계 6색 200ml",
     "price": 40000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "작품 주조색 — 뿌리와 혈관의 적갈빛",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -445,7 +445,7 @@
     "artistId": "artist_theo_015",
     "name": "린시드 오일 1L·묽힘용 미디엄 세트",
     "price": 12000,
-    "usageNote": "마감·도구류",
+    "usageNote": "묽게 풀어 흘려 내리는 혈관선 작업 미디엄",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -455,7 +455,7 @@
     "artistId": "artist_theo_016",
     "name": "캔버스 F20호 4점",
     "price": 72000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "폐점 직후 네 공간이 올라갈 연작 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -465,7 +465,7 @@
     "artistId": "artist_theo_016",
     "name": "올드홀랜드 유화물감 호박색·아이보리 블랙 등 5색",
     "price": 58000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "작품 주조색 — 호박빛 조명·검정 암부",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -475,7 +475,7 @@
     "artistId": "artist_theo_016",
     "name": "유화용 건조 촉진 미디엄·팔레트 나이프 세트",
     "price": 12000,
-    "usageNote": "마감·도구류",
+    "usageNote": "다음 어두운 층 빨리 올리기 위한 건조 촉진",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -485,7 +485,7 @@
     "artistId": "artist_theo_017",
     "name": "센넬리에 오일파스텔 48색 세트",
     "price": 58000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "작품 주조색 — 못 한 말의 색을 고르는 재료",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -495,7 +495,7 @@
     "artistId": "artist_theo_017",
     "name": "캔버스 F8호 10점",
     "price": 90000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "열 문장이 각 한 점씩 올라갈 소품 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -505,7 +505,7 @@
     "artistId": "artist_theo_017",
     "name": "유채 라벤더·자홍계 4색 200ml",
     "price": 18000,
-    "usageNote": "마감·도구류",
+    "usageNote": "오일파스텔 위 손문지름 덮음 — 말의 온도",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -515,7 +515,7 @@
     "artistId": "artist_theo_018",
     "name": "정사각 캔버스 S40호 1점",
     "price": 32000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "삼 년치 빛 기록 전부가 올라갈 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -525,7 +525,7 @@
     "artistId": "artist_theo_018",
     "name": "골든 플루이드 아크릴 레몬·오프화이트계 6색",
     "price": 40000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "작품 주조색 — 레몬빛 블라인드 틈 빛",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -535,7 +535,7 @@
     "artistId": "artist_theo_018",
     "name": "마스킹 테이프 다폭 세트(3·6·12·24mm)",
     "price": 12000,
-    "usageNote": "마감·도구류",
+    "usageNote": "빛의 경계선을 만드는 마스킹 테이프",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -545,7 +545,7 @@
     "artistId": "artist_theo_019",
     "name": "목재 패널 20×20cm 8점",
     "price": 40000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "웃기 직전 반 초 — 8명의 소품 바탕",
     "isFunded": true,
     "compatibleGenres": ["회화"]
   },
@@ -555,7 +555,7 @@
     "artistId": "artist_theo_019",
     "name": "홀베인 과슈 살빛·회색계 12색",
     "price": 25000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "작품 주조색 — 복숭아빛·연회색의 미결정 표정",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -565,7 +565,7 @@
     "artistId": "artist_theo_019",
     "name": "세필 붓 6종·젯소 1L",
     "price": 15000,
-    "usageNote": "마감·도구류",
+    "usageNote": "얼굴 경계를 흐리게 만드는 세필 도구",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -575,7 +575,7 @@
     "artistId": "artist_theo_020",
     "name": "캔버스 F4호 50점",
     "price": 30000,
-    "usageNote": "이 작품의 핵심 재료",
+    "usageNote": "101~150번째 자화상이 올라갈 50주 바탕",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -585,7 +585,7 @@
     "artistId": "artist_theo_020",
     "name": "문영당 유화물감 기본 12색 대용량",
     "price": 40000,
-    "usageNote": "바탕/지지체",
+    "usageNote": "작품 주조색 — 탁한 청·살빛의 주별 두께 변화",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   },
@@ -595,7 +595,7 @@
     "artistId": "artist_theo_020",
     "name": "보관용 캔버스 랙·유화 정착 바니시",
     "price": 15000,
-    "usageNote": "마감·도구류",
+    "usageNote": "100점 이상 쌓아두는 자화상 보관 랙",
     "isFunded": false,
     "compatibleGenres": ["회화"]
   }
