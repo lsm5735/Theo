@@ -63,10 +63,26 @@ export default function Header() {
           <Link href="#how" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
             이용방법
           </Link>
+          <Link
+            href="/my"
+            className="font-black text-[12.5px] tracking-[0.1em] uppercase transition-colors hover:opacity-80"
+            style={{ color: 'var(--sv-deep)' }}
+          >
+            마이테오
+          </Link>
         </nav>
 
         {/* CTAs */}
         <div className="flex items-center gap-2">
+          {/* Mobile: 마이테오 icon */}
+          <Link
+            href="/my"
+            className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg transition-colors hover:opacity-80"
+            style={{ background: 'var(--sv)', color: 'var(--ink)' }}
+            aria-label="마이테오"
+          >
+            <span className="text-sm font-black">⭐</span>
+          </Link>
           <Link
             href="#"
             className="hidden md:inline-flex items-center text-sm font-bold text-navy-700 border border-navy-400 hover:border-navy-700 px-4 py-2 rounded-lg transition-colors"

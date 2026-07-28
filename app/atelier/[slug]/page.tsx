@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
-import LetterCard from "@/components/LetterCard";
+import CypressTimeline from "@/components/CypressTimeline";
 import artists from "@/data/artists.json";
 import projects from "@/data/projects.json";
 import artworks from "@/data/artworks.json";
@@ -259,20 +259,9 @@ export default async function AtelierDetailPage({ params }: Props) {
               </section>
             )}
 
-            {/* Letters */}
-            {artistLetters.length > 0 && (
-              <section>
-                <div className="flex items-baseline gap-3 mb-4">
-                  <h2 className="text-lg font-black text-navy-800">Dear Theo</h2>
-                  <span className="text-sm text-muted">편지 {artistLetters.length}통</span>
-                </div>
-                <div className="space-y-5">
-                  {artistLetters.map((letter) => (
-                    <LetterCard key={letter.id} letter={letter} />
-                  ))}
-                </div>
-              </section>
-            )}
+            {/* Cypress Timeline */}
+            <CypressTimeline artist={artist} />
+
 
           </div>
 
