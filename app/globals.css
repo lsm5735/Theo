@@ -63,6 +63,24 @@ body {
   line-height: 2.05;
 }
 
+/* ── Dark Mode ── */
+[data-theme="dark"] {
+  --paper:    #0D1B2A;
+  --chiffon:  #152236;
+  --card:     #152236;
+  --line:     #243040;
+  --ink:      #EDE8D8;
+  --muted:    #7D9AB5;
+  --navy-100: #1A2E45;
+  --navy-200: #243447;
+  --brutal:   #7D9AB5;
+}
+
+[data-theme="dark"] .nb-card         { background: var(--card); }
+[data-theme="dark"] .nb-card-dark    { background: rgba(255,255,255,.04); }
+[data-theme="dark"] .nb-btn-outline  { background: var(--paper); }
+[data-theme="dark"] .soft-surface    { background: var(--card); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+
 @layer utilities {
   .text-balance    { text-wrap: balance; }
   .shadow-card     { box-shadow: 0 8px 22px rgba(23,29,43,.06); }

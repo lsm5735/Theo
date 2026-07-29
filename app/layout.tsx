@@ -14,7 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="h-full scroll-smooth">
+    <html lang="ko" className="h-full scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})()` }} />
+      </head>
       <body className="min-h-full flex flex-col bg-paper text-ink antialiased">
         {children}
         <FloatingChatbot />
