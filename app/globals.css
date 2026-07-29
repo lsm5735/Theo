@@ -20,8 +20,9 @@
 
   --paper:   #FDFAF0;
   --chiffon: #FAF0CA;
-  --card:    #ffffff;
-  --line:    #E8E2CD;
+  --card:      #ffffff;
+  --card-soft: #FCF7E8;
+  --line:      #E8E2CD;
   --ink:     #141414;
   --muted:   #5E7284;
 }
@@ -65,21 +66,60 @@ body {
 
 /* ── Dark Mode ── */
 [data-theme="dark"] {
-  --paper:    #0D1B2A;
-  --chiffon:  #152236;
-  --card:     #152236;
-  --line:     #243040;
-  --ink:      #EDE8D8;
-  --muted:    #7D9AB5;
-  --navy-100: #1A2E45;
-  --navy-200: #243447;
-  --brutal:   #7D9AB5;
+  --paper:      #0D1B2A;
+  --card:       #1E3454;
+  --card-soft:  #1A2E45;
+  --line:       #243040;
+  --ink:        #EDE8D8;
+  --muted:      #7D9AB5;
+  --navy-100:   #1A2E45;
+  --navy-200:   #243447;
+  --brutal:     #7D9AB5;
+  /* --chiffon 은 어두운 배경 위 텍스트 색으로도 쓰이므로 그대로 유지 */
+  --gold-text: var(--sv);   /* 배지 조건 텍스트: 밝은 골드로 */
 }
 
-[data-theme="dark"] .nb-card         { background: var(--card); }
-[data-theme="dark"] .nb-card-dark    { background: rgba(255,255,255,.04); }
-[data-theme="dark"] .nb-btn-outline  { background: var(--paper); }
+[data-theme="dark"] .nb-card {
+  background: var(--card);
+  border-color: rgba(255,255,255,.22);
+  box-shadow: 4px 4px 0 rgba(255,255,255,.18), 0 12px 32px rgba(0,0,0,.45);
+}
+[data-theme="dark"] .nb-card:hover {
+  box-shadow: 7px 7px 0 rgba(255,255,255,.22), 0 18px 40px rgba(0,0,0,.55);
+}
+[data-theme="dark"] .nb-card-dark    {
+  background: rgba(255,255,255,.11);
+  border-color: rgba(250,240,202,.50);
+  box-shadow: 4px 4px 0 rgba(250,240,202,.35), 0 10px 28px rgba(0,0,0,.45);
+}
+[data-theme="dark"] .nb-card-dark:hover {
+  box-shadow: 7px 7px 0 rgba(250,240,202,.45), 0 16px 36px rgba(0,0,0,.55);
+}
+[data-theme="dark"] .nb-btn-outline  {
+  background: rgba(255,255,255,.08);
+  color: var(--ink);
+  border-color: rgba(250,240,202,.55);
+  box-shadow: 4px 4px 0 rgba(250,240,202,.28);
+}
+[data-theme="dark"] .nb-btn-outline span { color: inherit !important; }
 [data-theme="dark"] .soft-surface    { background: var(--card); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+
+/* 골드(bg-sv) 위 텍스트는 항상 다크 — ink가 밝아져도 유지 */
+[data-theme="dark"] .bg-sv { color: #141414; }
+
+/* ArtistCard 칩·보더·섀도우 */
+[data-theme="dark"] .bg-navy-100     { background-color: rgba(255,255,255,.13); }
+[data-theme="dark"] .border-navy-100 { border-color: rgba(255,255,255,.15); }
+[data-theme="dark"] .shadow-card     { box-shadow: 0 8px 28px rgba(0,0,0,.40); }
+
+/* 텍스트 가독성: text-navy-* → ink/muted (bg-navy-* 배경은 영향 없음) */
+[data-theme="dark"] .text-navy-900,
+[data-theme="dark"] .text-navy-800,
+[data-theme="dark"] .text-navy-700,
+[data-theme="dark"] .text-navy-600 { color: var(--ink); }
+
+[data-theme="dark"] .text-navy-400,
+[data-theme="dark"] .text-navy-300 { color: var(--muted); }
 
 @layer utilities {
   .text-balance    { text-wrap: balance; }

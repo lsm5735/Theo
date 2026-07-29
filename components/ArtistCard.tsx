@@ -44,8 +44,7 @@ export default function ArtistCard({ artist, project }: { artist: Artist; projec
       className="block group outline-none focus-visible:ring-2 focus-visible:ring-navy-800 rounded-2xl"
     >
       <article
-        className="bg-card rounded-2xl overflow-hidden border border-line hover:-translate-y-0.5 transition-all duration-200"
-        style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}
+        className="bg-card rounded-2xl overflow-hidden border border-line shadow-card hover:-translate-y-0.5 transition-all duration-200"
       >
         {/* Thumbnail */}
         <div className="relative h-[132px] overflow-hidden bg-navy-100">
@@ -64,7 +63,7 @@ export default function ArtistCard({ artist, project }: { artist: Artist; projec
           </span>
 
           {/* Genre badge */}
-          <span className="absolute top-3 right-3 bg-paper/92 text-navy-800 text-[10.5px] font-semibold px-2.5 py-1 rounded-full">
+          <span className="absolute top-3 right-3 bg-black/55 text-chiffon backdrop-blur-sm text-[10.5px] font-semibold px-2.5 py-1 rounded-full">
             {artist.genre}
           </span>
         </div>

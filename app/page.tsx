@@ -205,7 +205,7 @@ export default function Home() {
             {/* Step 02 */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div data-sr="right" data-d="1" className="order-2 md:order-1 nb-card p-6 flex flex-col gap-3"
-                style={{ background: "#FCF7E8" }}>
+                style={{ background: "var(--card-soft)" }}>
                 <div className="soft-surface rounded-xl p-4" style={{ border: "2px solid var(--navy-700)" }}>
                   <p className="text-[9.5px] tracking-[0.16em] text-navy-700 font-black mb-2 uppercase">DEAR GOGH</p>
                   <p className="font-myeongjo text-[12.5px] text-navy-900 leading-[1.85]">
@@ -299,12 +299,12 @@ export default function Home() {
             {/* Step 04 */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div data-sr="right" data-d="1" className="order-2 md:order-1 nb-card p-6 flex flex-col gap-3"
-                style={{ background: "#FCF7E8" }}>
+                style={{ background: "var(--card-soft)" }}>
                 <div className="rounded-xl overflow-hidden" style={{ border: "2px solid var(--brutal)" }}>
                   <div className="relative" style={{ height: "104px", background: "linear-gradient(150deg,#061A2E,var(--navy-700) 60%,var(--navy-500))" }}>
                     <span className="absolute bottom-[9px] left-3 text-[10.5px] font-bold" style={{ color: "rgba(250,240,202,.9)" }}>밤 연작 No.3 · 완성</span>
                   </div>
-                  <div className="p-3 bg-white">
+                  <div className="p-3" style={{ background: "var(--card)" }}>
                     <p className="font-myeongjo text-[11.5px] text-muted leading-[1.7]">재료 후원 — 지수, 하나, 무늬</p>
                   </div>
                 </div>
@@ -339,7 +339,7 @@ export default function Home() {
       {/* ════════════════════════════════════════
           § 4. OPEN PROJECTS
           ════════════════════════════════════════ */}
-      <section className="py-20 md:py-28" style={{ background: "#F0EDE4" }} id="projects">
+      <section className="py-20 md:py-28" style={{ background: "var(--paper)" }} id="projects">
         <div className="max-w-[1080px] mx-auto px-5 md:px-8">
 
           <div data-sr="up" className="text-center mb-14">
@@ -533,7 +533,7 @@ export default function Home() {
       {/* ════════════════════════════════════════
           § 7. ARTY
           ════════════════════════════════════════ */}
-      <section className="py-20 md:py-28" style={{ background: "#F0EDE4" }} id="community">
+      <section className="py-20 md:py-28" style={{ background: "var(--paper)" }} id="community">
         <div className="max-w-[1080px] mx-auto px-5 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-[1.1fr_.9fr] gap-12 items-center">
 
