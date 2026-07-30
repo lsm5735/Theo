@@ -28,14 +28,68 @@ function IconCheckCircle() {
   );
 }
 
-// 씨앗 배지 획득 모먼트에 표시할 star 아이콘
-function IconStar() {
+// 씨앗 배지 아이콘 — 랜딩 페이지 LV.01 씨앗과 동일한 타원형
+function IconSeedBadge() {
   return (
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    <svg width="22" height="30" viewBox="0 0 22 30" fill="none">
+      <ellipse
+        cx="11" cy="15" rx="9" ry="13"
+        stroke="currentColor" strokeWidth="2.5"
+        fill="rgba(20,20,20,0.18)"
+      />
     </svg>
   );
 }
+
+// 밤하늘 별 데이터 (pre-computed, hydration-safe)
+// [left%, top%, sizePx, opacity, twinkle, twinkleDur, twinkleDelay]
+const HERO_STARS: [number, number, number, number, boolean, number, number][] = [
+  [3, 12, 1.5, 0.85, true,  2.2, 0.0],
+  [7, 42, 1.0, 0.55, false, 0,   0  ],
+  [11, 18, 2.0, 0.80, false, 0,   0  ],
+  [14, 72, 1.0, 0.50, true,  3.0, 0.4],
+  [18, 30, 1.5, 0.70, false, 0,   0  ],
+  [21, 85, 1.0, 0.90, true,  1.8, 0.9],
+  [24, 8,  2.5, 0.75, false, 0,   0  ],
+  [27, 55, 1.0, 0.45, false, 0,   0  ],
+  [30, 90, 1.5, 0.65, true,  2.5, 0.3],
+  [33, 25, 1.0, 0.60, false, 0,   0  ],
+  [36, 65, 2.0, 0.85, false, 0,   0  ],
+  [39, 40, 1.0, 0.50, true,  2.0, 0.7],
+  [42, 95, 1.5, 0.70, false, 0,   0  ],
+  [45, 15, 2.5, 0.80, false, 0,   0  ],
+  [48, 58, 1.0, 0.55, true,  3.2, 0.1],
+  [51, 33, 1.5, 0.90, false, 0,   0  ],
+  [54, 78, 1.0, 0.50, false, 0,   0  ],
+  [57, 92, 2.0, 0.65, true,  2.8, 0.6],
+  [60, 22, 1.0, 0.75, false, 0,   0  ],
+  [63, 48, 1.5, 0.60, false, 0,   0  ],
+  [66, 80, 1.0, 0.85, true,  1.6, 0.2],
+  [69, 38, 2.5, 0.70, false, 0,   0  ],
+  [72, 12, 1.0, 0.50, false, 0,   0  ],
+  [75, 62, 1.5, 0.80, true,  2.4, 0.8],
+  [78, 28, 1.0, 0.60, false, 0,   0  ],
+  [81, 85, 2.0, 0.90, false, 0,   0  ],
+  [84, 52, 1.0, 0.55, true,  3.0, 0.5],
+  [87, 18, 1.5, 0.70, false, 0,   0  ],
+  [90, 75, 1.0, 0.80, false, 0,   0  ],
+  [93, 42, 2.0, 0.65, true,  2.1, 0.3],
+  [96, 88, 1.0, 0.50, false, 0,   0  ],
+  [5,  55, 1.5, 0.75, true,  2.7, 0.9],
+  [15, 95, 1.0, 0.60, false, 0,   0  ],
+  [26, 35, 2.0, 0.85, false, 0,   0  ],
+  [37, 82, 1.0, 0.55, true,  1.9, 0.4],
+  [44, 5,  1.5, 0.70, false, 0,   0  ],
+  [52, 68, 1.0, 0.80, false, 0,   0  ],
+  [61, 45, 2.5, 0.65, true,  2.6, 0.7],
+  [70, 98, 1.0, 0.50, false, 0,   0  ],
+  [79, 35, 1.5, 0.90, false, 0,   0  ],
+  [88, 60, 1.0, 0.75, true,  2.3, 0.1],
+  [95, 20, 2.0, 0.60, false, 0,   0  ],
+  [9,  78, 1.0, 0.55, false, 0,   0  ],
+  [47, 88, 1.5, 0.70, true,  3.1, 0.6],
+  [73, 22, 1.0, 0.85, false, 0,   0  ],
+];
 
 // ─── 파티클 컨페티 (CSS 애니메이션, 라이브러리 없음) ───
 const PARTICLE_DATA = [
@@ -102,6 +156,10 @@ export default function SponsorClient({ artistId }: Props) {
   const [message, setMessage] = useState("");
   const [done, setDone] = useState(false);
 
+  useEffect(() => {
+    if (done) window.scrollTo({ top: 0, behavior: "instant" });
+  }, [done]);
+
   if (!artist) {
     return (
       <div className="min-h-screen bg-paper flex items-center justify-center">
@@ -146,21 +204,43 @@ export default function SponsorClient({ artistId }: Props) {
             0%   { transform: scale(1);   opacity: 0.6; }
             100% { transform: scale(1.9); opacity: 0; }
           }
+          @keyframes starTwinkle {
+            0%, 100% { opacity: 0.85; transform: scale(1); }
+            50%       { opacity: 0.12; transform: scale(0.7); }
+          }
         `}</style>
 
         <Confetti />
         <Header />
 
-        {/* ── Hero: dark banner ── */}
+        {/* ── Hero: 밤하늘 ── */}
         <div
           className="relative overflow-hidden pt-14 pb-28 text-center"
-          style={{ background: "var(--navy-800)" }}
+          style={{
+            background: "radial-gradient(ellipse at 50% 30%, #1A3F6F 0%, #071F3A 55%, #040D1A 100%)",
+          }}
         >
-          {/* subtle dot pattern */}
-          <div className="absolute inset-0 pointer-events-none" style={{
-            backgroundImage: "radial-gradient(circle, rgba(244,211,94,.12) 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
-          }} />
+          {/* 별 파티클 */}
+          <div className="absolute inset-0 pointer-events-none">
+            {HERO_STARS.map(([left, top, size, opacity, twinkle, dur, delay], i) => (
+              <div
+                key={i}
+                style={{
+                  position: "absolute",
+                  left: `${left}%`,
+                  top: `${top}%`,
+                  width: size,
+                  height: size,
+                  borderRadius: "50%",
+                  background: "#ffffff",
+                  opacity: twinkle ? undefined : opacity,
+                  animation: twinkle
+                    ? `starTwinkle ${dur}s ${delay}s ease-in-out infinite`
+                    : undefined,
+                }}
+              />
+            ))}
+          </div>
 
           {/* Badge with pulse ring */}
           <div className="relative inline-flex items-center justify-center mb-6">
@@ -175,7 +255,7 @@ export default function SponsorClient({ artistId }: Props) {
                 animation: "badgePop 0.55s 0.15s cubic-bezier(.22,1,.36,1) both",
               }}
             >
-              <IconStar />
+              <IconSeedBadge />
             </div>
           </div>
 
@@ -262,7 +342,7 @@ export default function SponsorClient({ artistId }: Props) {
             </div>
 
             <p className="text-[11px] text-muted mt-3 leading-relaxed text-center">
-              재료값 전액이 작가에게 전달됩니다 · 작가 수수료 0%
+              재료가 준비되면 작가님께 전달됩니다.
             </p>
           </div>
 
