@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
@@ -20,13 +20,79 @@ function IconCheck() {
   );
 }
 
-function IconMail() {
+function IconCheckCircle() {
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink">
-      <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" /><path d="M8 12l3 3 5-5" />
     </svg>
   );
 }
+
+// 씨앗 배지 획득 모먼트에 표시할 star 아이콘
+function IconStar() {
+  return (
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    </svg>
+  );
+}
+
+// ─── 파티클 컨페티 (CSS 애니메이션, 라이브러리 없음) ───
+const PARTICLE_DATA = [
+  { left: 5,  top: -10, size: 9,  delay: 0.00, dur: 2.1, shape: 0, ci: 0 },
+  { left: 11, top: -25, size: 7,  delay: 0.12, dur: 1.9, shape: 1, ci: 1 },
+  { left: 20, top: -8,  size: 11, delay: 0.05, dur: 2.3, shape: 2, ci: 2 },
+  { left: 28, top: -18, size: 6,  delay: 0.22, dur: 2.0, shape: 0, ci: 3 },
+  { left: 35, top: -5,  size: 8,  delay: 0.08, dur: 1.8, shape: 1, ci: 4 },
+  { left: 43, top: -22, size: 10, delay: 0.18, dur: 2.2, shape: 2, ci: 0 },
+  { left: 50, top: -12, size: 7,  delay: 0.30, dur: 2.0, shape: 0, ci: 1 },
+  { left: 57, top: -6,  size: 9,  delay: 0.10, dur: 1.7, shape: 1, ci: 2 },
+  { left: 65, top: -20, size: 6,  delay: 0.25, dur: 2.4, shape: 2, ci: 3 },
+  { left: 72, top: -9,  size: 11, delay: 0.04, dur: 1.9, shape: 0, ci: 4 },
+  { left: 80, top: -16, size: 8,  delay: 0.20, dur: 2.1, shape: 1, ci: 0 },
+  { left: 88, top: -3,  size: 7,  delay: 0.15, dur: 2.3, shape: 2, ci: 1 },
+  { left: 93, top: -28, size: 9,  delay: 0.35, dur: 1.8, shape: 0, ci: 2 },
+  { left: 16, top: -30, size: 6,  delay: 0.40, dur: 2.0, shape: 1, ci: 3 },
+  { left: 38, top: -35, size: 10, delay: 0.28, dur: 2.2, shape: 2, ci: 4 },
+  { left: 60, top: -28, size: 7,  delay: 0.45, dur: 1.9, shape: 0, ci: 0 },
+  { left: 74, top: -32, size: 8,  delay: 0.33, dur: 2.3, shape: 1, ci: 1 },
+  { left: 85, top: -14, size: 6,  delay: 0.50, dur: 2.1, shape: 2, ci: 2 },
+  { left: 48, top: -40, size: 9,  delay: 0.55, dur: 1.7, shape: 0, ci: 3 },
+  { left: 24, top: -42, size: 7,  delay: 0.60, dur: 2.0, shape: 1, ci: 4 },
+];
+const PARTICLE_COLORS = ["#F4D35E", "#0D3B66", "#F8D07A", "#A6B8C9", "#FAF0CA"];
+
+function Confetti() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => { setVisible(true); }, []);
+  if (!visible) return null;
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-50" aria-hidden="true">
+      {PARTICLE_DATA.map((p, i) => (
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            left: `${p.left}%`,
+            top: p.top,
+            width: p.size,
+            height: p.size,
+            background: PARTICLE_COLORS[p.ci],
+            borderRadius: p.shape === 0 ? "50%" : p.shape === 1 ? "2px" : "50% 0 50% 0",
+            animation: `confettiFall ${p.dur}s ${p.delay}s cubic-bezier(.4,0,1,1) forwards`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+const NEXT_STEPS = [
+  { label: "후원 완료",       desc: "재료 선물이 접수됐어요",             done: true },
+  { label: "재료 준비 중",    desc: "제휴 화방에서 재료를 준비해요",       done: false },
+  { label: "작가에게 가는 중", desc: "작가의 작업실로 배송 중이에요",       done: false },
+  { label: "작가가 받았어요",  desc: "편지가 곧 도착할 거예요 ✉",         done: false },
+];
 
 export default function SponsorClient({ artistId }: Props) {
   const artist = artists.find((a) => a.id === artistId);
@@ -53,61 +119,252 @@ export default function SponsorClient({ artistId }: Props) {
   const total = selectedMaterial ? selectedMaterial.price + fee : 0;
 
   const sponsorCount = project?.sponsorCount ?? 0;
+  const myOrder = sponsorCount + 1;
 
   /* ─── Done screen ─── */
   if (done && selectedMaterial) {
     return (
-      <div className="min-h-screen bg-paper">
-        <Header />
-        <div className="max-w-lg mx-auto px-5 py-20 text-center">
-          <div className="w-16 h-16 bg-sv rounded-full flex items-center justify-center mx-auto mb-6">
-            <IconMail />
-          </div>
-          <h1 className="text-2xl font-black text-navy-800 mb-3">선물이 전달됐습니다!</h1>
-          <p className="text-muted leading-relaxed mb-2">
-            <span className="font-bold text-navy-800">{artist.name}</span> 작가에게
-          </p>
-          <p className="font-black text-navy-700 text-lg mb-6">
-            {selectedMaterial.name}
-          </p>
-          <p className="text-sm text-muted mb-2">을(를) 선물했어요.</p>
+      <div className="min-h-screen" style={{ background: "var(--paper)" }}>
+        {/* CSS keyframes for confetti + badge pop */}
+        <style>{`
+          @keyframes confettiFall {
+            0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+            80%  { opacity: 0.9; }
+            100% { transform: translateY(90vh) rotate(560deg) scale(0.6); opacity: 0; }
+          }
+          @keyframes badgePop {
+            0%   { transform: scale(0) rotate(-15deg); opacity: 0; }
+            60%  { transform: scale(1.25) rotate(8deg);  opacity: 1; }
+            80%  { transform: scale(0.92) rotate(-4deg); }
+            100% { transform: scale(1)    rotate(0deg);  opacity: 1; }
+          }
+          @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes pulseRing {
+            0%   { transform: scale(1);   opacity: 0.6; }
+            100% { transform: scale(1.9); opacity: 0; }
+          }
+        `}</style>
 
-          {/* Patron order */}
-          <div className="bg-navy-800 text-white rounded-xl p-5 mb-6 text-center">
-            <p className="text-sv font-bold text-xs tracking-[0.16em] mb-2 uppercase">씨앗 배지 획득</p>
-            <p className="font-black text-lg">
-              당신은 이제 {artist.name} 작가의<br />
-              <span className="text-sv text-2xl">{sponsorCount + 1}번째 테오</span>입니다.
+        <Confetti />
+        <Header />
+
+        {/* ── Hero: dark banner ── */}
+        <div
+          className="relative overflow-hidden pt-14 pb-28 text-center"
+          style={{ background: "var(--navy-800)" }}
+        >
+          {/* subtle dot pattern */}
+          <div className="absolute inset-0 pointer-events-none" style={{
+            backgroundImage: "radial-gradient(circle, rgba(244,211,94,.12) 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }} />
+
+          {/* Badge with pulse ring */}
+          <div className="relative inline-flex items-center justify-center mb-6">
+            <span className="absolute w-20 h-20 rounded-full" style={{
+              background: "rgba(244,211,94,0.25)",
+              animation: "pulseRing 1.8s 0.3s ease-out infinite",
+            }} />
+            <div
+              className="relative w-16 h-16 rounded-full flex items-center justify-center text-ink"
+              style={{
+                background: "var(--sv)",
+                animation: "badgePop 0.55s 0.15s cubic-bezier(.22,1,.36,1) both",
+              }}
+            >
+              <IconStar />
+            </div>
+          </div>
+
+          {/* Badge label */}
+          <p
+            className="text-xs font-bold tracking-[0.22em] uppercase mb-4"
+            style={{ color: "var(--sv)", animation: "fadeUp .5s 0.55s both" }}
+          >
+            씨앗 배지 획득
+          </p>
+
+          {/* N번째 테오 */}
+          <h1
+            className="font-black leading-snug mb-3 px-5"
+            style={{ color: "#fff", animation: "fadeUp .5s 0.65s both" }}
+          >
+            <span className="text-lg md:text-xl block mb-1" style={{ color: "rgba(255,255,255,0.7)" }}>
+              당신은 이제 {artist.name} 작가의
+            </span>
+            <span
+              className="text-[3.5rem] md:text-[4.5rem] leading-none"
+              style={{ color: "var(--sv)" }}
+            >
+              {myOrder}번째
+            </span>
+            <span className="text-3xl md:text-4xl block mt-1" style={{ color: "#fff" }}>
+              테오입니다.
+            </span>
+          </h1>
+
+          <p
+            className="text-sm"
+            style={{ color: "rgba(255,255,255,0.55)", animation: "fadeUp .5s 0.78s both" }}
+          >
+            {artist.name} 작가에게 소중한 후원자가 되었어요
+          </p>
+        </div>
+
+        {/* ── Content ── */}
+        <div className="max-w-[480px] mx-auto px-5 -mt-10 pb-24">
+
+          {/* 선물 내역 카드 */}
+          <div
+            className="rounded-2xl p-6 mb-4"
+            style={{
+              background: "var(--chiffon)",
+              border: "1px solid rgba(194,164,63,0.25)",
+              boxShadow: "0 20px 48px rgba(7,34,60,.14)",
+              animation: "fadeUp .55s 0.85s both",
+            }}
+          >
+            {/* 작가 mini profile */}
+            <div className="flex items-center gap-3 mb-5">
+              <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 shrink-0" style={{ borderColor: "var(--sv-soft)" }}>
+                <Image src={artist.profileImage} alt={artist.name} fill sizes="40px" className="object-cover" />
+              </div>
+              <div>
+                <p className="font-bold text-navy-900 text-sm">{artist.name}</p>
+                {project && <p className="text-xs text-muted truncate">{project.title}</p>}
+              </div>
+            </div>
+
+            <div className="border-t pt-4 space-y-2.5" style={{ borderColor: "rgba(194,164,63,0.2)" }}>
+              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-3">선물 내역</p>
+              <div className="flex justify-between text-sm">
+                <span className="text-muted">재료</span>
+                <span className="font-semibold text-navy-800 text-right max-w-[60%] leading-snug">{selectedMaterial.name}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-muted">재료값</span>
+                <span className="font-semibold text-navy-800">{selectedMaterial.price.toLocaleString()}원</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-muted">결제·전달 수수료 (3%)</span>
+                <span className="text-navy-600">{fee.toLocaleString()}원</span>
+              </div>
+              <div
+                className="flex justify-between pt-3 border-t font-black"
+                style={{ borderColor: "rgba(194,164,63,0.2)" }}
+              >
+                <span className="text-navy-800">총 결제</span>
+                <span className="text-navy-800 text-lg">{total.toLocaleString()}원</span>
+              </div>
+            </div>
+
+            <p className="text-[11px] text-muted mt-3 leading-relaxed text-center">
+              재료값 전액이 작가에게 전달됩니다 · 작가 수수료 0%
             </p>
           </div>
 
-          {/* Message receipt */}
+          {/* Dear Gogh 메시지 */}
           {message && (
-            <div className="bg-chiffon border border-sv-deep/20 rounded-xl p-5 text-left mb-8">
-              <p className="text-xs text-muted mb-2 font-medium">내가 남긴 응원 메시지 (Dear Gogh)</p>
+            <div
+              className="rounded-2xl p-5 mb-4"
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--line)",
+                animation: "fadeUp .5s 0.95s both",
+              }}
+            >
+              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-3">Dear Gogh · 내 응원 메시지</p>
               <p className="font-myeongjo text-sm text-ink leading-relaxed">{message}</p>
             </div>
           )}
 
-          <p className="text-xs text-muted mb-8 leading-relaxed">
-            재료가 준비되면 작가에게 전달됩니다.<br />
-            작가가 받으면 편지가 도착할 거예요.
-          </p>
+          {/* 다음에 일어날 일 */}
+          <div
+            className="rounded-2xl p-5 mb-7"
+            style={{
+              background: "var(--card)",
+              border: "1px solid var(--line)",
+              animation: "fadeUp .5s 1.05s both",
+            }}
+          >
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-4">이제 무슨 일이 생기냐면</p>
+            <ol className="space-y-3">
+              {NEXT_STEPS.map((step, idx) => (
+                <li key={idx} className="flex items-start gap-3">
+                  {/* Step indicator */}
+                  <div
+                    className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                    style={step.done
+                      ? { background: "var(--navy-800)", color: "#fff" }
+                      : { background: "var(--navy-100)", color: "var(--navy-400)" }
+                    }
+                  >
+                    {step.done
+                      ? <IconCheckCircle />
+                      : <span className="text-[10px] font-bold">{idx + 1}</span>
+                    }
+                  </div>
+                  <div className="flex-1 pt-0.5">
+                    <p
+                      className="text-sm font-bold leading-tight"
+                      style={{ color: step.done ? "var(--navy-800)" : "var(--navy-400)" }}
+                    >
+                      {step.label}
+                    </p>
+                    <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>{step.desc}</p>
+                  </div>
+                  {/* Connector line */}
+                  {idx < NEXT_STEPS.length - 1 && (
+                    <div
+                      className="absolute"
+                      style={{
+                        left: 27,
+                        width: 1,
+                        height: 12,
+                        background: "var(--navy-100)",
+                      }}
+                    />
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          {/* CTA buttons */}
+          <div
+            className="flex flex-col sm:flex-row gap-3"
+            style={{ animation: "fadeUp .5s 1.15s both" }}
+          >
             <Link
-              href={`/artists/${artist.id}`}
-              className="flex-1 bg-navy-800 text-white font-bold py-3.5 rounded-lg hover:bg-navy-700 transition-colors text-sm text-center"
+              href="/my"
+              className="flex-1 font-bold py-4 rounded-xl text-sm text-center transition-all"
+              style={{
+                background: "var(--navy-800)",
+                color: "#fff",
+                boxShadow: "0 8px 22px rgba(13,59,102,.22)",
+              }}
             >
-              아틀리에 돌아가기
+              마이테오에서 확인하기
             </Link>
             <Link
-              href="/"
-              className="flex-1 bg-card border border-navy-200 text-navy-700 font-semibold py-3.5 rounded-lg hover:bg-navy-100 transition-colors text-sm text-center"
+              href="/atelier"
+              className="flex-1 font-semibold py-4 rounded-xl text-sm text-center transition-colors"
+              style={{
+                background: "var(--card)",
+                border: "1.5px solid var(--line)",
+                color: "var(--navy-700)",
+              }}
             >
-              다른 작가 보기
+              다른 작가 찾기
             </Link>
           </div>
+
+          <p className="text-[11px] text-center mt-5" style={{ color: "var(--muted)" }}>
+            * 이 화면은 시연용 데모입니다. 실제 결제는 이루어지지 않습니다.
+          </p>
         </div>
       </div>
     );
