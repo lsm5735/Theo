@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import artists from "@/data/artists.json";
 import projects from "@/data/projects.json";
 import materials from "@/data/materials.json";
+import { useT } from "@/contexts/LangContext";
 
 interface Props {
   artistId: string;
@@ -141,14 +142,8 @@ function Confetti() {
   );
 }
 
-const NEXT_STEPS = [
-  { label: "후원 완료",       desc: "재료 선물이 접수됐어요",             done: true },
-  { label: "재료 준비 중",    desc: "제휴 화방에서 재료를 준비해요",       done: false },
-  { label: "작가에게 가는 중", desc: "작가의 작업실로 배송 중이에요",       done: false },
-  { label: "작가가 받았어요",  desc: "편지가 곧 도착할 거예요 ✉",         done: false },
-];
-
 export default function SponsorClient({ artistId }: Props) {
+  const t = useT();
   const artist = artists.find((a) => a.id === artistId);
   const project = projects.find((p) => p.artistId === artistId);
 
@@ -163,7 +158,7 @@ export default function SponsorClient({ artistId }: Props) {
   if (!artist) {
     return (
       <div className="min-h-screen bg-paper flex items-center justify-center">
-        <p className="text-muted">작가를 찾을 수 없습니다.</p>
+        <p className="text-muted">{t("sp_no_materials")}</p>
       </div>
     );
   }
@@ -178,6 +173,13 @@ export default function SponsorClient({ artistId }: Props) {
 
   const sponsorCount = project?.sponsorCount ?? 0;
   const myOrder = sponsorCount + 1;
+
+  const NEXT_STEPS = [
+    { label: t("done_s1"), desc: t("done_s1d"), done: true },
+    { label: t("done_s2"), desc: t("done_s2d"), done: false },
+    { label: t("done_s3"), desc: t("done_s3d"), done: false },
+    { label: t("done_s4"), desc: t("done_s4d"), done: false },
+  ];
 
   /* ─── Done screen ─── */
   if (done && selectedMaterial) {
@@ -264,7 +266,7 @@ export default function SponsorClient({ artistId }: Props) {
             className="text-xs font-bold tracking-[0.22em] uppercase mb-4"
             style={{ color: "var(--sv)", animation: "fadeUp .5s 0.55s both" }}
           >
-            씨앗 배지 획득
+            {t("done_badge_label")}
           </p>
 
           {/* N번째 테오 */}
@@ -273,16 +275,16 @@ export default function SponsorClient({ artistId }: Props) {
             style={{ color: "#fff", animation: "fadeUp .5s 0.65s both" }}
           >
             <span className="text-lg md:text-xl block mb-1" style={{ color: "rgba(255,255,255,0.7)" }}>
-              당신은 이제 {artist.name} 작가의
+              {t("done_hero_pre")} {artist.name} {t("done_hero_mid")}
             </span>
             <span
               className="text-[3.5rem] md:text-[4.5rem] leading-none"
               style={{ color: "var(--sv)" }}
             >
-              {myOrder}번째
+              {myOrder}{t("done_hero_th")}
             </span>
             <span className="text-3xl md:text-4xl block mt-1" style={{ color: "#fff" }}>
-              테오입니다.
+              {t("done_hero_post")}
             </span>
           </h1>
 
@@ -290,7 +292,7 @@ export default function SponsorClient({ artistId }: Props) {
             className="text-sm"
             style={{ color: "rgba(255,255,255,0.55)", animation: "fadeUp .5s 0.78s both" }}
           >
-            {artist.name} 작가에게 소중한 후원자가 되었어요
+            {t("done_hero_sub")}
           </p>
         </div>
 
@@ -319,30 +321,30 @@ export default function SponsorClient({ artistId }: Props) {
             </div>
 
             <div className="border-t pt-4 space-y-2.5" style={{ borderColor: "rgba(194,164,63,0.2)" }}>
-              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-3">선물 내역</p>
+              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_gift_title")}</p>
               <div className="flex justify-between text-sm">
-                <span className="text-muted">재료</span>
+                <span className="text-muted">{t("done_mat")}</span>
                 <span className="font-semibold text-navy-800 text-right max-w-[60%] leading-snug">{selectedMaterial.name}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-muted">재료값</span>
+                <span className="text-muted">{t("done_cost")}</span>
                 <span className="font-semibold text-navy-800">{selectedMaterial.price.toLocaleString()}원</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-muted">결제·전달 수수료 (3%)</span>
+                <span className="text-muted">{t("done_fee")}</span>
                 <span className="text-navy-600">{fee.toLocaleString()}원</span>
               </div>
               <div
                 className="flex justify-between pt-3 border-t font-black"
                 style={{ borderColor: "rgba(194,164,63,0.2)" }}
               >
-                <span className="text-navy-800">총 결제</span>
+                <span className="text-navy-800">{t("done_total")}</span>
                 <span className="text-navy-800 text-lg">{total.toLocaleString()}원</span>
               </div>
             </div>
 
             <p className="text-[11px] text-muted mt-3 leading-relaxed text-center">
-              재료가 준비되면 작가님께 전달됩니다.
+              {t("done_delivery")}
             </p>
           </div>
 
@@ -356,7 +358,7 @@ export default function SponsorClient({ artistId }: Props) {
                 animation: "fadeUp .5s 0.95s both",
               }}
             >
-              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-3">Dear Gogh · 내 응원 메시지</p>
+              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_msg_title")}</p>
               <p className="font-myeongjo text-sm text-ink leading-relaxed">{message}</p>
             </div>
           )}
@@ -370,7 +372,7 @@ export default function SponsorClient({ artistId }: Props) {
               animation: "fadeUp .5s 1.05s both",
             }}
           >
-            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-4">이제 무슨 일이 생기냐면</p>
+            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-4">{t("done_next_title")}</p>
             <ol className="space-y-3">
               {NEXT_STEPS.map((step, idx) => (
                 <li key={idx} className="flex items-start gap-3">
@@ -427,7 +429,7 @@ export default function SponsorClient({ artistId }: Props) {
                 boxShadow: "0 8px 22px rgba(13,59,102,.22)",
               }}
             >
-              마이테오에서 확인하기
+              {t("done_cta_my")}
             </Link>
             <Link
               href="/atelier"
@@ -438,12 +440,12 @@ export default function SponsorClient({ artistId }: Props) {
                 color: "var(--navy-700)",
               }}
             >
-              다른 작가 찾기
+              {t("done_cta_atelier")}
             </Link>
           </div>
 
           <p className="text-[11px] text-center mt-5" style={{ color: "var(--muted)" }}>
-            * 이 화면은 시연용 데모입니다. 실제 결제는 이루어지지 않습니다.
+            {t("sp_demo")}
           </p>
         </div>
       </div>
@@ -462,7 +464,7 @@ export default function SponsorClient({ artistId }: Props) {
           href={`/artists/${artist.id}`}
           className="inline-flex items-center gap-1.5 text-sm text-navy-600 hover:text-navy-800 font-medium mb-8 transition-colors"
         >
-          ← {artist.name} 아틀리에
+          ← {artist.name} {t("sp_back")}
         </Link>
 
         {/* Artist summary banner */}
@@ -471,7 +473,7 @@ export default function SponsorClient({ artistId }: Props) {
             <Image src={artist.profileImage} alt={artist.name} fill sizes="56px" className="object-cover" />
           </div>
           <div>
-            <p className="text-sv font-bold text-xs tracking-[0.16em] uppercase mb-1">재료 선물하기</p>
+            <p className="text-sv font-bold text-xs tracking-[0.16em] uppercase mb-1">{t("sp_label")}</p>
             <p className="text-white font-black text-base">{artist.name}</p>
             {project && (
               <p className="text-white/60 text-xs mt-0.5">{project.title}</p>
@@ -485,12 +487,12 @@ export default function SponsorClient({ artistId }: Props) {
             <span className="w-6 h-6 rounded-full bg-sv text-ink font-black text-xs flex items-center justify-center">
               1
             </span>
-            <h2 className="font-black text-navy-800">재료를 선택하세요</h2>
+            <h2 className="font-black text-navy-800">{t("sp_s1")}</h2>
           </div>
 
           <div className="space-y-3">
             {availableMaterials.length === 0 ? (
-              <p className="text-sm text-muted text-center py-8">현재 선물 가능한 재료가 없습니다.</p>
+              <p className="text-sm text-muted text-center py-8">{t("sp_no_materials")}</p>
             ) : (
               availableMaterials.map((m) => (
                 <button
@@ -530,15 +532,15 @@ export default function SponsorClient({ artistId }: Props) {
               2
             </span>
             <h2 className="font-black text-navy-800">
-              Dear Gogh 메시지{" "}
-              <span className="text-muted text-sm font-normal">(선택)</span>
+              {t("sp_s2_title")}{" "}
+              <span className="text-muted text-sm font-normal">{t("sp_s2_optional")}</span>
             </h2>
           </div>
-          <p className="text-xs text-muted mb-3">작가에게 한마디 · 편지와 함께 전달돼요</p>
+          <p className="text-xs text-muted mb-3">{t("sp_s2_hint")}</p>
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="응원의 말을 남겨보세요. 최대 500자."
+            placeholder={t("sp_s2_ph")}
             maxLength={500}
             rows={4}
             className="w-full bg-card border-2 border-navy-100 focus:border-navy-700 rounded-xl p-4 text-sm text-ink placeholder:text-muted resize-none outline-none transition-colors leading-relaxed"
@@ -551,20 +553,20 @@ export default function SponsorClient({ artistId }: Props) {
           <div className="bg-card border border-line rounded-xl p-5 mb-4" style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}>
             <div className="space-y-2 mb-4 pb-4 border-b border-navy-100">
               <div className="flex justify-between text-sm">
-                <span className="text-muted">재료값</span>
+                <span className="text-muted">{t("sp_cost")}</span>
                 <span className="font-medium text-navy-800">{selectedMaterial.price.toLocaleString()}원</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-muted">결제·전달 수수료 (3%)</span>
+                <span className="text-muted">{t("sp_fee")}</span>
                 <span className="font-medium text-navy-600">{fee.toLocaleString()}원</span>
               </div>
             </div>
             <div className="flex justify-between">
-              <span className="font-bold text-navy-800">총 결제 금액</span>
+              <span className="font-bold text-navy-800">{t("sp_total")}</span>
               <span className="font-black text-navy-800 text-lg">{total.toLocaleString()}원</span>
             </div>
             <p className="text-xs text-muted mt-3 leading-relaxed">
-              재료값 전액이 작가에게 전달됩니다. 작가 수수료는 0%예요.
+              {t("sp_zero_fee")}
             </p>
           </div>
         )}
@@ -580,12 +582,12 @@ export default function SponsorClient({ artistId }: Props) {
           style={selected ? { boxShadow: '0 8px 22px rgba(23,29,43,.06)' } : undefined}
         >
           {selected
-            ? `${total.toLocaleString()}원 선물하기`
-            : "재료를 먼저 선택해주세요"}
+            ? `${total.toLocaleString()}원 ${t("sp_btn_gift")}`
+            : t("sp_btn_select")}
         </button>
 
         <p className="text-xs text-muted text-center mt-4 leading-relaxed">
-          * 이 화면은 시연용 데모입니다. 실제 결제는 이루어지지 않습니다.
+          {t("sp_demo")}
         </p>
 
       </div>

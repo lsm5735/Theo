@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import FloatingChatbot from "@/components/FloatingChatbot";
 import ScrollObserver from "@/components/ScrollObserver";
+import { LangProvider } from "@/contexts/LangContext";
 
 export const metadata: Metadata = {
   title: "Theo — 모두의 고흐가 되기 전, 나만의 고흐를 만난다",
@@ -19,9 +20,11 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})()` }} />
       </head>
       <body className="min-h-full flex flex-col bg-paper text-ink antialiased">
-        {children}
-        <FloatingChatbot />
-        <ScrollObserver />
+        <LangProvider>
+          {children}
+          <FloatingChatbot />
+          <ScrollObserver />
+        </LangProvider>
       </body>
     </html>
   );

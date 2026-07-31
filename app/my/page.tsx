@@ -1,11 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import artists from "@/data/artists.json";
 import projects from "@/data/projects.json";
 import letters from "@/data/letters.json";
-
-export const metadata = { title: "마이테오 — Theo" };
+import { useT, useLang } from "@/contexts/LangContext";
+import { DictKey } from "@/lib/translations";
 
 /* ─── 목 데이터: 내 후원 3건 ────────────────────────────────────────── */
 const MY_SPONSORSHIPS = [
@@ -41,7 +43,7 @@ const MY_SPONSORSHIPS = [
   },
 ];
 
-const STEPS = ["후원 완료", "재료 준비 중", "작가에게\n가는 중", "작가가\n받았어요"];
+const STEPS_KO = ["후원 완료", "재료 준비 중", "작가에게\n가는 중", "작가가\n받았어요"];
 
 const BADGES = [
   { name: "씨앗",    threshold: 1 },
@@ -49,6 +51,13 @@ const BADGES = [
   { name: "밀밭",    threshold: 5 },
   { name: "별밤",    threshold: 10 },
 ];
+
+const BADGE_NAME_KEYS: Record<string, DictKey> = {
+  "씨앗": "my_badge_seed",
+  "해바라기": "my_badge_sunflower",
+  "밀밭": "my_badge_wheat",
+  "별밤": "my_badge_star",
+};
 
 /* ─── Badge SVG icons ────────────────────────────────────────────────── */
 function SunflowerSvg({ size }: { size: number }) {
@@ -143,17 +152,17 @@ function BadgeIconInline({ name }: { name: string }) {
 }
 
 /* ─── 배송 트래커 ────────────────────────────────────────────────────── */
-function DeliveryTracker({ step }: { step: number }) {
+function DeliveryTracker({ step, stepsDisplay }: { step: number; stepsDisplay: string[] }) {
   return (
     <div className="mt-3">
       {/* Step circles + connecting lines */}
       <div className="flex items-center">
-        {STEPS.map((_, i) => {
+        {stepsDisplay.map((_, i) => {
           const num = i + 1;
           const done = num < step;
           const active = num === step;
           return (
-            <div key={i} className="flex items-center" style={{ flex: i < STEPS.length - 1 ? "1 1 0" : "none" }}>
+            <div key={i} className="flex items-center" style={{ flex: i < stepsDisplay.length - 1 ? "1 1 0" : "none" }}>
               <div
                 className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] shrink-0"
                 style={{
@@ -163,7 +172,7 @@ function DeliveryTracker({ step }: { step: number }) {
               >
                 {done ? "✓" : num}
               </div>
-              {i < STEPS.length - 1 && (
+              {i < stepsDisplay.length - 1 && (
                 <div
                   className="flex-1 h-0.5 mx-0.5"
                   style={{ background: done ? "var(--navy-800)" : "var(--navy-100)" }}
@@ -175,7 +184,7 @@ function DeliveryTracker({ step }: { step: number }) {
       </div>
       {/* Labels */}
       <div className="flex mt-1.5" style={{ gap: 0 }}>
-        {STEPS.map((label, i) => {
+        {stepsDisplay.map((label, i) => {
           const num = i + 1;
           const done = num < step;
           const active = num === step;
@@ -184,8 +193,8 @@ function DeliveryTracker({ step }: { step: number }) {
               key={i}
               className="whitespace-pre-line text-center leading-tight"
               style={{
-                flex: i < STEPS.length - 1 ? "1 1 0" : "none",
-                width: i === STEPS.length - 1 ? 60 : undefined,
+                flex: i < stepsDisplay.length - 1 ? "1 1 0" : "none",
+                width: i === stepsDisplay.length - 1 ? 60 : undefined,
                 fontSize: 9.5,
                 color: done ? "var(--navy-600)" : active ? "var(--navy-800)" : "var(--muted)",
                 fontWeight: active ? 700 : 400,
@@ -202,6 +211,11 @@ function DeliveryTracker({ step }: { step: number }) {
 
 /* ─── Page ───────────────────────────────────────────────────────────── */
 export default function MyDashboard() {
+  const t = useT();
+  const { lang } = useLang();
+
+  const STEPS_DISPLAY = [t("my_step1"), t("my_step2"), t("my_step3"), t("my_step4")];
+
   const count = MY_SPONSORSHIPS.length;
   const totalAmount = MY_SPONSORSHIPS.reduce((s, sp) => s + sp.amount, 0);
   const letterCount = MY_SPONSORSHIPS.filter((sp) => sp.letterId).length;
@@ -217,6 +231,10 @@ export default function MyDashboard() {
     ? Math.min(100, ((count - badge.threshold) / (nextBadge.threshold - badge.threshold)) * 100)
     : 100;
 
+  function getBadgeDisplayName(name: string) {
+    return t(BADGE_NAME_KEYS[name] ?? "my_badge_seed");
+  }
+
   /* Arrived letter */
   const arrivedSp = MY_SPONSORSHIPS.find((sp) => sp.letterId);
   const arrivedLetter = arrivedSp?.letterId ? letters.find((l) => l.id === arrivedSp.letterId) : null;
@@ -231,7 +249,7 @@ export default function MyDashboard() {
           href="/"
           className="text-xs text-muted hover:text-navy-700 transition-colors mb-6 inline-block"
         >
-          ← 홈
+          {t("my_back")}
         </Link>
 
         {/* ── Badge / Hero card ─────────────────────────────── */}
@@ -248,11 +266,11 @@ export default function MyDashboard() {
           />
 
           <p className="text-[10px] font-black tracking-[0.22em] uppercase mb-3" style={{ color: "rgba(255,255,255,.5)" }}>
-            마이테오
+            {t("my_label")}
           </p>
-          <p className="text-white font-black text-xl mb-1">안녕하세요, 테오님</p>
+          <p className="text-white font-black text-xl mb-1">{t("my_greeting")}</p>
           <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,.55)" }}>
-            {count}개의 프로젝트를 후원하고 있어요
+            {t("my_supporting_pre")}{count}{t("my_supporting_post")}
           </p>
 
           <div className="flex items-end justify-between gap-6">
@@ -261,10 +279,10 @@ export default function MyDashboard() {
               <div className="flex items-center gap-3 mb-3">
                 <BadgeIcon name={badge.name} size={52} />
                 <div>
-                  <p className="text-white font-black text-lg leading-none">{badge.name} 배지</p>
+                  <p className="text-white font-black text-lg leading-none">{getBadgeDisplayName(badge.name)} {t("my_badge_suf")}</p>
                   {nextBadge && (
                     <p className="text-[11px] mt-0.5" style={{ color: "rgba(255,255,255,.45)" }}>
-                      <BadgeIconInline name={nextBadge.name} /> {nextBadge.name}까지 {nextBadge.threshold - count}번 더
+                      <BadgeIconInline name={nextBadge.name} /> {getBadgeDisplayName(nextBadge.name)}{t("my_badge_until")} {nextBadge.threshold - count}{t("my_badge_more")}
                     </p>
                   )}
                 </div>
@@ -278,8 +296,8 @@ export default function MyDashboard() {
                     />
                   </div>
                   <div className="flex justify-between mt-1">
-                    <span className="text-[10px]" style={{ color: "rgba(255,255,255,.3)" }}>{badge.name}</span>
-                    <span className="text-[10px]" style={{ color: "rgba(255,255,255,.3)" }}>{nextBadge.name} {nextBadge.threshold}회</span>
+                    <span className="text-[10px]" style={{ color: "rgba(255,255,255,.3)" }}>{getBadgeDisplayName(badge.name)}</span>
+                    <span className="text-[10px]" style={{ color: "rgba(255,255,255,.3)" }}>{getBadgeDisplayName(nextBadge.name)} {nextBadge.threshold}회</span>
                   </div>
                 </>
               )}
@@ -288,11 +306,11 @@ export default function MyDashboard() {
             {/* Stats */}
             <div className="flex gap-5 shrink-0">
               <div className="text-right">
-                <p className="text-[10px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>총 후원금</p>
+                <p className="text-[10px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_total")}</p>
                 <p className="text-white font-black text-base">{totalAmount.toLocaleString()}원</p>
               </div>
               <div className="text-right">
-                <p className="text-[10px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>받은 편지</p>
+                <p className="text-[10px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_letters")}</p>
                 <p className="text-white font-black text-base">{letterCount}통</p>
               </div>
             </div>
@@ -301,7 +319,7 @@ export default function MyDashboard() {
 
         {/* ── 내 후원 현황 ──────────────────────────────────── */}
         <section className="mb-10">
-          <h2 className="text-[17px] font-black text-navy-800 mb-4">내 후원 현황</h2>
+          <h2 className="text-[17px] font-black text-navy-800 mb-4">{t("my_section_status")}</h2>
           <div className="space-y-4">
             {MY_SPONSORSHIPS.map((sp) => {
               const artist = artists.find((a) => a.id === sp.artistId)!;
@@ -309,7 +327,9 @@ export default function MyDashboard() {
               const letter = sp.letterId ? letters.find((l) => l.id === sp.letterId) : null;
               const pct = Math.round((project.fundedAmount / project.targetAmount) * 100);
               const d = new Date(sp.sponsoredAt);
-              const dateStr = `${d.getMonth() + 1}월 ${d.getDate()}일 후원`;
+              const dateStr = lang === "ko"
+                ? `${d.getMonth() + 1}월 ${d.getDate()}일 후원`
+                : `Gifted ${d.toLocaleDateString("en-US", { month: "short", day: "numeric" })}`;
 
               return (
                 <div
@@ -330,7 +350,7 @@ export default function MyDashboard() {
                       style={{ background: "var(--sv)", color: "var(--ink)" }}
                     >
                       <span>✉️</span>
-                      작가에게서 편지가 도착했어요!
+                      {t("my_letter_arrived")}
                     </div>
                   )}
 
@@ -362,19 +382,19 @@ export default function MyDashboard() {
                           >
                             {sp.amount.toLocaleString()}원
                           </span>
-                          <span className="text-[10px] text-muted">프로젝트 {pct}% 달성</span>
+                          <span className="text-[10px] text-muted">{t("my_pct_suf").replace("%", `${pct}%`)}</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Material */}
                     <p className="text-[11px] mb-1 truncate" style={{ color: "var(--muted)" }}>
-                      <span className="font-semibold" style={{ color: "var(--navy-600)" }}>선물한 재료 </span>
+                      <span className="font-semibold" style={{ color: "var(--navy-600)" }}>{t("my_material_pre")}</span>
                       {sp.material}
                     </p>
 
                     {/* Delivery tracker */}
-                    <DeliveryTracker step={sp.deliveryStep} />
+                    <DeliveryTracker step={sp.deliveryStep} stepsDisplay={STEPS_DISPLAY} />
 
                     {/* Letter preview + CTA */}
                     {letter && (
@@ -393,7 +413,7 @@ export default function MyDashboard() {
                           className="inline-flex items-center gap-1.5 text-xs font-black px-4 py-2 rounded-lg transition-opacity hover:opacity-80"
                           style={{ background: "var(--navy-800)", color: "var(--chiffon)" }}
                         >
-                          편지 확인하기 →
+                          {t("my_letter_btn")}
                         </Link>
                       </div>
                     )}
@@ -407,13 +427,13 @@ export default function MyDashboard() {
         {/* ── 받은 편지함 ───────────────────────────────────── */}
         <section>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[17px] font-black text-navy-800">받은 편지함</h2>
+            <h2 className="text-[17px] font-black text-navy-800">{t("my_section_inbox")}</h2>
             <Link
               href="/my/letters"
               className="text-xs font-semibold transition-colors hover:opacity-70"
               style={{ color: "var(--navy-600)" }}
             >
-              전체보기 {letters.length}통 →
+              {t("my_inbox_all_pre")}{letters.length}{t("my_inbox_all_suf")}
             </Link>
           </div>
 
@@ -463,8 +483,8 @@ export default function MyDashboard() {
               className="rounded-xl p-8 text-center border"
               style={{ background: "var(--chiffon)", borderColor: "rgba(194,164,63,.2)" }}
             >
-              <p className="font-myeongjo text-sm text-muted">아직 도착한 편지가 없어요.</p>
-              <p className="text-xs text-muted mt-1">재료가 작가에게 전달되면 편지를 보내드려요.</p>
+              <p className="font-myeongjo text-sm text-muted">{t("my_inbox_empty")}</p>
+              <p className="text-xs text-muted mt-1">{t("my_inbox_empty_sub")}</p>
             </div>
           )}
         </section>

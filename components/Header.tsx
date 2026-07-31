@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { useLang, useT } from "@/contexts/LangContext";
 
 function SunIcon() {
   return (
@@ -52,13 +53,12 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
-  const [lang, setLang] = useState<Lang>("ko");
+  const { lang, setLang } = useLang();
+  const t = useT();
   const settingsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsDark(document.documentElement.getAttribute("data-theme") === "dark");
-    const savedLang = localStorage.getItem("lang") as Lang | null;
-    if (savedLang) setLang(savedLang);
   }, []);
 
   // 외부 클릭 시 설정 패널 닫기
@@ -85,10 +85,7 @@ export default function Header() {
   }
 
   function toggleLang() {
-    const next: Lang = lang === "ko" ? "en" : "ko";
-    setLang(next);
-    document.documentElement.lang = next === "ko" ? "ko" : "en";
-    localStorage.setItem("lang", next);
+    setLang(lang === "ko" ? "en" : "ko");
   }
 
   return (
@@ -118,14 +115,14 @@ export default function Header() {
             Community
           </a>
           <a href="/#how" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
-            이용방법
+            {t("nav_how")}
           </a>
           <Link
             href="/my"
             className="font-black text-[12.5px] tracking-[0.1em] uppercase transition-colors hover:opacity-80"
             style={{ color: "var(--sv-deep)" }}
           >
-            마이테오
+            {t("nav_my")}
           </Link>
         </nav>
 
@@ -153,7 +150,7 @@ export default function Header() {
                 {/* 언어 */}
                 <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: "1px solid rgba(250,240,202,.1)" }}>
                   <span className="text-[13px] font-semibold" style={{ color: "rgba(250,240,202,.75)" }}>
-                    언어 / Language
+                    {t("settings_lang_label")}
                   </span>
                   <button
                     onClick={toggleLang}
@@ -161,25 +158,26 @@ export default function Header() {
                     style={{ background: "rgba(250,240,202,.12)", color: "var(--chiffon)" }}
                   >
                     <LangIcon />
-                    {lang === "ko" ? (
-                      <span>한국어 → <span style={{ color: "var(--sv)" }}>EN</span></span>
-                    ) : (
-                      <span>English → <span style={{ color: "var(--sv)" }}>KO</span></span>
-                    )}
+                    <span>
+                      {lang === "ko"
+                        ? <>{t("settings_lang_to_en").split("→")[0]}<span style={{ color: "var(--sv)" }}>→ EN</span></>
+                        : <>{t("settings_lang_to_ko").split("→")[0]}<span style={{ color: "var(--sv)" }}>→ KO</span></>
+                      }
+                    </span>
                   </button>
                 </div>
 
                 {/* 화면 모드 */}
                 <div className="flex items-center justify-between px-5 py-4">
                   <span className="text-[13px] font-semibold" style={{ color: "rgba(250,240,202,.75)" }}>
-                    화면 모드
+                    {t("settings_theme_label")}
                   </span>
                   <button
                     onClick={toggleTheme}
                     className="flex items-center gap-1.5 text-[12px] font-bold px-3 py-2 rounded-lg transition-colors"
                     style={{ background: "rgba(250,240,202,.12)", color: "var(--chiffon)" }}
                   >
-                    {isDark ? <><SunIcon /> 라이트</> : <><MoonIcon /> 다크</>}
+                    {isDark ? <><SunIcon /> {t("theme_light")}</> : <><MoonIcon /> {t("theme_dark")}</>}
                   </button>
                 </div>
               </div>
@@ -211,7 +209,7 @@ export default function Header() {
             className="inline-flex items-center bg-navy-800 text-chiffon font-bold rounded-lg hover:bg-navy-700 transition-colors"
             style={{ fontSize: "13px", padding: "9px 17px" }}
           >
-            시작하기
+            {t("btn_start")}
           </a>
         </div>
 
@@ -255,7 +253,7 @@ export default function Header() {
               className="block py-3 text-[13px] tracking-[0.1em] uppercase text-muted border-b border-line/60"
               onClick={() => setMenuOpen(false)}
             >
-              이용방법
+              {t("nav_how")}
             </a>
           </li>
           {/* 모바일 설정 영역 */}
@@ -273,7 +271,7 @@ export default function Header() {
               className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-[12px] font-bold rounded-lg transition-colors"
               style={{ background: "var(--navy-100)", color: "var(--navy-700)" }}
             >
-              {isDark ? <><SunIcon /> 라이트</> : <><MoonIcon /> 다크</>}
+              {isDark ? <><SunIcon /> {t("theme_light")}</> : <><MoonIcon /> {t("theme_dark")}</>}
             </button>
           </li>
         </ul>

@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useT } from "@/contexts/LangContext";
 
 interface Project {
   id: string;
@@ -24,19 +27,21 @@ interface Artist {
   totalSponsors: number;
 }
 
-const statusLabel: Record<string, { text: string; color: string }> = {
-  recruiting:  { text: "후원 모집 중",  color: "bg-sv text-ink" },
-  in_progress: { text: "작업 진행 중",  color: "bg-navy-100 text-navy-700" },
-  completed:   { text: "완성",          color: "bg-navy-200 text-navy-700" },
-};
+function getStatusLabel(status: string, t: ReturnType<typeof useT>) {
+  const map: Record<string, { text: string; color: string }> = {
+    recruiting:  { text: t("status_recruiting"),  color: "bg-sv text-ink" },
+    in_progress: { text: t("status_in_progress"), color: "bg-navy-100 text-navy-700" },
+    completed:   { text: t("status_completed"),   color: "bg-navy-200 text-navy-700" },
+  };
+  return map[status] ?? { text: status, color: "bg-navy-100 text-navy-600" };
+}
 
 export default function ArtistCard({ artist, project }: { artist: Artist; project: Project }) {
+  const t = useT();
   const pct = Math.round(
     (project.fundedAmount / project.targetAmount) * 100
   );
-  const status =
-    statusLabel[project.status] ??
-    { text: project.status, color: "bg-navy-100 text-navy-600" };
+  const status = getStatusLabel(project.status, t);
 
   return (
     <Link
@@ -120,9 +125,9 @@ export default function ArtistCard({ artist, project }: { artist: Artist; projec
 
             <div className="flex justify-between text-[11.5px] text-muted">
               <span>
-                <b className="text-navy-800">{pct}%</b> 달성
+                <b className="text-navy-800">{pct}%</b> {t("pct_achieved")}
               </span>
-              <span>테오 {project.sponsorCount}명</span>
+              <span>테오 {project.sponsorCount}{t("theo_count_suffix")}</span>
             </div>
           </div>
         </div>

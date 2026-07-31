@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import artworksData from "@/data/artworks.json";
+import { useT } from "@/contexts/LangContext";
 
 interface Message {
   role: "bot" | "user";
@@ -35,27 +36,6 @@ interface MatchResult {
   project: ProjectData | null;
 }
 
-// 마스터문서 §12b-1: 3~5턴 고정 흐름
-const FLOW = [
-  {
-    botText:
-      "안녕하세요, 저는 테오예요.\n어떤 그림 앞에서 오래 멈춰 서시나요?\n느낌으로 말해주세요 — 작품 이름 몰라도 괜찮아요.",
-    chips: ["어두운 분위기", "밝고 따뜻한", "추상적인", "사실적인"],
-  },
-  {
-    botText: "그 느낌이 고요한 쪽인가요, 아니면 격정적인 쪽인가요?",
-    chips: ["고요하고 쓸쓸한", "격정적이고 강렬한", "잔잔하고 일상적인"],
-  },
-  {
-    botText: "어떤 소재나 장면이 자주 떠오르세요?",
-    chips: ["도시·밤·건물", "자연·식물·빛", "사람·감정·관계", "추상·질감·형태"],
-  },
-  {
-    botText: "마지막으로 — 붓질 느낌은 어떤 게 좋으세요?",
-    chips: ["두텁고 거친 임파스토", "얇고 매끄러운", "번지고 흐르는", "선명하고 절제된"],
-  },
-];
-
 const RANK_LABEL = ["1st", "2nd", "3rd"];
 const RANK_STYLE = [
   "bg-sv text-ink",
@@ -64,15 +44,43 @@ const RANK_STYLE = [
 ];
 
 export default function BotPage() {
-  const [messages, setMessages] = useState<Message[]>([
-    { role: "bot", text: FLOW[0].botText, chips: FLOW[0].chips },
-  ]);
+  const t = useT();
+
+  // 마스터문서 §12b-1: 3~5턴 고정 흐름
+  const FLOW = useMemo(() => [
+    {
+      botText: t("bot_q1"),
+      chips: [t("bot_chip_dark"), t("bot_chip_bright"), t("bot_chip_abstract"), t("bot_chip_realistic")],
+    },
+    {
+      botText: t("bot_q2"),
+      chips: [t("bot_chip_quiet"), t("bot_chip_intense"), t("bot_chip_calm")],
+    },
+    {
+      botText: t("bot_q3"),
+      chips: [t("bot_chip_city"), t("bot_chip_nature"), t("bot_chip_people"), t("bot_chip_abstract2")],
+    },
+    {
+      botText: t("bot_q4"),
+      chips: [t("bot_chip_thick"), t("bot_chip_thin"), t("bot_chip_fluid"), t("bot_chip_crisp")],
+    },
+  ], [t]);
+
+  const [messages, setMessages] = useState<Message[]>([]);
   const [step, setStep] = useState(0);
   const [chipCtx, setChipCtx] = useState<string[]>([]);
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<MatchResult[]>([]);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const initialized = useRef(false);
+
+  useEffect(() => {
+    if (!initialized.current && FLOW.length > 0) {
+      initialized.current = true;
+      setMessages([{ role: "bot", text: FLOW[0].botText, chips: FLOW[0].chips }]);
+    }
+  }, [FLOW]);
 
   const isDone = isLoading || results.length > 0;
 
@@ -101,7 +109,7 @@ export default function BotPage() {
     const query = context.join(", ");
     setMessages((p) => [
       ...p,
-      { role: "bot", text: "취향에 맞는 작가를 찾고 있어요..." },
+      { role: "bot", text: t("bot_searching") },
     ]);
     setStep(FLOW.length);
     fetchMatch(query);
@@ -129,7 +137,7 @@ export default function BotPage() {
   // 마스터문서 §12b-1: "바로 추천받기" — 어느 턴에서든 수집된 정보로 즉시 추천
   function handleQuickMatch() {
     const ctx = chipCtx.length > 0 ? chipCtx : ["감성적인 그림"];
-    setMessages((p) => [...p, { role: "user", text: "바로 추천받을게요" }]);
+    setMessages((p) => [...p, { role: "user", text: t("bot_quick_user") }]);
     triggerMatch(ctx);
   }
 
@@ -158,12 +166,20 @@ export default function BotPage() {
   }
 
   function handleReset() {
-    setMessages([{ role: "bot", text: FLOW[0].botText, chips: FLOW[0].chips }]);
+    initialized.current = false;
+    setMessages([]);
     setStep(0);
     setChipCtx([]);
     setInputText("");
     setIsLoading(false);
     setResults([]);
+    // Re-initialize
+    setTimeout(() => {
+      if (!initialized.current) {
+        initialized.current = true;
+        setMessages([{ role: "bot", text: FLOW[0].botText, chips: FLOW[0].chips }]);
+      }
+    }, 0);
   }
 
   const isConversationActive = step < FLOW.length && !isDone;
@@ -179,18 +195,18 @@ export default function BotPage() {
           href="/"
           className="text-sm text-navy-400 hover:text-navy-700 transition-colors mb-10 inline-block"
         >
-          ← 홈으로
+          {t("bot_back")}
         </Link>
 
         {/* Title */}
         <div className="mb-8">
           <p className="text-xs font-semibold tracking-[0.22em] text-navy-400 uppercase mb-3">
-            THEO BOT
+            {t("bot_label")}
           </p>
           <h1 className="text-2xl font-bold text-navy-900 leading-snug">
-            취향에 맞는 작가를
+            {t("bot_h1a")}
             <br />
-            찾아드릴게요.
+            {t("bot_h1b")}
           </h1>
         </div>
 
@@ -235,7 +251,7 @@ export default function BotPage() {
                           onClick={handleQuickMatch}
                           className="text-[12.5px] px-3.5 py-2 rounded-full bg-sv text-ink font-semibold hover:opacity-90 transition-all"
                         >
-                          바로 추천받기 →
+                          {t("bot_quick_match")}
                         </button>
                       )}
                     </div>
@@ -279,7 +295,7 @@ export default function BotPage() {
                       <path d="M22 9 A13 13 0 0 1 9 22" stroke="#F4D35E" strokeWidth="2.5" strokeLinecap="round" opacity="0.12" />
                     </svg>
                   </div>
-                  <p className="text-[13px] text-navy-700 font-medium">취향에 맞는 고흐를 매칭중이에요</p>
+                  <p className="text-[13px] text-navy-700 font-medium">{t("bot_matching_msg")}</p>
                 </div>
               </div>
             </div>
@@ -298,7 +314,7 @@ export default function BotPage() {
                   style={{ boxShadow: "0 4px 14px rgba(13,59,102,.05)" }}
                 >
                   <p className="text-[14px] text-navy-900 leading-[1.8]">
-                    취향에 맞는 작가 3명을 찾았어요.
+                    {t("bot_found")}
                   </p>
                 </div>
 
@@ -355,14 +371,14 @@ export default function BotPage() {
                           href={`/atelier/${r.artist.slug}`}
                           className="shrink-0 text-[11px] font-semibold text-navy-700 border border-navy-300 px-2.5 py-1.5 rounded-lg hover:bg-navy-800 hover:text-chiffon hover:border-navy-800 transition-all"
                         >
-                          아틀리에 →
+                          {t("bot_atelier_btn")}
                         </Link>
                       </div>
 
                       {/* 추천 이유 */}
                       <div className="mt-3 bg-navy-100 rounded-xl px-3.5 py-3.5">
                         <p className="text-[10px] font-bold tracking-[0.14em] text-navy-400 uppercase mb-2">
-                          이 작가를 추천하는 이유
+                          {t("bot_reason_title")}
                         </p>
                         <p className="text-[13px] text-navy-800 leading-[1.85]">
                           {r.reason}
@@ -381,20 +397,20 @@ export default function BotPage() {
                 {/* 하단 액션 */}
                 <div className="text-center pt-1 pb-2 space-y-3">
                   <p className="text-[11px] text-navy-300">
-                    Solar AI가 작가노트를 직접 읽고 추천했어요
+                    {t("bot_ai_note")}
                   </p>
                   <div className="flex gap-2 justify-center">
                     <button
                       onClick={handleReset}
                       className="text-sm text-navy-500 border border-navy-300 px-4 py-2 rounded-xl hover:bg-navy-800 hover:text-chiffon hover:border-navy-800 transition-all"
                     >
-                      다시 찾기
+                      {t("bot_reset")}
                     </button>
                     <Link
                       href="/atelier"
                       className="text-sm font-bold bg-navy-800 text-chiffon px-4 py-2 rounded-xl hover:bg-navy-700 transition-colors"
                     >
-                      전체 작가 보기
+                      {t("bot_all")}
                     </Link>
                   </div>
                 </div>

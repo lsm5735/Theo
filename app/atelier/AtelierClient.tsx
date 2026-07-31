@@ -2,6 +2,8 @@
 
 import { useState, useMemo } from "react";
 import ArtistCard from "@/components/ArtistCard";
+import { useT } from "@/contexts/LangContext";
+import { DictKey } from "@/lib/translations";
 
 interface Artist {
   id: string;
@@ -47,6 +49,23 @@ const MOOD_TAGS: Record<string, string[]> = {
 const MEDIA_OPTIONS = ["전체", ...Object.keys(MEDIA_GROUPS)];
 const MOOD_OPTIONS = ["전체", ...Object.keys(MOOD_TAGS)];
 
+const MEDIA_DISPLAY: Record<string, DictKey> = {
+  "전체": "filter_all",
+  "유화": "media_oil",
+  "아크릴": "media_acrylic",
+  "수채·과슈": "media_watercolor",
+  "오일파스텔": "media_oilpastel",
+  "혼합": "media_mixed",
+};
+
+const MOOD_DISPLAY: Record<string, DictKey> = {
+  "전체": "filter_all",
+  "고요한": "mood_quiet",
+  "따뜻한": "mood_warm",
+  "강렬한": "mood_intense",
+  "서정적인": "mood_lyrical",
+};
+
 function FilterChip({
   label,
   active,
@@ -79,6 +98,7 @@ export default function AtelierClient({
   projectMap: Record<string, Project>;
   total: number;
 }) {
+  const t = useT();
   const [selectedMedia, setSelectedMedia] = useState("전체");
   const [selectedMood, setSelectedMood] = useState("전체");
 
@@ -90,7 +110,7 @@ export default function AtelierClient({
       }
       if (selectedMood !== "전체") {
         const moodTags = MOOD_TAGS[selectedMood] ?? [];
-        if (!artist.tags.some((t) => moodTags.includes(t))) return false;
+        if (!artist.tags.some((tag) => moodTags.includes(tag))) return false;
       }
       return true;
     });
@@ -114,7 +134,7 @@ export default function AtelierClient({
               className="text-[10.5px] font-bold tracking-[0.22em] uppercase shrink-0"
               style={{ color: "var(--navy-400)", width: "2.8rem" }}
             >
-              매체
+              {t("filter_medium")}
             </span>
             <div
               className="flex gap-2 overflow-x-auto"
@@ -123,7 +143,7 @@ export default function AtelierClient({
               {MEDIA_OPTIONS.map((opt) => (
                 <FilterChip
                   key={opt}
-                  label={opt}
+                  label={t(MEDIA_DISPLAY[opt])}
                   active={selectedMedia === opt}
                   onClick={() => setSelectedMedia(opt)}
                 />
@@ -140,7 +160,7 @@ export default function AtelierClient({
               className="text-[10.5px] font-bold tracking-[0.22em] uppercase shrink-0"
               style={{ color: "var(--navy-400)", width: "2.8rem" }}
             >
-              분위기
+              {t("filter_mood")}
             </span>
             <div
               className="flex gap-2 overflow-x-auto"
@@ -149,7 +169,7 @@ export default function AtelierClient({
               {MOOD_OPTIONS.map((opt) => (
                 <FilterChip
                   key={opt}
-                  label={opt}
+                  label={t(MOOD_DISPLAY[opt])}
                   active={selectedMood === opt}
                   onClick={() => setSelectedMood(opt)}
                 />
@@ -163,19 +183,19 @@ export default function AtelierClient({
           {isFiltered ? (
             <>
               <p className="text-sm" style={{ color: "var(--muted)" }}>
-                <b className="text-navy-800">{filtered.length}명</b>의 작가를 찾았어요
+                <b className="text-navy-800">{filtered.length}</b>{t("filter_found")}
               </p>
               <button
                 onClick={reset}
                 className="text-xs font-medium underline underline-offset-2"
                 style={{ color: "var(--navy-500)" }}
               >
-                필터 초기화
+                {t("filter_reset")}
               </button>
             </>
           ) : (
             <p className="text-sm" style={{ color: "var(--muted)" }}>
-              총 <b className="text-navy-800">{total}명</b>의 작가가 후원을 기다리고 있어요
+              {t("filter_total_pre")} <b className="text-navy-800">{total}</b>{t("filter_waiting")}
             </p>
           )}
         </div>
@@ -186,14 +206,14 @@ export default function AtelierClient({
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-28 gap-4">
             <p className="text-base" style={{ color: "var(--muted)" }}>
-              조건에 맞는 작가가 없어요.
+              {t("filter_empty")}
             </p>
             <button
               onClick={reset}
               className="text-sm font-semibold underline underline-offset-2"
               style={{ color: "var(--navy-700)" }}
             >
-              필터 초기화하기
+              {t("filter_reset2")}
             </button>
           </div>
         ) : (

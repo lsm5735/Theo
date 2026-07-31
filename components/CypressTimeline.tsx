@@ -1,7 +1,11 @@
+"use client";
+
 /* ─────────────────────────────────────────────────────────────────────
    CypressTimeline — 반 고흐 사이프러스 세로축 타임라인
    채워진 실루엣 방식: 위는 뾰족, 아래로 갈수록 넓고 묵직해진다.
    ───────────────────────────────────────────────────────────────────── */
+
+import { useT } from "@/contexts/LangContext";
 
 const SPACING = 80;
 const TOP_PAD = 52;
@@ -12,21 +16,21 @@ const NODE_R  = 5.5;
 interface Artist { name: string; totalSponsors: number; followers: number; }
 interface Milestone { date: string; title: string; desc: string; isFirst?: boolean; isCurrent?: boolean; }
 
-function getMilestones(artist: Artist): Milestone[] {
+function getMilestones(artist: Artist, t: ReturnType<typeof useT>): Milestone[] {
   const mid = Math.round(artist.totalSponsors * 0.45);
   return [
-    { date: "2024년 10월", title: "테오의 가족이 되었어요",
-      desc: `${artist.name} 작가의 첫 번째 테오가 재료를 선물했어요.`, isFirst: true },
-    { date: "2025년 1월",  title: "누적 후원 10명 달성",
-      desc: "열 번째 테오가 함께해 주셨어요." },
-    { date: "2025년 5월",  title: "첫 프로젝트를 완료했어요",
-      desc: "재료 후원으로 첫 작품이 완성됐어요." },
-    { date: "2025년 10월", title: "테오 가족이 된 지 1년",
-      desc: "함께한 지 벌써 일 년이 됐어요." },
-    { date: "2026년 3월",  title: `누적 후원 ${mid}명 달성`,
-      desc: `${artist.name} 작가와 ${mid}명의 테오가 창작을 이어가고 있어요.` },
-    { date: "지금",        title: `테오 ${artist.totalSponsors}명과 함께해요`,
-      desc: "지금도 새로운 프로젝트를 함께 만들어가는 중이에요.", isCurrent: true },
+    { date: "2024년 10월", title: t("tl_joined"),
+      desc: `${artist.name} ${t("tl_joined_desc_post")}`, isFirst: true },
+    { date: "2025년 1월",  title: t("tl_10"),
+      desc: t("tl_10_desc") },
+    { date: "2025년 5월",  title: t("tl_first"),
+      desc: t("tl_first_desc") },
+    { date: "2025년 10월", title: t("tl_1year"),
+      desc: t("tl_1year_desc") },
+    { date: "2026년 3월",  title: `${t("tl_mid_pre")} ${mid} ${t("tl_mid_suf")}`,
+      desc: `${t("tl_mid_desc_pre")}${artist.name} ${mid}${t("tl_mid_desc_suf")}` },
+    { date: "지금",        title: `${t("tl_now_pre")}${artist.totalSponsors}${t("tl_now_suf")}`,
+      desc: t("tl_now_desc"), isCurrent: true },
   ];
 }
 
@@ -127,14 +131,15 @@ function NodeCircle({ isFirst, isCurrent }: { isFirst?: boolean; isCurrent?: boo
 
 /* ── 메인 컴포넌트 ──────────────────────────────────────────────────── */
 export default function CypressTimeline({ artist }: { artist: Artist }) {
-  const milestones = getMilestones(artist);
+  const t = useT();
+  const milestones = getMilestones(artist, t);
   const treeH = TOP_PAD + (milestones.length - 1) * SPACING + 44;
   const nodeY  = (i: number) => TOP_PAD + i * SPACING;
 
   return (
     <section>
-      <h2 className="text-lg font-black text-navy-800 mb-1">성장 타임라인</h2>
-      <p className="text-xs text-muted mb-6">🌲 작가와 테오가 함께 만들어온 순간들</p>
+      <h2 className="text-lg font-black text-navy-800 mb-1">{t("timeline_title")}</h2>
+      <p className="text-xs text-muted mb-6">{t("timeline_sub")}</p>
 
       <div className="relative" style={{ minHeight: treeH }}>
         {/* 사이프러스 세로축 */}
