@@ -6,6 +6,8 @@ export default function ScrollObserver() {
   const pathname = usePathname();
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
     // 경로 변경 시 이전 sr-on 클래스 초기화 (재방문 시 재애니메이션)
     document.querySelectorAll<HTMLElement>("[data-sr]").forEach((el) => {
       el.classList.remove("sr-on");

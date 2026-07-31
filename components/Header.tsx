@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function SunIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="4"/>
       <line x1="12" y1="2" x2="12" y2="4"/>
       <line x1="12" y1="20" x2="12" y2="22"/>
@@ -21,19 +21,56 @@ function SunIcon() {
 
 function MoonIcon() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
     </svg>
   );
 }
 
+function LangIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="2" y1="12" x2="22" y2="12"/>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+  );
+}
+
+function GearIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+  );
+}
+
+type Lang = "ko" | "en";
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [lang, setLang] = useState<Lang>("ko");
+  const settingsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsDark(document.documentElement.getAttribute("data-theme") === "dark");
+    const savedLang = localStorage.getItem("lang") as Lang | null;
+    if (savedLang) setLang(savedLang);
   }, []);
+
+  // 외부 클릭 시 설정 패널 닫기
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (settingsRef.current && !settingsRef.current.contains(e.target as Node)) {
+        setSettingsOpen(false);
+      }
+    }
+    if (settingsOpen) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [settingsOpen]);
 
   function toggleTheme() {
     const next = !isDark;
@@ -47,17 +84,20 @@ export default function Header() {
     }
   }
 
+  function toggleLang() {
+    const next: Lang = lang === "ko" ? "en" : "ko";
+    setLang(next);
+    document.documentElement.lang = next === "ko" ? "ko" : "en";
+    localStorage.setItem("lang", next);
+  }
+
   return (
     <header className="sticky top-0 z-50 bg-paper/90 backdrop-blur-[12px] border-b border-line">
       <div className="max-w-[1080px] mx-auto px-5 md:px-8 flex items-center justify-between py-3">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <img
-            src="/logo-face.png"
-            alt="THEO"
-            className="w-8 h-8 shrink-0"
-          />
+          <img src="/logo-face.png" alt="THEO" className="w-8 h-8 shrink-0" />
           <b className="font-black tracking-[0.3em] text-base text-navy-900 uppercase">THEO</b>
         </Link>
 
@@ -83,7 +123,7 @@ export default function Header() {
           <Link
             href="/my"
             className="font-black text-[12.5px] tracking-[0.1em] uppercase transition-colors hover:opacity-80"
-            style={{ color: 'var(--sv-deep)' }}
+            style={{ color: "var(--sv-deep)" }}
           >
             마이테오
           </Link>
@@ -91,24 +131,71 @@ export default function Header() {
 
         {/* CTAs */}
         <div className="flex items-center gap-2">
-          {/* Desktop: 다크모드 토글 */}
-          <button
-            className="hidden md:flex items-center justify-center w-9 h-9 rounded-lg border transition-colors"
-            style={{ borderColor: 'var(--line)', color: 'var(--muted)', background: 'var(--paper)' }}
-            onClick={toggleTheme}
-            aria-label="테마 전환"
-          >
-            {isDark ? <SunIcon /> : <MoonIcon />}
-          </button>
+
+          {/* Desktop: 설정 버튼 + 드롭다운 */}
+          <div className="hidden md:block relative" ref={settingsRef}>
+            <button
+              className="flex items-center justify-center w-9 h-9 rounded-lg border transition-colors"
+              style={{ borderColor: "var(--line)", color: "var(--muted)", background: "var(--paper)" }}
+              onClick={() => setSettingsOpen((prev) => !prev)}
+              aria-label="설정"
+              aria-expanded={settingsOpen}
+            >
+              <GearIcon />
+            </button>
+
+            {/* 설정 드롭다운 패널 */}
+            {settingsOpen && (
+              <div
+                className="absolute right-0 top-[calc(100%+8px)] w-[260px] rounded-xl overflow-hidden shadow-xl"
+                style={{ background: "var(--navy-900)", border: "1px solid rgba(250,240,202,.12)" }}
+              >
+                {/* 언어 */}
+                <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: "1px solid rgba(250,240,202,.1)" }}>
+                  <span className="text-[13px] font-semibold" style={{ color: "rgba(250,240,202,.75)" }}>
+                    언어 / Language
+                  </span>
+                  <button
+                    onClick={toggleLang}
+                    className="flex items-center gap-1.5 text-[12px] font-bold px-3 py-2 rounded-lg transition-colors"
+                    style={{ background: "rgba(250,240,202,.12)", color: "var(--chiffon)" }}
+                  >
+                    <LangIcon />
+                    {lang === "ko" ? (
+                      <span>한국어 → <span style={{ color: "var(--sv)" }}>EN</span></span>
+                    ) : (
+                      <span>English → <span style={{ color: "var(--sv)" }}>KO</span></span>
+                    )}
+                  </button>
+                </div>
+
+                {/* 화면 모드 */}
+                <div className="flex items-center justify-between px-5 py-4">
+                  <span className="text-[13px] font-semibold" style={{ color: "rgba(250,240,202,.75)" }}>
+                    화면 모드
+                  </span>
+                  <button
+                    onClick={toggleTheme}
+                    className="flex items-center gap-1.5 text-[12px] font-bold px-3 py-2 rounded-lg transition-colors"
+                    style={{ background: "rgba(250,240,202,.12)", color: "var(--chiffon)" }}
+                  >
+                    {isDark ? <><SunIcon /> 라이트</> : <><MoonIcon /> 다크</>}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
           {/* Mobile: MY 버튼 */}
           <Link
             href="/my"
             className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg transition-colors hover:opacity-80"
-            style={{ background: 'var(--sv)', color: 'var(--ink)' }}
+            style={{ background: "var(--sv)", color: "var(--ink)" }}
             aria-label="마이테오"
           >
             <span className="text-[11px] font-black tracking-wider">MY</span>
           </Link>
+
           {/* Mobile: 탭 메뉴 토글 버튼 */}
           <button
             className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-navy-200 bg-paper transition-colors hover:bg-navy-100"
@@ -118,10 +205,11 @@ export default function Header() {
           >
             <span className="text-[11px] font-black tracking-wider text-navy-800">Tab</span>
           </button>
+
           <a
             href="/#start"
             className="inline-flex items-center bg-navy-800 text-chiffon font-bold rounded-lg hover:bg-navy-700 transition-colors"
-            style={{ fontSize: '13px', padding: '9px 17px' }}
+            style={{ fontSize: "13px", padding: "9px 17px" }}
           >
             시작하기
           </a>
@@ -164,11 +252,29 @@ export default function Header() {
           <li>
             <a
               href="/#how"
-              className="block py-3 text-[13px] tracking-[0.1em] uppercase text-muted"
+              className="block py-3 text-[13px] tracking-[0.1em] uppercase text-muted border-b border-line/60"
               onClick={() => setMenuOpen(false)}
             >
               이용방법
             </a>
+          </li>
+          {/* 모바일 설정 영역 */}
+          <li className="pt-3 flex items-center justify-between gap-3">
+            <button
+              onClick={toggleLang}
+              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-[12px] font-bold rounded-lg transition-colors"
+              style={{ background: "var(--navy-100)", color: "var(--navy-700)" }}
+            >
+              <LangIcon />
+              {lang === "ko" ? "KO → EN" : "EN → KO"}
+            </button>
+            <button
+              onClick={toggleTheme}
+              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-[12px] font-bold rounded-lg transition-colors"
+              style={{ background: "var(--navy-100)", color: "var(--navy-700)" }}
+            >
+              {isDark ? <><SunIcon /> 라이트</> : <><MoonIcon /> 다크</>}
+            </button>
           </li>
         </ul>
       )}
