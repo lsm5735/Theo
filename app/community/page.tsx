@@ -275,10 +275,10 @@ export default function CommunityPage() {
                       ))}
                     </div>
                     <Link
-                      href={`/atelier/${prog.artistSlug}`}
+                      href={`/atelier/${prog.artistSlug}/apply`}
                       className="shrink-0 text-[11.5px] font-bold bg-navy-800 text-chiffon px-3.5 py-2 rounded-lg hover:bg-navy-700 transition-colors whitespace-nowrap"
                     >
-                      작가 보기
+                      신청하기
                     </Link>
                   </div>
                 </div>
