@@ -119,7 +119,7 @@ const PROGRAMS: Program[] = [
     time: "목–일 13:00 – 19:00",
     location: "서울 강북구 산 아래 갤러리",
     capacity: null,
-    coverImage: "https://images.unsplash.com/photo-1580136607671-c37e43f8f2e4?w=800&h=500&fit=crop&q=80",
+    coverImage: "/artist-jinsea.jpeg",
     tags: ["유화", "나이프", "풍경"],
   },
   {
