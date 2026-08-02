@@ -7,7 +7,10 @@
     "price": 45000,
     "usageNote": "작품 바탕 — 린넨 결이 수면 떨림을 살림",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas1.jpeg"
   },
   {
     "id": "project_artist_theo_001_mat_02",
@@ -17,7 +20,10 @@
     "price": 18000,
     "usageNote": "작품 주조색 — 한강 결빙 직전의 회청빛",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-pigment.png"
   },
   {
     "id": "project_artist_theo_001_mat_03",
@@ -27,7 +33,10 @@
     "price": 12000,
     "usageNote": "얇은 겹칠 여덟 번을 마무리하는 붓",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-brush.jpg"
   },
   {
     "id": "project_artist_theo_002_mat_01",
@@ -37,7 +46,10 @@
     "price": 40000,
     "usageNote": "작품 주조색 — 살구빛과 먹빛으로 뒷모습을",
     "isFunded": true,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-acrylic.jpg"
   },
   {
     "id": "project_artist_theo_002_mat_02",
@@ -47,7 +59,10 @@
     "price": 90000,
     "usageNote": "5명의 뒷모습이 올라갈 연작 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas2.jpeg"
   },
   {
     "id": "project_artist_theo_002_mat_03",
@@ -57,7 +72,10 @@
     "price": 18000,
     "usageNote": "감정이 식기 전에 빠르게 끝내는 붓 세트",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-brush2.jpg"
   },
   {
     "id": "project_artist_theo_003_mat_01",
@@ -67,7 +85,10 @@
     "price": 58000,
     "usageNote": "작품 주조색 — 군청 바탕에 형광 연두 빛",
     "isFunded": true,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-oil.jpg"
   },
   {
     "id": "project_artist_theo_003_mat_02",
@@ -77,7 +98,10 @@
     "price": 78000,
     "usageNote": "6장면 골목 야경이 올라갈 연작 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas3.jpeg"
   },
   {
     "id": "project_artist_theo_003_mat_03",
@@ -87,7 +111,10 @@
     "price": 12000,
     "usageNote": "한 획 임파스토 후 팔레트·붓 세척용",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-pigment.png"
   },
   {
     "id": "project_artist_theo_004_mat_01",
@@ -97,7 +124,10 @@
     "price": 15000,
     "usageNote": "흐름을 멈추는 지점 찾기 — 물감 되기 조절",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-pigment.png"
   },
   {
     "id": "project_artist_theo_004_mat_02",
@@ -107,7 +137,10 @@
     "price": 92000,
     "usageNote": "물감이 바닥에 닿기 직전 멈추는 대작 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas1.jpeg"
   },
   {
     "id": "project_artist_theo_004_mat_03",
@@ -117,7 +150,10 @@
     "price": 12000,
     "usageNote": "완성 후 중력 자취 보호하는 마감 바니시",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-pigment.png"
   },
   {
     "id": "project_artist_theo_005_mat_01",
@@ -127,7 +163,10 @@
     "price": 58000,
     "usageNote": "작품 주조색 — 탁한 초록·바랜 분홍의 시듦",
     "isFunded": true,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-watercolor.avif"
   },
   {
     "id": "project_artist_theo_005_mat_02",
@@ -137,7 +176,10 @@
     "price": 25000,
     "usageNote": "물 많이 먹어도 안 휘는 두꺼운 시트 종이",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-watercolor.avif"
   },
   {
     "id": "project_artist_theo_005_mat_03",
@@ -147,7 +189,10 @@
     "price": 18000,
     "usageNote": "시드는 잎 끝 세부 묘사용 세필 세트",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-brush3.jpg"
   },
   {
     "id": "project_artist_theo_006_mat_01",
@@ -157,7 +202,10 @@
     "price": 108000,
     "usageNote": "30점 초상 중 12점 — 결이 드러나는 린넨 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas2.jpeg"
   },
   {
     "id": "project_artist_theo_006_mat_02",
@@ -167,7 +215,10 @@
     "price": 58000,
     "usageNote": "작품 주조색 — 황토빛 피부와 린넨 결 사이",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-oil2.jpg"
   },
   {
     "id": "project_artist_theo_006_mat_03",
@@ -177,7 +228,10 @@
     "price": 12000,
     "usageNote": "두 시간 안에 끝내는 초상 작업용 팔레트",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-brush.jpg"
   },
   {
     "id": "project_artist_theo_007_mat_01",
@@ -187,7 +241,10 @@
     "price": 58000,
     "usageNote": "100번째 등반의 능선을 담을 대작 바탕",
     "isFunded": true,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas3.jpeg"
   },
   {
     "id": "project_artist_theo_007_mat_02",
@@ -197,7 +254,10 @@
     "price": 40000,
     "usageNote": "작품 주조색 — 쪽빛 능선·흐린 자주 하늘",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-oil3.jpg"
   },
   {
     "id": "project_artist_theo_007_mat_03",
@@ -207,7 +267,10 @@
     "price": 18000,
     "usageNote": "넓은 능선면을 한 번에 밀어 올리는 나이프",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-brush2.jpg"
   },
   {
     "id": "project_artist_theo_008_mat_01",
@@ -217,7 +280,10 @@
     "price": 58000,
     "usageNote": "작품 주조색 — 선명한 주황·청자색 두 색",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-acrylic.jpg"
   },
   {
     "id": "project_artist_theo_008_mat_02",
@@ -227,7 +293,10 @@
     "price": 96000,
     "usageNote": "면적비 여섯 단계 비교 실험의 연작 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas1.jpeg"
   },
   {
     "id": "project_artist_theo_008_mat_03",
@@ -237,7 +306,10 @@
     "price": 15000,
     "usageNote": "붓자국 완전히 없애는 평면 도포 도구",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-brush3.jpg"
   },
   {
     "id": "project_artist_theo_009_mat_01",
@@ -247,7 +319,10 @@
     "price": 90000,
     "usageNote": "재난 장면 다섯 번 반복이 올라갈 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas2.jpeg"
   },
   {
     "id": "project_artist_theo_009_mat_02",
@@ -257,7 +332,10 @@
     "price": 40000,
     "usageNote": "작품 주조색 — 재난 위에 얹히는 형광 산호빛",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-oil.jpg"
   },
   {
     "id": "project_artist_theo_009_mat_03",
@@ -267,7 +345,10 @@
     "price": 18000,
     "usageNote": "어두운 밑칠 위 두꺼운 겹침 작업 도구",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-brush.jpg"
   },
   {
     "id": "project_artist_theo_010_mat_01",
@@ -277,7 +358,10 @@
     "price": 40000,
     "usageNote": "작품 주조색 — 연한 하늘·우유색의 사소한 순간",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-watercolor.avif"
   },
   {
     "id": "project_artist_theo_010_mat_02",
@@ -287,7 +371,10 @@
     "price": 30000,
     "usageNote": "A4 판형으로 서른 개 사소한 순간을 담을 종이",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-watercolor.avif"
   },
   {
     "id": "project_artist_theo_010_mat_03",
@@ -297,7 +384,10 @@
     "price": 25000,
     "usageNote": "수채 위 부분 불투명 덮기 — 순간을 잡는 농도",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-watercolor.avif"
   },
   {
     "id": "project_artist_theo_011_mat_01",
@@ -307,7 +397,10 @@
     "price": 96000,
     "usageNote": "버려진 물건 확대 3점이 올라갈 평평한 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas3.jpeg"
   },
   {
     "id": "project_artist_theo_011_mat_02",
@@ -317,7 +410,10 @@
     "price": 15000,
     "usageNote": "여섯 번 올리고 갈아내는 완전 평탄 밑작업",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-pigment.png"
   },
   {
     "id": "project_artist_theo_011_mat_03",
@@ -327,7 +423,10 @@
     "price": 15000,
     "usageNote": "작품 주조색 — 금속·플라스틱 반사 묘사용",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-oil2.jpg"
   },
   {
     "id": "project_artist_theo_012_mat_01",
@@ -337,7 +436,10 @@
     "price": 135000,
     "usageNote": "북한산 삼면화 — 세 지점이 올라갈 연작 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas1.jpeg"
   },
   {
     "id": "project_artist_theo_012_mat_02",
@@ -347,7 +449,10 @@
     "price": 40000,
     "usageNote": "작품 주조색 — 숲 안쪽 열 가지 초록 단계",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-oil3.jpg"
   },
   {
     "id": "project_artist_theo_012_mat_03",
@@ -357,7 +462,10 @@
     "price": 18000,
     "usageNote": "촘촘한 초록 겹침의 잔붓질 마무리용",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-brush2.jpg"
   },
   {
     "id": "project_artist_theo_013_mat_01",
@@ -367,7 +475,10 @@
     "price": 184000,
     "usageNote": "출근·막차 대비 두 장면의 대작 바탕",
     "isFunded": true,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas2.jpeg"
   },
   {
     "id": "project_artist_theo_013_mat_02",
@@ -377,7 +488,10 @@
     "price": 58000,
     "usageNote": "작품 주조색 — 채도 낮은 다색의 군상",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-acrylic.jpg"
   },
   {
     "id": "project_artist_theo_013_mat_03",
@@ -387,7 +501,10 @@
     "price": 15000,
     "usageNote": "젖은 상태에서 인물 겹침 작업용 도구",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-brush3.jpg"
   },
   {
     "id": "project_artist_theo_014_mat_01",
@@ -397,7 +514,10 @@
     "price": 160000,
     "usageNote": "5점 연작 — 손으로 그은 직선이 올라갈 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas3.jpeg"
   },
   {
     "id": "project_artist_theo_014_mat_02",
@@ -407,7 +527,10 @@
     "price": 25000,
     "usageNote": "직선으로 오려 붙이는 콜라주 색종이",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas1.jpeg"
   },
   {
     "id": "project_artist_theo_014_mat_03",
@@ -417,7 +540,10 @@
     "price": 40000,
     "usageNote": "작품 주조색 — 머스터드·코발트 직선의 온기",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-acrylic.jpg"
   },
   {
     "id": "project_artist_theo_015_mat_01",
@@ -427,7 +553,10 @@
     "price": 116000,
     "usageNote": "뿌리·혈관 대칭 두 점이 올라갈 대작 바탕",
     "isFunded": true,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas2.jpeg"
   },
   {
     "id": "project_artist_theo_015_mat_02",
@@ -437,7 +566,10 @@
     "price": 40000,
     "usageNote": "작품 주조색 — 뿌리와 혈관의 적갈빛",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-oil.jpg"
   },
   {
     "id": "project_artist_theo_015_mat_03",
@@ -447,7 +579,10 @@
     "price": 12000,
     "usageNote": "묽게 풀어 흘려 내리는 혈관선 작업 미디엄",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-pigment.png"
   },
   {
     "id": "project_artist_theo_016_mat_01",
@@ -457,7 +592,10 @@
     "price": 72000,
     "usageNote": "폐점 직후 네 공간이 올라갈 연작 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas3.jpeg"
   },
   {
     "id": "project_artist_theo_016_mat_02",
@@ -467,7 +605,10 @@
     "price": 58000,
     "usageNote": "작품 주조색 — 호박빛 조명·검정 암부",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-oil2.jpg"
   },
   {
     "id": "project_artist_theo_016_mat_03",
@@ -477,7 +618,10 @@
     "price": 12000,
     "usageNote": "다음 어두운 층 빨리 올리기 위한 건조 촉진",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-brush.jpg"
   },
   {
     "id": "project_artist_theo_017_mat_01",
@@ -487,7 +631,10 @@
     "price": 58000,
     "usageNote": "작품 주조색 — 못 한 말의 색을 고르는 재료",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-oilstick.jpeg"
   },
   {
     "id": "project_artist_theo_017_mat_02",
@@ -497,7 +644,10 @@
     "price": 90000,
     "usageNote": "열 문장이 각 한 점씩 올라갈 소품 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas1.jpeg"
   },
   {
     "id": "project_artist_theo_017_mat_03",
@@ -507,7 +657,10 @@
     "price": 18000,
     "usageNote": "오일파스텔 위 손문지름 덮음 — 말의 온도",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas1.jpeg"
   },
   {
     "id": "project_artist_theo_018_mat_01",
@@ -517,7 +670,10 @@
     "price": 32000,
     "usageNote": "삼 년치 빛 기록 전부가 올라갈 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas2.jpeg"
   },
   {
     "id": "project_artist_theo_018_mat_02",
@@ -527,7 +683,10 @@
     "price": 40000,
     "usageNote": "작품 주조색 — 레몬빛 블라인드 틈 빛",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-acrylic.jpg"
   },
   {
     "id": "project_artist_theo_018_mat_03",
@@ -537,7 +696,10 @@
     "price": 12000,
     "usageNote": "빛의 경계선을 만드는 마스킹 테이프",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-pigment.png"
   },
   {
     "id": "project_artist_theo_019_mat_01",
@@ -547,7 +709,10 @@
     "price": 40000,
     "usageNote": "웃기 직전 반 초 — 8명의 소품 바탕",
     "isFunded": true,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas3.jpeg"
   },
   {
     "id": "project_artist_theo_019_mat_02",
@@ -557,7 +722,10 @@
     "price": 25000,
     "usageNote": "작품 주조색 — 복숭아빛·연회색의 미결정 표정",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-watercolor.avif"
   },
   {
     "id": "project_artist_theo_019_mat_03",
@@ -567,7 +735,10 @@
     "price": 15000,
     "usageNote": "얼굴 경계를 흐리게 만드는 세필 도구",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-brush2.jpg"
   },
   {
     "id": "project_artist_theo_020_mat_01",
@@ -577,7 +748,10 @@
     "price": 30000,
     "usageNote": "101~150번째 자화상이 올라갈 50주 바탕",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas1.jpeg"
   },
   {
     "id": "project_artist_theo_020_mat_02",
@@ -587,7 +761,10 @@
     "price": 40000,
     "usageNote": "작품 주조색 — 탁한 청·살빛의 주별 두께 변화",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-oil3.jpg"
   },
   {
     "id": "project_artist_theo_020_mat_03",
@@ -597,6 +774,9 @@
     "price": 15000,
     "usageNote": "100점 이상 쌓아두는 자화상 보관 랙",
     "isFunded": false,
-    "compatibleGenres": ["회화"]
+    "compatibleGenres": [
+      "회화"
+    ],
+    "imageUrl": "/mat-canvas2.jpeg"
   }
 ]

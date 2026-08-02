@@ -51,6 +51,7 @@ interface Material {
   usageNote: string;
   price: number;
   isFunded: boolean;
+  imageUrl?: string;
 }
 
 interface Letter {
@@ -274,32 +275,44 @@ export default function AtelierDetailClient({ artist, project, artworks, materia
               </section>
             )}
 
-            {/* Materials wishlist */}
+            {/* 후원 상점 */}
             {materials.length > 0 && (
               <section>
                 <h2 className="text-lg font-black text-navy-800 mb-4">{t("section_materials")}</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {materials.map((m) => (
                     <div
                       key={m.id}
-                      className={`flex items-center gap-3 p-4 rounded-xl border transition-colors ${
+                      className={`rounded-xl overflow-hidden border flex flex-col transition-colors ${
                         m.isFunded
-                          ? "bg-navy-100/50 border-navy-200 opacity-60"
-                          : "bg-card border-line"
+                          ? "border-navy-200 opacity-60 bg-navy-100/50"
+                          : "border-line bg-card"
                       }`}
                       style={!m.isFunded ? { boxShadow: "0 8px 22px rgba(23,29,43,.06)" } : undefined}
                     >
-                      <div className="min-w-0 flex-1">
-                        <p className="text-sm font-semibold text-navy-800 line-clamp-2">{m.name}</p>
-                        <p className="text-xs text-muted mt-0.5">{m.usageNote}</p>
-                        <div className="flex items-center gap-2 mt-1.5">
-                          <p className="text-sm font-bold text-gold-text">{m.price.toLocaleString()}원</p>
-                          {m.isFunded && (
-                            <span className="text-xs bg-navy-200 text-navy-600 px-1.5 py-0.5 rounded font-medium">
-                              {t("material_gifted")}
-                            </span>
-                          )}
-                        </div>
+                      {/* 이미지 */}
+                      <div className="relative h-36 bg-navy-100 shrink-0 overflow-hidden">
+                        {m.imageUrl && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={m.imageUrl}
+                            alt={m.name}
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+                        {m.isFunded && (
+                          <span className="absolute top-2 left-2 text-[10px] bg-navy-200 text-navy-600 px-2 py-0.5 rounded-full font-bold">
+                            {t("material_gifted")}
+                          </span>
+                        )}
+                      </div>
+                      {/* 텍스트 */}
+                      <div className="p-3 flex flex-col flex-1">
+                        <p className="text-[13px] font-semibold text-navy-800 line-clamp-2 leading-snug mb-1">{m.name}</p>
+                        <p className="text-[11.5px] text-muted leading-relaxed line-clamp-2 flex-1">{m.usageNote}</p>
+                        <p className="text-[13px] font-bold mt-2" style={{ color: "var(--gold-text)" }}>
+                          {m.price.toLocaleString()}원
+                        </p>
                       </div>
                     </div>
                   ))}
