@@ -36,13 +36,13 @@ function getStatusLabel(status: string, t: ReturnType<typeof useT>) {
   return map[status] ?? { text: status, color: "bg-navy-100 text-navy-600" };
 }
 
-export default function ArtistCard({ artist, project }: { artist: Artist; project: Project }) {
+export default function ArtistCard({ artist, project, mode = "atelier" }: { artist: Artist; project: Project; mode?: "atelier" | "apply" }) {
   const t = useT();
   const pct = Math.round((project.fundedAmount / project.targetAmount) * 100);
   const status = getStatusLabel(project.status, t);
 
   return (
-    <article className="bg-card rounded-2xl overflow-hidden border border-line shadow-card hover:-translate-y-0.5 transition-all duration-200 flex flex-col">
+    <article className="h-full bg-card rounded-2xl overflow-hidden border border-line shadow-card hover:-translate-y-0.5 transition-all duration-200 flex flex-col">
 
       {/* 썸네일 — 클릭 시 아틀리에 이동 */}
       <Link href={`/atelier/${artist.slug}`} className="block group relative h-[140px] overflow-hidden bg-navy-100 shrink-0">
@@ -108,13 +108,12 @@ export default function ArtistCard({ artist, project }: { artist: Artist; projec
           </div>
         </div>
 
-        {/* 신청하기 버튼 */}
         <Link
-          href={`/atelier/${artist.slug}/apply`}
+          href={mode === "apply" ? `/atelier/${artist.slug}/apply` : `/atelier/${artist.slug}`}
           onClick={(e) => e.stopPropagation()}
           className="mt-auto block w-full text-center text-[13px] font-bold bg-navy-800 text-chiffon py-2.5 rounded-xl hover:bg-navy-700 transition-colors"
         >
-          신청하기
+          {mode === "apply" ? "신청하기" : "아틀리에 입장"}
         </Link>
       </div>
     </article>
