@@ -114,9 +114,9 @@ export default function Header() {
           <Link href="/community" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
             Community
           </Link>
-          <a href="/#how" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
+          <Link href="/how" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
             {t("nav_how")}
-          </a>
+          </Link>
           <Link
             href="/my"
             className="font-black text-[12.5px] tracking-[0.1em] uppercase transition-colors hover:opacity-80"
@@ -248,13 +248,13 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <a
-              href="/#how"
+            <Link
+              href="/how"
               className="block py-3 text-[13px] tracking-[0.1em] uppercase text-muted border-b border-line/60"
               onClick={() => setMenuOpen(false)}
             >
               {t("nav_how")}
-            </a>
+            </Link>
           </li>
           {/* 모바일 설정 영역 */}
           <li className="pt-3 flex items-center justify-between gap-3">
