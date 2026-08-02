@@ -102,7 +102,7 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-7">
           {/* About 드롭다운 */}
           <div className="relative group">
-            <button className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
+            <button className="nav-link text-navy-600 hover:text-navy-900 transition-colors text-[13px] tracking-[0.1em] uppercase">
               About
             </button>
             {/* 드롭다운 패널 */}
@@ -136,18 +136,18 @@ export default function Header() {
               </div>
             </div>
           </div>
-          <Link href="/atelier" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
+          <Link href="/atelier" className="nav-link text-navy-600 hover:text-navy-900 transition-colors text-[13px] tracking-[0.1em] uppercase">
             Atelier
           </Link>
-          <Link href="/community" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
+          <Link href="/community" className="nav-link text-navy-600 hover:text-navy-900 transition-colors text-[13px] tracking-[0.1em] uppercase">
             Community
           </Link>
-          <Link href="/how" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
+          <Link href="/how" className="nav-link text-navy-600 hover:text-navy-900 transition-colors text-[13px] tracking-[0.1em] uppercase">
             {t("nav_how")}
           </Link>
           <Link
             href="/my"
-            className="font-black text-[12.5px] tracking-[0.1em] uppercase transition-colors hover:opacity-80"
+            className="nav-link font-black text-[13px] tracking-[0.1em] uppercase transition-colors hover:opacity-80"
             style={{ color: "var(--sv-deep)" }}
           >
             {t("nav_my")}

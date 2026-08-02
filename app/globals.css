@@ -208,6 +208,24 @@ body {
 .nb-btn-outline:hover  { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--brutal); background: var(--navy-100); }
 .nb-btn-outline:active { transform: translate(1px,1px);   box-shadow: 1px 1px 0 var(--brutal); }
 
+/* 네비게이션 hover 노란 언더라인 */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--sv);
+  border-radius: 2px;
+  transition: width 0.2s cubic-bezier(.22,1,.36,1);
+}
+.nav-link:hover::after { width: 100%; }
+
 /* 스텝 번호 뱃지 */
 .nb-step {
   background: var(--sv); color: var(--brutal);
