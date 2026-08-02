@@ -24,11 +24,11 @@ interface Program {
   tags: string[];
 }
 
-const TYPE_STYLE: Record<ProgramType, { bg: string; text: string; dot: string }> = {
-  "오픈 스튜디오": { bg: "bg-navy-100", text: "text-navy-700", dot: "#20517E" },
-  "신작 전시":     { bg: "bg-[#F4D35E]/20", text: "text-[#58450E]", dot: "#C2A43F" },
-  "라이브 페인팅": { bg: "bg-navy-800/10", text: "text-navy-800", dot: "#0D3B66" },
-  "드로잉 클래스": { bg: "bg-[#EBF0F4]", text: "text-navy-600", dot: "#376590" },
+const TYPE_STYLE: Record<ProgramType, { bg: string; text: string; dot: string; badgeBg: string; badgeText: string }> = {
+  "오픈 스튜디오": { bg: "bg-navy-100",      text: "text-navy-700",    dot: "#20517E", badgeBg: "#DDE5EE", badgeText: "#1B3A5C" },
+  "신작 전시":     { bg: "bg-[#F4E8C0]",     text: "text-[#58450E]",   dot: "#C2A43F", badgeBg: "#F4E8C0", badgeText: "#58450E" },
+  "라이브 페인팅": { bg: "bg-[#D4DCE8]",     text: "text-navy-800",    dot: "#0D3B66", badgeBg: "#D4DCE8", badgeText: "#0D3B66" },
+  "드로잉 클래스": { bg: "bg-[#EBF0F4]",     text: "text-navy-600",    dot: "#376590", badgeBg: "#EBF0F4", badgeText: "#376590" },
 };
 
 const PROGRAMS: Program[] = [
@@ -192,7 +192,7 @@ export default function CommunityPage() {
 
       {/* 카드 그리드 */}
       <section className="max-w-[1080px] mx-auto px-5 md:px-8 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {PROGRAMS.map((prog) => {
             const s = TYPE_STYLE[prog.type];
             return (
@@ -202,85 +202,70 @@ export default function CommunityPage() {
                 style={{ boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
               >
                 {/* 커버 이미지 */}
-                <div className="relative w-full h-44 shrink-0">
+                <div className="relative w-full h-36 shrink-0">
                   <img
                     src={prog.coverImage}
                     alt={prog.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  {/* 타입 뱃지 */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/10" />
+                  {/* 타입 뱃지 — 타입별 고유 색상 */}
                   <span
-                    className={`absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10.5px] font-bold px-2.5 py-1 rounded-full ${s.bg} ${s.text}`}
+                    className="absolute top-2.5 left-2.5 inline-flex items-center gap-1 text-[10px] font-bold px-2 py-1 rounded-full"
+                    style={{ background: s.badgeBg, color: s.badgeText }}
                   >
                     <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: s.dot }} />
                     {prog.type}
                   </span>
                   {/* 정원 */}
                   {prog.capacity !== null && (
-                    <span className="absolute top-3 right-3 text-[10.5px] font-semibold bg-black/40 text-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                    <span className="absolute top-2.5 right-2.5 text-[10px] font-bold bg-black/75 text-white px-2 py-1 rounded-full">
                       정원 {prog.capacity}명
                     </span>
                   )}
                 </div>
 
                 {/* 내용 */}
-                <div className="p-5 flex flex-col flex-1">
+                <div className="p-4 flex flex-col flex-1">
                   {/* 작가 */}
-                  <div className="flex items-center gap-2.5 mb-3.5">
+                  <div className="flex items-center gap-2 mb-2.5">
                     <img
                       src={prog.artistImage}
                       alt={prog.artistName}
-                      className="w-8 h-8 rounded-full object-cover shrink-0 border border-line"
+                      className="w-6 h-6 rounded-full object-cover shrink-0 border border-line"
                     />
-                    <span className="text-[12px] text-navy-500 font-semibold">{prog.artistName} 작가</span>
+                    <span className="text-[11px] text-navy-500 font-semibold">{prog.artistName} 작가</span>
                   </div>
 
                   {/* 제목 */}
-                  <h2 className="text-[16px] font-bold text-navy-900 leading-snug mb-2">
+                  <h2 className="text-[13.5px] font-bold text-navy-900 leading-snug mb-1.5 line-clamp-2">
                     {prog.title}
                   </h2>
 
                   {/* 설명 */}
-                  <p className="text-[13px] text-muted leading-[1.85] mb-4 flex-1">
+                  <p className="text-[11.5px] text-navy-600 leading-[1.75] mb-3 flex-1 line-clamp-3">
                     {prog.description}
                   </p>
 
                   {/* 일정·장소 */}
-                  <div className="bg-navy-100 rounded-xl px-4 py-3 mb-4 space-y-1.5">
-                    <div className="flex items-start gap-2.5">
-                      <span className="text-[10px] font-bold tracking-[0.12em] text-navy-400 uppercase w-8 shrink-0 pt-0.5">날짜</span>
-                      <span className="text-[12.5px] text-navy-800 font-medium">{prog.date}</span>
+                  <div className="bg-navy-100 rounded-lg px-3 py-2.5 mb-3 space-y-1">
+                    <div className="flex items-start gap-2">
+                      <span className="text-[9.5px] font-bold tracking-[0.1em] text-navy-400 uppercase shrink-0 pt-px w-7">날짜</span>
+                      <span className="text-[11px] text-navy-800 font-medium leading-snug">{prog.date}</span>
                     </div>
-                    <div className="flex items-start gap-2.5">
-                      <span className="text-[10px] font-bold tracking-[0.12em] text-navy-400 uppercase w-8 shrink-0 pt-0.5">시간</span>
-                      <span className="text-[12.5px] text-navy-800 font-medium">{prog.time}</span>
-                    </div>
-                    <div className="flex items-start gap-2.5">
-                      <span className="text-[10px] font-bold tracking-[0.12em] text-navy-400 uppercase w-8 shrink-0 pt-0.5">장소</span>
-                      <span className="text-[12.5px] text-navy-800 font-medium">{prog.location}</span>
+                    <div className="flex items-start gap-2">
+                      <span className="text-[9.5px] font-bold tracking-[0.1em] text-navy-400 uppercase shrink-0 pt-px w-7">장소</span>
+                      <span className="text-[11px] text-navy-800 font-medium leading-snug line-clamp-1">{prog.location}</span>
                     </div>
                   </div>
 
-                  {/* 태그 + CTA */}
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex flex-wrap gap-1.5">
-                      {prog.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[10.5px] text-navy-500 bg-navy-100 px-2 py-0.5 rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <Link
-                      href={`/atelier/${prog.artistSlug}/apply`}
-                      className="shrink-0 text-[11.5px] font-bold bg-navy-800 text-chiffon px-3.5 py-2 rounded-lg hover:bg-navy-700 transition-colors whitespace-nowrap"
-                    >
-                      신청하기
-                    </Link>
-                  </div>
+                  {/* CTA */}
+                  <Link
+                    href={`/atelier/${prog.artistSlug}/apply`}
+                    className="block w-full text-center text-[11.5px] font-bold bg-navy-800 text-chiffon py-2 rounded-lg hover:bg-navy-700 transition-colors"
+                  >
+                    신청하기
+                  </Link>
                 </div>
               </article>
             );
