@@ -204,8 +204,7 @@ export default function BotPage() {
             {t("bot_label")}
           </p>
           <h1 className="text-2xl font-bold text-navy-900 leading-snug">
-            {t("bot_h1a")}
-            <br />
+            {t("bot_h1a")}{" "}
             {t("bot_h1b")}
           </h1>
         </div>

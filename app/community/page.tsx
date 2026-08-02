@@ -1,10 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import Header from "@/components/Header";
 import Link from "next/link";
-
-export const metadata = {
-  title: "Community — Theo",
-  description: "테오 작가들의 오픈 스튜디오, 전시, 라이브 페인팅, 드로잉 클래스",
-};
 
 type ProgramType = "오픈 스튜디오" | "신작 전시" | "라이브 페인팅" | "드로잉 클래스";
 
@@ -155,6 +153,12 @@ const PROGRAMS: Program[] = [
 ];
 
 export default function CommunityPage() {
+  const [activeFilter, setActiveFilter] = useState<ProgramType | null>(null);
+
+  const filtered = activeFilter
+    ? PROGRAMS.filter((p) => p.type === activeFilter)
+    : PROGRAMS;
+
   return (
     <div className="min-h-screen bg-paper">
       <Header />
@@ -173,27 +177,38 @@ export default function CommunityPage() {
           후원 너머 작가의 창작 현장에 함께할 수 있는 프로그램입니다.
         </p>
 
-        {/* 타입 필터 (장식용) */}
+        {/* 타입 필터 */}
         <div className="flex flex-wrap gap-2 mt-6">
           {(["오픈 스튜디오", "신작 전시", "라이브 페인팅", "드로잉 클래스"] as ProgramType[]).map((type) => {
             const s = TYPE_STYLE[type];
+            const isActive = activeFilter === type;
             return (
-              <span
+              <button
                 key={type}
-                className={`inline-flex items-center gap-1.5 text-[11.5px] font-semibold px-3 py-1.5 rounded-full ${s.bg} ${s.text}`}
+                onClick={() => setActiveFilter(isActive ? null : type)}
+                className={`inline-flex items-center gap-1.5 text-[11.5px] font-semibold px-3 py-1.5 rounded-full transition-all ${s.bg} ${s.text}`}
+                style={isActive ? { outline: `2px solid ${s.dot}`, outlineOffset: "2px" } : {}}
               >
                 <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: s.dot }} />
                 {type}
-              </span>
+              </button>
             );
           })}
+          {activeFilter && (
+            <button
+              onClick={() => setActiveFilter(null)}
+              className="text-[11.5px] font-semibold px-3 py-1.5 rounded-full text-navy-500 border border-navy-200 hover:bg-navy-100 transition-colors"
+            >
+              전체 보기
+            </button>
+          )}
         </div>
       </section>
 
       {/* 카드 그리드 */}
       <section className="max-w-[1080px] mx-auto px-5 md:px-8 pb-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {PROGRAMS.map((prog) => {
+          {filtered.map((prog) => {
             const s = TYPE_STYLE[prog.type];
             return (
               <article
