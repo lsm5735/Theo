@@ -127,7 +127,7 @@ export default function AtelierClient({
     <>
       {/* ── Filter bar ── */}
       <section className="max-w-[1080px] mx-auto px-5 md:px-8 pb-8">
-        <div className="bg-white rounded-2xl border border-line px-5 py-4 shadow-card space-y-3">
+        <div data-sr="up" className="bg-white rounded-2xl border border-line px-5 py-4 shadow-card space-y-3">
           {/* Media row */}
           <div className="flex items-center gap-3">
             <span
@@ -179,7 +179,7 @@ export default function AtelierClient({
         </div>
 
         {/* Result summary */}
-        <div className="flex items-center justify-between mt-4 min-h-[22px]">
+        <div data-sr="fade" className="flex items-center justify-between mt-4 min-h-[22px]">
           {isFiltered ? (
             <>
               <p className="text-sm" style={{ color: "var(--muted)" }}>
@@ -218,11 +218,13 @@ export default function AtelierClient({
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {filtered.map((artist) => {
+            {filtered.map((artist, index) => {
               const project = projectMap[artist.id];
               if (!project) return null;
               return (
-                <ArtistCard key={artist.id} artist={artist} project={project} />
+                <div key={artist.id} data-sr="up" data-d={String((index % 4) + 1)}>
+                  <ArtistCard artist={artist} project={project} />
+                </div>
               );
             })}
           </div>

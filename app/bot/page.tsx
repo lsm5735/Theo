@@ -200,10 +200,10 @@ export default function BotPage() {
 
         {/* Title */}
         <div className="mb-8">
-          <p className="text-xs font-semibold tracking-[0.22em] text-navy-400 uppercase mb-3">
+          <p data-sr="fade" className="text-xs font-semibold tracking-[0.22em] text-navy-400 uppercase mb-3">
             {t("bot_label")}
           </p>
-          <h1 className="text-2xl font-bold text-navy-900 leading-snug">
+          <h1 data-sr="up" className="text-2xl font-bold text-navy-900 leading-snug">
             {t("bot_h1a")}{" "}
             {t("bot_h1b")}
           </h1>

@@ -141,6 +141,7 @@ export default function AtelierDetailClient({ artist, project, artworks, materia
         {/* Profile card — overlaps cover */}
         <div className="relative -mt-12 mb-10">
           <div
+            data-sr="up"
             className="bg-card rounded-xl p-6 border border-line"
             style={{ boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
           >
@@ -195,7 +196,7 @@ export default function AtelierDetailClient({ artist, project, artworks, materia
 
             {/* Current project */}
             {project && (
-              <section>
+              <section data-sr="up">
                 <h2 className="text-lg font-black text-navy-800 mb-4">{t("section_project")}</h2>
                 <div
                   className="bg-card rounded-xl overflow-hidden border border-line"
@@ -242,7 +243,7 @@ export default function AtelierDetailClient({ artist, project, artworks, materia
 
             {/* Artworks */}
             {artworks.length > 0 && (
-              <section>
+              <section data-sr="up">
                 <h2 className="text-lg font-black text-navy-800 mb-4">{t("section_artworks")}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {artworks.map((work) => (
@@ -277,7 +278,7 @@ export default function AtelierDetailClient({ artist, project, artworks, materia
 
             {/* 후원 상점 */}
             {materials.length > 0 && (
-              <section>
+              <section data-sr="up">
                 <h2 className="text-lg font-black text-navy-800 mb-4">{t("section_materials")}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {materials.map((m) => (
@@ -321,13 +322,15 @@ export default function AtelierDetailClient({ artist, project, artworks, materia
             )}
 
             {/* Cypress Timeline */}
-            <CypressTimeline artist={artist} />
+            <section data-sr="up">
+              <CypressTimeline artist={artist} />
+            </section>
 
 
           </div>
 
           {/* Right: sticky CTA */}
-          <div className="lg:sticky lg:top-24 lg:self-start space-y-4">
+          <div data-sr="fade" className="lg:sticky lg:top-24 lg:self-start space-y-4">
             <div
               className="bg-navy-800 rounded-xl p-6 text-center"
               style={{ boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}

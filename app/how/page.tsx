@@ -292,13 +292,13 @@ export default function HowPage() {
 
       {/* 히어로 */}
       <section className="max-w-[1080px] mx-auto px-5 md:px-8 pt-14 pb-10">
-        <p className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">
+        <p data-sr="fade" className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">
           HOW IT WORKS
         </p>
-        <h1 className="text-3xl md:text-[40px] font-bold text-navy-900 leading-tight mb-3">
+        <h1 data-sr="up" className="text-3xl md:text-[40px] font-bold text-navy-900 leading-tight mb-3">
           이용방법 안내
         </h1>
-        <p className="text-[14px] text-navy-500 leading-relaxed max-w-[520px]">
+        <p data-sr="up" data-d="1" className="text-[14px] text-navy-500 leading-relaxed max-w-[520px]">
           테오는 후원자와 작가를 잇는 관계형 현물 후원 플랫폼입니다.
           <br className="hidden md:block" />
           나의 역할에 맞는 이용 흐름을 확인해보세요.
@@ -307,7 +307,7 @@ export default function HowPage() {
 
       {/* 탭 */}
       <div className="max-w-[1080px] mx-auto px-5 md:px-8 mb-10">
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div data-sr="up" data-d="2" className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={() => setTab("theo")}
             className={`sm:w-[260px] text-[15px] px-8 py-4 rounded-xl ${tab === "theo" ? "nb-btn" : "nb-btn-outline"}`}
@@ -334,6 +334,7 @@ export default function HowPage() {
           {/* 스텝 타임라인 */}
           <div>
             <div
+              data-sr="up"
               className="rounded-2xl border border-line p-6 md:p-8 mb-8"
               style={{ background: "var(--card)", boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
             >
@@ -348,6 +349,8 @@ export default function HowPage() {
 
             {/* FAQ */}
             <div
+              data-sr="up"
+              data-d="1"
               className="rounded-2xl border border-line p-6 md:p-8"
               style={{ background: "var(--card)", boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
             >
@@ -365,6 +368,8 @@ export default function HowPage() {
               <>
                 {/* 테오 혜택 요약 */}
                 <div
+                  data-sr="fade"
+                  data-d="1"
                   className="rounded-2xl border border-line p-5"
                   style={{ background: "var(--card)", boxShadow: "0 4px 14px rgba(13,59,102,.06)" }}
                 >
@@ -385,6 +390,8 @@ export default function HowPage() {
 
                 {/* 비용 구조 */}
                 <div
+                  data-sr="fade"
+                  data-d="2"
                   className="rounded-2xl border border-line p-5"
                   style={{ background: "var(--card)", boxShadow: "0 4px 14px rgba(13,59,102,.06)" }}
                 >
@@ -423,6 +430,8 @@ export default function HowPage() {
               <>
                 {/* 고흐 혜택 요약 */}
                 <div
+                  data-sr="fade"
+                  data-d="1"
                   className="rounded-2xl border border-line p-5"
                   style={{ background: "var(--card)", boxShadow: "0 4px 14px rgba(13,59,102,.06)" }}
                 >
@@ -443,6 +452,8 @@ export default function HowPage() {
 
                 {/* 수익 구조 */}
                 <div
+                  data-sr="fade"
+                  data-d="2"
                   className="rounded-2xl border border-line p-5"
                   style={{ background: "var(--card)", boxShadow: "0 4px 14px rgba(13,59,102,.06)" }}
                 >

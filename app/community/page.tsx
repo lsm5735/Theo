@@ -165,20 +165,20 @@ export default function CommunityPage() {
 
       {/* Hero */}
       <section className="max-w-[1080px] mx-auto px-5 md:px-8 pt-14 pb-10">
-        <p className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">
+        <p data-sr="fade" className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">
           COMMUNITY
         </p>
-        <h1 className="text-3xl md:text-[40px] font-bold text-navy-900 leading-tight">
+        <h1 data-sr="up" className="text-3xl md:text-[40px] font-bold text-navy-900 leading-tight">
           작가와 직접 만나는 시간
         </h1>
-        <p className="text-muted text-sm md:text-base mt-3 leading-relaxed max-w-[560px]">
+        <p data-sr="up" data-d="1" className="text-muted text-sm md:text-base mt-3 leading-relaxed max-w-[560px]">
           오픈 스튜디오, 신작 전시, 라이브 페인팅, 드로잉 클래스.
           <br className="hidden md:block" />
           후원 너머 작가의 창작 현장에 함께할 수 있는 프로그램입니다.
         </p>
 
         {/* 타입 필터 */}
-        <div className="flex flex-wrap gap-2 mt-6">
+        <div data-sr="up" data-d="2" className="flex flex-wrap gap-2 mt-6">
           {(["오픈 스튜디오", "신작 전시", "라이브 페인팅", "드로잉 클래스"] as ProgramType[]).map((type) => {
             const s = TYPE_STYLE[type];
             const isActive = activeFilter === type;
@@ -208,11 +208,13 @@ export default function CommunityPage() {
       {/* 카드 그리드 */}
       <section className="max-w-[1080px] mx-auto px-5 md:px-8 pb-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {filtered.map((prog) => {
+          {filtered.map((prog, index) => {
             const s = TYPE_STYLE[prog.type];
             return (
               <article
                 key={prog.id}
+                data-sr="up"
+                data-d={String((index % 4) + 1)}
                 className="bg-card border border-line rounded-2xl overflow-hidden flex flex-col"
                 style={{ boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
               >

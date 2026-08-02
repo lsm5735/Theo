@@ -19,14 +19,14 @@ export default function AtelierPage() {
 
       {/* Page header */}
       <section className="max-w-[1080px] mx-auto px-5 md:px-8 pt-14 pb-8">
-        <p className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">
+        <p data-sr="fade" className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">
           ATELIER
         </p>
         <div>
-          <h1 className="text-3xl md:text-[40px] font-bold text-navy-900 leading-tight">
+          <h1 data-sr="up" className="text-3xl md:text-[40px] font-bold text-navy-900 leading-tight">
             지금 후원 가능한 작가
           </h1>
-          <p className="text-muted text-sm md:text-base mt-2 leading-relaxed">
+          <p data-sr="up" data-d="1" className="text-muted text-sm md:text-base mt-2 leading-relaxed">
             창작에 필요한 재료를 선물하고, 창작 과정을 편지로 받아보세요.
           </p>
         </div>

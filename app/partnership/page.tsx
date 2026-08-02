@@ -91,9 +91,9 @@ export default function PartnershipPage() {
           ← 홈으로
         </Link>
 
-        <p className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">PARTNERSHIP</p>
-        <h1 className="text-[28px] font-bold text-navy-900 leading-snug mb-2">제휴 문의</h1>
-        <p className="text-[13.5px] text-navy-500 leading-relaxed mb-10">
+        <p data-sr="fade" className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">PARTNERSHIP</p>
+        <h1 data-sr="up" className="text-[28px] font-bold text-navy-900 leading-snug mb-2">제휴 문의</h1>
+        <p data-sr="up" data-d="1" className="text-[13.5px] text-navy-500 leading-relaxed mb-10">
           화방·갤러리·미디어·기술 파트너십, 공동 기획 등 다양한 협력을 환영합니다.<br />
           문의 내용을 남겨주시면 영업일 3일 이내 회신드립니다.
         </p>
@@ -101,7 +101,7 @@ export default function PartnershipPage() {
         <form onSubmit={handleSubmit} noValidate className="space-y-5">
 
           {/* 회사명 */}
-          <div>
+          <div data-sr="up" data-d="1">
             <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5">
               회사명 <span className="text-[#C2A43F]">*</span>
             </label>
@@ -117,7 +117,7 @@ export default function PartnershipPage() {
           </div>
 
           {/* 담당자 이름 */}
-          <div>
+          <div data-sr="up" data-d="2">
             <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5">
               담당자 이름 <span className="text-[#C2A43F]">*</span>
             </label>
@@ -133,7 +133,7 @@ export default function PartnershipPage() {
           </div>
 
           {/* 연락처 + 이메일 (2열) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div data-sr="up" data-d="3" className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
               <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5">
                 연락처 <span className="text-[#C2A43F]">*</span>
@@ -164,7 +164,7 @@ export default function PartnershipPage() {
           </div>
 
           {/* 문의 유형 */}
-          <div>
+          <div data-sr="up" data-d="4">
             <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5">
               문의 유형 <span className="text-[#C2A43F]">*</span>
             </label>
@@ -201,7 +201,7 @@ export default function PartnershipPage() {
           </div>
 
           {/* 문의 내용 */}
-          <div>
+          <div data-sr="up" data-d="5">
             <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5">
               요청 및 문의 내용 <span className="text-[#C2A43F]">*</span>
             </label>
