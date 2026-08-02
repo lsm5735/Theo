@@ -100,14 +100,42 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-7">
-          <a
-            href="https://www.okrr.art/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase"
-          >
-            About
-          </a>
+          {/* About 드롭다운 */}
+          <div className="relative group">
+            <button className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
+              About
+            </button>
+            {/* 드롭다운 패널 */}
+            <div className="absolute left-0 top-[calc(100%+12px)] w-44 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50"
+              style={{ transform: "translateY(-4px)" }}
+            >
+              <div
+                className="bg-white rounded-2xl py-2 overflow-hidden"
+                style={{ boxShadow: "0 8px 30px rgba(13,59,102,.14), 0 0 0 1px rgba(13,59,102,.06)" }}
+              >
+                <a
+                  href="https://www.okrr.art/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-4 py-3 text-[13px] text-navy-700 hover:bg-navy-50 hover:text-navy-900 transition-colors"
+                >
+                  회사 소개
+                </a>
+                <Link
+                  href="/"
+                  className="block px-4 py-3 text-[13px] text-navy-700 hover:bg-navy-50 hover:text-navy-900 transition-colors"
+                >
+                  서비스 소개
+                </Link>
+                <Link
+                  href="/partnership"
+                  className="block px-4 py-3 text-[13px] text-navy-700 hover:bg-navy-50 hover:text-navy-900 transition-colors"
+                >
+                  제휴 문의
+                </Link>
+              </div>
+            </div>
+          </div>
           <Link href="/atelier" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
             Atelier
           </Link>
@@ -219,15 +247,36 @@ export default function Header() {
       {menuOpen && (
         <ul className="md:hidden border-t border-line bg-paper/95 backdrop-blur-[12px] px-5 py-3 flex flex-col gap-0">
           <li>
+            <p className="pt-3 pb-1 text-[10px] tracking-[0.18em] font-bold text-navy-400 uppercase">About</p>
+          </li>
+          <li>
             <a
               href="https://www.okrr.art/"
               target="_blank"
               rel="noopener noreferrer"
-              className="block py-3 text-[13px] tracking-[0.1em] uppercase text-muted border-b border-line/60"
+              className="block py-2.5 pl-3 text-[13px] text-muted border-b border-line/60"
               onClick={() => setMenuOpen(false)}
             >
-              About
+              회사 소개
             </a>
+          </li>
+          <li>
+            <Link
+              href="/"
+              className="block py-2.5 pl-3 text-[13px] text-muted border-b border-line/60"
+              onClick={() => setMenuOpen(false)}
+            >
+              서비스 소개
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/partnership"
+              className="block py-2.5 pl-3 text-[13px] text-muted border-b border-line/60"
+              onClick={() => setMenuOpen(false)}
+            >
+              제휴 문의
+            </Link>
           </li>
           <li>
             <Link
