@@ -111,9 +111,9 @@ export default function Header() {
           <Link href="/atelier" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
             Atelier
           </Link>
-          <a href="/#community" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
+          <Link href="/community" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
             Community
-          </a>
+          </Link>
           <a href="/#how" className="text-muted hover:text-navy-800 transition-colors text-[12.5px] tracking-[0.1em] uppercase">
             {t("nav_how")}
           </a>
@@ -239,13 +239,13 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <a
-              href="/#community"
+            <Link
+              href="/community"
               className="block py-3 text-[13px] tracking-[0.1em] uppercase text-muted border-b border-line/60"
               onClick={() => setMenuOpen(false)}
             >
               Community
-            </a>
+            </Link>
           </li>
           <li>
             <a
