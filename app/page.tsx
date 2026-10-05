@@ -7,6 +7,7 @@ import ArtistCard from "@/components/ArtistCard";
 import artists from "@/data/artists.json";
 import projects from "@/data/projects.json";
 import { useT } from "@/contexts/LangContext";
+import { NOTION_GRAD_URL } from "@/lib/site";
 
 function IconPen() {
   return (
@@ -37,6 +38,38 @@ export default function Home() {
 
   return (
     <div className="min-h-screen" style={{ background: "var(--paper)" }}>
+      {/* ════════════════════════════════════════
+          § 0. 졸업전시 참여 모집 배너 → 노션
+          ════════════════════════════════════════ */}
+      <a
+        href={NOTION_GRAD_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block w-full transition-opacity hover:opacity-90"
+        style={{ background: "var(--navy-900)" }}
+      >
+        <div className="max-w-[1080px] mx-auto px-5 md:px-8 py-3 flex items-center justify-center gap-2 md:gap-3 text-center">
+          <span
+            className="hidden sm:inline-flex items-center text-[10px] font-black tracking-[0.14em] px-2 py-1 rounded shrink-0"
+            style={{ background: "rgba(244,211,94,.16)", color: "var(--sv)" }}
+          >
+            2026
+          </span>
+          <span
+            className="text-[12.5px] md:text-[13.5px] font-semibold"
+            style={{ color: "rgba(250,240,202,.9)", wordBreak: "keep-all" }}
+          >
+            {t("grad_banner")}
+          </span>
+          <span
+            className="text-[12.5px] md:text-[13.5px] font-black whitespace-nowrap shrink-0"
+            style={{ color: "var(--sv)" }}
+          >
+            {t("grad_banner_cta")} →
+          </span>
+        </div>
+      </a>
+
       <Header />
 
       {/* ════════════════════════════════════════

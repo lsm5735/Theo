@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import FloatingChatbot from "@/components/FloatingChatbot";
 import ScrollObserver from "@/components/ScrollObserver";
 import { LangProvider } from "@/contexts/LangContext";
+import { GA_ID } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Theo — 모두의 고흐가 되기 전, 나만의 고흐를 만난다",
@@ -25,6 +27,22 @@ export default function RootLayout({
           <FloatingChatbot />
           <ScrollObserver />
         </LangProvider>
+
+        {/* Google Analytics — lib/site.ts 의 GA_ID 가 채워져 있을 때만 로드 */}
+        {GA_ID ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`}
+            </Script>
+          </>
+        ) : null}
       </body>
     </html>
   );

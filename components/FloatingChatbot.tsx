@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { NOTION_RECRUIT_URL } from "@/lib/site";
 
 export default function FloatingChatbot() {
   const pathname = usePathname();
@@ -11,19 +12,21 @@ export default function FloatingChatbot() {
 
   return (
     <div className="fixed bottom-6 right-5 md:right-8 z-50 pointer-events-none select-none">
-      <Link
-        href="/bot"
-        className="flex flex-col items-center pointer-events-auto group"
-        aria-label="테오 봇 — 취향 작가 추천받기"
-      >
-        {/* 말풍선 */}
-        <div className="relative mb-4">
+      <div className="flex flex-col items-center">
+        {/* 말풍선 → 노션 참여 모집 페이지 */}
+        <a
+          href={NOTION_RECRUIT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative mb-4 pointer-events-auto group"
+          aria-label="서비스 소개서 요청하기"
+        >
           <div
             className="bg-card border border-line rounded-2xl px-4 py-2.5 whitespace-nowrap group-hover:border-navy-400 transition-colors duration-200"
             style={{ boxShadow: "0 4px 20px rgba(13,59,102,.14)" }}
           >
             <p className="text-[12.5px] font-semibold text-navy-800 leading-snug">
-              당신의 취향을 찾아드려요
+              서비스 소개서 요청하기 →
             </p>
           </div>
 
@@ -51,11 +54,13 @@ export default function FloatingChatbot() {
               borderTop: "9px solid #ffffff",
             }}
           />
-        </div>
+        </a>
 
-        {/* 캐릭터 이미지 */}
-        <div
-          className="w-20 md:w-[88px] transition-transform duration-200 group-hover:scale-105"
+        {/* 캐릭터 이미지 → 테오 봇 */}
+        <Link
+          href="/bot"
+          aria-label="테오 봇 — 취향 작가 추천받기"
+          className="block w-20 md:w-[88px] pointer-events-auto transition-transform duration-200 hover:scale-105"
           style={{
             animation: "chatbotFloat 3s ease-in-out infinite",
             willChange: "transform",
@@ -69,8 +74,8 @@ export default function FloatingChatbot() {
               filter: "drop-shadow(0 8px 18px rgba(13,59,102,.22))",
             }}
           />
-        </div>
-      </Link>
+        </Link>
+      </div>
     </div>
   );
 }

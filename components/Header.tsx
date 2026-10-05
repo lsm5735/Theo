@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useLang, useT } from "@/contexts/LangContext";
+import { NOTION_GRAD_URL } from "@/lib/site";
 
 function SunIcon() {
   return (
@@ -133,6 +134,14 @@ export default function Header() {
                 >
                   제휴 문의
                 </Link>
+                <a
+                  href={NOTION_GRAD_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-4 py-3 text-[13px] font-bold text-navy-800 hover:bg-navy-50 transition-colors"
+                >
+                  {t("nav_grad")}
+                </a>
               </div>
             </div>
           </div>
@@ -277,6 +286,17 @@ export default function Header() {
             >
               제휴 문의
             </Link>
+          </li>
+          <li>
+            <a
+              href={NOTION_GRAD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block py-2.5 pl-3 text-[13px] font-bold text-navy-800 border-b border-line/60"
+              onClick={() => setMenuOpen(false)}
+            >
+              {t("nav_grad")}
+            </a>
           </li>
           <li>
             <Link

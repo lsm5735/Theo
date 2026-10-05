@@ -7,6 +7,9 @@ export const DICT = {
     settings_lang_label: "언어 / Language", settings_lang_to_en: "한국어 → EN",
     settings_lang_to_ko: "English → KO", settings_theme_label: "화면 모드",
     theme_light: "라이트", theme_dark: "다크",
+    nav_grad: "졸업전시 참여 안내",
+    grad_banner: "2026 졸업전시 작가 재료 후원 · 참여 학과 모집 중",
+    grad_banner_cta: "참여 안내 보기",
 
     // Hero
     hero_line1: "모두의 고흐가 되기 전,", hero_line2a: "나만의",
@@ -260,6 +263,9 @@ export const DICT = {
     settings_lang_label: "Language", settings_lang_to_en: "KO → EN",
     settings_lang_to_ko: "EN → KO", settings_theme_label: "Theme",
     theme_light: "Light", theme_dark: "Dark",
+    nav_grad: "Graduation show program",
+    grad_banner: "2026 graduation shows · now inviting departments",
+    grad_banner_cta: "See details",
 
     // Hero
     hero_line1: "Before becoming everyone's Gogh,", hero_line2a: "find your own",
