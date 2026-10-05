@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { NOTION_RECRUIT_URL } from "@/lib/site";
+import { trackNotionClick } from "@/lib/analytics";
 
 export default function FloatingChatbot() {
   const pathname = usePathname();
@@ -18,6 +19,7 @@ export default function FloatingChatbot() {
           href={NOTION_RECRUIT_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackNotionClick("chatbot_bubble")}
           className="relative mb-4 pointer-events-auto group"
           aria-label="서비스 소개서 요청하기"
         >

@@ -8,6 +8,7 @@ import artists from "@/data/artists.json";
 import projects from "@/data/projects.json";
 import { useT } from "@/contexts/LangContext";
 import { NOTION_GRAD_URL } from "@/lib/site";
+import { trackNotionClick } from "@/lib/analytics";
 
 function IconPen() {
   return (
@@ -45,6 +46,7 @@ export default function Home() {
         href={NOTION_GRAD_URL}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackNotionClick("home_banner")}
         className="block w-full transition-opacity hover:opacity-90"
         style={{ background: "var(--navy-900)" }}
       >

@@ -11,7 +11,7 @@ export const NOTION_GRAD_URL =
  * analytics.google.com → 관리 → 데이터 스트림 에서 복사한 "G-..." 를 아래 따옴표 사이에 넣으세요.
  * 비워두면 애널리틱스가 아예 로드되지 않습니다. (측정 꺼짐)
  */
-export const GA_ID: string = "";
+export const GA_ID: string = "G-ST6EYVML8L";
 
 /** 테오봇 말풍선 "서비스 소개서 요청하기" 가 여는 노션 페이지 (재료 후원 서비스 참여 모집) */
 export const NOTION_RECRUIT_URL =
