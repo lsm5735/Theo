@@ -7,7 +7,7 @@ import ArtistCard from "@/components/ArtistCard";
 import artists from "@/data/artists.json";
 import projects from "@/data/projects.json";
 import { useT } from "@/contexts/LangContext";
-import { NOTION_GRAD_URL } from "@/lib/site";
+import { NOTION_URL } from "@/lib/site";
 import { trackNotionClick } from "@/lib/analytics";
 
 function IconPen() {
@@ -43,7 +43,7 @@ export default function Home() {
           § 0. 졸업전시 참여 모집 배너 → 노션
           ════════════════════════════════════════ */}
       <a
-        href={NOTION_GRAD_URL}
+        href={NOTION_URL}
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackNotionClick("home_banner")}
@@ -637,21 +637,11 @@ export default function Home() {
             {t("cta_sub")}
           </p>
 
-          <div data-sr="up" data-d="2" className="flex gap-2 max-w-[460px] mx-auto rounded-xl p-2 mb-5 nb-card"
-            style={{ background: "rgba(250,240,202,.08)" }}>
-            <span className="flex items-center pl-1 text-[13.5px] shrink-0 font-semibold" style={{ color: "rgba(250,240,202,.5)" }}>{t("cta_prefix")}</span>
-            <input type="text" placeholder={t("cta_placeholder")} aria-label="아틀리에 주소"
-              className="flex-1 border-none outline-none text-sm bg-transparent min-w-0 font-semibold"
-              style={{ color: "var(--chiffon)" }} readOnly />
-            <Link href="/onboarding/artist" className="nb-btn shrink-0 rounded-lg font-black text-[13px] px-4 py-2">
-              {t("cta_btn")}
-            </Link>
-          </div>
-
-          <p data-sr="fade" data-d="3" className="text-[13px] font-semibold" style={{ color: "rgba(250,240,202,.55)" }}>
-            {t("cta_patron")}{" "}
-            <Link href="/bot" className="font-black hover:underline" style={{ color: "var(--sv)" }}>{t("cta_patron_link")}</Link>
-          </p>
+          <a data-sr="up" data-d="2" href={NOTION_URL} target="_blank" rel="noopener noreferrer"
+            onClick={() => trackNotionClick("landing_cta")}
+            className="nb-btn inline-flex items-center gap-2 rounded-xl font-black text-[15px] px-7 py-3.5">
+            {t("cta_btn")} <IconArrow />
+          </a>
         </div>
       </section>
 

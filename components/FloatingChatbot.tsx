@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { NOTION_RECRUIT_URL } from "@/lib/site";
+import { NOTION_URL } from "@/lib/site";
 import { trackNotionClick } from "@/lib/analytics";
 
 export default function FloatingChatbot() {
@@ -16,7 +16,7 @@ export default function FloatingChatbot() {
       <div className="flex flex-col items-center">
         {/* 말풍선 → 노션 참여 모집 페이지 */}
         <a
-          href={NOTION_RECRUIT_URL}
+          href={NOTION_URL}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackNotionClick("chatbot_bubble")}

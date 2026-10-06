@@ -8,7 +8,7 @@ export const DICT = {
     settings_lang_to_ko: "English → KO", settings_theme_label: "화면 모드",
     theme_light: "라이트", theme_dark: "다크",
     nav_grad: "졸업전시 참여 안내",
-    grad_banner: "2026 졸업전시 작가 재료 후원 · 참여 학과 모집 중",
+    grad_banner: "졸업전시 재료후원 참여 모집 중(선착순)",
     grad_banner_cta: "참여 안내 보기",
 
     // Hero
@@ -96,9 +96,8 @@ export const DICT = {
     arty_card_plus1: "+1 지인 한 분과 함께 오실 수 있어요",
 
     // CTA
-    cta_h2: "작가에게 첫 번째 별이\n되어 주세요", cta_sub: "작가 수수료 0% · 시작은 무료예요",
-    cta_prefix: "theo.kr/", cta_placeholder: "활동명을 입력하세요", cta_btn: "아틀리에 열기",
-    cta_patron: "후원자로 오셨나요?", cta_patron_link: "테오 봇으로 시작하기 →",
+    cta_h2: "테오가 궁금하신가요?\n소개서를 보내드려요", cta_sub: "참여 비용 0원 · 선착순 모집",
+    cta_btn: "서비스 소개서 요청하기",
 
     // Footer
     footer_desc: "시각예술 작가의 창작 재료를 후원하는 관계형 현물 후원 플랫폼",
@@ -264,7 +263,7 @@ export const DICT = {
     settings_lang_to_ko: "EN → KO", settings_theme_label: "Theme",
     theme_light: "Light", theme_dark: "Dark",
     nav_grad: "Graduation show program",
-    grad_banner: "2026 graduation shows · now inviting departments",
+    grad_banner: "Graduation show material sponsorship · Now recruiting (first come, first served)",
     grad_banner_cta: "See details",
 
     // Hero
@@ -352,9 +351,8 @@ export const DICT = {
     arty_card_plus1: "+1 guest welcome",
 
     // CTA
-    cta_h2: "Be the first star\nfor an artist", cta_sub: "0% artist commission · Free to start",
-    cta_prefix: "theo.kr/", cta_placeholder: "Enter your artist name", cta_btn: "Open Atelier",
-    cta_patron: "Here as a patron?", cta_patron_link: "Start with Theo Bot →",
+    cta_h2: "Curious about Theo?\nGet our service deck", cta_sub: "Free to join · First come, first served",
+    cta_btn: "Request Service Deck",
 
     // Footer
     footer_desc: "A relational material sponsorship platform for visual artists",
