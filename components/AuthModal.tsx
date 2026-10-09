@@ -64,7 +64,7 @@ export default function AuthModal({ onClose }: Props) {
 
         <div className="flex items-center gap-2.5 mb-7">
           <img src="/logo-face.png" alt="THEO" className="w-8 h-8" />
-          <b className="font-black tracking-[0.3em] text-base text-navy-900 uppercase">THEO</b>
+          <b className="logo-wordmark tracking-[0.08em] text-[23px] text-navy-900">Theo</b>
         </div>
 
         {mode === "done" ? (

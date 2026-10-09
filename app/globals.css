@@ -59,6 +59,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 로고 "THEO" 워드마크 — 마포애민체 (T·H·E·O 글자만 담은 경량 파일) */
+@font-face {
+  font-family: 'MapoAgape-Logo';
+  src: url('/fonts/MapoAgape-logo.woff2') format('woff2');
+  font-weight: 400;
+  font-display: block;
+}
+.logo-wordmark {
+  font-family: 'MapoAgape-Logo', var(--font-suit);
+  font-weight: 400;
+  font-synthesis: none;
+}
+
 .font-myeongjo {
   font-family: 'Nanum Myeongjo', serif;
   line-height: 2.05;

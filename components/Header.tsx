@@ -95,7 +95,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
           <img src="/logo-face.png" alt="THEO" className="w-8 h-8 shrink-0" />
-          <b className="font-black tracking-[0.3em] text-base text-navy-900 uppercase">THEO</b>
+          <b className="logo-wordmark tracking-[0.08em] text-[23px] text-navy-900">Theo</b>
         </Link>
 
         {/* Desktop nav */}

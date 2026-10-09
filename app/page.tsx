@@ -652,7 +652,7 @@ export default function Home() {
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2.5 mb-4">
                 <img src="/logo-face.png" alt="THEO" className="w-7 h-7" />
-                <b className="font-black tracking-[0.2em] text-sm" style={{ color: "var(--chiffon)" }}>THEO</b>
+                <b className="logo-wordmark tracking-[0.06em] text-[20px]" style={{ color: "var(--chiffon)" }}>Theo</b>
               </div>
               <p className="text-[12px] leading-[1.8] max-w-[230px]" style={{ color: "rgba(250,240,202,.5)" }}>
                 {t("footer_desc")}
