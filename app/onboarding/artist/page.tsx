@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
 import { useT } from "@/contexts/LangContext";
-import { MyMaterial, emptyAtelier, loadMyAtelier, normalizeUrl, saveMyAtelier, useMyAtelier } from "@/lib/myAtelier";
+import { MyMaterial, createMyAtelier, emptyAtelier, normalizeUrl, useMyAteliers } from "@/lib/myAtelier";
 import {
   BasicDraft,
   Errors,
@@ -13,6 +13,7 @@ import {
   NoteField,
   ProfileFields,
   cleanMaterials,
+  clearMaterialErrors,
   padMaterials,
   scrollToFirstError,
   validateMaterials,
@@ -24,7 +25,7 @@ export default function ArtistOnboarding() {
   const t = useT();
   const router = useRouter();
 
-  const existing = useMyAtelier();
+  const existingCount = useMyAteliers()?.length ?? 0;
   const [draft, setDraft] = useState<BasicDraft>({
     name: "",
     contact: "",
@@ -34,16 +35,15 @@ export default function ArtistOnboarding() {
     materials: padMaterials([]),
   });
   const [errors, setErrors] = useState<Errors>({});
+  const [saveError, setSaveError] = useState("");
 
   function setField(field: "name" | "contact" | "sns" | "portfolio" | "artistNote", value: string) {
     setDraft((d) => ({ ...d, [field]: value }));
   }
 
-  function setMaterial(i: number, field: keyof MyMaterial, value: string) {
-    setDraft((d) => ({
-      ...d,
-      materials: d.materials.map((m, idx) => (idx === i ? { ...m, [field]: value } : m)),
-    }));
+  function setMaterials(materials: MyMaterial[]) {
+    if (materials.length !== draft.materials.length) setErrors(clearMaterialErrors);
+    setDraft((d) => ({ ...d, materials }));
   }
 
   function handleSubmit() {
@@ -58,10 +58,9 @@ export default function ArtistOnboarding() {
       return;
     }
 
-    // 재신청이면 사진·프로젝트 등 설정에서 바꾼 값은 유지
-    const base = loadMyAtelier() ?? emptyAtelier();
-    saveMyAtelier({
-      ...base,
+    // 신청할 때마다 새 아틀리에 개설 (한 브라우저에서 여러 작가 테스트 가능)
+    const id = createMyAtelier({
+      ...emptyAtelier(),
       name: draft.name.trim(),
       contact: draft.contact.trim(),
       sns: draft.sns.trim(),
@@ -69,7 +68,11 @@ export default function ArtistOnboarding() {
       artistNote: draft.artistNote.trim(),
       materials: cleanMaterials(draft.materials),
     });
-    router.push("/atelier/me?new=1");
+    if (!id) {
+      setSaveError(t("st_save_fail"));
+      return;
+    }
+    router.push(`/atelier/me/${id}?new=1`);
   }
 
   return (
@@ -90,10 +93,10 @@ export default function ArtistOnboarding() {
           {t("ob_sub")}
         </p>
 
-        {existing && (
+        {existingCount > 0 && (
           <div className="rounded-xl border-2 border-navy-200 bg-card px-5 py-4 mb-6">
             <p className="text-[13px] text-navy-700 leading-[1.7] mb-2" style={{ wordBreak: "keep-all" }}>
-              {t("ob_exists")}
+              {t("ob_exists_pre")}{existingCount}{t("ob_exists_post")}
             </p>
             <Link href="/atelier/me" className="text-[13px] font-bold text-navy-800 underline underline-offset-2">
               {t("ob_exists_btn")}
@@ -114,9 +117,10 @@ export default function ArtistOnboarding() {
 
           <section className="nb-card p-7 space-y-5">
             <p className="text-xs font-bold tracking-[0.2em] text-navy-400 uppercase mb-2">{t("ob_sec3")}</p>
-            <MaterialFields materials={draft.materials} errors={errors} onChange={setMaterial} />
+            <MaterialFields materials={draft.materials} errors={errors} onChange={setMaterials} />
           </section>
 
+          {saveError && <p className="text-red-500 text-xs text-center">{saveError}</p>}
           <button onClick={handleSubmit}
             className="nb-btn w-full py-4 rounded-xl font-black text-[16px]">
             {t("ob_submit")}

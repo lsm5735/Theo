@@ -32,8 +32,8 @@ export default function HeaderAuth() {
           {user.email}
         </span>
         <button onClick={handleLogout}
-          className="text-[13px] font-black text-navy-700 border-2 border-navy-800 px-3.5 py-2 rounded-lg hover:bg-navy-800 hover:text-chiffon transition-all"
-          style={{ boxShadow: "2px 2px 0 var(--brutal)" }}>
+          className="text-[13px] font-semibold text-ink border border-line-strong px-3.5 py-2 rounded-xl hover:border-ink transition-colors"
+          >
           로그아웃
         </button>
       </div>
@@ -43,8 +43,7 @@ export default function HeaderAuth() {
   return (
     <>
       <button onClick={() => setShowModal(true)}
-        className="hidden md:inline-flex items-center text-[13px] font-black text-navy-700 border-2 border-navy-800 px-4 py-2 rounded-lg hover:bg-navy-800 hover:text-chiffon transition-all"
-        style={{ boxShadow: "2px 2px 0 var(--brutal)", padding: "9px 17px" }}>
+        className="hidden md:inline-flex items-center text-[14px] font-semibold text-white bg-navy-900 hover:bg-navy-800 px-5 h-10 rounded-xl transition-colors">
         로그인
       </button>
       {showModal && <AuthModal onClose={() => setShowModal(false)} />}

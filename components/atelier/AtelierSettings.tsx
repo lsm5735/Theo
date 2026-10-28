@@ -19,6 +19,7 @@ import {
   NoteField,
   ProfileFields,
   cleanMaterials,
+  clearMaterialErrors,
   padMaterials,
   validateMaterials,
   validateNote,
@@ -109,11 +110,13 @@ export default function AtelierSettings({
   initialTab,
   onClose,
   onSave,
+  onDelete,
 }: {
   atelier: MyAtelier;
   initialTab: SettingsTab;
   onClose: () => void;
   onSave: (next: MyAtelier) => boolean;
+  onDelete: () => void;
 }) {
   const t = useT();
   const [tab, setTab] = useState<SettingsTab>(initialTab);
@@ -126,6 +129,7 @@ export default function AtelierSettings({
   });
   const [errors, setErrors] = useState<Errors>({});
   const [saveError, setSaveError] = useState("");
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const bodyRef = useRef<HTMLDivElement>(null);
 
   // 패널 열려 있는 동안 배경 스크롤 잠금 + ESC로 닫기
@@ -148,11 +152,9 @@ export default function AtelierSettings({
     setDraft((d) => ({ ...d, [field]: value }));
   }
 
-  function setMaterial(i: number, field: keyof MyMaterial, value: string) {
-    setDraft((d) => ({
-      ...d,
-      materials: d.materials.map((m, idx) => (idx === i ? { ...m, [field]: value } : m)),
-    }));
+  function setMaterials(materials: MyMaterial[]) {
+    if (materials.length !== draft.materials.length) setErrors(clearMaterialErrors);
+    setDraft((d) => ({ ...d, materials }));
   }
 
   function toggleMedia(m: string) {
@@ -277,6 +279,32 @@ export default function AtelierSettings({
                   ))}
                 </div>
               </Field>
+
+              {/* 아틀리에 삭제 — 두 번 눌러 확인 */}
+              <div className="pt-5 mt-2 border-t border-line">
+                {confirmDelete ? (
+                  <div className="rounded-xl border-2 border-red-200 bg-red-50 p-4">
+                    <p className="text-[13px] text-red-700 font-semibold mb-3" style={{ wordBreak: "keep-all" }}>
+                      {t("st_delete_confirm")}
+                    </p>
+                    <div className="flex gap-2">
+                      <button type="button" onClick={onDelete}
+                        className="flex-1 bg-red-600 text-white text-[13px] font-bold py-2.5 rounded-lg hover:bg-red-700 transition-colors">
+                        {t("st_delete_yes")}
+                      </button>
+                      <button type="button" onClick={() => setConfirmDelete(false)}
+                        className="flex-1 border border-navy-200 text-navy-700 text-[13px] font-bold py-2.5 rounded-lg hover:bg-navy-100 transition-colors">
+                        {t("st_delete_no")}
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <button type="button" onClick={() => setConfirmDelete(true)}
+                    className="text-[12.5px] text-red-500 hover:text-red-600 underline underline-offset-2">
+                    {t("st_delete")}
+                  </button>
+                )}
+              </div>
             </>
           )}
 
@@ -285,7 +313,7 @@ export default function AtelierSettings({
           )}
 
           {tab === "materials" && (
-            <MaterialFields materials={draft.materials} errors={errors} onChange={setMaterial} />
+            <MaterialFields materials={draft.materials} errors={errors} onChange={setMaterials} />
           )}
 
           {tab === "project" && (

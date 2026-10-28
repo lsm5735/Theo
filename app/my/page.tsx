@@ -9,8 +9,8 @@ import projects from "@/data/projects.json";
 import { useT, useLang } from "@/contexts/LangContext";
 import { DictKey } from "@/lib/translations";
 import { MySponsorship, useMySponsorships } from "@/lib/sponsorships";
-import { MY_WALL_ID, WallPost, useArtistUpdates, useWallPosts } from "@/lib/wall";
-import { MyAtelier, hostOf, useMyAtelier } from "@/lib/myAtelier";
+import { WallPost, useArtistUpdates, useWallPosts } from "@/lib/wall";
+import { MyAtelier, hostOf, useMyAteliers } from "@/lib/myAtelier";
 
 type Role = "theo" | "gogh";
 
@@ -393,7 +393,8 @@ function TheoView() {
 function GoghView({ atelier }: { atelier: MyAtelier }) {
   const t = useT();
   const { lang } = useLang();
-  const posts = useWallPosts(MY_WALL_ID) ?? [];
+  const posts = useWallPosts(atelier.id) ?? [];
+  const base = `/atelier/me/${atelier.id}`;
   const theoNames = new Set(posts.filter((p) => p.role === "theo").map((p) => p.authorName));
   const project = atelier.project;
 
@@ -434,10 +435,10 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
           ))}
         </div>
         <div className="flex gap-2 mt-6">
-          <Link href="/atelier/me" className="flex-1 text-center bg-sv text-ink font-bold text-[13px] py-2.5 rounded-lg hover:bg-sv-soft transition-colors">
+          <Link href={base} className="flex-1 text-center bg-sv text-ink font-bold text-[13px] py-2.5 rounded-lg hover:bg-sv-soft transition-colors">
             {t("my_gogh_view")}
           </Link>
-          <Link href="/atelier/me?settings=profile" className="flex-1 text-center border border-white/30 text-white font-bold text-[13px] py-2.5 rounded-lg hover:bg-white/10 transition-colors">
+          <Link href={`${base}?settings=profile`} className="flex-1 text-center border border-white/30 text-white font-bold text-[13px] py-2.5 rounded-lg hover:bg-white/10 transition-colors">
             {t("ma_settings")}
           </Link>
         </div>
@@ -456,7 +457,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
               <span>{t("ma_goal")} {project.targetAmount.toLocaleString()}원</span>
             </div>
             <div className="mt-3 pt-3 border-t border-navy-100">
-              <Link href="/atelier/me?settings=project" className="text-xs font-bold text-navy-700 hover:text-navy-900">
+              <Link href={`${base}?settings=project`} className="text-xs font-bold text-navy-700 hover:text-navy-900">
                 {t("my_gogh_edit")}
               </Link>
             </div>
@@ -464,7 +465,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
         ) : (
           <div className="rounded-xl border-2 border-dashed border-navy-200 p-6 text-center">
             <p className="text-[13px] text-navy-600 mb-3" style={{ wordBreak: "keep-all" }}>{t("ma_project_empty_sub")}</p>
-            <Link href="/atelier/me?settings=project" className="nb-btn inline-block px-5 py-2.5 rounded-lg font-black text-[13px]">
+            <Link href={`${base}?settings=project`} className="nb-btn inline-block px-5 py-2.5 rounded-lg font-black text-[13px]">
               {t("ma_project_add")}
             </Link>
           </div>
@@ -475,7 +476,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
       <section className="mb-10">
         <div className="flex items-baseline justify-between mb-4">
           <h2 className="text-[17px] font-black text-navy-800">{t("ma_materials_title")}</h2>
-          <Link href="/atelier/me?settings=materials" className="text-xs font-semibold text-navy-600 hover:opacity-70">
+          <Link href={`${base}?settings=materials`} className="text-xs font-semibold text-navy-600 hover:opacity-70">
             {t("my_gogh_edit")}
           </Link>
         </div>
@@ -494,7 +495,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
       <section>
         <div className="flex items-baseline justify-between mb-4">
           <h2 className="text-[17px] font-black text-navy-800">{t("my_gogh_wall")}</h2>
-          <Link href="/atelier/me#wall" className="text-xs font-semibold text-navy-600 hover:opacity-70">
+          <Link href={`${base}#wall`} className="text-xs font-semibold text-navy-600 hover:opacity-70">
             {t("my_gogh_wall_btn")}
           </Link>
         </div>
@@ -515,7 +516,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
         ) : (
           <div className="rounded-xl p-6 text-center border" style={{ background: "var(--chiffon)", borderColor: "rgba(194,164,63,.2)" }}>
             <p className="text-[13px] text-muted mb-3" style={{ wordBreak: "keep-all" }}>{t("my_gogh_wall_empty")}</p>
-            <Link href="/atelier/me#wall" className="text-xs font-bold text-navy-800 underline underline-offset-2">
+            <Link href={`${base}#wall`} className="text-xs font-bold text-navy-800 underline underline-offset-2">
               {t("my_gogh_wall_btn")}
             </Link>
           </div>
@@ -538,10 +539,34 @@ function GoghEmpty() {
   );
 }
 
+/* 아틀리에가 여러 개일 때 고르는 칩 */
+function AtelierPicker({ ateliers, selectedId, onSelect }: { ateliers: MyAtelier[]; selectedId: string; onSelect: (id: string) => void }) {
+  const t = useT();
+  return (
+    <div className="flex items-center gap-2 overflow-x-auto mb-5 pb-1" style={{ scrollbarWidth: "none" }}>
+      {ateliers.map((a) => (
+        <button key={a.id} onClick={() => onSelect(a.id)}
+          className={`shrink-0 text-[13px] font-semibold px-4 py-1.5 rounded-full border transition-all ${
+            a.id === selectedId ? "bg-navy-800 text-white border-navy-800" : "bg-card text-navy-700 border-navy-200 hover:border-navy-500"
+          }`}>
+          {a.name}
+        </button>
+      ))}
+      <Link href="/onboarding/artist"
+        className="shrink-0 text-[13px] font-semibold px-4 py-1.5 rounded-full border border-dashed border-navy-300 text-navy-500 hover:text-navy-800">
+        {t("ma_list_new")}
+      </Link>
+    </div>
+  );
+}
+
 /* ─── Page ───────────────────────────────────────────────────────────── */
 export default function MyDashboard() {
   const t = useT();
-  const atelier = useMyAtelier();
+  const ateliers = useMyAteliers();
+  const [pickedAtelier, setPickedAtelier] = useState<string | null>(null);
+  // 기본은 가장 최근에 개설한 아틀리에
+  const atelier = ateliers?.find((a) => a.id === pickedAtelier) ?? ateliers?.[ateliers.length - 1] ?? null;
   const urlRole = useSyncExternalStore(
     noopSubscribe,
     () => (new URLSearchParams(window.location.search).get("role") === "gogh" ? "gogh" : null),
@@ -572,8 +597,11 @@ export default function MyDashboard() {
 
         {role === "theo" ? (
           <TheoView />
-        ) : atelier === undefined ? null : atelier ? (
-          <GoghView atelier={atelier} />
+        ) : ateliers === undefined ? null : atelier ? (
+          <>
+            <AtelierPicker ateliers={ateliers} selectedId={atelier.id} onSelect={setPickedAtelier} />
+            <GoghView key={atelier.id} atelier={atelier} />
+          </>
         ) : (
           <GoghEmpty />
         )}

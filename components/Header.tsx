@@ -89,8 +89,8 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-paper/90 backdrop-blur-[12px] border-b border-line">
-      <div className="max-w-[1080px] mx-auto px-5 md:px-8 flex items-center justify-between py-3">
+    <header className="sticky top-0 z-50 bg-paper/85 backdrop-blur-[12px] border-b border-line">
+      <div className="max-w-[1080px] mx-auto px-5 md:px-8 flex items-center justify-between h-16">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
@@ -102,7 +102,7 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-7">
           {/* About 드롭다운 */}
           <div className="relative group">
-            <button className="nav-link text-navy-600 hover:text-navy-900 transition-colors text-[13px] tracking-[0.1em] uppercase">
+            <button className="nav-link text-body hover:text-ink transition-colors text-[14px] font-medium">
               About
             </button>
             {/* 드롭다운 패널 */}
@@ -136,19 +136,18 @@ export default function Header() {
               </div>
             </div>
           </div>
-          <Link href="/atelier" className="nav-link text-navy-600 hover:text-navy-900 transition-colors text-[13px] tracking-[0.1em] uppercase">
+          <Link href="/atelier" className="nav-link text-body hover:text-ink transition-colors text-[14px] font-medium">
             Atelier
           </Link>
-          <Link href="/community" className="nav-link text-navy-600 hover:text-navy-900 transition-colors text-[13px] tracking-[0.1em] uppercase">
+          <Link href="/community" className="nav-link text-body hover:text-ink transition-colors text-[14px] font-medium">
             Community
           </Link>
-          <Link href="/how" className="nav-link text-navy-600 hover:text-navy-900 transition-colors text-[13px] tracking-[0.1em] uppercase">
+          <Link href="/how" className="nav-link text-body hover:text-ink transition-colors text-[14px] font-medium">
             {t("nav_how")}
           </Link>
           <Link
             href="/my"
-            className="nav-link font-black text-[13px] tracking-[0.1em] uppercase transition-colors hover:opacity-80"
-            style={{ color: "var(--sv-deep)" }}
+            className="nav-link text-[14px] font-semibold text-ink transition-colors"
           >
             {t("nav_my")}
           </Link>

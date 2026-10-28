@@ -84,7 +84,7 @@ export default function AuthModal({ onClose }: Props) {
                 <button key={m} onClick={() => { setMode(m); setError(""); }}
                   className="flex-1 py-2.5 rounded-lg text-[13px] font-black transition-all"
                   style={mode === m
-                    ? { background: "var(--navy-800)", color: "var(--chiffon)", boxShadow: "2px 2px 0 var(--brutal)" }
+                    ? { background: "var(--navy-900)", color: "#fff" }
                     : { color: "var(--navy-500)" }}>
                   {m === "login" ? "로그인" : "회원가입"}
                 </button>

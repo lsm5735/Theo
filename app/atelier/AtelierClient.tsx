@@ -2,6 +2,8 @@
 
 import { useState, useMemo } from "react";
 import ArtistCard from "@/components/ArtistCard";
+import MyAtelierCard from "@/components/atelier/MyAtelierCard";
+import { useMyAteliers } from "@/lib/myAtelier";
 import { useT } from "@/contexts/LangContext";
 import { DictKey } from "@/lib/translations";
 
@@ -99,6 +101,7 @@ export default function AtelierClient({
   total: number;
 }) {
   const t = useT();
+  const myAteliers = useMyAteliers() ?? [];
   const [selectedMedia, setSelectedMedia] = useState("전체");
   const [selectedMood, setSelectedMood] = useState("전체");
 
@@ -200,6 +203,19 @@ export default function AtelierClient({
           )}
         </div>
       </section>
+
+      {/* ── 이 브라우저에서 개설한 아틀리에 (데모: DB 연결 전까지 본인 브라우저에서만 보임) ── */}
+      {myAteliers.length > 0 && (
+        <section className="max-w-[1080px] mx-auto px-5 md:px-8 pb-10">
+          <div className="flex items-baseline justify-between mb-4">
+            <h2 className="text-lg font-black text-navy-800">{t("ma_local_title")}</h2>
+            <span className="text-xs text-muted">{t("ma_local_note")}</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {[...myAteliers].reverse().map((a) => <MyAtelierCard key={a.id} atelier={a} />)}
+          </div>
+        </section>
+      )}
 
       {/* ── Grid ── */}
       <section className="max-w-[1080px] mx-auto px-5 md:px-8 pb-24">

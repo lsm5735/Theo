@@ -7,14 +7,11 @@ import letters from "@/data/letters.json";
 import sponsors from "@/data/sponsors.json";
 import projects from "@/data/projects.json";
 
-/** 내 아틀리에(/atelier/me)의 담벼락 id */
-export const MY_WALL_ID = "me";
-
 export type WallRole = "artist" | "theo";
 
 export interface WallPost {
   id: string;
-  wallId: string; // artist.id 또는 MY_WALL_ID
+  wallId: string; // artist.id 또는 내 아틀리에 id("my_...")
   role: WallRole;
   authorName: string;
   text: string;
@@ -80,6 +77,11 @@ export function addWallPost(post: Omit<WallPost, "id" | "createdAt" | "mine">): 
 
 export function deleteWallPost(id: string) {
   store.set(store.get().filter((p) => p.id !== id));
+}
+
+/** 담벼락 하나의 글 전체 삭제 (아틀리에 삭제 시) */
+export function deleteWallPostsOf(wallId: string) {
+  store.set(store.get().filter((p) => p.wallId !== wallId));
 }
 
 /** 최신 글이 앞. undefined = 아직 읽기 전 */

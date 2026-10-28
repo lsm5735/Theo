@@ -2,10 +2,10 @@
 
 import { useT } from "@/contexts/LangContext";
 import { DictKey } from "@/lib/translations";
-import { MATERIAL_SLOTS, MyMaterial, isValidContact, normalizeUrl } from "@/lib/myAtelier";
+import { MATERIAL_SLOTS, MAX_MATERIALS, MyMaterial, isValidContact, normalizeUrl } from "@/lib/myAtelier";
 
 export const INPUT_CLS =
-  "w-full border-2 border-navy-200 rounded-xl px-4 py-3 text-sm text-navy-900 placeholder:text-navy-300 bg-paper outline-none focus:border-navy-600 transition-colors";
+  "w-full min-h-11 border border-line-strong rounded-xl px-4 py-3 text-[15px] text-ink placeholder:text-muted/60 bg-card outline-none focus:border-ink transition-colors";
 export const TEXTAREA_CLS = `${INPUT_CLS} resize-none leading-[1.85]`;
 
 export type Errors = Record<string, string>;
@@ -18,11 +18,19 @@ export interface BasicDraft {
   sns: string;
   portfolio: string;
   artistNote: string;
-  materials: MyMaterial[]; // 항상 MATERIAL_SLOTS 길이
+  materials: MyMaterial[]; // 최소 MATERIAL_SLOTS 칸, "+ 재료 추가"로 늘어남
 }
 
+const EMPTY_MATERIAL: MyMaterial = { link: "", reason: "" };
+
 export function padMaterials(materials: MyMaterial[]): MyMaterial[] {
-  return Array.from({ length: MATERIAL_SLOTS }, (_, i) => materials[i] ?? { link: "", reason: "" });
+  const length = Math.max(MATERIAL_SLOTS, materials.length);
+  return Array.from({ length }, (_, i) => materials[i] ?? EMPTY_MATERIAL);
+}
+
+/** 칸 수가 바뀌면 재료 칸 에러는 인덱스가 어긋나므로 지움 */
+export function clearMaterialErrors(errors: Errors): Errors {
+  return Object.fromEntries(Object.entries(errors).filter(([k]) => !k.startsWith("mat_")));
 }
 
 /** 저장용: 빈 칸 제거 + 링크 정규화 */
@@ -161,9 +169,14 @@ export function MaterialFields({
 }: {
   materials: MyMaterial[];
   errors: Errors;
-  onChange: (index: number, field: keyof MyMaterial, value: string) => void;
+  onChange: (materials: MyMaterial[]) => void;
 }) {
   const t = useT();
+
+  function update(index: number, field: keyof MyMaterial, value: string) {
+    onChange(materials.map((m, i) => (i === index ? { ...m, [field]: value } : m)));
+  }
+
   return (
     <>
       <p className="text-[14px] text-muted leading-[1.8]" style={{ wordBreak: "keep-all" }}>
@@ -171,20 +184,36 @@ export function MaterialFields({
       </p>
       {errors.materials && <p data-error="true" className="text-red-500 text-xs">{errors.materials}</p>}
       {materials.map((m, i) => (
-        <div key={i} className="rounded-xl border-2 border-navy-100 p-4 space-y-3">
-          <p className="text-[13px] font-bold text-navy-700">{t("ob_mat_n")} {i + 1}</p>
+        <div key={i} className="rounded-2xl bg-surface-card p-4 space-y-3">
+          <div className="flex items-center justify-between">
+            <p className="text-[13px] font-bold text-navy-700">{t("ob_mat_n")} {i + 1}</p>
+            {materials.length > 1 && (
+              <button type="button" onClick={() => onChange(materials.filter((_, idx) => idx !== i))}
+                className="text-[12px] text-navy-400 hover:text-red-500 transition-colors">
+                {t("ob_mat_remove")}
+              </button>
+            )}
+          </div>
           <Field error={errors[`mat_link_${i}`]}>
             <input type="url" inputMode="url" value={m.link}
-              onChange={(e) => onChange(i, "link", e.target.value)}
+              onChange={(e) => update(i, "link", e.target.value)}
               placeholder={t("ob_mat_link_ph")} className={INPUT_CLS} />
           </Field>
           <Field label={t("ob_mat_reason")} error={errors[`mat_reason_${i}`]}>
             <textarea value={m.reason}
-              onChange={(e) => onChange(i, "reason", e.target.value)}
+              onChange={(e) => update(i, "reason", e.target.value)}
               placeholder={t("ob_mat_reason_ph")} rows={3} className={TEXTAREA_CLS} />
           </Field>
         </div>
       ))}
+      {materials.length < MAX_MATERIALS ? (
+        <button type="button" onClick={() => onChange([...materials, EMPTY_MATERIAL])}
+          className="w-full rounded-xl border border-dashed border-line-strong py-3 text-[13px] font-bold text-navy-600 hover:border-navy-400 hover:text-navy-800 transition-colors">
+          {t("ob_mat_add")}
+        </button>
+      ) : (
+        <p className="text-center text-[12px] text-navy-400">{t("ob_mat_max_pre")}{MAX_MATERIALS}{t("ob_mat_max_post")}</p>
+      )}
     </>
   );
 }
