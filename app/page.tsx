@@ -165,165 +165,46 @@ export default function Home() {
 
           <div className="space-y-20 md:space-y-28">
 
-            {/* Step 01 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div data-sr="right">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="nb-step">01</div>
-                  <span className="text-[11px] tracking-[0.18em] text-navy-400 font-bold uppercase">{t("how_s1_label")}</span>
-                </div>
-                <h3 className="font-semibold text-[28px] md:text-[36px] text-ink mb-4 leading-[1.15]"
-                  style={{ wordBreak: "keep-all", letterSpacing: "-0.02em" }}>
-                  {t("how_s1_h3")}
-                </h3>
-                <p className="text-[16px] text-body leading-[1.85] max-w-[420px]" style={{ wordBreak: "keep-all" }}>
-                  {t("how_s1_body_pre")} <strong className="text-ink font-semibold">{t("how_s1_body_em1")}</strong>{t("how_s1_body_mid")} {t("how_s1_body_em2") && <strong className="text-ink font-semibold">{t("how_s1_body_em2")}</strong>}{t("how_s1_body_post")}
-                </p>
-              </div>
-              <div data-sr="left" data-d="1" className="clay-card bg-clay-ochre flex flex-col gap-3">
-                {[
-                  { grad: "linear-gradient(145deg,var(--navy-700),var(--navy-900))", title: "코발트블루 유화물감 세트", note: '"밤 연작의 주조색이에요"', price: "32,000원" },
-                  { grad: "linear-gradient(145deg,#D8CBAA,#9B8A63)", title: "캔버스 천 10호 ×3", note: '"다음 장면의 바탕입니다"', price: "28,000원" },
-                ].map((item) => (
-                  <div key={item.title} className="soft-surface rounded-2xl p-3.5">
-                    <div className="flex gap-3 items-center">
-                      <div className="w-[46px] h-[46px] rounded-[9px] shrink-0" style={{ background: item.grad }} />
-                      <div>
-                        <h6 className="text-[12.5px] font-black text-navy-900">{item.title}</h6>
-                        <p className="font-myeongjo text-[11px] text-muted mt-0.5">{item.note}</p>
-                        <p className="font-black text-[13px] text-navy-700 mt-0.5">{item.price}</p>
-                      </div>
+            {[
+              {
+                n: "01", label: t("how_s1_label"), h3: t("how_s1_h3"), img: "/how/step-1.jpg",
+                body: <>{t("how_s1_body_pre")} <strong className="text-ink font-semibold">{t("how_s1_body_em1")}</strong>{t("how_s1_body_mid")}</>,
+              },
+              { n: "02", label: t("how_s2_label"), h3: t("how_s2_h3"), img: "/how/step-2.jpg", body: <>{t("how_s2_body")}</> },
+              {
+                n: "03", label: t("how_s3_label"), h3: t("how_s3_h3"), img: "/how/step-3.jpg",
+                body: <>{t("how_s3_body_pre")} <strong className="text-ink font-semibold">{t("how_s3_body_em1")}</strong>{t("how_s3_body_post")}</>,
+              },
+              {
+                n: "04", label: t("how_s4_label"), h3: t("how_s4_h3"), img: "/how/step-4.jpg",
+                body: <>{t("how_s4_body_pre")} <strong className="text-ink font-semibold">{t("how_s4_body_em1")}</strong> {t("how_s4_body_mid")} <strong className="text-ink font-semibold">{t("how_s4_body_em2")}</strong>{t("how_s4_body_post")}</>,
+              },
+            ].map((step, i) => {
+              // 사진은 좌우로 번갈아 배치 (모바일은 글 → 사진 순)
+              const photoLeft = i % 2 === 1;
+              return (
+                <div key={step.n} className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+                  <div data-sr={photoLeft ? "left" : "right"} className={photoLeft ? "md:order-2" : ""}>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="nb-step">{step.n}</div>
+                      <span className="text-[11px] tracking-[0.18em] text-navy-400 font-bold uppercase">{step.label}</span>
                     </div>
+                    <h3 className="font-semibold text-[28px] md:text-[36px] text-ink mb-4 leading-[1.15]"
+                      style={{ wordBreak: "keep-all", letterSpacing: "-0.02em" }}>
+                      {step.h3}
+                    </h3>
+                    <p className="text-[16px] text-body leading-[1.85] max-w-[420px]" style={{ wordBreak: "keep-all" }}>
+                      {step.body}
+                    </p>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Step 02 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div data-sr="right" data-d="1" className="order-2 md:order-1 clay-card bg-clay-pink flex flex-col gap-3">
-                <div className="soft-surface rounded-2xl p-4">
-                  <p className="text-[9.5px] tracking-[0.16em] text-navy-700 font-black mb-2 uppercase">DEAR GOGH</p>
-                  <p className="font-myeongjo text-[12.5px] text-navy-900 leading-[1.85]">
-                    "밤 연작 응원해요. 이 파랑이 다음 그림의 하늘이 되면 좋겠어요."
-                  </p>
-                </div>
-                <div className="soft-surface rounded-2xl p-3.5">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                      style={{ background: "var(--sv)" }}>
-                      <svg width="14" height="14" viewBox="0 0 36 36" fill="none">
-                        {[0,45,90,135,180,225,270,315].map((deg) => (
-                          <ellipse key={deg} cx="18" cy="8" rx="3" ry="5.5" fill="#07223C" opacity={0.7} transform={`rotate(${deg} 18 18)`} />
-                        ))}
-                        <circle cx="18" cy="18" r="6.5" fill="#07223C" />
-                      </svg>
-                    </div>
-                    <span className="text-[11px] font-black" style={{ color: "var(--gold-text)" }}>해바라기 배지까지</span>
-                    <span className="ml-auto text-[10.5px] text-muted">8,000원</span>
+                  <div data-sr={photoLeft ? "right" : "left"} data-d="1"
+                    className={`rounded-[24px] overflow-hidden aspect-[4/3] bg-surface-card ${photoLeft ? "md:order-1" : ""}`}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={step.img} alt="" className="w-full h-full object-cover" loading="lazy" />
                   </div>
                 </div>
-              </div>
-              <div data-sr="left" className="order-1 md:order-2">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="nb-step">02</div>
-                  <span className="text-[11px] tracking-[0.18em] text-navy-400 font-bold uppercase">{t("how_s2_label")}</span>
-                </div>
-                <h3 className="font-semibold text-[28px] md:text-[36px] text-ink mb-4 leading-[1.15]"
-                  style={{ wordBreak: "keep-all", letterSpacing: "-0.02em" }}>
-                  {t("how_s2_h3")}
-                </h3>
-                <p className="text-[16px] text-body leading-[1.85] max-w-[420px]" style={{ wordBreak: "keep-all" }}>
-                  {t("how_s2_body")}
-                </p>
-              </div>
-            </div>
-
-            {/* Step 03 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div data-sr="right">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="nb-step">03</div>
-                  <span className="text-[11px] tracking-[0.18em] text-navy-400 font-bold uppercase">{t("how_s3_label")}</span>
-                </div>
-                <h3 className="font-semibold text-[28px] md:text-[36px] text-ink mb-4 leading-[1.15]"
-                  style={{ wordBreak: "keep-all", letterSpacing: "-0.02em" }}>
-                  {t("how_s3_h3")}
-                </h3>
-                <p className="text-[16px] text-body leading-[1.85] max-w-[420px]" style={{ wordBreak: "keep-all" }}>
-                  {t("how_s3_body_pre")} <strong className="text-ink font-semibold">{t("how_s3_body_em1")}</strong> {t("how_s3_body_mid")} <strong className="text-ink font-semibold">{t("how_s3_body_em2")}</strong>
-                  {t("how_s3_body_post")}
-                </p>
-              </div>
-              <div data-sr="left" data-d="1" className="clay-card bg-clay-teal flex flex-col gap-3">
-                <div className="soft-surface rounded-2xl p-3.5">
-                  <div className="flex items-center gap-0 mt-1">
-                    {[true, true, true, false].map((on, i) => (
-                      <div key={i} className="flex items-center flex-1 last:flex-none">
-                        <div className="w-[12px] h-[12px] rounded-full shrink-0"
-                          style={{ background: on ? "var(--sv)" : "var(--navy-200)", border: on ? "2px solid var(--sv-deep)" : "2px solid var(--navy-300)" }} />
-                        {i < 3 && <div className="h-[2.5px] flex-1" style={{ background: on ? "var(--sv-deep)" : "var(--navy-200)" }} />}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex justify-between text-[9.5px] mt-2.5 font-semibold">
-                    <span className="text-muted">{t("how_s3_step1")}</span>
-                    <span className="text-muted">{t("how_s3_step2")}</span>
-                    <span className="text-navy-800">{t("how_s3_step3")}</span>
-                    <span className="text-muted">{t("how_s3_step4")}</span>
-                  </div>
-                </div>
-                <div className="soft-surface rounded-2xl p-3.5">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-[9.5px] text-navy-400 font-semibold">2026.08.14</span>
-                    <div className="w-[22px] h-[27px] rounded-sm"
-                      style={{ background: "var(--sv)" }} />
-                  </div>
-                  <p className="font-myeongjo text-[11.5px] font-bold text-navy-900 mb-1">지수 테오님께,</p>
-                  <p className="font-myeongjo text-[11.5px] text-navy-900 leading-[1.85]">
-                    보내주신 코발트블루가 어제 도착했습니다. 뚜껑을 열자마자 세 번째 캔버스의 하늘부터 올렸어요.
-                  </p>
-                  <div className="rounded-lg mt-2 h-[44px]"
-                    style={{ background: "linear-gradient(155deg,#061A2E,var(--navy-700))" }} />
-                </div>
-              </div>
-            </div>
-
-            {/* Step 04 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div data-sr="right" data-d="1" className="order-2 md:order-1 clay-card bg-clay-mint flex flex-col gap-3">
-                <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid var(--line)" }}>
-                  <div className="relative" style={{ height: "104px", background: "linear-gradient(150deg,#061A2E,var(--navy-700) 60%,var(--navy-500))" }}>
-                    <span className="absolute bottom-[9px] left-3 text-[10.5px] font-bold" style={{ color: "rgba(250,240,202,.9)" }}>밤 연작 No.3 · 완성</span>
-                  </div>
-                  <div className="p-3" style={{ background: "var(--card)" }}>
-                    <p className="font-myeongjo text-[11.5px] text-muted leading-[1.7]">재료 후원 — 지수, 하나, 무늬</p>
-                  </div>
-                </div>
-                <div className="soft-surface rounded-2xl p-3.5">
-                  <div className="flex items-center gap-2.5">
-                    <span className="nb-tag text-[9px]">{t("how_s4_demo_studio")}</span>
-                    <span className="ml-auto text-[10.5px] text-muted font-semibold">{t("how_s4_demo_guest")}</span>
-                  </div>
-                </div>
-              </div>
-              <div data-sr="left" className="order-1 md:order-2">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="nb-step">04</div>
-                  <span className="text-[11px] tracking-[0.18em] text-navy-400 font-bold uppercase">{t("how_s4_label")}</span>
-                </div>
-                <h3 className="font-semibold text-[28px] md:text-[36px] text-ink mb-4 leading-[1.15]"
-                  style={{ wordBreak: "keep-all", letterSpacing: "-0.02em" }}>
-                  {t("how_s4_h3")}
-                </h3>
-                <p className="text-[16px] text-body leading-[1.85] max-w-[420px]" style={{ wordBreak: "keep-all" }}>
-                  {t("how_s4_body_pre")} <strong className="text-ink font-semibold">{t("how_s4_body_em1")}</strong>{t("how_s4_body_mid")} <strong className="text-ink font-semibold">{t("how_s4_body_em2")}</strong>
-                  {t("how_s4_body_mid2")} <strong className="text-ink font-semibold">{t("how_s4_body_em3")}</strong>
-                  {t("how_s4_body_post")}
-                </p>
-              </div>
-            </div>
-
+              );
+            })}
           </div>
         </div>
       </section>
