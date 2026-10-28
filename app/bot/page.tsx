@@ -203,7 +203,7 @@ export default function BotPage() {
           <p data-sr="fade" className="text-xs font-semibold tracking-[0.22em] text-navy-400 uppercase mb-3">
             {t("bot_label")}
           </p>
-          <h1 data-sr="up" className="text-2xl font-bold text-navy-900 leading-snug">
+          <h1 data-sr="up" className="text-2xl font-bold text-ink leading-snug">
             {t("bot_h1a")}{" "}
             {t("bot_h1b")}
           </h1>
@@ -224,7 +224,6 @@ export default function BotPage() {
                     </div>
                     <div
                       className="bg-card border border-line rounded-2xl rounded-tl-sm px-4 py-3.5"
-                      style={{ boxShadow: "0 4px 14px rgba(13,59,102,.05)" }}
                     >
                       <p className="text-[14px] text-navy-900 leading-[1.8] whitespace-pre-line">
                         {msg.text}
@@ -257,7 +256,7 @@ export default function BotPage() {
                   )}
                 </div>
               ) : (
-                <div className="bg-navy-800 text-chiffon rounded-2xl rounded-tr-sm px-4 py-3 max-w-[75%]">
+                <div className="bg-navy-900 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[75%]">
                   <p className="text-[14px] leading-[1.7]">{msg.text}</p>
                 </div>
               )}
@@ -272,7 +271,6 @@ export default function BotPage() {
               </div>
               <div
                 className="bg-card border border-line rounded-2xl rounded-tl-sm px-6 py-5"
-                style={{ boxShadow: "0 4px 14px rgba(13,59,102,.05)" }}
               >
                 <div className="flex flex-col items-center gap-3">
                   {/* 이중 나선: 네이비 바깥고리(시계방향) + 골드 안쪽고리(반시계) */}
@@ -310,7 +308,6 @@ export default function BotPage() {
                 {/* 봇 텍스트 */}
                 <div
                   className="bg-card border border-line rounded-2xl rounded-tl-sm px-4 py-3.5"
-                  style={{ boxShadow: "0 4px 14px rgba(13,59,102,.05)" }}
                 >
                   <p className="text-[14px] text-navy-900 leading-[1.8]">
                     {t("bot_found")}
@@ -326,7 +323,6 @@ export default function BotPage() {
                     <div
                       key={r.artistId}
                       className="bg-card border border-line rounded-2xl overflow-hidden"
-                      style={{ boxShadow: "0 4px 14px rgba(13,59,102,.05)" }}
                     >
                       {/* 대표 작품 이미지 */}
                       {repArtwork && (
@@ -407,7 +403,7 @@ export default function BotPage() {
                     </button>
                     <Link
                       href="/atelier"
-                      className="text-sm font-bold bg-navy-800 text-chiffon px-4 py-2 rounded-xl hover:bg-navy-700 transition-colors"
+                      className="text-sm font-bold bg-navy-900 text-white px-4 py-2 rounded-xl hover:bg-navy-800 transition-colors"
                     >
                       {t("bot_all")}
                     </Link>
@@ -425,7 +421,6 @@ export default function BotPage() {
           <form
             onSubmit={handleTextSubmit}
             className="mt-8 flex gap-2 bg-card border border-navy-200 rounded-xl p-2"
-            style={{ boxShadow: "0 4px 14px rgba(13,59,102,.06)" }}
           >
             <input
               type="text"
@@ -437,7 +432,7 @@ export default function BotPage() {
             <button
               type="submit"
               disabled={!inputText.trim()}
-              className="shrink-0 bg-navy-800 text-chiffon text-sm font-bold px-4 py-2 rounded-lg hover:bg-navy-700 transition-colors disabled:opacity-40"
+              className="shrink-0 bg-navy-900 text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-navy-800 transition-colors disabled:opacity-40"
             >
               전송
             </button>

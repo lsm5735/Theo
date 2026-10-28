@@ -80,10 +80,8 @@ function FilterChip({
   return (
     <button
       onClick={onClick}
-      className={`shrink-0 text-[13px] font-semibold px-4 py-1.5 rounded-full border transition-all duration-150 cursor-pointer ${
-        active
-          ? "bg-navy-800 text-white border-navy-800 shadow-sm"
-          : "bg-white text-navy-700 border-navy-200 hover:border-navy-500 hover:text-navy-800"
+      className={`shrink-0 text-[14px] font-medium px-4 py-2 rounded-full transition-colors duration-150 cursor-pointer ${
+        active ? "bg-surface-card text-ink" : "text-muted hover:text-ink"
       }`}
     >
       {label}
@@ -208,7 +206,7 @@ export default function AtelierClient({
       {myAteliers.length > 0 && (
         <section className="max-w-[1080px] mx-auto px-5 md:px-8 pb-10">
           <div className="flex items-baseline justify-between mb-4">
-            <h2 className="text-lg font-black text-navy-800">{t("ma_local_title")}</h2>
+            <h2 className="text-[22px] font-semibold text-ink">{t("ma_local_title")}</h2>
             <span className="text-xs text-muted">{t("ma_local_note")}</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">

@@ -12,7 +12,7 @@ import { MyAtelier, deleteMyAtelier, hostOf, saveMyAtelier, snsHref, useMyAtelie
 const noopSubscribe = () => () => {};
 const SETTINGS_TABS: SettingsTab[] = ["profile", "note", "materials", "project"];
 
-const CARD_SHADOW = { boxShadow: "0 8px 22px rgba(23,29,43,.06)" };
+const CARD_SHADOW = {};
 
 export default function MyAtelierPage() {
   const t = useT();
@@ -100,7 +100,7 @@ export default function MyAtelierPage() {
         {(atelier.genre || atelier.media.length > 0) && (
           <div className="absolute bottom-5 left-5 md:left-8 flex flex-wrap gap-2">
             {atelier.genre && (
-              <span className="bg-navy-800 text-chiffon text-xs font-semibold px-3 py-1.5 rounded-full">{atelier.genre}</span>
+              <span className="bg-navy-900 text-white text-xs font-semibold px-3 py-1.5 rounded-full">{atelier.genre}</span>
             )}
             {atelier.media.map((m) => (
               <span key={m} className="bg-white/20 text-white text-xs font-medium px-3 py-1.5 rounded-full backdrop-blur-sm">{m}</span>
@@ -112,7 +112,7 @@ export default function MyAtelierPage() {
       <div className="max-w-[1080px] mx-auto px-5 md:px-8">
         {/* 프로필 카드 */}
         <div className="relative -mt-12 mb-10">
-          <div className="bg-card rounded-xl p-6 border border-line" style={CARD_SHADOW}>
+          <div className="bg-card rounded-2xl p-6 border border-line" style={CARD_SHADOW}>
             <div className="flex items-start gap-4">
               <button
                 onClick={() => setSettingsTab("profile")}
@@ -127,7 +127,7 @@ export default function MyAtelierPage() {
                 )}
               </button>
               <div className="flex-1 min-w-0 pt-1">
-                <h1 className="text-2xl font-black text-navy-800 mb-1">{atelier.name}</h1>
+                <h1 className="text-2xl font-semibold text-ink mb-1">{atelier.name}</h1>
                 {atelier.oneLiner ? (
                   <p className="font-myeongjo text-navy-600 text-sm mb-2">{atelier.oneLiner}</p>
                 ) : (
@@ -147,9 +147,9 @@ export default function MyAtelierPage() {
           <div className="space-y-10 min-w-0">
             {/* 프로젝트 */}
             <section>
-              <h2 className="text-lg font-black text-navy-800 mb-4">{t("ma_project_title")}</h2>
+              <h2 className="text-[22px] font-semibold text-ink mb-4">{t("ma_project_title")}</h2>
               {project ? (
-                <div className="bg-card rounded-xl overflow-hidden border border-line" style={CARD_SHADOW}>
+                <div className="bg-card rounded-2xl overflow-hidden border border-line" style={CARD_SHADOW}>
                   {project.image && (
                     <div className="relative h-48">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -176,7 +176,7 @@ export default function MyAtelierPage() {
                   </div>
                 </div>
               ) : (
-                <div className="rounded-xl border-2 border-dashed border-navy-200 p-8 text-center">
+                <div className="rounded-2xl border border-dashed border-line-strong p-8 text-center">
                   <p className="font-bold text-navy-700 mb-1.5">{t("ma_project_empty")}</p>
                   <p className="text-[13px] text-muted leading-[1.7] mb-5 max-w-[360px] mx-auto" style={{ wordBreak: "keep-all" }}>
                     {t("ma_project_empty_sub")}
@@ -191,8 +191,8 @@ export default function MyAtelierPage() {
 
             {/* 작가노트 */}
             <section>
-              <h2 className="text-lg font-black text-navy-800 mb-4">{t("ma_note_title")}</h2>
-              <div className="bg-card rounded-xl p-6 border border-line" style={CARD_SHADOW}>
+              <h2 className="text-[22px] font-semibold text-ink mb-4">{t("ma_note_title")}</h2>
+              <div className="bg-card rounded-2xl p-6 border border-line" style={CARD_SHADOW}>
                 <p className="text-[15px] text-navy-900 leading-[2.0] font-myeongjo whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
                   {atelier.artistNote}
                 </p>
@@ -202,10 +202,10 @@ export default function MyAtelierPage() {
             {/* 필요한 재료 */}
             {atelier.materials.length > 0 && (
               <section>
-                <h2 className="text-lg font-black text-navy-800 mb-4">{t("ma_materials_title")}</h2>
+                <h2 className="text-[22px] font-semibold text-ink mb-4">{t("ma_materials_title")}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {atelier.materials.map((m, i) => (
-                    <div key={i} className="rounded-xl border border-line bg-card p-4 flex flex-col" style={CARD_SHADOW}>
+                    <div key={i} className="rounded-2xl border border-line bg-card p-4 flex flex-col" style={CARD_SHADOW}>
                       <p className="text-[11px] font-bold tracking-[0.14em] uppercase text-navy-400 mb-2 truncate">
                         {hostOf(m.link)}
                       </p>
@@ -229,7 +229,7 @@ export default function MyAtelierPage() {
           {/* 오른쪽 */}
           <div className="lg:sticky lg:top-24 lg:self-start space-y-4">
             {(sns || atelier.portfolio) && (
-              <div className="bg-card rounded-xl p-5 border border-line">
+              <div className="bg-card rounded-2xl p-5 border border-line">
                 <p className="text-xs font-bold text-navy-700 mb-3">{t("ma_links_title")}</p>
                 <div className="space-y-2.5 text-[13px]">
                   {sns && (
@@ -249,7 +249,7 @@ export default function MyAtelierPage() {
             )}
 
             {infoRows.length > 0 && (
-              <div className="bg-card rounded-xl p-5 border border-line">
+              <div className="bg-card rounded-2xl p-5 border border-line">
                 <p className="text-xs font-bold text-navy-700 mb-3">{t("ma_info_title")}</p>
                 <div className="space-y-2.5 text-[13px]">
                   {infoRows.map((r) => (

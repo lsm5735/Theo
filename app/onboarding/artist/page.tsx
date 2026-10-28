@@ -85,7 +85,7 @@ export default function ArtistOnboarding() {
         </Link>
 
         <p className="text-xs font-bold tracking-[0.22em] text-navy-400 uppercase mb-3">{t("ob_label")}</p>
-        <h1 className="text-3xl md:text-4xl font-black text-navy-900 leading-[1.2] mb-3"
+        <h1 className="text-3xl md:text-4xl font-semibold text-ink leading-[1.2] mb-3"
           style={{ letterSpacing: "-0.02em" }}>
           {t("ob_h1a")}<br />{t("ob_h1b")}
         </h1>
@@ -94,7 +94,7 @@ export default function ArtistOnboarding() {
         </p>
 
         {existingCount > 0 && (
-          <div className="rounded-xl border-2 border-navy-200 bg-card px-5 py-4 mb-6">
+          <div className="rounded-2xl border border-line-strong bg-card px-5 py-4 mb-6">
             <p className="text-[13px] text-navy-700 leading-[1.7] mb-2" style={{ wordBreak: "keep-all" }}>
               {t("ob_exists_pre")}{existingCount}{t("ob_exists_post")}
             </p>

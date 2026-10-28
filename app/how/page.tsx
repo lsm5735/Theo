@@ -209,29 +209,30 @@ function StepCard({ s, index, accent }: { s: typeof THEO_STEPS[0]; index: number
     <div className="relative flex gap-5 md:gap-8">
       {/* 세로 타임라인 선 */}
       {index < 4 && (
-        <div className="absolute left-[19px] top-[52px] bottom-0 w-px bg-navy-100" style={{ zIndex: 0 }} />
+        <div className="absolute left-[19px] top-[52px] bottom-0 w-px bg-line" style={{ zIndex: 0 }} />
       )}
 
       {/* 스텝 번호 원 */}
       <div
-        className="relative z-10 w-10 h-10 rounded-full shrink-0 flex items-center justify-center text-[11px] font-black"
-        style={{ background: accent === "gold" ? "var(--sv)" : "var(--navy-800)", color: accent === "gold" ? "var(--ink)" : "var(--chiffon)" }}
+        className={`relative z-10 w-10 h-10 rounded-full shrink-0 flex items-center justify-center text-[12px] font-semibold text-ink ${
+          accent === "gold" ? "bg-clay-ochre" : "bg-clay-lavender"
+        }`}
       >
         {s.step}
       </div>
 
       {/* 내용 */}
       <div className="flex-1 pb-10">
-        <p className="text-[10.5px] font-bold tracking-[0.18em] uppercase mb-1" style={{ color: accent === "gold" ? "var(--sv-deep)" : "var(--navy-400)" }}>
+        <p className="text-[11px] font-semibold tracking-[0.14em] uppercase mb-1.5 text-muted">
           {s.label}
         </p>
-        <h3 className="text-[17px] font-bold text-navy-900 leading-snug mb-2.5">{s.title}</h3>
-        <p className="text-[13.5px] text-navy-600 leading-[1.9] mb-3">{s.body}</p>
+        <h3 className="text-[20px] font-semibold text-ink leading-snug mb-2.5" style={{ letterSpacing: "-0.02em" }}>{s.title}</h3>
+        <p className="text-[15px] text-body leading-[1.8] mb-3" style={{ wordBreak: "keep-all" }}>{s.body}</p>
 
         <ul className="space-y-1.5 mb-4">
           {s.detail.map((d) => (
-            <li key={d} className="flex items-start gap-2 text-[12.5px] text-navy-700">
-              <span className="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: accent === "gold" ? "var(--sv-deep)" : "var(--navy-500)" }} />
+            <li key={d} className="flex items-start gap-2 text-[13.5px] text-body">
+              <span className="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "var(--line-strong)" }} />
               {d}
             </li>
           ))}
@@ -240,8 +241,7 @@ function StepCard({ s, index, accent }: { s: typeof THEO_STEPS[0]; index: number
         {s.cta && (
           <Link
             href={s.cta.href}
-            className="inline-flex items-center gap-1.5 text-[12.5px] font-bold border rounded-lg px-3.5 py-2 transition-colors hover:bg-navy-800 hover:text-chiffon hover:border-navy-800"
-            style={{ borderColor: "var(--navy-300)", color: "var(--navy-700)" }}
+            className="inline-flex items-center gap-1.5 text-[13px] font-semibold border border-line-strong text-ink rounded-xl px-4 py-2.5 transition-colors hover:border-ink"
           >
             {s.cta.label}
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
@@ -289,10 +289,10 @@ export default function HowPage() {
 
       {/* 히어로 */}
       <section className="max-w-[1080px] mx-auto px-5 md:px-8 pt-14 pb-10">
-        <p data-sr="fade" className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">
+        <p data-sr="fade" className="nb-tag mb-5">
           HOW IT WORKS
         </p>
-        <h1 data-sr="up" className="text-3xl md:text-[40px] font-bold text-navy-900 leading-tight mb-3">
+        <h1 data-sr="up" className="text-[34px] md:text-[52px] font-semibold text-ink leading-[1.1] mb-3">
           이용방법 안내
         </h1>
         <p data-sr="up" data-d="1" className="text-[14px] text-navy-500 leading-relaxed max-w-[520px]">
@@ -333,10 +333,10 @@ export default function HowPage() {
             <div
               data-sr="up"
               className="rounded-2xl border border-line p-6 md:p-8 mb-8"
-              style={{ background: "var(--card)", boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
+              style={{ background: "var(--card)" }}
             >
               <p className="text-[11px] font-bold tracking-[0.2em] uppercase mb-6"
-                style={{ color: tab === "theo" ? "var(--sv-deep)" : "var(--navy-400)" }}>
+                style={{ color: "var(--muted)" }}>
                 {tab === "theo" ? "테오(후원자) 이용 흐름" : "고흐(작가) 이용 흐름"}
               </p>
               {steps.map((s, i) => (
@@ -349,7 +349,7 @@ export default function HowPage() {
               data-sr="up"
               data-d="1"
               className="rounded-2xl border border-line p-6 md:p-8"
-              style={{ background: "var(--card)", boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
+              style={{ background: "var(--card)" }}
             >
               <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-navy-400 mb-5">자주 묻는 질문</p>
               {faq.map((item) => (
@@ -368,9 +368,9 @@ export default function HowPage() {
                   data-sr="fade"
                   data-d="1"
                   className="rounded-2xl border border-line p-5"
-                  style={{ background: "var(--card)", boxShadow: "0 4px 14px rgba(13,59,102,.06)" }}
+                  style={{ background: "var(--card)" }}
                 >
-                  <p className="text-[11px] font-bold tracking-[0.18em] uppercase mb-4" style={{ color: "var(--sv-deep)" }}>테오의 특권</p>
+                  <p className="text-[11px] font-semibold tracking-[0.14em] uppercase mb-4 text-muted">테오의 특권</p>
                   {[
                     "작품 캡션에 후원자 이름 기재",
                     "작가 담벼락에 글·사진 남기기",
@@ -379,32 +379,15 @@ export default function HowPage() {
                     "씨앗→해바라기→밀밭→별밤 배지",
                   ].map((text) => (
                     <div key={text} className="flex items-start gap-2.5 mb-3 last:mb-0">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "var(--sv-deep)" }} />
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "var(--clay-ochre)" }} />
                       <span className="text-[13px] text-navy-700 leading-relaxed">{text}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* 비용 구조 */}
-                <div
-                  data-sr="fade"
-                  data-d="2"
-                  className="rounded-2xl border border-line p-5"
-                  style={{ background: "var(--card)", boxShadow: "0 4px 14px rgba(13,59,102,.06)" }}
-                >
-                  <p className="text-[11px] font-bold tracking-[0.18em] uppercase text-navy-400 mb-4">비용 구조</p>
-                  <div className="space-y-2.5">
-                    <div className="flex justify-between text-[13px]">
-                      <span className="text-navy-500">재료</span>
-                      <span className="font-bold text-navy-800">작가에게 전달</span>
-                    </div>
-                  </div>
-                </div>
-
                 <Link
                   href="/atelier"
-                  className="block w-full text-center text-[13.5px] font-bold bg-navy-800 text-chiffon py-3.5 rounded-xl hover:bg-navy-700 transition-colors"
-                  style={{ boxShadow: "0 4px 14px rgba(13,59,102,.2)" }}
+                  className="block w-full text-center text-[13.5px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
                 >
                   아틀리에에서 작가 찾기 →
                 </Link>
@@ -416,7 +399,7 @@ export default function HowPage() {
                   data-sr="fade"
                   data-d="1"
                   className="rounded-2xl border border-line p-5"
-                  style={{ background: "var(--card)", boxShadow: "0 4px 14px rgba(13,59,102,.06)" }}
+                  style={{ background: "var(--card)" }}
                 >
                   <p className="text-[11px] font-bold tracking-[0.18em] uppercase text-navy-400 mb-4">작가에게 좋은 이유</p>
                   {[
@@ -438,7 +421,7 @@ export default function HowPage() {
                   data-sr="fade"
                   data-d="2"
                   className="rounded-2xl border border-line p-5"
-                  style={{ background: "var(--card)", boxShadow: "0 4px 14px rgba(13,59,102,.06)" }}
+                  style={{ background: "var(--card)" }}
                 >
                   <p className="text-[11px] font-bold tracking-[0.18em] uppercase text-navy-400 mb-4">수익 구조</p>
                   <div className="space-y-2.5">
@@ -455,8 +438,7 @@ export default function HowPage() {
 
                 <Link
                   href="/onboarding/artist"
-                  className="block w-full text-center text-[13.5px] font-bold bg-navy-800 text-chiffon py-3.5 rounded-xl hover:bg-navy-700 transition-colors"
-                  style={{ boxShadow: "0 4px 14px rgba(13,59,102,.2)" }}
+                  className="block w-full text-center text-[13.5px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
                 >
                   작가로 시작하기 →
                 </Link>

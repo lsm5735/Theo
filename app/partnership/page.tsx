@@ -55,13 +55,13 @@ export default function PartnershipPage() {
           <div className="max-w-[480px] w-full text-center">
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
-              style={{ background: "var(--navy-800)", boxShadow: "0 8px 22px rgba(13,59,102,.25)" }}
+              style={{ background: "var(--navy-800)" }}
             >
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--chiffon)" strokeWidth="2.5" strokeLinecap="round">
                 <path d="M20 6 9 17l-5-5" />
               </svg>
             </div>
-            <h1 className="text-[26px] font-bold text-navy-900 mb-3">문의가 접수됐습니다</h1>
+            <h1 className="text-[26px] font-bold text-ink mb-3">문의가 접수됐습니다</h1>
             <p className="text-[14px] text-navy-500 leading-[1.85] mb-2">
               <b className="text-navy-800">{company}</b> · <b className="text-navy-800">{name}</b> 담당자님,
             </p>
@@ -71,7 +71,7 @@ export default function PartnershipPage() {
             <div className="flex flex-col gap-2.5">
               <Link
                 href="/"
-                className="block w-full text-center text-[13.5px] font-bold bg-navy-800 text-chiffon py-3.5 rounded-xl hover:bg-navy-700 transition-colors"
+                className="block w-full text-center text-[13.5px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
               >
                 홈으로 돌아가기
               </Link>
@@ -87,13 +87,13 @@ export default function PartnershipPage() {
       <Header />
 
       <div className="max-w-[600px] w-full mx-auto px-5 md:px-8 py-10">
-        <Link href="/" className="text-[12.5px] text-navy-400 hover:text-navy-700 transition-colors mb-8 inline-block">
+        <Link href="/" className="text-[13px] text-muted hover:text-ink transition-colors mb-8 block w-fit">
           ← 홈으로
         </Link>
 
-        <p data-sr="fade" className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">PARTNERSHIP</p>
-        <h1 data-sr="up" className="text-[28px] font-bold text-navy-900 leading-snug mb-2">제휴 문의</h1>
-        <p data-sr="up" data-d="1" className="text-[13.5px] text-navy-500 leading-relaxed mb-10">
+        <p data-sr="fade" className="nb-tag mb-5">PARTNERSHIP</p>
+        <h1 data-sr="up" className="text-[34px] md:text-[44px] font-semibold text-ink leading-[1.1] mb-3">제휴 문의</h1>
+        <p data-sr="up" data-d="1" className="text-[15px] text-body leading-relaxed mb-10">
           화방·갤러리·미디어·기술 파트너십, 공동 기획 등 다양한 협력을 환영합니다.<br />
           문의 내용을 남겨주시면 영업일 3일 이내 회신드립니다.
         </p>
@@ -111,7 +111,7 @@ export default function PartnershipPage() {
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               maxLength={60}
-              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-paper border border-navy-200 rounded-xl px-4 py-3 outline-none focus:border-navy-600 focus:ring-2 focus:ring-navy-200 transition-all"
+              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
             />
             {errors.company && <p className="text-[11.5px] text-red-500 mt-1">{errors.company}</p>}
           </div>
@@ -127,7 +127,7 @@ export default function PartnershipPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               maxLength={30}
-              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-paper border border-navy-200 rounded-xl px-4 py-3 outline-none focus:border-navy-600 focus:ring-2 focus:ring-navy-200 transition-all"
+              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
             />
             {errors.name && <p className="text-[11.5px] text-red-500 mt-1">{errors.name}</p>}
           </div>
@@ -144,7 +144,7 @@ export default function PartnershipPage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 maxLength={13}
-                className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-paper border border-navy-200 rounded-xl px-4 py-3 outline-none focus:border-navy-600 focus:ring-2 focus:ring-navy-200 transition-all"
+                className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
               />
               {errors.phone && <p className="text-[11.5px] text-red-500 mt-1">{errors.phone}</p>}
             </div>
@@ -157,7 +157,7 @@ export default function PartnershipPage() {
                 placeholder="partner@company.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-paper border border-navy-200 rounded-xl px-4 py-3 outline-none focus:border-navy-600 focus:ring-2 focus:ring-navy-200 transition-all"
+                className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
               />
               {errors.email && <p className="text-[11.5px] text-red-500 mt-1">{errors.email}</p>}
             </div>
@@ -211,7 +211,7 @@ export default function PartnershipPage() {
               onChange={(e) => setMessage(e.target.value)}
               maxLength={1000}
               rows={6}
-              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-paper border border-navy-200 rounded-xl px-4 py-3 outline-none focus:border-navy-600 focus:ring-2 focus:ring-navy-200 transition-all resize-none leading-[1.85]"
+              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all resize-none leading-[1.85]"
             />
             <div className="flex justify-between mt-1">
               {errors.message
@@ -226,8 +226,7 @@ export default function PartnershipPage() {
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full text-[14px] font-bold bg-navy-800 text-chiffon py-3.5 rounded-xl hover:bg-navy-700 transition-colors"
-              style={{ boxShadow: "0 4px 14px rgba(13,59,102,.2)" }}
+              className="w-full text-[14px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
             >
               문의 보내기
             </button>

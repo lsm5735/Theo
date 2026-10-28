@@ -111,7 +111,7 @@ export default function ArtistCard({ artist, project, mode = "atelier" }: { arti
         <Link
           href={mode === "apply" ? `/atelier/${artist.slug}/apply` : `/atelier/${artist.slug}`}
           onClick={(e) => e.stopPropagation()}
-          className="mt-auto block w-full text-center text-[13px] font-bold bg-navy-800 text-chiffon py-2.5 rounded-xl hover:bg-navy-700 transition-colors"
+          className="mt-auto block w-full text-center text-[13px] font-bold bg-navy-900 text-white py-2.5 rounded-xl hover:bg-navy-800 transition-colors"
         >
           {mode === "apply" ? "신청하기" : "아틀리에 입장"}
         </Link>

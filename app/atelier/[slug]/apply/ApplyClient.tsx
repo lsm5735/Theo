@@ -70,7 +70,7 @@ function Input({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       maxLength={maxLength}
-      className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-paper border border-navy-200 rounded-xl px-4 py-3 outline-none focus:border-navy-600 focus:ring-2 focus:ring-navy-200 transition-all"
+      className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
     />
   );
 }
@@ -119,14 +119,14 @@ export default function ApplyClient({ artist, project }: Props) {
             {/* 별 아이콘 */}
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
-              style={{ background: "var(--sv)", boxShadow: "0 8px 22px rgba(244,211,94,.35)" }}
+              style={{ background: "var(--sv)" }}
             >
               <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" className="text-ink">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             </div>
 
-            <h1 className="text-[26px] font-bold text-navy-900 leading-snug mb-3">
+            <h1 className="text-[26px] font-bold text-ink leading-snug mb-3">
               신청이 완료됐어요
             </h1>
             <p className="text-[14px] text-navy-500 leading-[1.85] mb-2">
@@ -140,7 +140,6 @@ export default function ApplyClient({ artist, project }: Props) {
             {/* 작가 미니 프로필 */}
             <div
               className="flex items-center gap-3 bg-card border border-line rounded-2xl px-4 py-3.5 mb-8 text-left"
-              style={{ boxShadow: "0 4px 14px rgba(13,59,102,.06)" }}
             >
               <div className="relative w-11 h-11 rounded-xl overflow-hidden shrink-0">
                 <Image src={artist.profileImage} alt={artist.name} fill sizes="44px" className="object-cover" />
@@ -165,7 +164,7 @@ export default function ApplyClient({ artist, project }: Props) {
             <div className="flex flex-col gap-2.5">
               <Link
                 href={`/atelier/${artist.slug}`}
-                className="block w-full text-center text-[13.5px] font-bold bg-navy-800 text-chiffon py-3 rounded-xl hover:bg-navy-700 transition-colors"
+                className="block w-full text-center text-[13.5px] font-bold bg-navy-900 text-white py-3 rounded-xl hover:bg-navy-800 transition-colors"
               >
                 {artist.name} 작가 아틀리에 보기
               </Link>
@@ -197,7 +196,6 @@ export default function ApplyClient({ artist, project }: Props) {
         {/* 작가 헤더 */}
         <div
           className="flex items-center gap-3.5 bg-card border border-line rounded-2xl px-4 py-3.5 mb-8"
-          style={{ boxShadow: "0 4px 14px rgba(13,59,102,.06)" }}
         >
           <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0">
             <Image src={artist.profileImage} alt={artist.name} fill sizes="48px" className="object-cover" />
@@ -215,7 +213,7 @@ export default function ApplyClient({ artist, project }: Props) {
           )}
         </div>
 
-        <h1 className="text-[22px] font-bold text-navy-900 leading-snug mb-1">
+        <h1 className="text-[22px] font-bold text-ink leading-snug mb-1">
           후원자 정보를 입력해주세요
         </h1>
         <p className="text-[13px] text-navy-500 mb-8 leading-relaxed">
@@ -292,7 +290,7 @@ export default function ApplyClient({ artist, project }: Props) {
               onChange={(e) => setMessage(e.target.value)}
               maxLength={300}
               rows={4}
-              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-paper border border-navy-200 rounded-xl px-4 py-3 outline-none focus:border-navy-600 focus:ring-2 focus:ring-navy-200 transition-all resize-none font-myeongjo leading-[1.9]"
+              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all resize-none font-myeongjo leading-[1.9]"
             />
             <p className="text-[11px] text-navy-400 text-right mt-1">{message.length}/300</p>
           </div>
@@ -325,8 +323,7 @@ export default function ApplyClient({ artist, project }: Props) {
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full text-[14px] font-bold bg-navy-800 text-chiffon py-3.5 rounded-xl hover:bg-navy-700 transition-colors"
-              style={{ boxShadow: "0 4px 14px rgba(13,59,102,.2)" }}
+              className="w-full text-[14px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
             >
               신청 완료하기
             </button>

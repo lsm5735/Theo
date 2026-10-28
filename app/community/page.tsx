@@ -165,10 +165,10 @@ export default function CommunityPage() {
 
       {/* Hero */}
       <section className="max-w-[1080px] mx-auto px-5 md:px-8 pt-14 pb-10">
-        <p data-sr="fade" className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">
+        <p data-sr="fade" className="nb-tag mb-5">
           COMMUNITY
         </p>
-        <h1 data-sr="up" className="text-3xl md:text-[40px] font-bold text-navy-900 leading-tight">
+        <h1 data-sr="up" className="text-[34px] md:text-[52px] font-semibold text-ink leading-[1.1]">
           작가와 직접 만나는 시간
         </h1>
         <p data-sr="up" data-d="1" className="text-muted text-sm md:text-base mt-3 leading-relaxed max-w-[560px]">
@@ -216,7 +216,6 @@ export default function CommunityPage() {
                 data-sr="up"
                 data-d={String((index % 4) + 1)}
                 className="bg-card border border-line rounded-2xl overflow-hidden flex flex-col"
-                style={{ boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
               >
                 {/* 커버 이미지 */}
                 <div className="relative w-full h-36 shrink-0">
@@ -255,7 +254,7 @@ export default function CommunityPage() {
                   </div>
 
                   {/* 제목 */}
-                  <h2 className="text-[13.5px] font-bold text-navy-900 leading-snug mb-1.5 line-clamp-2">
+                  <h2 className="text-[13.5px] font-bold text-ink leading-snug mb-1.5 line-clamp-2">
                     {prog.title}
                   </h2>
 
@@ -279,7 +278,7 @@ export default function CommunityPage() {
                   {/* CTA */}
                   <Link
                     href={`/atelier/${prog.artistSlug}/apply`}
-                    className="block w-full text-center text-[11.5px] font-bold bg-navy-800 text-chiffon py-2 rounded-lg hover:bg-navy-700 transition-colors"
+                    className="block w-full text-center text-[11.5px] font-bold bg-navy-900 text-white py-2 rounded-lg hover:bg-navy-800 transition-colors"
                   >
                     신청하기
                   </Link>

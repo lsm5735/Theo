@@ -141,7 +141,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
       {/* ─── Materials wishlist ─── */}
       <section>
         <div className="flex items-baseline justify-between mb-1">
-          <h2 className="text-lg font-black text-navy-800">재료 위시리스트</h2>
+          <h2 className="text-[22px] font-semibold text-ink">재료 위시리스트</h2>
           {fundedCount > 0 && (
             <span className="text-xs text-navy-600 font-medium">
               {materials.length}개 중 {fundedCount}개 선물됨
@@ -389,7 +389,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
 
                 <button
                   onClick={() => setStep(2)}
-                  className="w-full bg-navy-800 text-white font-bold py-4 rounded-xl hover:bg-navy-700 transition-colors"
+                  className="w-full bg-navy-800 text-white font-bold py-4 rounded-xl hover:bg-navy-800 transition-colors"
                 >
                   다음 — 메시지 작성
                 </button>
@@ -424,7 +424,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                     onChange={(e) => setNickname(e.target.value)}
                     placeholder="테오님"
                     maxLength={12}
-                    className="w-full bg-card border-2 border-navy-100 focus:border-navy-700 rounded-xl px-4 py-3 text-sm text-ink placeholder:text-muted outline-none transition-colors"
+                    className="w-full bg-card border border-line focus:border-ink rounded-xl px-4 py-3 text-sm text-ink placeholder:text-muted outline-none transition-colors"
                   />
                 </div>
 
@@ -442,7 +442,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                     placeholder="응원의 말을 남겨보세요."
                     maxLength={300}
                     rows={4}
-                    className="w-full bg-card border-2 border-navy-100 focus:border-navy-700 rounded-xl px-4 py-3 text-sm text-ink placeholder:text-muted resize-none outline-none transition-colors leading-relaxed"
+                    className="w-full bg-card border border-line focus:border-ink rounded-xl px-4 py-3 text-sm text-ink placeholder:text-muted resize-none outline-none transition-colors leading-relaxed"
                   />
                   <p className="text-xs text-muted text-right mt-1">
                     {message.length} / 300
@@ -451,7 +451,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
 
                 <button
                   onClick={() => setStep(3)}
-                  className="w-full bg-navy-800 text-white font-bold py-4 rounded-xl hover:bg-navy-700 transition-colors"
+                  className="w-full bg-navy-800 text-white font-bold py-4 rounded-xl hover:bg-navy-800 transition-colors"
                 >
                   다음 — 결제로 이동
                 </button>
@@ -472,7 +472,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
 
                 {/* Order summary */}
                 <div
-                  className="bg-card rounded-xl border border-line p-5 mb-6"
+                  className="bg-card rounded-2xl border border-line p-5 mb-6"
                   style={{ boxShadow: "0 4px 16px rgba(23,29,43,.06)" }}
                 >
                   <div className="space-y-3 text-sm">
@@ -667,7 +667,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   <div className="fu4 flex flex-col gap-3">
                     <button
                       onClick={closeFlow}
-                      className="w-full bg-navy-800 text-white font-bold py-3.5 rounded-xl hover:bg-navy-700 transition-colors text-sm"
+                      className="w-full bg-navy-800 text-white font-bold py-3.5 rounded-xl hover:bg-navy-800 transition-colors text-sm"
                     >
                       프로젝트로 돌아가기
                     </button>

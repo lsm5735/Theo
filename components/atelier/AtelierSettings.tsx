@@ -80,7 +80,7 @@ function ImagePicker({
   return (
     <Field label={label} error={error}>
       <div className="flex items-center gap-4">
-        <div className={`shrink-0 overflow-hidden bg-navy-100 border-2 border-navy-200 ${round ? "w-20 h-20 rounded-full" : "w-36 h-20 rounded-xl"}`}>
+        <div className={`shrink-0 overflow-hidden bg-navy-100 border border-line-strong ${round ? "w-20 h-20 rounded-full" : "w-36 h-20 rounded-xl"}`}>
           {value && (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={value} alt="" className="w-full h-full object-cover" />
@@ -219,7 +219,7 @@ export default function AtelierSettings({
       <div className="relative w-full max-w-[520px] h-full bg-paper flex flex-col shadow-2xl">
         {/* 헤더 */}
         <div className="flex items-center justify-between px-6 pt-5 pb-3">
-          <h2 className="text-lg font-black text-navy-900">{t("st_title")}</h2>
+          <h2 className="text-lg font-semibold text-ink">{t("st_title")}</h2>
           <button onClick={onClose} className="text-[13px] font-semibold text-navy-400 hover:text-navy-800 px-2 py-1">
             {t("st_close")}
           </button>
@@ -260,7 +260,7 @@ export default function AtelierSettings({
                   {GENRE_OPTIONS.map((g) => (
                     <button key={g} type="button" onClick={() => set("genre", draft.genre === g ? "" : g)}
                       className={`text-[12px] px-3.5 py-1.5 rounded-full border-2 font-semibold transition-all ${
-                        draft.genre === g ? "bg-navy-800 text-chiffon border-navy-800" : "border-navy-300 text-navy-600 hover:border-navy-600"
+                        draft.genre === g ? "bg-navy-900 text-white border-navy-800" : "border-navy-300 text-navy-600 hover:border-navy-600"
                       }`}>
                       {g}
                     </button>
@@ -272,7 +272,7 @@ export default function AtelierSettings({
                   {MEDIA_OPTIONS.map((m) => (
                     <button key={m} type="button" onClick={() => toggleMedia(m)}
                       className={`text-[12px] px-3.5 py-1.5 rounded-full border-2 font-semibold transition-all ${
-                        draft.media.includes(m) ? "bg-navy-800 text-chiffon border-navy-800" : "border-navy-300 text-navy-600 hover:border-navy-600"
+                        draft.media.includes(m) ? "bg-navy-900 text-white border-navy-800" : "border-navy-300 text-navy-600 hover:border-navy-600"
                       }`}>
                       {m}
                     </button>

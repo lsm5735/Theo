@@ -272,7 +272,7 @@ export default function SponsorClient({ artistId }: Props) {
 
           {/* N번째 테오 */}
           <h1
-            className="font-black leading-snug mb-3 px-5"
+            className="font-semibold leading-snug mb-3 px-5"
             style={{ color: "#fff", animation: "fadeUp .5s 0.65s both" }}
           >
             <span className="text-lg md:text-xl block mb-1" style={{ color: "rgba(255,255,255,0.7)" }}>
@@ -423,7 +423,6 @@ export default function SponsorClient({ artistId }: Props) {
               style={{
                 background: "var(--navy-800)",
                 color: "#fff",
-                boxShadow: "0 8px 22px rgba(13,59,102,.22)",
               }}
             >
               {t("done_cta_my")}
@@ -465,7 +464,7 @@ export default function SponsorClient({ artistId }: Props) {
         </Link>
 
         {/* Artist summary banner */}
-        <div className="bg-navy-800 rounded-xl p-5 flex items-center gap-4 mb-8">
+        <div className="bg-navy-900 rounded-3xl p-6 flex items-center gap-4 mb-8">
           <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-sv-soft shrink-0">
             <Image src={artist.profileImage} alt={artist.name} fill sizes="56px" className="object-cover" />
           </div>
@@ -484,7 +483,7 @@ export default function SponsorClient({ artistId }: Props) {
             <span className="w-6 h-6 rounded-full bg-sv text-ink font-black text-xs flex items-center justify-center">
               1
             </span>
-            <h2 className="font-black text-navy-800">{t("sp_s1")}</h2>
+            <h2 className="font-semibold text-ink">{t("sp_s1")}</h2>
           </div>
 
           <div className="space-y-3">
@@ -528,7 +527,7 @@ export default function SponsorClient({ artistId }: Props) {
             <span className="w-6 h-6 rounded-full bg-sv text-ink font-black text-xs flex items-center justify-center">
               2
             </span>
-            <h2 className="font-black text-navy-800">
+            <h2 className="font-semibold text-ink">
               {t("sp_s2_title")}{" "}
               <span className="text-muted text-sm font-normal">{t("sp_s2_optional")}</span>
             </h2>
@@ -540,14 +539,14 @@ export default function SponsorClient({ artistId }: Props) {
             placeholder={t("sp_s2_ph")}
             maxLength={500}
             rows={4}
-            className="w-full bg-card border-2 border-navy-100 focus:border-navy-700 rounded-xl p-4 text-sm text-ink placeholder:text-muted resize-none outline-none transition-colors leading-relaxed"
+            className="w-full bg-card border border-line focus:border-ink rounded-2xl p-4 text-sm text-ink placeholder:text-muted resize-none outline-none transition-colors leading-relaxed"
           />
           <p className="text-xs text-muted text-right mt-1">{message.length} / 500</p>
         </section>
 
         {/* STEP 3: Summary */}
         {selectedMaterial && (
-          <div className="bg-card border border-line rounded-xl p-5 mb-4" style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}>
+          <div className="bg-card border border-line rounded-2xl p-5 mb-4" style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}>
             <div className="space-y-2 mb-4 pb-4 border-b border-navy-100">
               <div className="flex justify-between text-sm">
                 <span className="text-muted">{t("sp_cost")}</span>
@@ -575,7 +574,7 @@ export default function SponsorClient({ artistId }: Props) {
           }}
           className={`w-full py-4 rounded-xl font-bold text-base transition-all ${
             selected
-              ? "bg-navy-800 text-white hover:bg-navy-700"
+              ? "bg-navy-800 text-white hover:bg-navy-800"
               : "bg-navy-100 text-navy-300 cursor-not-allowed"
           }`}
           style={selected ? { boxShadow: '0 8px 22px rgba(23,29,43,.06)' } : undefined}

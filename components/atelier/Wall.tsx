@@ -51,7 +51,7 @@ function Composer({ wallId, author }: { wallId: string; author: WallAuthor }) {
   }
 
   return (
-    <div className="bg-card rounded-xl border border-line p-4 mb-8" style={{ boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}>
+    <div className="bg-card rounded-2xl border border-line p-4 mb-8">
       <div className="flex items-center gap-2 mb-3">
         <RoleBadge role={author.role} />
         <span className="text-[13px] font-bold text-navy-800">{author.name}</span>
@@ -117,7 +117,6 @@ function PostCard({ post, artistName }: { post: WallPost; artistName: string }) 
       style={{
         background: isArtist ? "var(--chiffon)" : "var(--card)",
         borderColor: isArtist ? "rgba(194,164,63,.35)" : "var(--line)",
-        boxShadow: "0 4px 14px rgba(23,29,43,.05)",
         animation: post.mine ? "srUp .5s ease-out both" : undefined,
       }}
     >
@@ -176,13 +175,13 @@ export default function Wall({
 
   return (
     <section id="wall">
-      <h2 className="text-lg font-black text-navy-800 mb-1">{t("wall_title")}</h2>
+      <h2 className="text-[22px] font-semibold text-ink mb-1">{t("wall_title")}</h2>
       <p className="text-xs text-muted mb-6">{t("wall_sub")}</p>
 
       {author ? (
         <Composer wallId={wallId} author={author} />
       ) : (
-        <div className="rounded-xl border-2 border-dashed border-navy-200 px-5 py-4 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="rounded-2xl border border-dashed border-line-strong px-5 py-4 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <p className="text-[13px] text-navy-600 leading-[1.7]" style={{ wordBreak: "keep-all" }}>{t("wall_locked")}</p>
           {lockedCta && (
             <Link href={lockedCta.href} className="nb-btn shrink-0 px-4 py-2 rounded-lg font-black text-[13px] text-center">

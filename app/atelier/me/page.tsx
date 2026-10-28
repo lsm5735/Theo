@@ -18,9 +18,9 @@ export default function MyAtelierListPage() {
       <Header />
 
       <div className="max-w-[720px] mx-auto px-5 md:px-8 pt-14 pb-24">
-        <p className="text-[11px] tracking-[0.24em] text-navy-400 font-semibold uppercase mb-3">MY ATELIER</p>
+        <p className="nb-tag mb-5">MY ATELIER</p>
         <div className="flex items-end justify-between gap-4 mb-2">
-          <h1 className="text-3xl font-black text-navy-900 leading-tight">{t("ma_list_title")}</h1>
+          <h1 className="text-3xl font-semibold text-ink leading-tight">{t("ma_list_title")}</h1>
           <Link href="/onboarding/artist" className="nb-btn shrink-0 px-4 py-2.5 rounded-xl font-black text-[13px]">
             {t("ma_list_new")}
           </Link>
@@ -28,7 +28,7 @@ export default function MyAtelierListPage() {
         <p className="text-sm text-muted mb-8" style={{ wordBreak: "keep-all" }}>{t("ma_list_sub")}</p>
 
         {ateliers.length === 0 ? (
-          <div className="rounded-2xl border-2 border-dashed border-navy-200 p-10 text-center">
+          <div className="rounded-2xl border border-dashed border-line-strong p-10 text-center">
             <p className="text-navy-500 mb-6">{t("ma_empty")}</p>
             <Link href="/onboarding/artist" className="nb-btn inline-block px-8 py-3.5 rounded-xl font-black text-[15px]">
               {t("ma_empty_btn")}

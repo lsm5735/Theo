@@ -9,8 +9,7 @@ export default function MyAtelierCard({ atelier }: { atelier: MyAtelier }) {
   return (
     <Link
       href={`/atelier/me/${atelier.id}`}
-      className="group block rounded-xl overflow-hidden border border-line bg-card hover:border-navy-300 transition-colors"
-      style={{ boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
+      className="group block rounded-2xl overflow-hidden border border-line bg-card hover:border-navy-300 transition-colors"
     >
       <div className="relative h-24"
         style={{ background: "linear-gradient(150deg,var(--navy-900) 0%,var(--navy-700) 60%,var(--navy-500) 100%)" }}>

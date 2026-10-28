@@ -111,7 +111,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           <p className="text-white/70 text-sm mb-1.5 font-medium">
             {artist.name} 작가의 프로젝트
           </p>
-          <h1 className="text-2xl md:text-3xl font-black text-white leading-snug mb-3">
+          <h1 className="text-2xl md:text-3xl font-semibold text-white leading-snug mb-3">
             {project.title}
           </h1>
           <div className="flex flex-wrap gap-2">
@@ -178,7 +178,7 @@ export default async function ProjectDetailPage({ params }: Props) {
 
             {/* 작품 구상 */}
             <section>
-              <h2 className="text-lg font-black text-navy-800 mb-1">작품 구상</h2>
+              <h2 className="text-[22px] font-semibold text-ink mb-1">작품 구상</h2>
               <p className="text-xs text-muted mb-4">{artist.name} 작가의 창작 계획</p>
 
               {/* Artist palette */}
@@ -195,8 +195,7 @@ export default async function ProjectDetailPage({ params }: Props) {
               </div>
 
               <div
-                className="bg-card rounded-xl p-6 md:p-8 border border-line"
-                style={{ boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
+                className="bg-card rounded-2xl p-6 md:p-8 border border-line"
               >
                 <p className="font-myeongjo text-ink leading-[2.1] text-[15px]">
                   {project.concept}
@@ -256,7 +255,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             {/* 후원자 명단 */}
             {projectSponsors.length > 0 && (
               <section>
-                <h2 className="text-lg font-black text-navy-800 mb-1">후원자 명단</h2>
+                <h2 className="text-[22px] font-semibold text-ink mb-1">후원자 명단</h2>
                 <p className="text-xs text-muted mb-5">
                   {projectSponsors.length}명의 테오가 이 작품을 응원합니다
                 </p>
@@ -267,7 +266,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                     return (
                       <div
                         key={sp.id}
-                        className="bg-card rounded-xl p-4 border border-line"
+                        className="bg-card rounded-2xl p-4 border border-line"
                         style={{ boxShadow: "0 4px 12px rgba(23,29,43,.04)" }}
                       >
                         <div className="flex items-start gap-3">
@@ -314,7 +313,6 @@ export default async function ProjectDetailPage({ params }: Props) {
             {/* CTA card */}
             <div
               className="bg-navy-800 rounded-xl p-6"
-              style={{ boxShadow: "0 8px 22px rgba(23,29,43,.12)" }}
             >
               <p className="text-sv text-xs font-bold tracking-[0.16em] uppercase mb-3">
                 재료 선물하기
@@ -355,7 +353,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             {/* 재료 요약 */}
             {projectMaterials.length > 0 && (
               <div
-                className="bg-card rounded-xl p-4 border border-line"
+                className="bg-card rounded-2xl p-4 border border-line"
                 style={{ boxShadow: "0 4px 12px rgba(23,29,43,.04)" }}
               >
                 <p className="text-xs font-bold text-navy-700 mb-3">재료 현황</p>
@@ -387,7 +385,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             </div>
 
             {/* Delivery steps */}
-            <div className="bg-card rounded-xl p-4 border border-line">
+            <div className="bg-card rounded-2xl p-4 border border-line">
               <p className="text-xs font-bold text-navy-700 mb-3">전달 4단계</p>
               {["후원 완료", "재료 준비 중", "작가에게 가는 중", "작가가 받았어요"].map(
                 (step, i) => (

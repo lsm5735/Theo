@@ -77,8 +77,6 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
     ? Math.round((project.fundedAmount / project.targetAmount) * 100)
     : 0;
 
-  const trackSteps = [t("track_s1"), t("track_s2"), t("track_s3"), t("track_s4")];
-
   return (
     <div className="min-h-screen bg-paper">
       <Header />
@@ -110,7 +108,7 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
 
         {/* Badges */}
         <div className="absolute bottom-5 left-5 md:left-8 flex flex-wrap gap-2">
-          <span className="bg-navy-800 text-chiffon text-xs font-semibold px-3 py-1.5 rounded-full">
+          <span className="bg-navy-900 text-white text-xs font-semibold px-3 py-1.5 rounded-full">
             {artist.genre}
           </span>
           {artist.media.map((m) => (
@@ -131,15 +129,14 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
         <div className="relative -mt-12 mb-10">
           <div
             data-sr="up"
-            className="bg-card rounded-xl p-6 border border-line"
-            style={{ boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
+            className="bg-card rounded-3xl p-7 border border-line"
           >
             <div className="flex items-start gap-4 mb-5">
               <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-sv-soft shrink-0 shadow-sm">
                 <Image src={artist.profileImage} alt={artist.name} fill sizes="80px" className="object-cover" />
               </div>
               <div className="flex-1 min-w-0 pt-1">
-                <h1 className="text-2xl font-black text-navy-800 mb-1">{artist.name}</h1>
+                <h1 className="text-[30px] font-semibold text-ink mb-1 leading-tight" style={{ letterSpacing: "-0.03em" }}>{artist.name}</h1>
                 <p className="font-myeongjo text-navy-600 text-sm mb-2">{artist.oneLiner}</p>
                 <p className="text-xs text-muted">
                   {artist.location} · {artist.careerStage} 작가
@@ -186,10 +183,9 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
             {/* Current project */}
             {project && (
               <section data-sr="up">
-                <h2 className="text-lg font-black text-navy-800 mb-4">{t("section_project")}</h2>
+                <h2 className="text-[22px] font-semibold text-ink mb-4">{t("section_project")}</h2>
                 <div
-                  className="bg-card rounded-xl overflow-hidden border border-line"
-                  style={{ boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
+                  className="bg-card rounded-2xl overflow-hidden border border-line"
                 >
                   <div className="relative h-48">
                     <Image
@@ -233,7 +229,7 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
             {/* 후원 상점 */}
             {materials.length > 0 && (
               <section data-sr="up">
-                <h2 className="text-lg font-black text-navy-800 mb-4">{t("section_materials")}</h2>
+                <h2 className="text-[22px] font-semibold text-ink mb-4">{t("section_materials")}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {materials.map((m) => (
                     <div
@@ -289,8 +285,7 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
           {/* Right: sticky CTA */}
           <div data-sr="fade" className="lg:sticky lg:top-24 lg:self-start space-y-4">
             <div
-              className="bg-navy-800 rounded-xl p-6 text-center"
-              style={{ boxShadow: "0 8px 22px rgba(23,29,43,.06)" }}
+              className="bg-navy-900 rounded-3xl p-7 text-center"
             >
               <p className="text-sv text-xs font-bold tracking-[0.16em] uppercase mb-2">{t("cta_gift_title")}</p>
               <p className="text-lg font-black text-white mb-1">{artist.name} 작가</p>
@@ -301,29 +296,12 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
               </p>
               <Link
                 href={`/sponsor/${artist.id}`}
-                className="w-full block bg-sv text-ink font-bold py-3.5 rounded-lg hover:bg-sv-soft transition-colors text-sm"
+                className="w-full block bg-sv text-ink font-semibold py-3.5 rounded-xl hover:bg-sv-soft transition-colors text-[15px]"
               >
                 {t("cta_gift_btn")}
               </Link>
             </div>
 
-            <div className="bg-card rounded-xl p-4 border border-line">
-              <p className="text-xs font-bold text-navy-700 mb-3">{t("tracking_title")}</p>
-              {trackSteps.map((step, i) => (
-                <div key={i} className="flex items-center gap-2.5 py-1.5">
-                  <div
-                    className={`w-5 h-5 rounded-full flex items-center justify-center font-black text-xs shrink-0 ${
-                      i === 0 ? "bg-sv text-ink" : "bg-navy-100 text-navy-400"
-                    }`}
-                  >
-                    {i + 1}
-                  </div>
-                  <span className={`text-xs ${i === 0 ? "font-semibold text-navy-800" : "text-muted"}`}>
-                    {step}
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
 
         </div>

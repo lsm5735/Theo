@@ -208,7 +208,7 @@ export function MaterialFields({
       ))}
       {materials.length < MAX_MATERIALS ? (
         <button type="button" onClick={() => onChange([...materials, EMPTY_MATERIAL])}
-          className="w-full rounded-xl border border-dashed border-line-strong py-3 text-[13px] font-bold text-navy-600 hover:border-navy-400 hover:text-navy-800 transition-colors">
+          className="w-full rounded-2xl border border-dashed border-line-strong py-3 text-[13px] font-bold text-navy-600 hover:border-navy-400 hover:text-navy-800 transition-colors">
           {t("ob_mat_add")}
         </button>
       ) : (

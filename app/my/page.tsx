@@ -15,7 +15,7 @@ import { MyAtelier, hostOf, useMyAteliers } from "@/lib/myAtelier";
 type Role = "theo" | "gogh";
 
 const noopSubscribe = () => () => {};
-const CARD_SHADOW = { boxShadow: "0 1px 4px rgba(23,29,43,.05)" };
+const CARD_SHADOW = {};
 
 const BADGES = [
   { name: "씨앗",    threshold: 1 },
@@ -199,7 +199,7 @@ function RoleSwitch({ role, onChange }: { role: Role; onChange: (r: Role) => voi
     { id: "gogh", label: "my_role_gogh", sub: "my_role_gogh_sub" },
   ];
   return (
-    <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-navy-100 mb-8" role="tablist">
+    <div className="grid grid-cols-2 gap-1 p-1 rounded-2xl bg-surface-card mb-8" role="tablist">
       {opts.map((o) => (
         <button
           key={o.id}
@@ -226,7 +226,7 @@ function SponsorshipCard({ sp, stepsDisplay }: { sp: MySponsorship; stepsDisplay
   const pct = Math.round((project.fundedAmount / project.targetAmount) * 100);
 
   return (
-    <div className="rounded-xl border border-line overflow-hidden bg-card" style={CARD_SHADOW}>
+    <div className="rounded-2xl border border-line overflow-hidden bg-card" style={CARD_SHADOW}>
       <div className="p-4">
         <div className="flex gap-3 mb-3">
           <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 border-2 mt-0.5" style={{ borderColor: "var(--sv-soft)" }}>
@@ -363,7 +363,7 @@ function TheoView() {
 
       {/* ── 내 후원 현황 ── */}
       <section className="mb-10">
-        <h2 className="text-[17px] font-black text-navy-800 mb-4">{t("my_section_status")}</h2>
+        <h2 className="text-[20px] font-semibold text-ink mb-4">{t("my_section_status")}</h2>
         <div className="space-y-4">
           {sponsorships.map((sp) => (
             <SponsorshipCard key={sp.id} sp={sp} stepsDisplay={STEPS_DISPLAY} />
@@ -373,7 +373,7 @@ function TheoView() {
 
       {/* ── 작가 소식 (담벼락) ── */}
       <section>
-        <h2 className="text-[17px] font-black text-navy-800 mb-1">{t("my_section_updates")}</h2>
+        <h2 className="text-[20px] font-semibold text-ink mb-1">{t("my_section_updates")}</h2>
         <p className="text-xs text-muted mb-4">{t("my_updates_sub")}</p>
         {updates.length > 0 ? (
           <div className="space-y-3">
@@ -446,9 +446,9 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
 
       {/* ── 내 프로젝트 ── */}
       <section className="mb-10">
-        <h2 className="text-[17px] font-black text-navy-800 mb-4">{t("ma_project_title")}</h2>
+        <h2 className="text-[20px] font-semibold text-ink mb-4">{t("ma_project_title")}</h2>
         {project ? (
-          <div className="rounded-xl border border-line bg-card p-4" style={CARD_SHADOW}>
+          <div className="rounded-2xl border border-line bg-card p-4" style={CARD_SHADOW}>
             <p className="font-bold text-navy-800 text-sm mb-1">{project.title}</p>
             <p className="text-xs text-muted line-clamp-2 mb-3">{project.concept}</p>
             <div className="w-full bg-navy-100 rounded-full h-1.5" />
@@ -463,7 +463,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
             </div>
           </div>
         ) : (
-          <div className="rounded-xl border-2 border-dashed border-navy-200 p-6 text-center">
+          <div className="rounded-2xl border border-dashed border-line-strong p-6 text-center">
             <p className="text-[13px] text-navy-600 mb-3" style={{ wordBreak: "keep-all" }}>{t("ma_project_empty_sub")}</p>
             <Link href={`${base}?settings=project`} className="nb-btn inline-block px-5 py-2.5 rounded-lg font-black text-[13px]">
               {t("ma_project_add")}
@@ -475,7 +475,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
       {/* ── 필요한 재료 ── */}
       <section className="mb-10">
         <div className="flex items-baseline justify-between mb-4">
-          <h2 className="text-[17px] font-black text-navy-800">{t("ma_materials_title")}</h2>
+          <h2 className="text-[20px] font-semibold text-ink">{t("ma_materials_title")}</h2>
           <Link href={`${base}?settings=materials`} className="text-xs font-semibold text-navy-600 hover:opacity-70">
             {t("my_gogh_edit")}
           </Link>
@@ -494,7 +494,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
       {/* ── 최근 담벼락 ── */}
       <section>
         <div className="flex items-baseline justify-between mb-4">
-          <h2 className="text-[17px] font-black text-navy-800">{t("my_gogh_wall")}</h2>
+          <h2 className="text-[20px] font-semibold text-ink">{t("my_gogh_wall")}</h2>
           <Link href={`${base}#wall`} className="text-xs font-semibold text-navy-600 hover:opacity-70">
             {t("my_gogh_wall_btn")}
           </Link>
@@ -529,7 +529,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
 function GoghEmpty() {
   const t = useT();
   return (
-    <div className="rounded-2xl border-2 border-dashed border-navy-200 p-10 text-center">
+    <div className="rounded-2xl border border-dashed border-line-strong p-10 text-center">
       <p className="text-[15px] font-black text-navy-800 mb-2">{t("my_gogh_empty")}</p>
       <p className="text-[13px] text-muted mb-6" style={{ wordBreak: "keep-all" }}>{t("my_gogh_empty_sub")}</p>
       <Link href="/onboarding/artist" className="nb-btn inline-block px-6 py-3 rounded-xl font-black text-[14px]">
