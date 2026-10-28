@@ -27,7 +27,7 @@ export default function AtelierPage() {
             지금 후원 가능한 작가
           </h1>
           <p data-sr="up" data-d="1" className="text-muted text-sm md:text-base mt-2 leading-relaxed">
-            창작에 필요한 재료를 선물하고, 창작 과정을 편지로 받아보세요.
+            창작에 필요한 재료를 선물하고, 창작 과정을 담벼락에서 함께 지켜보세요.
           </p>
         </div>
       </section>

@@ -8,6 +8,8 @@ import artists from "@/data/artists.json";
 import projects from "@/data/projects.json";
 import materials from "@/data/materials.json";
 import { useT } from "@/contexts/LangContext";
+import { recordSponsorship } from "@/lib/sponsorships";
+import { addWallPost } from "@/lib/wall";
 
 interface Props {
   artistId: string;
@@ -168,8 +170,7 @@ export default function SponsorClient({ artistId }: Props) {
   );
 
   const selectedMaterial = materials.find((m) => m.id === selected);
-  const fee = selectedMaterial ? Math.round(selectedMaterial.price * 0.03) : 0;
-  const total = selectedMaterial ? selectedMaterial.price + fee : 0;
+  const total = selectedMaterial ? selectedMaterial.price : 0;
 
   const sponsorCount = project?.sponsorCount ?? 0;
   const myOrder = sponsorCount + 1;
@@ -330,10 +331,6 @@ export default function SponsorClient({ artistId }: Props) {
                 <span className="text-muted">{t("done_cost")}</span>
                 <span className="font-semibold text-navy-800">{selectedMaterial.price.toLocaleString()}원</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-muted">{t("done_fee")}</span>
-                <span className="text-navy-600">{fee.toLocaleString()}원</span>
-              </div>
               <div
                 className="flex justify-between pt-3 border-t font-black"
                 style={{ borderColor: "rgba(194,164,63,0.2)" }}
@@ -461,7 +458,7 @@ export default function SponsorClient({ artistId }: Props) {
 
         {/* Back link */}
         <Link
-          href={`/artists/${artist.id}`}
+          href={`/atelier/${artist.slug}`}
           className="inline-flex items-center gap-1.5 text-sm text-navy-600 hover:text-navy-800 font-medium mb-8 transition-colors"
         >
           ← {artist.name} {t("sp_back")}
@@ -556,10 +553,6 @@ export default function SponsorClient({ artistId }: Props) {
                 <span className="text-muted">{t("sp_cost")}</span>
                 <span className="font-medium text-navy-800">{selectedMaterial.price.toLocaleString()}원</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-muted">{t("sp_fee")}</span>
-                <span className="font-medium text-navy-600">{fee.toLocaleString()}원</span>
-              </div>
             </div>
             <div className="flex justify-between">
               <span className="font-bold text-navy-800">{t("sp_total")}</span>
@@ -573,7 +566,13 @@ export default function SponsorClient({ artistId }: Props) {
 
         <button
           disabled={!selected}
-          onClick={() => setDone(true)}
+          onClick={() => {
+            if (!selectedMaterial || !project) return;
+            // 모의 결제 완료 → 내 후원 기록 + 메시지는 작가 담벼락에 테오 글로
+            recordSponsorship({ artistId: artist.id, projectId: project.id, material: selectedMaterial.name, amount: selectedMaterial.price, nickname: "테오" });
+            if (message.trim()) addWallPost({ wallId: artist.id, role: "theo", authorName: "테오", text: message.trim(), image: "" });
+            setDone(true);
+          }}
           className={`w-full py-4 rounded-xl font-bold text-base transition-all ${
             selected
               ? "bg-navy-800 text-white hover:bg-navy-700"

@@ -37,7 +37,7 @@ const MOTIVATION_OPTIONS = [
   "평소에 이 작가의 작업이 좋았어요",
   "취향에 맞는 그림 스타일이에요",
   "창작 과정이 궁금해서요",
-  "편지로 소식을 받고 싶어요",
+  "담벼락에서 작업 소식을 보고 싶어요",
   "소규모 작가를 응원하고 싶어요",
 ];
 
@@ -159,7 +159,7 @@ export default function ApplyClient({ artist, project }: Props) {
 
             <p className="text-[12px] text-navy-400 mb-6 leading-relaxed">
               입력하신 이메일(<b className="text-navy-600">{email}</b>)로<br />
-              확인 안내를 보내드릴게요. 창작 과정 편지도 곧 도착합니다.
+              확인 안내를 보내드릴게요. 창작 과정은 아틀리에 담벼락에서 함께 볼 수 있어요.
             </p>
 
             <div className="flex flex-col gap-2.5">
@@ -287,7 +287,7 @@ export default function ApplyClient({ artist, project }: Props) {
           <div>
             <FieldLabel>작가에게 한마디 <span className="text-navy-400 font-normal">(선택)</span></FieldLabel>
             <textarea
-              placeholder={`${artist.name} 작가에게 전하고 싶은 말을 자유롭게 적어주세요. 편지와 함께 전달돼요.`}
+              placeholder={`${artist.name} 작가에게 전하고 싶은 말을 자유롭게 적어주세요. 아틀리에 담벼락에 남겨져요.`}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               maxLength={300}
@@ -331,7 +331,7 @@ export default function ApplyClient({ artist, project }: Props) {
               신청 완료하기
             </button>
             <p className="text-[11.5px] text-navy-400 text-center mt-3 leading-relaxed">
-              재료값 전액이 작가에게 전달됩니다. 작가 수수료는 0%예요.
+              재료가 작가에게 전달됩니다.
             </p>
           </div>
 

@@ -12,10 +12,9 @@ const THEO_STEPS = [
     step: "01",
     label: "작가 탐색",
     title: "취향에 맞는 작가를 찾는다",
-    body: "아틀리에에서 20명의 신진 작가를 둘러보거나, 테오 봇에게 느낌으로 말해보세요. '밝고 따뜻한', '거친 붓질' 같은 단어로 취향에 맞는 작가를 추천받을 수 있습니다.",
+    body: "아틀리에에서 신진 작가들을 둘러보세요. 장르·재료·분위기 필터로 취향에 맞는 작가를 찾고, 작가 노트와 작업 과정을 먼저 읽어볼 수 있습니다.",
     detail: [
       "장르·재료·분위기 필터로 탐색",
-      "테오 봇 AI 취향 매칭",
       "작가 노트와 작업 과정 미리 읽기",
     ],
     cta: { label: "아틀리에 보기", href: "/atelier" },
@@ -34,7 +33,7 @@ const THEO_STEPS = [
       "낱개 재료 단위로 선택 가능",
       "Dear Gogh 메시지 첨부 (선택)",
       "작가 주소 비공개 — 테오가 안전 중개",
-      "재료값 전액 작가 전달, 작가 수수료 0%",
+      "재료가 작가에게 직접 전달",
     ],
     cta: { label: "후원 신청해보기", href: "/atelier" },
     icon: (
@@ -62,13 +61,13 @@ const THEO_STEPS = [
   },
   {
     step: "04",
-    label: "편지 수신",
-    title: "작가의 창작 편지를 받는다",
-    body: "재료를 받은 작가는 Dear Theo 편지에 창작 과정을 담아 보내줍니다. 물감을 짜는 냄새, 캔버스 앞에서의 고민, 완성 직전의 설렘 — 작가만 아는 이야기가 편지로 도착합니다.",
+    label: "담벼락",
+    title: "작가의 담벼락에서 창작 과정을 함께한다",
+    body: "재료를 받은 작가는 아틀리에 담벼락에 창작 과정을 남깁니다. 캔버스 앞에서의 고민, 완성 직전의 설렘을 가까이에서 지켜보고, 응원의 글과 사진도 함께 남길 수 있어요.",
     detail: [
-      "작가 육필 감성의 Dear Theo 편지",
-      "작업 과정 사진 포함",
-      "편지 아카이브 영구 보관",
+      "작가의 작업 소식과 과정 사진",
+      "후원한 테오만 글·사진 남기기 가능",
+      "작가와 테오가 주고받는 대화형 타임라인",
     ],
     cta: null,
     icon: (
@@ -103,12 +102,12 @@ const GOGH_STEPS = [
     step: "01",
     label: "프로젝트 등록",
     title: "그릴 작품과 필요한 재료를 등록한다",
-    body: "지금 시작하려는 작품의 구상을 소개하고, 완성에 필요한 재료 목록을 올립니다. 재료값 합계가 그 작품의 목표 금액이 됩니다. 작가 수수료는 0%입니다.",
+    body: "지금 시작하려는 작품의 구상을 소개하고, 완성에 필요한 재료 목록을 올립니다. 재료값 합계가 그 작품의 목표 금액이 됩니다.",
     detail: [
       "작품 개념·스케치 이미지 업로드",
       "재료 낱개 단위로 목록 구성",
       "목표 금액 = 재료값 합계 자동 산정",
-      "작가 수수료 0%, 재료값 전액 수령",
+      "필요한 재료를 직접 수령",
     ],
     cta: null,
     icon: (
@@ -138,7 +137,7 @@ const GOGH_STEPS = [
     step: "03",
     label: "창작",
     title: "받은 재료로 작품을 완성한다",
-    body: "받은 재료로 작업합니다. 서두를 필요 없어요. 작업 기간 동안 과정 사진을 기록해두면 Dear Theo 편지에 담기 좋습니다. 후원자는 작가가 작업하는 동안 배송 상태를 확인할 수 있습니다.",
+    body: "받은 재료로 작업합니다. 서두를 필요 없어요. 작업 기간 동안 과정 사진을 기록해두면 담벼락에 올리기 좋습니다. 후원자는 작가가 작업하는 동안 배송 상태를 확인할 수 있습니다.",
     detail: [
       "작업 기간 자유롭게 설정",
       "중간 과정 업데이트 가능",
@@ -154,14 +153,13 @@ const GOGH_STEPS = [
   },
   {
     step: "04",
-    label: "Dear Theo 편지",
-    title: "창작 과정을 편지로 후원자에게 보낸다",
-    body: "재료를 선물해준 테오에게 Dear Theo 편지를 씁니다. 작업하면서 느낀 것, 재료가 화면에서 어떻게 달라졌는지, 완성 직전의 순간 — 작가만이 쓸 수 있는 이야기를 담아주세요.",
+    label: "담벼락",
+    title: "창작 과정을 담벼락에 남긴다",
+    body: "아틀리에 담벼락에 작업 소식을 남깁니다. 작업하면서 느낀 것, 재료가 화면에서 어떻게 달라졌는지 — 작가만이 쓸 수 있는 이야기를 짧게라도 남겨주세요.",
     detail: [
-      "자유 형식 텍스트 + 과정 사진",
-      "작품 완성 전후 언제든 전송 가능",
-      "후원자 타임라인에 영구 보관",
-      "편지는 후원자만 열람 가능",
+      "자유 형식 글 + 과정 사진",
+      "작품 완성 전후 언제든 남기기 가능",
+      "작가와 후원한 테오만 작성 가능",
     ],
     cta: null,
     icon: (
@@ -194,16 +192,15 @@ const GOGH_STEPS = [
 const THEO_FAQ = [
   { q: "후원 최소 금액은 얼마인가요?", a: "재료 하나 단위로 선물할 수 있으며, 2만 원대부터 시작할 수 있습니다. 작가마다 재료 구성이 달라 금액이 다를 수 있습니다." },
   { q: "작가 주소가 공개되나요?", a: "절대 공개되지 않습니다. 테오가 안전하게 중개하며, 작가와 후원자 모두 서로의 주소를 알 수 없습니다." },
-  { q: "편지는 언제 받을 수 있나요?", a: "재료가 작가에게 도착한 후, 작가가 창작 과정 중 또는 작품 완성 후에 편지를 보냅니다. 작업 기간에 따라 수 주에서 수개월이 걸릴 수 있습니다." },
+  { q: "작가 소식은 어디서 볼 수 있나요?", a: "작가 아틀리에의 담벼락에서 볼 수 있어요. 후원한 작가의 최근 글은 마이테오의 '작가 소식'에도 모아서 보여드립니다." },
   { q: "후원한 작품이 팔리면 수익을 나눠 받나요?", a: "수익 배분은 없습니다. 대신 판매 작품에 대한 선구매 우선권과 작품 캡션 기재, 전시 초대 등 비금전적 특권이 주어집니다." },
   { q: "환불이 가능한가요?", a: "재료가 발송 전 단계라면 환불 요청이 가능합니다. 발송 후에는 취소가 어려우며, 이 경우 고객센터로 문의해주세요." },
 ];
 
 const GOGH_FAQ = [
-  { q: "작가 수수료가 정말 0%인가요?", a: "네. 재료값 전액이 작가에게 전달됩니다. 플랫폼 수익은 제휴 화방 커미션 5~10%와 결제 수수료 3%(후원자 부담)로 운영됩니다." },
   { q: "배송지가 공개되나요?", a: "배송지는 후원자에게 공개되지 않습니다. 테오가 안전하게 중개하므로 개인정보 노출 없이 재료를 수령할 수 있습니다." },
   { q: "재료는 직접 구매할 수 없나요?", a: "현재는 테오 제휴 화방을 통해서만 구성됩니다. 특정 브랜드나 규격이 필요하다면 프로젝트 등록 시 재료 설명에 명시해주세요." },
-  { q: "편지는 꼭 써야 하나요?", a: "의무는 아니지만 강력히 권장합니다. 후원자와의 관계를 만드는 핵심 경험이며, 편지를 보낸 작가일수록 다음 후원이 더 빨리 모입니다." },
+  { q: "담벼락은 꼭 써야 하나요?", a: "의무는 아니지만 권장합니다. 짧은 작업 소식 하나가 후원자와의 관계를 만들고, 담벼락이 살아 있는 작가일수록 다음 후원이 더 빨리 모입니다." },
   { q: "프로젝트를 여러 개 동시에 운영할 수 있나요?", a: "현재 베타 단계에서는 작가당 동시 활성 프로젝트 1개를 권장합니다. 완성 후 새 프로젝트를 시작하는 방식으로 운영해주세요." },
 ];
 
@@ -376,7 +373,7 @@ export default function HowPage() {
                   <p className="text-[11px] font-bold tracking-[0.18em] uppercase mb-4" style={{ color: "var(--sv-deep)" }}>테오의 특권</p>
                   {[
                     "작품 캡션에 후원자 이름 기재",
-                    "작가 육필 Dear Theo 편지 수신",
+                    "작가 담벼락에 글·사진 남기기",
                     "완성작 선구매 우선권",
                     "오픈 스튜디오·전시 초대 (지인 1인 동반)",
                     "씨앗→해바라기→밀밭→별밤 배지",
@@ -398,16 +395,8 @@ export default function HowPage() {
                   <p className="text-[11px] font-bold tracking-[0.18em] uppercase text-navy-400 mb-4">비용 구조</p>
                   <div className="space-y-2.5">
                     <div className="flex justify-between text-[13px]">
-                      <span className="text-navy-500">재료값</span>
-                      <span className="font-bold text-navy-800">100% 작가에게</span>
-                    </div>
-                    <div className="flex justify-between text-[13px]">
-                      <span className="text-navy-500">결제 수수료</span>
-                      <span className="font-semibold text-navy-700">3% (후원자 부담)</span>
-                    </div>
-                    <div className="flex justify-between text-[13px]">
-                      <span className="text-navy-500">작가 수수료</span>
-                      <span className="font-bold" style={{ color: "var(--sv-deep)" }}>0%</span>
+                      <span className="text-navy-500">재료</span>
+                      <span className="font-bold text-navy-800">작가에게 전달</span>
                     </div>
                   </div>
                 </div>
@@ -418,12 +407,6 @@ export default function HowPage() {
                   style={{ boxShadow: "0 4px 14px rgba(13,59,102,.2)" }}
                 >
                   아틀리에에서 작가 찾기 →
-                </Link>
-                <Link
-                  href="/bot"
-                  className="block w-full text-center text-[13px] font-semibold border border-navy-200 text-navy-700 py-3 rounded-xl hover:bg-navy-100 transition-colors"
-                >
-                  테오 봇으로 취향 매칭 →
                 </Link>
               </>
             ) : (
@@ -437,7 +420,7 @@ export default function HowPage() {
                 >
                   <p className="text-[11px] font-bold tracking-[0.18em] uppercase text-navy-400 mb-4">작가에게 좋은 이유</p>
                   {[
-                    "수수료 0% — 재료값 전액 수령",
+                    "필요한 재료를 직접 수령",
                     "배송지 완전 비공개 — 개인정보 안전",
                     "팬과 창작으로 연결되는 관계",
                     "아카이브에 작품 영구 보관",
@@ -460,12 +443,8 @@ export default function HowPage() {
                   <p className="text-[11px] font-bold tracking-[0.18em] uppercase text-navy-400 mb-4">수익 구조</p>
                   <div className="space-y-2.5">
                     <div className="flex justify-between text-[13px]">
-                      <span className="text-navy-500">작가 수수료</span>
-                      <span className="font-bold" style={{ color: "var(--sv-deep)" }}>0%</span>
-                    </div>
-                    <div className="flex justify-between text-[13px]">
-                      <span className="text-navy-500">재료값</span>
-                      <span className="font-bold text-navy-800">전액 작가 수령</span>
+                      <span className="text-navy-500">재료</span>
+                      <span className="font-bold text-navy-800">작가에게 전달</span>
                     </div>
                     <div className="flex justify-between text-[13px]">
                       <span className="text-navy-500">플랫폼 수익</span>

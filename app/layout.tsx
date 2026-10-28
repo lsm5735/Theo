@@ -8,7 +8,7 @@ import { GA_ID } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Theo — 모두의 고흐가 되기 전, 나만의 고흐를 만난다",
-  description: "팬이 작가에게 창작 재료를 선물하고, 작가는 창작 과정을 편지로 답하는 관계형 현물 후원 플랫폼",
+  description: "팬이 작가에게 창작 재료를 선물하고, 작가는 담벼락에 창작 과정을 나누는 관계형 현물 후원 플랫폼",
 };
 
 export default function RootLayout({

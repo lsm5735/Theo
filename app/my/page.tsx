@@ -1,49 +1,21 @@
 "use client";
 
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import artists from "@/data/artists.json";
 import projects from "@/data/projects.json";
-import letters from "@/data/letters.json";
 import { useT, useLang } from "@/contexts/LangContext";
 import { DictKey } from "@/lib/translations";
+import { MySponsorship, useMySponsorships } from "@/lib/sponsorships";
+import { MY_WALL_ID, WallPost, useArtistUpdates, useWallPosts } from "@/lib/wall";
+import { MyAtelier, hostOf, useMyAtelier } from "@/lib/myAtelier";
 
-/* ─── 목 데이터: 내 후원 3건 ────────────────────────────────────────── */
-const MY_SPONSORSHIPS = [
-  {
-    id: "my_001",
-    deliveryStep: 4, // 작가가 받았어요 ✓ + 편지 도착
-    sponsoredAt: "2026-07-10",
-    letterId: "l1",
-    artistId: "artist_theo_001",
-    projectId: "project_artist_theo_001",
-    material: "윈저앤뉴튼 아티스트 오일 3색 (프러시안 블루·바이리디언·화이트) 200ml",
-    amount: 18000,
-  },
-  {
-    id: "my_002",
-    deliveryStep: 3, // 작가에게 가는 중
-    sponsoredAt: "2026-07-18",
-    letterId: null,
-    artistId: "artist_theo_007",
-    projectId: "project_artist_theo_007",
-    material: "쉔넬리에 유화물감 대용량 4색",
-    amount: 32000,
-  },
-  {
-    id: "my_003",
-    deliveryStep: 1, // 후원 완료
-    sponsoredAt: "2026-07-25",
-    letterId: null,
-    artistId: "artist_theo_013",
-    projectId: "project_artist_theo_013",
-    material: "캔버스 F100호 2점",
-    amount: 45000,
-  },
-];
+type Role = "theo" | "gogh";
 
-const STEPS_KO = ["후원 완료", "재료 준비 중", "작가에게\n가는 중", "작가가\n받았어요"];
+const noopSubscribe = () => () => {};
+const CARD_SHADOW = { boxShadow: "0 1px 4px rgba(23,29,43,.05)" };
 
 const BADGES = [
   { name: "씨앗",    threshold: 1 },
@@ -209,18 +181,124 @@ function DeliveryTracker({ step, stepsDisplay }: { step: number; stepsDisplay: s
   );
 }
 
-/* ─── Page ───────────────────────────────────────────────────────────── */
-export default function MyDashboard() {
+/* ─── 공통 ───────────────────────────────────────────────────────────── */
+function formatDay(iso: string, lang: string) {
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return iso;
+  return lang === "ko" ? `${d.getMonth() + 1}월 ${d.getDate()}일` : d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+function firstLine(text: string) {
+  return text.split("\n")[0];
+}
+
+function RoleSwitch({ role, onChange }: { role: Role; onChange: (r: Role) => void }) {
+  const t = useT();
+  const opts: { id: Role; label: DictKey; sub: DictKey }[] = [
+    { id: "theo", label: "my_role_theo", sub: "my_role_theo_sub" },
+    { id: "gogh", label: "my_role_gogh", sub: "my_role_gogh_sub" },
+  ];
+  return (
+    <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-navy-100 mb-8" role="tablist">
+      {opts.map((o) => (
+        <button
+          key={o.id}
+          role="tab"
+          aria-selected={role === o.id}
+          onClick={() => onChange(o.id)}
+          className={`rounded-lg py-2.5 transition-all ${role === o.id ? "bg-card shadow-sm" : "hover:bg-white/50"}`}
+        >
+          <span className={`block text-[14px] font-black ${role === o.id ? "text-navy-900" : "text-navy-500"}`}>{t(o.label)}</span>
+          <span className="block text-[10.5px] text-muted">{t(o.sub)}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/* ─── 테오(후원자) ───────────────────────────────────────────────────── */
+function SponsorshipCard({ sp, stepsDisplay }: { sp: MySponsorship; stepsDisplay: string[] }) {
   const t = useT();
   const { lang } = useLang();
+  const artist = artists.find((a) => a.id === sp.artistId);
+  const project = projects.find((p) => p.id === sp.projectId);
+  if (!artist || !project) return null;
+  const pct = Math.round((project.fundedAmount / project.targetAmount) * 100);
 
+  return (
+    <div className="rounded-xl border border-line overflow-hidden bg-card" style={CARD_SHADOW}>
+      <div className="p-4">
+        <div className="flex gap-3 mb-3">
+          <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 border-2 mt-0.5" style={{ borderColor: "var(--sv-soft)" }}>
+            <Image src={artist.profileImage} alt={artist.name} fill sizes="44px" className="object-cover" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between gap-2 mb-0.5">
+              <span className="font-bold text-navy-800 text-sm">{artist.name}</span>
+              <time className="text-[10px] text-muted shrink-0">{formatDay(sp.sponsoredAt, lang)}{t("my_date_suf")}</time>
+            </div>
+            <p className="text-xs text-navy-600 truncate">{project.title}</p>
+            <div className="flex items-center gap-2 mt-1">
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: "var(--navy-100)", color: "var(--navy-700)" }}>
+                {sp.amount.toLocaleString()}원
+              </span>
+              <span className="text-[10px] text-muted">{pct}{t("my_pct_suf")}</span>
+            </div>
+          </div>
+        </div>
+
+        <p className="text-[11px] mb-1 truncate" style={{ color: "var(--muted)" }}>
+          <span className="font-semibold" style={{ color: "var(--navy-600)" }}>{t("my_material_pre")}</span>
+          {sp.material}
+        </p>
+
+        <DeliveryTracker step={sp.deliveryStep} stepsDisplay={stepsDisplay} />
+
+        <div className="mt-4 pt-3 border-t border-navy-100">
+          <Link href={`/atelier/${artist.slug}#wall`} className="text-xs font-bold text-navy-700 hover:text-navy-900 transition-colors">
+            {t("my_wall_btn")}
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ArtistUpdate({ post }: { post: WallPost }) {
+  const { lang } = useLang();
+  const artist = artists.find((a) => a.id === post.wallId);
+  if (!artist) return null;
+  return (
+    <Link
+      href={`/atelier/${artist.slug}#wall`}
+      className="group flex gap-4 items-start rounded-xl p-4 border transition-all hover:shadow-card"
+      style={{ background: "var(--chiffon)", borderColor: "rgba(194,164,63,.22)" }}
+    >
+      <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 border-2 mt-0.5" style={{ borderColor: "var(--sv-soft)" }}>
+        <Image src={artist.profileImage} alt={artist.name} fill sizes="44px" className="object-cover" />
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center justify-between gap-2 mb-0.5">
+          <span className="font-bold text-navy-800 text-sm">{artist.name}</span>
+          <time className="text-[11px] text-muted shrink-0">{formatDay(post.createdAt, lang)}</time>
+        </div>
+        <p className="font-myeongjo text-navy-700 text-[13px] leading-snug truncate">{firstLine(post.text)}</p>
+      </div>
+      <span className="text-navy-300 group-hover:text-navy-500 transition-colors text-base mt-1 shrink-0">›</span>
+    </Link>
+  );
+}
+
+function TheoView() {
+  const t = useT();
+  const sponsorships = useMySponsorships() ?? [];
   const STEPS_DISPLAY = [t("my_step1"), t("my_step2"), t("my_step3"), t("my_step4")];
+  const artistIds = [...new Set(sponsorships.map((sp) => sp.artistId))];
+  const updates = useArtistUpdates(artistIds, 5) ?? [];
 
-  const count = MY_SPONSORSHIPS.length;
-  const totalAmount = MY_SPONSORSHIPS.reduce((s, sp) => s + sp.amount, 0);
-  const letterCount = MY_SPONSORSHIPS.filter((sp) => sp.letterId).length;
+  const count = sponsorships.length;
+  const totalAmount = sponsorships.reduce((s, sp) => s + sp.amount, 0);
 
-  /* Badge */
   let badgeIdx = 0;
   for (let i = BADGES.length - 1; i >= 0; i--) {
     if (count >= BADGES[i].threshold) { badgeIdx = i; break; }
@@ -230,264 +308,275 @@ export default function MyDashboard() {
   const progressPct = nextBadge
     ? Math.min(100, ((count - badge.threshold) / (nextBadge.threshold - badge.threshold)) * 100)
     : 100;
+  const badgeName = (name: string) => t(BADGE_NAME_KEYS[name] ?? "my_badge_seed");
 
-  function getBadgeDisplayName(name: string) {
-    return t(BADGE_NAME_KEYS[name] ?? "my_badge_seed");
+  return (
+    <>
+      {/* ── 배지 카드 ── */}
+      <div className="rounded-2xl p-6 mb-8 relative overflow-hidden"
+        style={{ background: "linear-gradient(135deg,var(--navy-800) 0%,var(--navy-900) 100%)" }}>
+        <div className="absolute -right-8 -top-8 w-52 h-52 rounded-full pointer-events-none" style={{ background: "var(--sv)", opacity: 0.08 }} />
+
+        <p className="text-white font-black text-xl mb-1">{t("my_greeting")}</p>
+        <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,.55)" }}>
+          {t("my_supporting_pre")}{count}{t("my_supporting_post")}
+        </p>
+
+        <div className="flex items-end justify-between gap-6">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-3 mb-3">
+              <BadgeIcon name={badge.name} size={52} />
+              <div>
+                <p className="text-white font-black text-lg leading-none">{badgeName(badge.name)} {t("my_badge_suf")}</p>
+                {nextBadge && (
+                  <p className="text-[11px] mt-0.5" style={{ color: "rgba(255,255,255,.45)" }}>
+                    <BadgeIconInline name={nextBadge.name} /> {badgeName(nextBadge.name)}{t("my_badge_until")} {nextBadge.threshold - count}{t("my_badge_more")}
+                  </p>
+                )}
+              </div>
+            </div>
+            {nextBadge && (
+              <>
+                <div className="w-full rounded-full h-1.5 overflow-hidden" style={{ background: "rgba(255,255,255,.12)" }}>
+                  <div className="h-full rounded-full" style={{ width: `${progressPct}%`, background: "var(--sv)" }} />
+                </div>
+                <div className="flex justify-between mt-1">
+                  <span className="text-[10px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(badge.name)}</span>
+                  <span className="text-[10px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(nextBadge.name)} {nextBadge.threshold}회</span>
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="flex gap-5 shrink-0">
+            <div className="text-right">
+              <p className="text-[10px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_total")}</p>
+              <p className="text-white font-black text-base">{totalAmount.toLocaleString()}원</p>
+            </div>
+            <div className="text-right">
+              <p className="text-[10px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_artists")}</p>
+              <p className="text-white font-black text-base">{artistIds.length}{t("my_people_suf")}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── 내 후원 현황 ── */}
+      <section className="mb-10">
+        <h2 className="text-[17px] font-black text-navy-800 mb-4">{t("my_section_status")}</h2>
+        <div className="space-y-4">
+          {sponsorships.map((sp) => (
+            <SponsorshipCard key={sp.id} sp={sp} stepsDisplay={STEPS_DISPLAY} />
+          ))}
+        </div>
+      </section>
+
+      {/* ── 작가 소식 (담벼락) ── */}
+      <section>
+        <h2 className="text-[17px] font-black text-navy-800 mb-1">{t("my_section_updates")}</h2>
+        <p className="text-xs text-muted mb-4">{t("my_updates_sub")}</p>
+        {updates.length > 0 ? (
+          <div className="space-y-3">
+            {updates.map((post) => <ArtistUpdate key={post.id} post={post} />)}
+          </div>
+        ) : (
+          <div className="rounded-xl p-8 text-center border" style={{ background: "var(--chiffon)", borderColor: "rgba(194,164,63,.2)" }}>
+            <p className="font-myeongjo text-sm text-muted">{t("my_updates_empty")}</p>
+          </div>
+        )}
+      </section>
+    </>
+  );
+}
+
+/* ─── 고흐(작가) ─────────────────────────────────────────────────────── */
+function GoghView({ atelier }: { atelier: MyAtelier }) {
+  const t = useT();
+  const { lang } = useLang();
+  const posts = useWallPosts(MY_WALL_ID) ?? [];
+  const theoNames = new Set(posts.filter((p) => p.role === "theo").map((p) => p.authorName));
+  const project = atelier.project;
+
+  const stats = [
+    { label: t("my_gogh_stat_posts"), value: posts.length },
+    { label: t("my_gogh_stat_theos"), value: theoNames.size },
+    { label: t("my_gogh_stat_materials"), value: atelier.materials.length },
+  ];
+
+  return (
+    <>
+      {/* ── 작가 카드 ── */}
+      <div className="rounded-2xl p-6 mb-8 relative overflow-hidden"
+        style={{ background: "linear-gradient(135deg,var(--navy-800) 0%,var(--navy-900) 100%)" }}>
+        <div className="absolute -right-8 -top-8 w-52 h-52 rounded-full pointer-events-none" style={{ background: "var(--sv)", opacity: 0.08 }} />
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-14 h-14 rounded-full overflow-hidden border-2 shrink-0 bg-navy-700 flex items-center justify-center" style={{ borderColor: "var(--sv-soft)" }}>
+            {atelier.profileImage ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={atelier.profileImage} alt={atelier.name} className="w-full h-full object-cover" />
+            ) : (
+              <span className="text-xl font-black text-chiffon">{atelier.name.slice(0, 1)}</span>
+            )}
+          </div>
+          <div className="min-w-0">
+            <p className="text-white font-black text-xl leading-tight">{atelier.name}{t("my_gogh_greeting_suf")}</p>
+            <p className="text-sm truncate" style={{ color: "rgba(255,255,255,.55)" }}>
+              {atelier.oneLiner || t("my_gogh_sub")}
+            </p>
+          </div>
+        </div>
+        <div className="grid grid-cols-3 gap-3">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <p className="text-[10px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{s.label}</p>
+              <p className="text-white font-black text-lg">{s.value}</p>
+            </div>
+          ))}
+        </div>
+        <div className="flex gap-2 mt-6">
+          <Link href="/atelier/me" className="flex-1 text-center bg-sv text-ink font-bold text-[13px] py-2.5 rounded-lg hover:bg-sv-soft transition-colors">
+            {t("my_gogh_view")}
+          </Link>
+          <Link href="/atelier/me?settings=profile" className="flex-1 text-center border border-white/30 text-white font-bold text-[13px] py-2.5 rounded-lg hover:bg-white/10 transition-colors">
+            {t("ma_settings")}
+          </Link>
+        </div>
+      </div>
+
+      {/* ── 내 프로젝트 ── */}
+      <section className="mb-10">
+        <h2 className="text-[17px] font-black text-navy-800 mb-4">{t("ma_project_title")}</h2>
+        {project ? (
+          <div className="rounded-xl border border-line bg-card p-4" style={CARD_SHADOW}>
+            <p className="font-bold text-navy-800 text-sm mb-1">{project.title}</p>
+            <p className="text-xs text-muted line-clamp-2 mb-3">{project.concept}</p>
+            <div className="w-full bg-navy-100 rounded-full h-1.5" />
+            <div className="flex justify-between text-[11px] text-muted mt-1.5">
+              <span>0{t("ma_pct")}</span>
+              <span>{t("ma_goal")} {project.targetAmount.toLocaleString()}원</span>
+            </div>
+            <div className="mt-3 pt-3 border-t border-navy-100">
+              <Link href="/atelier/me?settings=project" className="text-xs font-bold text-navy-700 hover:text-navy-900">
+                {t("my_gogh_edit")}
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-xl border-2 border-dashed border-navy-200 p-6 text-center">
+            <p className="text-[13px] text-navy-600 mb-3" style={{ wordBreak: "keep-all" }}>{t("ma_project_empty_sub")}</p>
+            <Link href="/atelier/me?settings=project" className="nb-btn inline-block px-5 py-2.5 rounded-lg font-black text-[13px]">
+              {t("ma_project_add")}
+            </Link>
+          </div>
+        )}
+      </section>
+
+      {/* ── 필요한 재료 ── */}
+      <section className="mb-10">
+        <div className="flex items-baseline justify-between mb-4">
+          <h2 className="text-[17px] font-black text-navy-800">{t("ma_materials_title")}</h2>
+          <Link href="/atelier/me?settings=materials" className="text-xs font-semibold text-navy-600 hover:opacity-70">
+            {t("my_gogh_edit")}
+          </Link>
+        </div>
+        <div className="space-y-2">
+          {atelier.materials.map((m, i) => (
+            <a key={i} href={m.link} target="_blank" rel="noopener noreferrer"
+              className="block rounded-xl border border-line bg-card px-4 py-3 hover:border-navy-300 transition-colors">
+              <p className="text-[11px] font-bold text-navy-400 mb-0.5">{hostOf(m.link)}</p>
+              <p className="text-[13px] text-navy-800 line-clamp-2" style={{ wordBreak: "keep-all" }}>{m.reason}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 최근 담벼락 ── */}
+      <section>
+        <div className="flex items-baseline justify-between mb-4">
+          <h2 className="text-[17px] font-black text-navy-800">{t("my_gogh_wall")}</h2>
+          <Link href="/atelier/me#wall" className="text-xs font-semibold text-navy-600 hover:opacity-70">
+            {t("my_gogh_wall_btn")}
+          </Link>
+        </div>
+        {posts.length > 0 ? (
+          <div className="space-y-2">
+            {posts.slice(0, 3).map((p) => (
+              <div key={p.id} className="rounded-xl border border-line bg-card px-4 py-3">
+                <div className="flex justify-between gap-2 mb-0.5">
+                  <span className="text-[12px] font-bold text-navy-700">
+                    {p.role === "artist" ? t("wall_role_artist") : p.authorName}
+                  </span>
+                  <time className="text-[11px] text-muted">{formatDay(p.createdAt, lang)}</time>
+                </div>
+                <p className="text-[13px] text-ink line-clamp-2">{p.text || "📷"}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-xl p-6 text-center border" style={{ background: "var(--chiffon)", borderColor: "rgba(194,164,63,.2)" }}>
+            <p className="text-[13px] text-muted mb-3" style={{ wordBreak: "keep-all" }}>{t("my_gogh_wall_empty")}</p>
+            <Link href="/atelier/me#wall" className="text-xs font-bold text-navy-800 underline underline-offset-2">
+              {t("my_gogh_wall_btn")}
+            </Link>
+          </div>
+        )}
+      </section>
+    </>
+  );
+}
+
+function GoghEmpty() {
+  const t = useT();
+  return (
+    <div className="rounded-2xl border-2 border-dashed border-navy-200 p-10 text-center">
+      <p className="text-[15px] font-black text-navy-800 mb-2">{t("my_gogh_empty")}</p>
+      <p className="text-[13px] text-muted mb-6" style={{ wordBreak: "keep-all" }}>{t("my_gogh_empty_sub")}</p>
+      <Link href="/onboarding/artist" className="nb-btn inline-block px-6 py-3 rounded-xl font-black text-[14px]">
+        {t("ma_empty_btn")}
+      </Link>
+    </div>
+  );
+}
+
+/* ─── Page ───────────────────────────────────────────────────────────── */
+export default function MyDashboard() {
+  const t = useT();
+  const atelier = useMyAtelier();
+  const urlRole = useSyncExternalStore(
+    noopSubscribe,
+    () => (new URLSearchParams(window.location.search).get("role") === "gogh" ? "gogh" : null),
+    () => null
+  );
+  const [picked, setPicked] = useState<Role | null>(null);
+  const role: Role = picked ?? urlRole ?? "theo";
+
+  function changeRole(r: Role) {
+    setPicked(r);
+    const url = new URL(window.location.href);
+    if (r === "gogh") url.searchParams.set("role", "gogh");
+    else url.searchParams.delete("role");
+    window.history.replaceState(null, "", url);
   }
-
-  /* Arrived letter */
-  const arrivedSp = MY_SPONSORSHIPS.find((sp) => sp.letterId);
-  const arrivedLetter = arrivedSp?.letterId ? letters.find((l) => l.id === arrivedSp.letterId) : null;
-  const arrivedArtist = arrivedSp ? artists.find((a) => a.id === arrivedSp.artistId) : null;
 
   return (
     <div className="min-h-screen bg-paper">
       <Header />
 
       <main className="max-w-[680px] mx-auto px-5 md:px-8 py-10">
-        <Link
-          href="/"
-          className="text-xs text-muted hover:text-navy-700 transition-colors mb-6 inline-block"
-        >
+        <Link href="/" className="text-xs text-muted hover:text-navy-700 transition-colors mb-6 inline-block">
           {t("my_back")}
         </Link>
+        <p className="text-[10px] font-black tracking-[0.22em] uppercase text-navy-400 mb-3">{t("my_label")}</p>
 
-        {/* ── Badge / Hero card ─────────────────────────────── */}
-        <div
-          className="rounded-2xl p-6 mb-8 relative overflow-hidden"
-          style={{
-            background: "linear-gradient(135deg,var(--navy-800) 0%,var(--navy-900) 100%)",
-          }}
-        >
-          {/* Decorative bg glow */}
-          <div
-            className="absolute -right-8 -top-8 w-52 h-52 rounded-full pointer-events-none"
-            style={{ background: "var(--sv)", opacity: 0.08 }}
-          />
+        <RoleSwitch role={role} onChange={changeRole} />
 
-          <p className="text-[10px] font-black tracking-[0.22em] uppercase mb-3" style={{ color: "rgba(255,255,255,.5)" }}>
-            {t("my_label")}
-          </p>
-          <p className="text-white font-black text-xl mb-1">{t("my_greeting")}</p>
-          <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,.55)" }}>
-            {t("my_supporting_pre")}{count}{t("my_supporting_post")}
-          </p>
-
-          <div className="flex items-end justify-between gap-6">
-            {/* Badge + progress */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-3 mb-3">
-                <BadgeIcon name={badge.name} size={52} />
-                <div>
-                  <p className="text-white font-black text-lg leading-none">{getBadgeDisplayName(badge.name)} {t("my_badge_suf")}</p>
-                  {nextBadge && (
-                    <p className="text-[11px] mt-0.5" style={{ color: "rgba(255,255,255,.45)" }}>
-                      <BadgeIconInline name={nextBadge.name} /> {getBadgeDisplayName(nextBadge.name)}{t("my_badge_until")} {nextBadge.threshold - count}{t("my_badge_more")}
-                    </p>
-                  )}
-                </div>
-              </div>
-              {nextBadge && (
-                <>
-                  <div className="w-full rounded-full h-1.5 overflow-hidden" style={{ background: "rgba(255,255,255,.12)" }}>
-                    <div
-                      className="h-full rounded-full"
-                      style={{ width: `${progressPct}%`, background: "var(--sv)" }}
-                    />
-                  </div>
-                  <div className="flex justify-between mt-1">
-                    <span className="text-[10px]" style={{ color: "rgba(255,255,255,.3)" }}>{getBadgeDisplayName(badge.name)}</span>
-                    <span className="text-[10px]" style={{ color: "rgba(255,255,255,.3)" }}>{getBadgeDisplayName(nextBadge.name)} {nextBadge.threshold}회</span>
-                  </div>
-                </>
-              )}
-            </div>
-
-            {/* Stats */}
-            <div className="flex gap-5 shrink-0">
-              <div className="text-right">
-                <p className="text-[10px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_total")}</p>
-                <p className="text-white font-black text-base">{totalAmount.toLocaleString()}원</p>
-              </div>
-              <div className="text-right">
-                <p className="text-[10px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_letters")}</p>
-                <p className="text-white font-black text-base">{letterCount}통</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ── 내 후원 현황 ──────────────────────────────────── */}
-        <section className="mb-10">
-          <h2 className="text-[17px] font-black text-navy-800 mb-4">{t("my_section_status")}</h2>
-          <div className="space-y-4">
-            {MY_SPONSORSHIPS.map((sp) => {
-              const artist = artists.find((a) => a.id === sp.artistId)!;
-              const project = projects.find((p) => p.id === sp.projectId)!;
-              const letter = sp.letterId ? letters.find((l) => l.id === sp.letterId) : null;
-              const pct = Math.round((project.fundedAmount / project.targetAmount) * 100);
-              const d = new Date(sp.sponsoredAt);
-              const dateStr = lang === "ko"
-                ? `${d.getMonth() + 1}월 ${d.getDate()}일 후원`
-                : `Gifted ${d.toLocaleDateString("en-US", { month: "short", day: "numeric" })}`;
-
-              return (
-                <div
-                  key={sp.id}
-                  className="rounded-xl border overflow-hidden"
-                  style={{
-                    background: letter ? "var(--chiffon)" : "var(--card)",
-                    borderColor: letter ? "rgba(194,164,63,.4)" : "var(--line)",
-                    boxShadow: letter
-                      ? "0 4px 24px rgba(194,164,63,.14)"
-                      : "0 1px 4px rgba(23,29,43,.05)",
-                  }}
-                >
-                  {/* Letter arrived ribbon */}
-                  {letter && (
-                    <div
-                      className="flex items-center gap-2 px-4 py-2.5 text-xs font-black"
-                      style={{ background: "var(--sv)", color: "var(--ink)" }}
-                    >
-                      <span>✉️</span>
-                      {t("my_letter_arrived")}
-                    </div>
-                  )}
-
-                  <div className="p-4">
-                    {/* Artist + project header */}
-                    <div className="flex gap-3 mb-3">
-                      <div
-                        className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 border-2 mt-0.5"
-                        style={{ borderColor: "var(--sv-soft)" }}
-                      >
-                        <Image
-                          src={artist.profileImage}
-                          alt={artist.name}
-                          fill
-                          sizes="44px"
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-2 mb-0.5">
-                          <span className="font-bold text-navy-800 text-sm">{artist.name}</span>
-                          <time className="text-[10px] text-muted shrink-0">{dateStr}</time>
-                        </div>
-                        <p className="text-xs text-navy-600 truncate">{project.title}</p>
-                        <div className="flex items-center gap-2 mt-1">
-                          <span
-                            className="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                            style={{ background: "var(--navy-100)", color: "var(--navy-700)" }}
-                          >
-                            {sp.amount.toLocaleString()}원
-                          </span>
-                          <span className="text-[10px] text-muted">{t("my_pct_suf").replace("%", `${pct}%`)}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Material */}
-                    <p className="text-[11px] mb-1 truncate" style={{ color: "var(--muted)" }}>
-                      <span className="font-semibold" style={{ color: "var(--navy-600)" }}>{t("my_material_pre")}</span>
-                      {sp.material}
-                    </p>
-
-                    {/* Delivery tracker */}
-                    <DeliveryTracker step={sp.deliveryStep} stepsDisplay={STEPS_DISPLAY} />
-
-                    {/* Letter preview + CTA */}
-                    {letter && (
-                      <div
-                        className="mt-4 pt-4"
-                        style={{ borderTop: "1px solid rgba(194,164,63,.28)" }}
-                      >
-                        <p
-                          className="font-myeongjo text-[13.5px] leading-relaxed mb-3"
-                          style={{ color: "var(--navy-700)" }}
-                        >
-                          "{letter.letter.title}"
-                        </p>
-                        <Link
-                          href={`/my/letters/${sp.letterId}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-black px-4 py-2 rounded-lg transition-opacity hover:opacity-80"
-                          style={{ background: "var(--navy-800)", color: "var(--chiffon)" }}
-                        >
-                          {t("my_letter_btn")}
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* ── 받은 편지함 ───────────────────────────────────── */}
-        <section>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[17px] font-black text-navy-800">{t("my_section_inbox")}</h2>
-            <Link
-              href="/my/letters"
-              className="text-xs font-semibold transition-colors hover:opacity-70"
-              style={{ color: "var(--navy-600)" }}
-            >
-              {t("my_inbox_all_pre")}{letters.length}{t("my_inbox_all_suf")}
-            </Link>
-          </div>
-
-          {arrivedLetter && arrivedArtist ? (
-            <Link
-              href={`/my/letters/${arrivedSp!.letterId}`}
-              className="group flex gap-4 items-start rounded-xl p-4 border transition-all hover:shadow-card"
-              style={{ background: "var(--chiffon)", borderColor: "rgba(194,164,63,.22)" }}
-            >
-              <div
-                className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 border-2 mt-0.5"
-                style={{ borderColor: "var(--sv-soft)" }}
-              >
-                <Image
-                  src={arrivedArtist.profileImage}
-                  alt={arrivedArtist.name}
-                  fill
-                  sizes="44px"
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2 mb-0.5">
-                  <span className="font-bold text-navy-800 text-sm">{arrivedArtist.name}</span>
-                  <time className="text-[11px] text-muted shrink-0">
-                    {new Date(arrivedLetter.letter.createdAt).getMonth() + 1}월{" "}
-                    {new Date(arrivedLetter.letter.createdAt).getDate()}일
-                  </time>
-                </div>
-                <p className="font-myeongjo text-navy-700 text-[13px] leading-snug mb-1 truncate">
-                  {arrivedLetter.letter.title}
-                </p>
-                <p className="text-xs text-muted line-clamp-1">
-                  {arrivedLetter.letter.content
-                    .replace(/\n/g, " ")
-                    .replace(/Dear Theo,.*$/, "")
-                    .trim()
-                    .slice(0, 70)}…
-                </p>
-              </div>
-              <span className="text-navy-300 group-hover:text-navy-500 transition-colors text-base mt-1 shrink-0">
-                ›
-              </span>
-            </Link>
-          ) : (
-            <div
-              className="rounded-xl p-8 text-center border"
-              style={{ background: "var(--chiffon)", borderColor: "rgba(194,164,63,.2)" }}
-            >
-              <p className="font-myeongjo text-sm text-muted">{t("my_inbox_empty")}</p>
-              <p className="text-xs text-muted mt-1">{t("my_inbox_empty_sub")}</p>
-            </div>
-          )}
-        </section>
+        {role === "theo" ? (
+          <TheoView />
+        ) : atelier === undefined ? null : atelier ? (
+          <GoghView atelier={atelier} />
+        ) : (
+          <GoghEmpty />
+        )}
       </main>
     </div>
   );

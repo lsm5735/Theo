@@ -213,7 +213,7 @@ export default function Home() {
                   {t("how_s1_h3")}
                 </h3>
                 <p className="text-[15px] text-muted leading-[1.95] max-w-[400px]" style={{ wordBreak: "keep-all" }}>
-                  {t("how_s1_body_pre")} <strong className="text-navy-800">{t("how_s1_body_em1")}</strong>{t("how_s1_body_mid")} <strong className="text-navy-800">{t("how_s1_body_em2")}</strong>{t("how_s1_body_post")}
+                  {t("how_s1_body_pre")} <strong className="text-navy-800">{t("how_s1_body_em1")}</strong>{t("how_s1_body_mid")} {t("how_s1_body_em2") && <strong className="text-navy-800">{t("how_s1_body_em2")}</strong>}{t("how_s1_body_post")}
                 </p>
               </div>
               <div data-sr="left" data-d="1" className="nb-card p-6 flex flex-col gap-3">
@@ -398,87 +398,6 @@ export default function Home() {
               </Link>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════
-          § 5. THEO BOT
-          ════════════════════════════════════════ */}
-      <section className="py-20 md:py-28" id="bot"
-        style={{ background: "linear-gradient(150deg,var(--navy-900) 0%,var(--navy-800) 55%,var(--navy-700) 100%)" }}>
-        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
-
-          <div data-sr="up" className="text-center mb-14">
-            <span className="nb-tag-light mb-5 inline-flex">{t("bot_section_tag")}</span>
-            <h2 className="font-black text-[28px] md:text-[40px] leading-[1.2] mt-4 mb-4"
-              style={{ color: "var(--chiffon)", wordBreak: "keep-all", letterSpacing: "-0.02em" }}>
-              {t("bot_section_h2").split("\n").map((line, i) => (
-                <span key={i}>{line}{i === 0 && <br />}</span>
-              ))}
-            </h2>
-            <p className="text-[15px] leading-[1.9] max-w-[440px] mx-auto" style={{ color: "rgba(250,240,202,.65)", wordBreak: "keep-all" }}>
-              {t("bot_section_sub")}
-            </p>
-          </div>
-
-          <div className="max-w-[520px] mx-auto flex flex-col gap-3">
-            {[
-              { role: "bot", text: t("bot_sample_1"), d: "1" },
-              { role: "user", text: t("bot_sample_2"), d: "2" },
-              { role: "bot", text: t("bot_sample_3"), d: "3" },
-              { role: "user", text: t("bot_sample_4"), d: "4" },
-            ].map((m, i) => (
-              <div key={i} data-sr="up" data-d={m.d}
-                className={`max-w-[84%] px-4 py-3 text-[13.5px] leading-[1.8] ${m.role === "user" ? "self-end" : ""}`}
-                style={m.role === "bot"
-                  ? { background: "rgba(250,240,202,.1)", border: "1.5px solid rgba(250,240,202,.2)", borderRadius: "16px 16px 16px 4px", color: "var(--chiffon)", wordBreak: "keep-all" }
-                  : { background: "var(--sv)", border: "2px solid var(--brutal)", boxShadow: "3px 3px 0 var(--brutal)", borderRadius: "16px 16px 4px 16px", color: "var(--brutal)", fontWeight: 700, wordBreak: "keep-all" }
-                }>
-                {m.role === "bot" && (
-                  <div className="flex gap-2.5 items-start">
-                    <div className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center"
-                      style={{ background: "var(--sv)", border: "1.5px solid var(--brutal)" }}>
-                      <span className="font-black text-[8px]" style={{ color: "var(--brutal)" }}>T</span>
-                    </div>
-                    <span>{m.text}</span>
-                  </div>
-                )}
-                {m.role === "user" && m.text}
-              </div>
-            ))}
-
-            {/* 추천 결과 */}
-            <div data-sr="up" data-d="5" className="nb-card p-4 mt-2">
-              <div className="flex gap-[11px] items-start mb-3">
-                <div className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center"
-                  style={{ background: "var(--sv)", border: "1.5px solid var(--brutal)" }}>
-                  <span className="font-black text-[8px]" style={{ color: "var(--brutal)" }}>T</span>
-                </div>
-                <span className="text-[13px] text-navy-800">
-                  {t("bot_result_summary")}
-                </span>
-              </div>
-              <div className="soft-surface rounded-xl p-3 flex gap-3 items-center">
-                <div className="w-[52px] h-[52px] rounded-[10px] shrink-0 overflow-hidden relative bg-navy-200"
-                  style={{ border: "2px solid var(--brutal)" }}>
-                  <Image src={artists[0].profileImage} alt={artists[0].name} fill sizes="52px" className="object-cover" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h6 className="text-[13px] font-black text-navy-900">{artists[0].name} · {artists[0].media[0]}</h6>
-                  <p className="text-[11px] text-muted leading-[1.6] mt-0.5" style={{ wordBreak: "keep-all" }}>
-                    {t("bot_result_desc")}
-                  </p>
-                </div>
-                <span className="nb-tag text-[9px]">92%</span>
-              </div>
-            </div>
-          </div>
-
-          <div data-sr="up" data-d="3" className="text-center mt-10">
-            <Link href="/bot" className="nb-btn text-[14px] px-8 py-3.5 rounded-xl font-black">
-              {t("bot_section_btn")}
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -674,7 +593,7 @@ export default function Home() {
             <div>
               <p className="text-[11px] tracking-[0.14em] mb-4 uppercase font-bold" style={{ color: "rgba(250,240,202,.4)" }}>{t("footer_help")}</p>
               <ul className="space-y-2.5">
-                {(["footer_link_how", "footer_link_faq", "footer_link_fee", "footer_link_contact"] as const).map((key) => (
+                {(["footer_link_how", "footer_link_faq", "footer_link_contact"] as const).map((key) => (
                   <li key={key}><Link href="#how" className="text-[12.5px] hover:text-chiffon transition-colors font-medium" style={{ color: "rgba(250,240,202,.7)" }}>{t(key)}</Link></li>
                 ))}
               </ul>

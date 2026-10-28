@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { recordSponsorship } from "@/lib/sponsorships";
+import { addWallPost } from "@/lib/wall";
 
 /* ─ 배경 별 시드 데이터 [left%, top%, size(px), opacity, delay(s)] ─ */
 const BG_STARS: [number, number, number, number, number][] = [
@@ -109,8 +111,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
   const [message, setMessage] = useState("");
 
   const isOpen = active !== null;
-  const fee = active ? Math.round(active.price * 0.03) : 0;
-  const total = active ? active.price + fee : 0;
+  const total = active ? active.price : 0;
   const displayName = nickname.trim() || "테오님";
 
   const fundedCount = materials.filter((m) => m.isFunded).length;
@@ -120,6 +121,15 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
     setStep(1);
     setNickname("");
     setMessage("");
+  }
+
+  // 모의 결제 완료 → 내 후원 기록 + 메시지는 작가 담벼락에 테오 글로
+  function completeSponsorship() {
+    if (!active) return;
+    const name = nickname.trim() || "테오";
+    recordSponsorship({ artistId: artist.id, projectId: project.id, material: active.name, amount: active.price, nickname: name });
+    if (message.trim()) addWallPost({ wallId: artist.id, role: "theo", authorName: name, text: message.trim(), image: "" });
+    setStep(4);
   }
 
   function closeFlow() {
@@ -365,17 +375,6 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                         {active.price.toLocaleString()}원
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-muted flex items-center gap-1.5">
-                        결제·전달 수수료
-                        <span className="text-[10px] bg-navy-200 text-navy-600 px-1.5 py-0.5 rounded font-bold">
-                          3%
-                        </span>
-                      </span>
-                      <span className="font-semibold text-navy-600">
-                        +{fee.toLocaleString()}원
-                      </span>
-                    </div>
                     <div className="border-t border-navy-200 pt-3 flex justify-between items-baseline">
                       <span className="font-bold text-navy-800">총 결제 금액</span>
                       <span className="font-black text-navy-800 text-2xl">
@@ -384,8 +383,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                     </div>
                   </div>
                   <p className="text-[11px] text-muted mt-3 leading-relaxed">
-                    재료값 전액({active.price.toLocaleString()}원)이 작가에게 전달됩니다.
-                    작가 수수료 0%.
+                    재료가 작가에게 전달됩니다.
                   </p>
                 </div>
 
@@ -435,7 +433,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   <label className="block text-xs font-bold text-navy-700 mb-1.5">
                     Dear Gogh 메시지{" "}
                     <span className="font-normal text-muted">
-                      (선택 · 편지와 함께 전달돼요)
+                      (선택 · 아틀리에 담벼락에 남겨져요)
                     </span>
                   </label>
                   <textarea
@@ -511,7 +509,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
 
                 {/* Pay button */}
                 <button
-                  onClick={() => setStep(4)}
+                  onClick={completeSponsorship}
                   className="w-full font-black py-4 rounded-xl transition-all text-base flex items-center justify-center gap-2 mb-3"
                   style={{
                     background: "var(--sv)",
@@ -643,7 +641,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                       className="text-sm font-black mt-2"
                       style={{ color: "var(--gold-text)" }}
                     >
-                      재료값 {active.price.toLocaleString()}원이 작가에게 전달됩니다.
+                      재료가 작가에게 전달됩니다.
                     </p>
                   </div>
 
@@ -662,7 +660,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   <p className="fu3 text-xs text-muted mb-8 leading-relaxed">
                     재료가 준비되면 {artist.name} 작가에게 전달됩니다.
                     <br />
-                    작가가 받으면 Dear Theo 편지가 도착할 거예요.
+                    작가가 받으면 아틀리에 담벼락에 소식이 올라올 거예요.
                   </p>
 
                   {/* CTA */}

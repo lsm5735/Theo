@@ -340,8 +340,8 @@ export default async function ProjectDetailPage({ params }: Props) {
               </div>
 
               <p className="text-white/60 text-xs mb-5 leading-relaxed">
-                재료를 선물하면 {artist.name} 작가가<br />
-                창작 과정을 편지로 답합니다.
+                재료를 선물하면 {artist.name} 작가의<br />
+                담벼락에 함께 글을 남길 수 있어요.
               </p>
 
               <Link
@@ -380,9 +380,8 @@ export default async function ProjectDetailPage({ params }: Props) {
 
             {/* Fee info */}
             <div className="bg-chiffon rounded-xl p-4 border border-sv/20 text-center">
-              <p className="text-xs font-bold text-navy-700 mb-1">작가 수수료 0%</p>
               <p className="text-xs text-navy-600 leading-relaxed">
-                재료값 전액이 {artist.name} 작가에게 전달됩니다.<br />
+                재료가 {artist.name} 작가에게 전달됩니다.<br />
                 배송지는 공개되지 않습니다.
               </p>
             </div>

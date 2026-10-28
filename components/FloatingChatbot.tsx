@@ -61,7 +61,7 @@ export default function FloatingChatbot() {
         {/* 캐릭터 이미지 → 테오 봇 */}
         <Link
           href="/bot"
-          aria-label="테오 봇 — 취향 작가 추천받기"
+          aria-label="테오 봇"
           className="block w-20 md:w-[88px] pointer-events-auto transition-transform duration-200 hover:scale-105"
           style={{
             animation: "chatbotFloat 3s ease-in-out infinite",
