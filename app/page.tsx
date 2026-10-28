@@ -48,10 +48,13 @@ export default function Home() {
         {/* 배경 사진 — 글자 뒤로 흐리게, 아래로 갈수록 캔버스색에 녹아듦 */}
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero-museum.jpg" alt="" className="w-full h-full object-cover scale-110"
-            style={{ filter: "blur(7px) saturate(.9)" }} />
+          <img src="/hero-museum.jpg" alt="" className="w-full h-full object-cover scale-[1.03]"
+            style={{ filter: "blur(2px)" }} />
+          {/* 크림 오버레이 — 형체는 보이되 글자가 읽히도록, 가운데(글자 뒤)만 조금 더 밝게 */}
           <div className="absolute inset-0"
-            style={{ background: "linear-gradient(to bottom, rgba(255,250,240,.66) 0%, rgba(255,250,240,.58) 45%, rgba(255,250,240,.9) 85%, var(--paper) 100%)" }} />
+            style={{ background: "linear-gradient(to bottom, rgba(255,250,240,.42) 0%, rgba(255,250,240,.34) 50%, rgba(255,250,240,.82) 88%, var(--paper) 100%)" }} />
+          <div className="absolute inset-0"
+            style={{ background: "radial-gradient(ellipse 60% 55% at 50% 48%, rgba(255,250,240,.55) 0%, rgba(255,250,240,0) 100%)" }} />
         </div>
 
         <div className="relative max-w-[1080px] mx-auto px-5 md:px-8 pt-24 md:pt-40 pb-20 md:pb-32 text-center">
