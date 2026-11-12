@@ -227,7 +227,7 @@ export default function BotPage() {
                     <div
                       className="bg-card border border-line rounded-2xl rounded-tl-sm px-4 py-3.5"
                     >
-                      <p className="text-[15px] text-navy-900 leading-[1.8] whitespace-pre-line">
+                      <p className="text-[16px] text-navy-900 leading-[1.8] whitespace-pre-line">
                         {msg.text}
                       </p>
                     </div>
@@ -240,7 +240,7 @@ export default function BotPage() {
                         <button
                           key={chip}
                           onClick={() => handleChip(chip)}
-                          className="text-[14.5px] px-3.5 py-2 rounded-full border border-navy-300 text-navy-700 hover:bg-navy-800 hover:text-chiffon hover:border-navy-800 transition-all"
+                          className="text-[15px] px-3.5 py-2 rounded-full border border-navy-300 text-navy-700 hover:bg-navy-800 hover:text-chiffon hover:border-navy-800 transition-all"
                         >
                           {chip}
                         </button>
@@ -249,7 +249,7 @@ export default function BotPage() {
                       {step >= 2 && (
                         <button
                           onClick={handleQuickMatch}
-                          className="text-[14.5px] px-3.5 py-2 rounded-full bg-sv text-ink font-semibold hover:opacity-90 transition-all"
+                          className="text-[15px] px-3.5 py-2 rounded-full bg-sv text-ink font-semibold hover:opacity-90 transition-all"
                         >
                           {t("bot_quick_match")}
                         </button>
@@ -259,7 +259,7 @@ export default function BotPage() {
                 </div>
               ) : (
                 <div className="bg-navy-900 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[75%]">
-                  <p className="text-[15px] leading-[1.7]">{msg.text}</p>
+                  <p className="text-[16px] leading-[1.7]">{msg.text}</p>
                 </div>
               )}
             </div>
@@ -294,7 +294,7 @@ export default function BotPage() {
                       <path d="M22 9 A13 13 0 0 1 9 22" stroke="#FCD05B" strokeWidth="2.5" strokeLinecap="round" opacity="0.12" />
                     </svg>
                   </div>
-                  <p className="text-[15px] text-navy-700 font-medium">{t("bot_matching_msg")}</p>
+                  <p className="text-[16px] text-navy-700 font-medium">{t("bot_matching_msg")}</p>
                 </div>
               </div>
             </div>
@@ -311,7 +311,7 @@ export default function BotPage() {
                 <div
                   className="bg-card border border-line rounded-2xl rounded-tl-sm px-4 py-3.5"
                 >
-                  <p className="text-[15px] text-navy-900 leading-[1.8]">
+                  <p className="text-[16px] text-navy-900 leading-[1.8]">
                     {t("bot_found")}
                   </p>
                 </div>
@@ -377,7 +377,7 @@ export default function BotPage() {
                         <p className="text-[13px] font-bold tracking-[0.14em] text-navy-400 uppercase mb-2">
                           {t("bot_reason_title")}
                         </p>
-                        <p className="text-[15px] text-navy-800 leading-[1.85]">
+                        <p className="text-[16px] text-navy-800 leading-[1.85]">
                           {r.reason}
                         </p>
                         {r.quote && (

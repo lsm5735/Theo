@@ -11,7 +11,7 @@ import { trackNotionClick } from "@/lib/analytics";
 
 const LEFT = "md:w-[calc((100vw-var(--gap)*2)*0.25)] shrink-0";
 const RIGHT = "w-full md:w-[calc((100vw-var(--gap)*2)*0.75)]";
-const BODY = "text-[16px] md:text-[18px] leading-[1.85] text-muted space-y-3 max-w-[46rem]";
+const BODY = "text-[16px] md:text-[18px] leading-[1.75] text-muted space-y-3 max-w-[46rem]";
 
 type Tone = "paper" | "ink" | "sun";
 const TONE: Record<Tone, string> = { paper: "", ink: "tone-ink", sun: "tone-sun" };
@@ -30,6 +30,14 @@ function Row({ label, children, id, tone = "paper", rule = true }: { label: stri
     </section>
   );
 }
+
+const SWATCH = ["swatch-sun", "swatch-vermilion", "swatch-aqua", "swatch-cobalt"];
+const FILL = [
+  {},
+  { "--fill": "var(--vermilion)" },
+  { "--fill": "var(--aqua)" },
+  { "--fill": "var(--cobalt)", "--fill-ink": "#F7F6F3" },
+] as React.CSSProperties[];
 
 const PROGRAMS = [
   { name: "팝업 전시 [CONTINUE]", date: "11. 28 – 11. 29" },
@@ -84,9 +92,9 @@ export default function Home() {
             text={"GIVE PAINT,\nNOT FLOWERS"}
             typing
             between={
-              <span className="relative z-10 block self-center w-full md:w-[46vw] -my-[1.2vw] md:-my-[2.4vw]">
+              <span className="relative z-10 block self-center w-full md:w-[46vw] my-[2.5vw] md:-my-[2.4vw]">
                 {/* 데스크톱: 슬로건 두 줄 + 버튼이 한 화면에 들어오도록 사진 높이를 화면 높이에서 역산 */}
-                <span className="block relative overflow-hidden aspect-[16/10] md:aspect-auto md:h-[clamp(170px,calc(100svh-var(--header-h)-22vw-11.5rem),26vw)]">
+                <span className="block relative overflow-hidden aspect-[16/10] sm:aspect-[2/1] md:aspect-auto md:h-[clamp(170px,calc(100svh-var(--header-h)-22vw-11.5rem),26vw)]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/hero-museum.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
                 </span>
@@ -177,39 +185,35 @@ export default function Home() {
           </p>
         </Row>
 
-        {/* ═══ 4. HOW IT WORKS — 실제 순서이므로 숫자를 크게 ═══ */}
-        <Row label="How it works" id="how">
-          <h2 data-sr="up" className="statement type-l mb-14">
+        {/* ═══ 4. HOW IT WORKS — 물감 색상표처럼 네 단계를 네 가지 색으로 ═══ */}
+        <Row label="How it works" id="how" rule={false}>
+          <h2 data-sr="up" className="statement type-xl">
             당신의 물감 선물은 하나의 작품을 함께 완성시키는 일입니다.
           </h2>
-
-          <div>
-            {STEPS.map((s) => (
-              <div key={s.n}>
-                <hr className="dots-x" />
-                <div className="grid grid-cols-[auto_1fr] md:grid-cols-[8.5rem_16rem_1fr] lg:grid-cols-[11rem_19rem_1fr] gap-x-5 md:gap-x-10 gap-y-6 py-8 md:py-12">
-                  <p className="type-numeral" aria-hidden="true">{s.n}</p>
-                  <div data-sr="up" className="relative aspect-[4/3] md:aspect-[4/5] overflow-hidden bg-surface-card">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={s.img} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-                  </div>
-                  <div data-sr="up" data-d="1" className="col-span-2 md:col-span-1">
-                    <p className="type-label mb-4"><span className="sr-only">{s.n}. </span>{s.label}</p>
-                    <h3 className="statement type-m mb-6">{s.title}</h3>
-                    <ul className="space-y-2">
-                      {s.items.map((it) => (
-                        <li key={it} className="flex gap-3 text-[16px] md:text-[17px] leading-[1.75] text-muted">
-                          <span aria-hidden="true">–</span>
-                          <span>{it}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </Row>
+        <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
+          {STEPS.map((s, i) => (
+            <div key={s.n} className={`swatch ${SWATCH[i % SWATCH.length]} flex flex-col px-[var(--gap)] pt-6 pb-10 md:pb-14`}>
+              <div className="flex items-start justify-between gap-4 mb-6">
+                <p className="type-numeral" aria-hidden="true">{s.n}</p>
+                <p className="type-label pt-1"><span className="sr-only">{s.n}. </span>{s.label}</p>
+              </div>
+              <div className="relative aspect-[4/3] sm:aspect-[4/5] overflow-hidden mb-7">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={s.img} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+              </div>
+              <h3 className="statement type-m mb-5 xl:min-h-[2.6em]">{s.title}</h3>
+              <ul className="space-y-2">
+                {s.items.map((it) => (
+                  <li key={it} className="flex gap-3 text-[16px] leading-[1.7]">
+                    <span aria-hidden="true">–</span>
+                    <span>{it}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
 
         {/* ═══ 5. ARTISTS ═══ */}
         <section className="px-[var(--gap)]" id="projects">
@@ -248,7 +252,7 @@ export default function Home() {
               <hr className="dots-x" />
               <p className="text-[16px] md:text-[18px] leading-[1.8] py-3">서울 종로구 창덕궁길 83-1</p>
               <hr className="dots-x mb-8" />
-              <Link href="/show" className="link-line text-[16px]">Read More →</Link>
+              <Link href="/show" className="en link-line text-[16px]">Read More →</Link>
             </div>
           </div>
         </Row>
@@ -261,12 +265,12 @@ export default function Home() {
           </h2>
 
           <div>
-            {PROGRAMS.map((p) => (
+            {PROGRAMS.map((p, i) => (
               <div key={p.name}>
                 <hr className="dots-x" />
-                <Link href="/community" className="row-fill flex items-baseline justify-between gap-4 py-5 md:py-6">
+                <Link href="/community" style={FILL[i % FILL.length]} className="row-fill flex items-baseline justify-between gap-4 py-5 md:py-6">
                   <span className="font-display type-l">{p.name}</span>
-                  <span className="text-[15px] md:text-[17px] text-muted shrink-0">2026. {p.date}</span>
+                  <span className="text-[16px] md:text-[17px] text-muted shrink-0">2026. {p.date}</span>
                 </Link>
               </div>
             ))}

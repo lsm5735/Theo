@@ -77,7 +77,7 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
       <main>
         {/* 타이틀 */}
         <section className="tone-sun px-[var(--gap)] pt-6 md:pt-10">
-          <Link href="/atelier" className="link-line text-[15px] inline-block mb-8 md:mb-12">
+          <Link href="/atelier" className="link-line text-[16px] inline-block mb-8 md:mb-12">
             {t("back_atelier")}
           </Link>
           <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
@@ -90,10 +90,10 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
         <Row label="Artist">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_16rem] gap-8 lg:gap-12">
             <div data-sr="up">
-              <h2 className="type-xl mb-6" style={{ fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400 }}>{artist.name}</h2>
-              <p className="type-m mb-8" style={{ wordBreak: "keep-all", fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400 }}>{artist.oneLiner}</p>
+              <h2 className="type-xl mb-6" style={{ fontFamily: "var(--font-text)", fontWeight: 400 }}>{artist.name}</h2>
+              <p className="type-m mb-8" style={{ wordBreak: "keep-all", fontFamily: "var(--font-text)", fontWeight: 400 }}>{artist.oneLiner}</p>
               <p className="text-[16px] leading-[1.9] max-w-[40rem] text-muted" style={{ wordBreak: "keep-all" }}>{artist.artistNote}</p>
-              <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[15px] mt-10 inline-flex">
+              <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[16px] mt-10 inline-flex">
                 {t("cta_gift_btn")}
               </Link>
             </div>
@@ -119,10 +119,10 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
                 <Image src={project.sketchImage} alt={project.title} fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
               </div>
               <div data-sr="up" data-d="1">
-                <h3 className="type-l mb-5" style={{ fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400, wordBreak: "keep-all" }}>{project.title}</h3>
+                <h3 className="type-l mb-5" style={{ fontFamily: "var(--font-text)", fontWeight: 400, wordBreak: "keep-all" }}>{project.title}</h3>
                 <p className="text-[16px] leading-[1.85] text-muted mb-8" style={{ wordBreak: "keep-all" }}>{project.concept}</p>
                 <p className="text-[17px] mb-1">{project.fundedAmount.toLocaleString()}{t("raised_suffix")}</p>
-                <p className="text-[15px] text-muted mb-8">
+                <p className="text-[16px] text-muted mb-8">
                   {t("goal_label")} {project.targetAmount.toLocaleString()}원 · 테오 {project.sponsorCount}{t("sponsor_count_suffix")}
                 </p>
                 <Link href={`/projects/${project.id}`} className="link-line text-[16px]">{t("project_detail")}</Link>
@@ -147,12 +147,12 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
                     )}
                   </div>
                   <p className="text-[16px] leading-snug line-clamp-2 mb-1">{m.name}</p>
-                  <p className="text-[15px] text-muted leading-snug line-clamp-2 mb-2">{m.usageNote}</p>
+                  <p className="text-[16px] text-muted leading-snug line-clamp-2 mb-2">{m.usageNote}</p>
                   <p className="text-[16px] font-bold">{m.price.toLocaleString()}원</p>
                 </div>
               ))}
             </div>
-            <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[15px]">
+            <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[16px]">
               {t("cta_gift_btn")}
             </Link>
           </Row>

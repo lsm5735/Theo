@@ -11,6 +11,11 @@
   --sun: #FCD05B;        /* 로고 배경 노랑 */
   --ink: #241815;        /* 로고 글자색 — 따뜻한 검정 */
 
+  /* 물감 색 — 반 고흐의 팔레트에서. 'How it works' 색상표와 목록 hover 에만 쓴다 */
+  --vermilion: #EF6238;  /* 아를의 침실 */
+  --aqua:      #8FD0C7;  /* 꽃 피는 아몬드 나무 */
+  --cobalt:    #2A45C2;  /* 별이 빛나는 밤 */
+
   /* 잉크 스케일 (기존 navy-* 토큰 이름을 그대로 쓰되 값은 로고 잉크 계열) */
   --navy-900: #241815;
   --navy-800: #2E211D;
@@ -20,7 +25,7 @@
   --navy-400: #746A65;
   --navy-300: #B5AEA9;
   --navy-200: #CFCBC5;
-  --navy-100: #D9D7D1;
+  --navy-100: #DDDBD5;
 
   --sv:       #FCD05B;
   --sv-deep:  #C99F2E;
@@ -28,11 +33,11 @@
   --theo-yellow: #FCD05B;
   --gold-text: #5A4508;
 
-  --paper:   #E6E5E1;   /* 갤러리 벽 — 차분한 회색 */
+  --paper:   #ECEBE7;   /* 갤러리 벽 — 차분한 회색 */
   --chiffon: #FDF0C4;
-  --card:      #F3F2EE;
-  --card-soft: #ECEBE7;
-  --surface-card:   #D9D8D3;
+  --card:      #F7F6F3;
+  --card-soft: #F1F0EC;
+  --surface-card:   #DEDDD8;
   --surface-strong: #CCCAC4;
   --line:      #C2C0BA;
   --line-strong: #9E9B94;
@@ -48,11 +53,19 @@
   --clay-mint:     #A4D4C5;
   --clay-coral:    #FF6B5A;
 
+  /* 본문 글꼴 — 한국어 화면에서는 문장 속 영문·숫자까지 Noto Sans KR 로 통일.
+     PT Serif 는 영어 화면(lang=en)과 영어만 있는 문구(.en)에 쓴다 */
+  --font-text: 'Noto Sans KR', sans-serif;
+  --font-en:   'PT Serif', 'Noto Sans KR', serif;
+
   /* 레이아웃 */
   --gap: 1.25rem;
-  --header-h: 4rem;
+  --header-h: 3rem;      /* 모바일 48px — 터치 영역 최소 높이와 같게 */
 }
-@media (min-width: 768px) { :root { --gap: 1.75rem; } }
+@media (min-width: 768px) { :root { --gap: 1.75rem; --header-h: 3.75rem; } }
+
+:root:lang(en) { --font-text: var(--font-en); }
+.en { font-family: var(--font-en); }
 
 @theme inline {
   --color-navy-900:  var(--navy-900);
@@ -87,9 +100,9 @@
   --color-sun:           var(--sun);
 
   --font-display:  'Archivo Black', 'Noto Sans KR', sans-serif;
-  --font-serif:    'PT Serif', 'Noto Sans KR', serif;
-  --font-myeongjo: 'PT Serif', 'Noto Sans KR', serif;
-  --font-suit:     'PT Serif', 'Noto Sans KR', serif;
+  --font-serif:    var(--font-text);
+  --font-myeongjo: var(--font-text);
+  --font-suit:     var(--font-text);
 }
 
 @theme {
@@ -109,7 +122,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: 'PT Serif', 'Noto Sans KR', serif;
+  font-family: var(--font-text);
   font-size: 17px;
   line-height: 1.6;
   letter-spacing: -0.02em;
@@ -139,7 +152,7 @@ h1, h2, h3, .font-display {
 }
 
 .font-myeongjo {
-  font-family: 'PT Serif', 'Noto Sans KR', serif;
+  font-family: var(--font-text);
   line-height: 1.95;
 }
 
@@ -162,13 +175,13 @@ h1, h2, h3, .font-display {
   font-family: 'Archivo Black', 'Noto Sans KR', sans-serif; font-weight: 900; font-synthesis: none;
   font-size: clamp(52px, 9vw, 148px); line-height: .86; letter-spacing: -0.045em;
 }
-.type-xl { font-size: clamp(25px, 3.3vw, 50px); line-height: 1.24; letter-spacing: -0.045em; }
-.type-l  { font-size: clamp(24px, 2.7vw, 40px); line-height: 1.26; letter-spacing: -0.04em; }
+.type-xl { font-size: clamp(25px, 3.3vw, 50px); line-height: 1.28; letter-spacing: -0.035em; }
+.type-l  { font-size: clamp(24px, 2.7vw, 40px); line-height: 1.3; letter-spacing: -0.03em; }
 .type-m  { font-size: clamp(20px, 1.9vw, 28px); line-height: 1.3; letter-spacing: -0.035em; }
 
-/* 큰 문장 — 한글은 Noto Sans KR Medium, 영문은 PT Serif */
+/* 큰 문장 — Noto Sans KR Medium (영어 화면에서는 PT Serif) */
 .statement {
-  font-family: 'PT Serif', 'Noto Sans KR', serif;
+  font-family: var(--font-text);
   font-weight: 500;
   text-wrap: balance;
 }
@@ -272,7 +285,7 @@ h1, h2, h3, .font-display {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 48px;
   background: var(--ink); color: var(--paper);
-  font-family: 'PT Serif', 'Noto Sans KR', serif;
+  font-family: var(--font-text);
   font-weight: 700;
   box-shadow: inset 0 0 0 1px var(--ink);
   transition: background-color .18s ease, color .18s ease;
@@ -286,7 +299,7 @@ h1, h2, h3, .font-display {
   min-height: 48px;
   background: transparent; color: inherit;
   border: 1px solid currentColor;
-  font-family: 'PT Serif', 'Noto Sans KR', serif;
+  font-family: var(--font-text);
   font-weight: 700;
   transition: background-color .18s ease, color .18s ease, border-color .18s ease;
 }
@@ -361,4 +374,35 @@ h1, h2, h3, .font-display {
 input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]), select, textarea {
   font-size: max(16px, 1em);
   min-height: 48px;
+}
+
+/* 문단 끝에 한 단어만 남는 줄바꿈 방지 */
+p, li { text-wrap: pretty; }
+
+/* ── 색상표(How it works) — 물감 견본처럼 네 칸을 나란히 칠한다 ── */
+.swatch { --muted: currentColor; }
+.swatch-sun       { background: var(--sun);       color: var(--ink); }
+.swatch-vermilion { background: var(--vermilion); color: var(--ink); }
+.swatch-aqua      { background: var(--aqua);      color: var(--ink); }
+.swatch-cobalt    { background: var(--cobalt);    color: #F7F6F3; }
+.swatch ::selection { background: var(--ink); color: var(--paper); }
+
+/* 목록 행 hover 색을 행마다 다르게 */
+.row-fill:hover { background: var(--fill, var(--sun)); color: var(--fill-ink, var(--ink)); }
+.row-fill:hover .text-muted { color: var(--fill-ink, var(--ink)); }
+
+/* ── 터치 영역 — 애플 44pt · 구글 48dp 기준. 손가락으로 누르는 화면에서만 적용 ── */
+@media (pointer: coarse) {
+  /* 블록·인라인블록 링크와 버튼: 높이 44px 확보 (크기를 직접 지정한 것은 제외) */
+  a:not([class*="h-"]):not([class*="w-"]):not([class*="aspect-"]),
+  button:not([class*="h-"]):not([class*="w-"]) {
+    min-height: 44px;
+    align-content: center;
+  }
+  /* 글자만 있는 링크: 줄 높이를 44px 로 */
+  .underlined, .link-line, footer a, header nav a, header button {
+    display: inline-flex; align-items: center; min-height: 44px;
+  }
+  header button { padding-left: .5rem; padding-right: .5rem; min-width: 44px; justify-content: center; }
+  footer ul.space-y-2 > li { margin-top: 0; }
 }

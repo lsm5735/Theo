@@ -26,21 +26,21 @@ export default function Header() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
   return (
-    <header className="sticky top-0 z-50 bg-paper text-ink">
+    <header className="en sticky top-0 z-50 bg-paper text-ink">
       <div className="flex w-full items-stretch h-[var(--header-h)] px-[var(--gap)]">
         {/* 로고 — 화면 왼쪽 끝에 붙는 노란 탭. 왼쪽 라벨 영역(25%) 폭을 차지한다 */}
         <div className="md:w-[calc((100vw-var(--gap)*2)*0.25)] shrink-0 flex items-stretch">
           <Link
             href="/"
-            className="flex items-center bg-sun -ml-[var(--gap)] pl-[var(--gap)] pr-6 md:pr-8"
+            className="flex items-center bg-sun -ml-[var(--gap)] pl-[var(--gap)] pr-5 md:pr-8"
             onClick={() => setMenuOpen(false)}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-theo.png" alt="Theo" width={751} height={220} className="h-[22px] md:h-[25px] w-auto" />
+            <img src="/logo-theo.png" alt="Theo" width={751} height={220} className="h-[18px] md:h-[24px] w-auto" />
           </Link>
         </div>
 
-        <div className="flex w-full items-center justify-end md:justify-between text-[17px] md:text-[18px]">
+        <div className="flex w-full items-center justify-end md:justify-between text-[16px] md:text-[17px]">
           {/* Desktop nav — About, Show, Atelier, Community. */}
           <nav className="hidden md:flex">
             <ul className="flex gap-x-10">
@@ -80,14 +80,14 @@ export default function Header() {
           </nav>
 
           {/* Right */}
-          <ul className="flex gap-x-6 md:gap-x-8 items-center">
+          <ul className="flex gap-x-2 md:gap-x-8 items-center">
             <li className="flex">
               <button onClick={() => setLang(lang === "ko" ? "en" : "ko")} className="underlined cursor-pointer" aria-label="Language">
                 {lang === "ko" ? "EN" : "KO"}
               </button>
             </li>
             <li className="hidden md:flex">
-              <Link href="/#start" className="nb-btn px-5 !min-h-[38px] text-[15px]">{t("btn_start")}</Link>
+              <Link href="/#start" className="nb-btn px-5 !min-h-[38px] text-[16px]">{t("btn_start")}</Link>
             </li>
             <li className="flex md:hidden">
               <button
@@ -119,7 +119,7 @@ export default function Header() {
           </ul>
           <hr className="dots-x my-6" />
           <p className="type-label mb-3">About</p>
-          <ul className="flex flex-col gap-2 text-[15px]">
+          <ul className="flex flex-col gap-2 text-[16px]">
             {ABOUT_LINKS.map((l) => (
               <li key={l.label}>
                 {l.external ? (

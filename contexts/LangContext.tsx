@@ -20,7 +20,10 @@ export function LangProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem("lang") as Lang | null;
-    if (saved === "en") setLangState("en");
+    if (saved === "en") {
+      setLangState("en");
+      document.documentElement.lang = "en"; // 글꼴 전환(:lang)에 쓰인다
+    }
   }, []);
 
   function setLang(l: Lang) {

@@ -57,7 +57,7 @@ export default async function ProjectDetailPage({ params }: Props) {
       <main>
         {/* 타이틀 */}
         <section className="tone-sun px-[var(--gap)] pt-6 md:pt-10">
-          <Link href={`/atelier/${artist.slug}`} className="link-line text-[15px] inline-block mb-8 md:mb-12">
+          <Link href={`/atelier/${artist.slug}`} className="link-line text-[16px] inline-block mb-8 md:mb-12">
             ← {artist.name} 아틀리에
           </Link>
           <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
@@ -93,14 +93,14 @@ export default async function ProjectDetailPage({ params }: Props) {
 
         {/* 작품 구상 */}
         <Row label="Concept">
-          <p data-sr="up" className="type-m max-w-[40rem] mb-8" style={{ wordBreak: "keep-all", fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400 }}>
+          <p data-sr="up" className="type-m max-w-[40rem] mb-8" style={{ wordBreak: "keep-all", fontFamily: "var(--font-text)", fontWeight: 400 }}>
             {project.concept}
           </p>
           <div className="flex items-center gap-2 mb-10">
             {artist.palette.map((color) => (
               <span key={color} title={color} className="w-7 h-7 rounded-full border border-ink/20" style={{ background: color }} />
             ))}
-            <span className="text-[15px] text-muted ml-2">작가 팔레트</span>
+            <span className="text-[16px] text-muted ml-2">작가 팔레트</span>
           </div>
           <Link href={`/atelier/${artist.slug}`} className="group flex items-center gap-4">
             <span className="relative w-14 aspect-[1/1.25] overflow-hidden bg-surface-card shrink-0">
@@ -108,7 +108,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             </span>
             <span>
               <span className="block text-[19px] underlined group-hover:underline">{artist.name}</span>
-              <span className="block text-[15px] text-muted">{artist.oneLiner}</span>
+              <span className="block text-[16px] text-muted">{artist.oneLiner}</span>
             </span>
           </Link>
         </Row>
@@ -133,7 +133,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         {/* 선물한 테오 명단 */}
         {projectSponsors.length > 0 && (
           <Row label="Theos">
-            <p className="text-[15px] text-muted mb-6">{projectSponsors.length}명의 테오가 이 작품을 응원합니다</p>
+            <p className="text-[16px] text-muted mb-6">{projectSponsors.length}명의 테오가 이 작품을 응원합니다</p>
             <div>
               {projectSponsors.map((sp) => {
                 const mat = materials.find((m) => m.id === sp.materialId);
@@ -142,8 +142,8 @@ export default async function ProjectDetailPage({ params }: Props) {
                     <hr className="dots-x" />
                     <div className="py-5 grid grid-cols-[1fr_auto] gap-x-6 gap-y-1">
                       <span className="text-[18px]">{sp.nickname} 님</span>
-                      <span className="text-[15px] text-muted">{formatDate(sp.date)}</span>
-                      <span className="text-[15px] text-muted col-span-2">
+                      <span className="text-[16px] text-muted">{formatDate(sp.date)}</span>
+                      <span className="text-[16px] text-muted col-span-2">
                         재료 선물 {sp.amount.toLocaleString()}원{mat ? ` · ${mat.usageNote}` : ""}
                       </span>
                       {sp.message && <p className="col-span-2 mt-2 text-[16px] leading-relaxed">&ldquo;{sp.message}&rdquo;</p>}
@@ -168,7 +168,7 @@ export default async function ProjectDetailPage({ params }: Props) {
               </li>
             ))}
           </ol>
-          <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[15px] mt-10 inline-flex">
+          <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[16px] mt-10 inline-flex">
             재료 선물하기 →
           </Link>
         </Row>

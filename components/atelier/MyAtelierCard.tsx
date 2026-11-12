@@ -28,7 +28,7 @@ export default function MyAtelierCard({ atelier }: { atelier: MyAtelier }) {
           )}
         </div>
         <p className="font-black text-navy-900 group-hover:underline underline-offset-2">{atelier.name}</p>
-        <p className="text-[14.5px] text-muted truncate">
+        <p className="text-[15px] text-muted truncate">
           {atelier.project ? atelier.project.title : atelier.oneLiner || t("ma_card_no_project")}
         </p>
       </div>

@@ -232,7 +232,7 @@ function StepCard({ s, index, accent }: { s: typeof THEO_STEPS[0]; index: number
 
         <ul className="space-y-1.5 mb-4">
           {s.detail.map((d) => (
-            <li key={d} className="flex items-start gap-2 text-[14.5px] text-body">
+            <li key={d} className="flex items-start gap-2 text-[15px] text-body">
               <span className="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "var(--line-strong)" }} />
               {d}
             </li>
@@ -242,7 +242,7 @@ function StepCard({ s, index, accent }: { s: typeof THEO_STEPS[0]; index: number
         {s.cta && (
           <Link
             href={s.cta.href}
-            className="inline-flex items-center gap-1.5 text-[15px] font-semibold border border-line-strong text-ink rounded-xl px-4 py-2.5 transition-colors hover:border-ink"
+            className="inline-flex items-center gap-1.5 text-[16px] font-semibold border border-line-strong text-ink rounded-xl px-4 py-2.5 transition-colors hover:border-ink"
           >
             {s.cta.label}
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
@@ -261,7 +261,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         className="w-full flex items-center justify-between gap-4 py-4 text-left"
         onClick={() => setOpen((p) => !p)}
       >
-        <span className="text-[14.5px] font-semibold text-navy-900">{q}</span>
+        <span className="text-[15px] font-semibold text-navy-900">{q}</span>
         <svg
           width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
           className="shrink-0 transition-transform duration-200 text-navy-400"
@@ -271,7 +271,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         </svg>
       </button>
       {open && (
-        <p className="text-[15px] text-navy-600 leading-[1.85] pb-4">{a}</p>
+        <p className="text-[16px] text-navy-600 leading-[1.85] pb-4">{a}</p>
       )}
     </div>
   );
@@ -297,7 +297,7 @@ export default function HowPage() {
         <h1 data-sr="up" className="text-[34px] md:text-[52px] font-semibold text-ink leading-[1.1] mb-3">
           이용방법 안내
         </h1>
-        <p data-sr="up" data-d="1" className="text-[15px] text-navy-500 leading-relaxed max-w-[520px]">
+        <p data-sr="up" data-d="1" className="text-[16px] text-navy-500 leading-relaxed max-w-[520px]">
           테오는 선물하는 분과 작가를 잇는 관계형 현물 선물 플랫폼입니다.
           <br className="hidden md:block" />
           나의 역할에 맞는 이용 흐름을 확인해보세요.
@@ -382,14 +382,14 @@ export default function HowPage() {
                   ].map((text) => (
                     <div key={text} className="flex items-start gap-2.5 mb-3 last:mb-0">
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "var(--clay-ochre)" }} />
-                      <span className="text-[15px] text-navy-700 leading-relaxed">{text}</span>
+                      <span className="text-[16px] text-navy-700 leading-relaxed">{text}</span>
                     </div>
                   ))}
                 </div>
 
                 <Link
                   href="/atelier"
-                  className="block w-full text-center text-[14.5px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
+                  className="block w-full text-center text-[15px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
                 >
                   아틀리에에서 작가 찾기 →
                 </Link>
@@ -413,7 +413,7 @@ export default function HowPage() {
                   ].map((text) => (
                     <div key={text} className="flex items-start gap-2.5 mb-3 last:mb-0">
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "var(--navy-500)" }} />
-                      <span className="text-[15px] text-navy-700 leading-relaxed">{text}</span>
+                      <span className="text-[16px] text-navy-700 leading-relaxed">{text}</span>
                     </div>
                   ))}
                 </div>
@@ -427,11 +427,11 @@ export default function HowPage() {
                 >
                   <p className="text-[13px] font-bold tracking-[0.18em] uppercase text-navy-400 mb-4">수익 구조</p>
                   <div className="space-y-2.5">
-                    <div className="flex justify-between text-[15px]">
+                    <div className="flex justify-between text-[16px]">
                       <span className="text-navy-500">재료</span>
                       <span className="font-bold text-navy-800">작가에게 전달</span>
                     </div>
-                    <div className="flex justify-between text-[15px]">
+                    <div className="flex justify-between text-[16px]">
                       <span className="text-navy-500">플랫폼 수익</span>
                       <span className="text-navy-600">화방 커미션 5~10%</span>
                     </div>
@@ -440,7 +440,7 @@ export default function HowPage() {
 
                 <Link
                   href="/onboarding/artist"
-                  className="block w-full text-center text-[14.5px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
+                  className="block w-full text-center text-[15px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
                 >
                   작가로 시작하기 →
                 </Link>

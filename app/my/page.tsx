@@ -168,7 +168,7 @@ function DeliveryTracker({ step, stepsDisplay }: { step: number; stepsDisplay: s
               style={{
                 flex: i < stepsDisplay.length - 1 ? "1 1 0" : "none",
                 width: i === stepsDisplay.length - 1 ? 60 : undefined,
-                fontSize: 9.5,
+                fontSize: 12,
                 color: done ? "var(--navy-600)" : active ? "var(--navy-800)" : "var(--muted)",
                 fontWeight: active ? 700 : 400,
               }}
@@ -209,8 +209,8 @@ function RoleSwitch({ role, onChange }: { role: Role; onChange: (r: Role) => voi
           onClick={() => onChange(o.id)}
           className={`rounded-lg py-2.5 transition-all ${role === o.id ? "bg-card shadow-sm" : "hover:bg-white/50"}`}
         >
-          <span className={`block text-[15px] font-black ${role === o.id ? "text-navy-900" : "text-navy-500"}`}>{t(o.label)}</span>
-          <span className="block text-[11.5px] text-muted">{t(o.sub)}</span>
+          <span className={`block text-[16px] font-black ${role === o.id ? "text-navy-900" : "text-navy-500"}`}>{t(o.label)}</span>
+          <span className="block text-[12px] text-muted">{t(o.sub)}</span>
         </button>
       ))}
     </div>
@@ -254,7 +254,7 @@ function SponsorshipCard({ sp, stepsDisplay }: { sp: MySponsorship; stepsDisplay
         <DeliveryTracker step={sp.deliveryStep} stepsDisplay={stepsDisplay} />
 
         <div className="mt-4 pt-3 border-t border-navy-100">
-          <Link href={`/atelier/${artist.slug}#wall`} className="text-xs font-bold text-navy-700 hover:text-navy-900 transition-colors">
+          <Link href={`/atelier/${artist.slug}#wall`} className="inline-flex items-center min-h-[44px] text-xs font-bold text-navy-700 hover:text-navy-900 transition-colors">
             {t("my_wall_btn")}
           </Link>
         </div>
@@ -281,7 +281,7 @@ function ArtistUpdate({ post }: { post: WallPost }) {
           <span className="font-bold text-navy-800 text-sm">{artist.name}</span>
           <time className="text-[13px] text-muted shrink-0">{formatDay(post.createdAt, lang)}</time>
         </div>
-        <p className="font-myeongjo text-navy-700 text-[15px] leading-snug truncate">{firstLine(post.text)}</p>
+        <p className="font-myeongjo text-navy-700 text-[16px] leading-snug truncate">{firstLine(post.text)}</p>
       </div>
       <span className="text-navy-300 group-hover:text-navy-500 transition-colors text-base mt-1 shrink-0">›</span>
     </Link>
@@ -317,18 +317,18 @@ function TheoView() {
         <div className="absolute -right-8 -top-8 w-52 h-52 rounded-full pointer-events-none" style={{ background: "var(--sv)", opacity: 0.08 }} />
 
         <p className="text-white font-black text-xl mb-1">{t("my_greeting")}</p>
-        <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,.55)" }}>
+        <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,.78)" }}>
           {t("my_supporting_pre")}{count}{t("my_supporting_post")}
         </p>
 
-        <div className="flex items-end justify-between gap-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-3 mb-3">
               <BadgeIcon name={badge.name} size={52} />
               <div>
                 <p className="text-white font-black text-lg leading-none">{badgeName(badge.name)} {t("my_badge_suf")}</p>
                 {nextBadge && (
-                  <p className="text-[13px] mt-0.5" style={{ color: "rgba(255,255,255,.45)" }}>
+                  <p className="text-[13px] mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>
                     <BadgeIconInline name={nextBadge.name} /> {badgeName(nextBadge.name)}{t("my_badge_until")} {nextBadge.threshold - count}{t("my_badge_more")}
                   </p>
                 )}
@@ -340,20 +340,20 @@ function TheoView() {
                   <div className="h-full rounded-full" style={{ width: `${progressPct}%`, background: "var(--sv)" }} />
                 </div>
                 <div className="flex justify-between mt-1">
-                  <span className="text-[13px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(badge.name)}</span>
-                  <span className="text-[13px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(nextBadge.name)} {nextBadge.threshold}회</span>
+                  <span className="text-[13px]" style={{ color: "rgba(255,255,255,.62)" }}>{badgeName(badge.name)}</span>
+                  <span className="text-[13px]" style={{ color: "rgba(255,255,255,.62)" }}>{badgeName(nextBadge.name)} {nextBadge.threshold}회</span>
                 </div>
               </>
             )}
           </div>
 
-          <div className="flex gap-5 shrink-0">
-            <div className="text-right">
-              <p className="text-[13px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_total")}</p>
+          <div className="flex gap-8 sm:gap-5 shrink-0">
+            <div className="sm:text-right">
+              <p className="text-[13px] mb-0.5" style={{ color: "rgba(255,255,255,.68)" }}>{t("my_stat_total")}</p>
               <p className="text-white font-black text-base">{totalAmount.toLocaleString()}원</p>
             </div>
-            <div className="text-right">
-              <p className="text-[13px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_artists")}</p>
+            <div className="sm:text-right">
+              <p className="text-[13px] mb-0.5" style={{ color: "rgba(255,255,255,.68)" }}>{t("my_stat_artists")}</p>
               <p className="text-white font-black text-base">{artistIds.length}{t("my_people_suf")}</p>
             </div>
           </div>
@@ -420,7 +420,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
           </div>
           <div className="min-w-0">
             <p className="text-white font-black text-xl leading-tight">{atelier.name}{t("my_gogh_greeting_suf")}</p>
-            <p className="text-sm truncate" style={{ color: "rgba(255,255,255,.55)" }}>
+            <p className="text-sm truncate" style={{ color: "rgba(255,255,255,.78)" }}>
               {atelier.oneLiner || t("my_gogh_sub")}
             </p>
           </div>
@@ -428,16 +428,16 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
         <div className="grid grid-cols-3 gap-3">
           {stats.map((s) => (
             <div key={s.label}>
-              <p className="text-[13px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{s.label}</p>
+              <p className="text-[13px] mb-0.5" style={{ color: "rgba(255,255,255,.68)" }}>{s.label}</p>
               <p className="text-white font-black text-lg">{s.value}</p>
             </div>
           ))}
         </div>
         <div className="flex gap-2 mt-6">
-          <Link href={base} className="flex-1 text-center bg-sv text-ink font-bold text-[15px] py-2.5 rounded-lg hover:bg-sv-soft transition-colors">
+          <Link href={base} className="flex-1 text-center bg-sv text-ink font-bold text-[16px] py-2.5 rounded-lg hover:bg-sv-soft transition-colors">
             {t("my_gogh_view")}
           </Link>
-          <Link href={`${base}?settings=profile`} className="flex-1 text-center border border-white/30 text-white font-bold text-[15px] py-2.5 rounded-lg hover:bg-white/10 transition-colors">
+          <Link href={`${base}?settings=profile`} className="flex-1 text-center border border-white/30 text-white font-bold text-[16px] py-2.5 rounded-lg hover:bg-white/10 transition-colors">
             {t("ma_settings")}
           </Link>
         </div>
@@ -459,8 +459,8 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
           </div>
         ) : (
           <div className="rounded-2xl border border-dashed border-line-strong p-6 text-center">
-            <p className="text-[15px] text-navy-600 mb-3" style={{ wordBreak: "keep-all" }}>{t("ma_project_empty_sub")}</p>
-            <Link href={`${base}?settings=project`} className="nb-btn inline-block px-5 py-2.5 rounded-lg font-black text-[15px]">
+            <p className="text-[16px] text-navy-600 mb-3" style={{ wordBreak: "keep-all" }}>{t("ma_project_empty_sub")}</p>
+            <Link href={`${base}?settings=project`} className="nb-btn inline-block px-5 py-2.5 rounded-lg font-black text-[16px]">
               {t("ma_project_add")}
             </Link>
           </div>
@@ -480,7 +480,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
             <a key={i} href={m.link} target="_blank" rel="noopener noreferrer"
               className="block rounded-xl border border-line bg-card px-4 py-3 hover:border-navy-300 transition-colors">
               <p className="text-[13px] font-bold text-navy-400 mb-0.5">{hostOf(m.link)}</p>
-              <p className="text-[15px] text-navy-800 line-clamp-2" style={{ wordBreak: "keep-all" }}>{m.reason}</p>
+              <p className="text-[16px] text-navy-800 line-clamp-2" style={{ wordBreak: "keep-all" }}>{m.reason}</p>
             </a>
           ))}
         </div>
@@ -504,13 +504,13 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
                   </span>
                   <time className="text-[13px] text-muted">{formatDay(p.createdAt, lang)}</time>
                 </div>
-                <p className="text-[15px] text-ink line-clamp-2">{p.text || "📷"}</p>
+                <p className="text-[16px] text-ink line-clamp-2">{p.text || "📷"}</p>
               </div>
             ))}
           </div>
         ) : (
           <div className="rounded-xl p-6 text-center border" style={{ background: "var(--chiffon)", borderColor: "rgba(194,164,63,.2)" }}>
-            <p className="text-[15px] text-muted mb-3" style={{ wordBreak: "keep-all" }}>{t("my_gogh_wall_empty")}</p>
+            <p className="text-[16px] text-muted mb-3" style={{ wordBreak: "keep-all" }}>{t("my_gogh_wall_empty")}</p>
             <Link href={`${base}#wall`} className="text-xs font-bold text-navy-800 underline underline-offset-2">
               {t("my_gogh_wall_btn")}
             </Link>
@@ -526,8 +526,8 @@ function GoghEmpty() {
   return (
     <div className="rounded-2xl border border-dashed border-line-strong p-10 text-center">
       <p className="text-[16px] font-black text-navy-800 mb-2">{t("my_gogh_empty")}</p>
-      <p className="text-[15px] text-muted mb-6" style={{ wordBreak: "keep-all" }}>{t("my_gogh_empty_sub")}</p>
-      <Link href="/onboarding/artist" className="nb-btn inline-block px-6 py-3 rounded-xl font-black text-[15px]">
+      <p className="text-[16px] text-muted mb-6" style={{ wordBreak: "keep-all" }}>{t("my_gogh_empty_sub")}</p>
+      <Link href="/onboarding/artist" className="nb-btn inline-block px-6 py-3 rounded-xl font-black text-[16px]">
         {t("ma_empty_btn")}
       </Link>
     </div>
@@ -541,14 +541,14 @@ function AtelierPicker({ ateliers, selectedId, onSelect }: { ateliers: MyAtelier
     <div className="flex items-center gap-2 overflow-x-auto mb-5 pb-1" style={{ scrollbarWidth: "none" }}>
       {ateliers.map((a) => (
         <button key={a.id} onClick={() => onSelect(a.id)}
-          className={`shrink-0 text-[15px] font-semibold px-4 py-1.5 rounded-full border transition-all ${
+          className={`shrink-0 text-[16px] font-semibold px-4 py-1.5 rounded-full border transition-all ${
             a.id === selectedId ? "bg-navy-800 text-white border-navy-800" : "bg-card text-navy-700 border-navy-200 hover:border-navy-500"
           }`}>
           {a.name}
         </button>
       ))}
       <Link href="/onboarding/artist"
-        className="shrink-0 text-[15px] font-semibold px-4 py-1.5 rounded-full border border-dashed border-navy-300 text-navy-500 hover:text-navy-800">
+        className="shrink-0 text-[16px] font-semibold px-4 py-1.5 rounded-full border border-dashed border-navy-300 text-navy-500 hover:text-navy-800">
         {t("ma_list_new")}
       </Link>
     </div>

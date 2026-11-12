@@ -46,7 +46,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="tone-sun mt-auto overflow-hidden">
+    <footer className="en tone-sun mt-auto overflow-hidden">
       {/* 마퀴 — 슬로건을 화면 높이만큼 크게 흘려보낸다 */}
       <div className="flex flex-nowrap pt-10 md:pt-14 pb-6 md:pb-8 select-none" aria-hidden="true">
         {[0, 1].map((track) => (
@@ -74,7 +74,7 @@ export default function Footer() {
           {cols.map((c) => (
             <div key={c.title}>
               <p className="type-label mb-4">{c.title}</p>
-              <ul className="space-y-2 text-[15px]">
+              <ul className="space-y-2 text-[16px]">
                 {c.links.map((l) => (
                   <li key={l.label + l.href}>
                     {l.href.startsWith("http") ? (

@@ -68,12 +68,12 @@ export default function MyAtelierPage() {
       {/* 소유자 바 */}
       <div className="bg-navy-800 px-5 md:px-8 py-3">
         <div className="max-w-[1080px] mx-auto flex items-center justify-between gap-3">
-          <p className="text-[14.5px] font-semibold text-chiffon/80 min-w-0" style={{ wordBreak: "keep-all" }}>
+          <p className="text-[15px] font-semibold text-chiffon/80 min-w-0" style={{ wordBreak: "keep-all" }}>
             {justCreated ? t("ma_created") : t("ma_owner_bar")}
           </p>
           <button
             onClick={() => setSettingsTab("profile")}
-            className="shrink-0 bg-sv text-ink text-[14.5px] font-bold px-4 py-2 rounded-lg hover:bg-sv-soft transition-colors"
+            className="shrink-0 bg-sv text-ink text-[15px] font-bold px-4 py-2 rounded-lg hover:bg-sv-soft transition-colors"
           >
             {t("ma_settings")}
           </button>
@@ -119,7 +119,7 @@ export default function MyAtelierPage() {
                   <p className="font-myeongjo text-navy-600 text-sm mb-2">{atelier.oneLiner}</p>
                 ) : (
                   <button onClick={() => setSettingsTab("profile")}
-                    className="text-[15px] text-navy-400 underline underline-offset-2 mb-2 text-left">
+                    className="text-[16px] text-navy-400 underline underline-offset-2 mb-2 text-left">
                     {t("ma_oneliner_empty")}
                   </button>
                 )}
@@ -160,11 +160,11 @@ export default function MyAtelierPage() {
               ) : (
                 <div className="rounded-2xl border border-dashed border-line-strong p-8 text-center">
                   <p className="font-bold text-navy-700 mb-1.5">{t("ma_project_empty")}</p>
-                  <p className="text-[15px] text-muted leading-[1.7] mb-5 max-w-[360px] mx-auto" style={{ wordBreak: "keep-all" }}>
+                  <p className="text-[16px] text-muted leading-[1.7] mb-5 max-w-[360px] mx-auto" style={{ wordBreak: "keep-all" }}>
                     {t("ma_project_empty_sub")}
                   </p>
                   <button onClick={() => setSettingsTab("project")}
-                    className="nb-btn px-6 py-3 rounded-xl font-black text-[15px]">
+                    className="nb-btn px-6 py-3 rounded-xl font-black text-[16px]">
                     {t("ma_project_add")}
                   </button>
                 </div>
@@ -191,11 +191,11 @@ export default function MyAtelierPage() {
                       <p className="text-[13px] font-bold tracking-[0.14em] uppercase text-navy-400 mb-2 truncate">
                         {hostOf(m.link)}
                       </p>
-                      <p className="text-[15px] text-navy-800 leading-[1.7] flex-1 mb-3" style={{ wordBreak: "keep-all" }}>
+                      <p className="text-[16px] text-navy-800 leading-[1.7] flex-1 mb-3" style={{ wordBreak: "keep-all" }}>
                         {m.reason}
                       </p>
                       <a href={m.link} target="_blank" rel="noopener noreferrer"
-                        className="text-[14.5px] font-bold text-navy-700 hover:text-navy-900 transition-colors">
+                        className="text-[15px] font-bold text-navy-700 hover:text-navy-900 transition-colors">
                         {t("ma_material_open")}
                       </a>
                     </div>
@@ -213,7 +213,7 @@ export default function MyAtelierPage() {
             {(sns || atelier.portfolio) && (
               <div className="bg-card rounded-2xl p-5 border border-line">
                 <p className="text-xs font-bold text-navy-700 mb-3">{t("ma_links_title")}</p>
-                <div className="space-y-2.5 text-[15px]">
+                <div className="space-y-2.5 text-[16px]">
                   {sns && (
                     <a href={sns} target="_blank" rel="noopener noreferrer" className="flex justify-between gap-3 group">
                       <span className="text-navy-400 font-semibold shrink-0">{t("ob_sns")}</span>
@@ -231,7 +231,7 @@ export default function MyAtelierPage() {
             )}
 
             <button onClick={() => setSettingsTab("profile")}
-              className="nb-btn-outline w-full py-3 rounded-xl font-black text-[15px]">
+              className="nb-btn-outline w-full py-3 rounded-xl font-black text-[16px]">
               {t("ma_settings")}
             </button>
           </div>

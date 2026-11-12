@@ -48,7 +48,7 @@ export default function ShowPage() {
           <div data-sr="up" className="relative w-full aspect-[16/9] md:aspect-[16/7] overflow-hidden bg-surface-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/hero-museum.jpg" alt="[CONTINUE] 전시 이미지" className="absolute inset-0 w-full h-full object-cover" />
-            <span className="absolute left-4 bottom-4 bg-paper px-3 py-1 text-[15px]">[입력 예시] 전시 포스터·메인 이미지</span>
+            <span className="absolute left-4 bottom-4 bg-paper px-3 py-1 text-[16px]">[입력 예시] 전시 포스터·메인 이미지</span>
           </div>
           <hr className="dots-x mt-12 md:mt-16" />
         </section>
@@ -84,8 +84,8 @@ export default function ShowPage() {
           <div className="flex flex-col md:flex-row gap-6 md:gap-0">
             <div className={LEFT} />
             <div className={`${RIGHT} flex flex-wrap gap-3`}>
-              <Link href="/community" className="nb-btn px-7 py-3 text-[15px]">함께하는 프로그램 보기 →</Link>
-              <Link href="/atelier" className="nb-btn-outline px-7 py-3 text-[15px]">작가 아틀리에 보기 →</Link>
+              <Link href="/community" className="nb-btn px-7 py-3 text-[16px]">함께하는 프로그램 보기 →</Link>
+              <Link href="/atelier" className="nb-btn-outline px-7 py-3 text-[16px]">작가 아틀리에 보기 →</Link>
             </div>
           </div>
         </section>

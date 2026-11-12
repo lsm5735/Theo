@@ -118,11 +118,11 @@ export default function CommunityPage() {
               <div className="flex flex-col md:flex-row py-12 md:py-16 gap-6 md:gap-0">
                 <div className="md:w-[calc((100vw-var(--gap)*2)*0.25-1.5rem)] shrink-0">
                   <span className="type-section block mb-2">{prog.type}</span>
-                  <span className="text-[15px] text-muted block">{prog.date}</span>
+                  <span className="text-[16px] text-muted block">{prog.date}</span>
                 </div>
                 <div className="w-full md:w-[calc((100vw-var(--gap)*2)*0.75)] grid grid-cols-1 lg:grid-cols-[1fr_22rem] gap-8 lg:gap-12 items-start">
                   <div data-sr="up">
-                    <h2 className="type-l mb-5" style={{ fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400, wordBreak: "keep-all" }}>
+                    <h2 className="type-l mb-5" style={{ fontFamily: "var(--font-text)", fontWeight: 400, wordBreak: "keep-all" }}>
                       {prog.title}
                     </h2>
                     {prog.artists.length > 0 && (
@@ -133,17 +133,17 @@ export default function CommunityPage() {
                             <img key={a.slug} src={a.image} alt={a.name} className="w-9 h-9 rounded-full object-cover border-2 border-paper" />
                           ))}
                         </div>
-                        <span className="text-[15px]">{prog.artists.map((a) => a.name).join(" · ")} 작가</span>
+                        <span className="text-[16px]">{prog.artists.map((a) => a.name).join(" · ")} 작가</span>
                       </div>
                     )}
                     <p className="text-[16px] leading-[1.85] text-muted max-w-[34rem] mb-6" style={{ wordBreak: "keep-all" }}>
                       {prog.description}
                     </p>
-                    <p className="text-[15px] mb-1">{prog.date}</p>
-                    <p className="text-[15px] mb-8">{prog.location}</p>
+                    <p className="text-[16px] mb-1">{prog.date}</p>
+                    <p className="text-[16px] mb-8">{prog.location}</p>
                     <Link
                       href={multi ? (prog.artists.length ? "/atelier" : "/show") : `/atelier/${prog.artists[0].slug}/apply`}
-                      className="nb-btn px-7 py-3 text-[15px]"
+                      className="nb-btn px-7 py-3 text-[16px]"
                     >
                       {multi ? (prog.artists.length ? "참여 작가 보기" : "전시 보기") : "신청하기"} →
                     </Link>
@@ -159,7 +159,7 @@ export default function CommunityPage() {
           );
         })}
 
-        <section className="px-[var(--gap)] py-12 text-[15px] text-muted leading-relaxed">
+        <section className="px-[var(--gap)] py-12 text-[16px] text-muted leading-relaxed">
           프로그램 신청 및 문의는 각 작가 아틀리에 페이지에서 가능합니다. 선물한 테오만 신청할 수 있는 프로그램이 있을 수 있습니다.
         </section>
       </main>
