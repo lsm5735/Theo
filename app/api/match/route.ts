@@ -129,7 +129,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ results: [] }, { status: 400 });
     }
 
-    const artists = artistsData as Artist[];
+    const artists = (artistsData as Partial<Artist>[]).map((a) => ({ tags: [], media: [], genre: "", palette: [], ...a })) as Artist[];
     const projects = projectsData as Project[];
 
     // 점수 계산 + 셔플로 동점 시 다양성 확보

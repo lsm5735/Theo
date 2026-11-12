@@ -58,11 +58,6 @@ export default function MyAtelierPage() {
 
   const project = atelier.project;
   const sns = snsHref(atelier.sns);
-  const infoRows = [
-    { label: t("ma_info_genre"), value: atelier.genre },
-    { label: t("ma_info_media"), value: atelier.media.join(", ") },
-    { label: t("ma_info_location"), value: atelier.location },
-  ].filter((r) => r.value);
 
   return (
     <div className="min-h-screen bg-paper">
@@ -97,16 +92,6 @@ export default function MyAtelierPage() {
             {t("ma_back_list")}
           </Link>
         </div>
-        {(atelier.genre || atelier.media.length > 0) && (
-          <div className="absolute bottom-5 left-5 md:left-8 flex flex-wrap gap-2">
-            {atelier.genre && (
-              <span className="bg-navy-900 text-white text-xs font-semibold px-3 py-1.5 rounded-full">{atelier.genre}</span>
-            )}
-            {atelier.media.map((m) => (
-              <span key={m} className="bg-white/20 text-white text-xs font-medium px-3 py-1.5 rounded-full backdrop-blur-sm">{m}</span>
-            ))}
-          </div>
-        )}
       </div>
 
       <div className="max-w-[1080px] mx-auto px-5 md:px-8">
@@ -136,7 +121,6 @@ export default function MyAtelierPage() {
                     {t("ma_oneliner_empty")}
                   </button>
                 )}
-                {atelier.location && <p className="text-xs text-muted">{atelier.location}</p>}
               </div>
             </div>
           </div>
@@ -162,11 +146,7 @@ export default function MyAtelierPage() {
                     <p className="text-sm text-ink leading-relaxed mb-5 whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
                       {project.concept}
                     </p>
-                    <div className="w-full bg-navy-100 rounded-full h-2 overflow-hidden" />
-                    <div className="flex justify-between text-xs text-muted mt-1.5">
-                      <span>0{t("ma_pct")}</span>
-                      <span>{t("ma_goal")} {project.targetAmount.toLocaleString()}원</span>
-                    </div>
+                    <p className="text-xs text-muted">{t("ma_goal")} {project.targetAmount.toLocaleString()}원</p>
                     <div className="mt-4 pt-4 border-t border-navy-100">
                       <button onClick={() => setSettingsTab("project")}
                         className="text-xs text-navy-600 hover:text-navy-800 font-semibold transition-colors">
@@ -244,20 +224,6 @@ export default function MyAtelierPage() {
                       <span className="font-semibold text-navy-800 group-hover:underline truncate">{hostOf(atelier.portfolio)}</span>
                     </a>
                   )}
-                </div>
-              </div>
-            )}
-
-            {infoRows.length > 0 && (
-              <div className="bg-card rounded-2xl p-5 border border-line">
-                <p className="text-xs font-bold text-navy-700 mb-3">{t("ma_info_title")}</p>
-                <div className="space-y-2.5 text-[13px]">
-                  {infoRows.map((r) => (
-                    <div key={r.label} className="flex justify-between gap-3">
-                      <span className="text-navy-400 font-semibold shrink-0">{r.label}</span>
-                      <span className="font-bold text-navy-800 text-right">{r.value}</span>
-                    </div>
-                  ))}
                 </div>
               </div>
             )}

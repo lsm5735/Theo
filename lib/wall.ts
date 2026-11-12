@@ -1,5 +1,5 @@
-// 아틀리에 담벼락 — 작가(고흐)와 그 작가를 후원한 테오만 글·사진을 남길 수 있는 타임라인
-// 시드: 기존 편지(작가 글로 축약) + 후원 메시지(테오 글). 새 글은 localStorage.
+// 아틀리에 담벼락 — 작가(고흐)와 그 작가를 선물한 테오만 글·사진을 남길 수 있는 타임라인
+// 시드: 기존 편지(작가 글로 축약) + 선물 메시지(테오 글). 새 글은 localStorage.
 
 import { useMemo } from "react";
 import { createLocalStore } from "./localStore";

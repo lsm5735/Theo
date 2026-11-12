@@ -166,7 +166,7 @@ export default function Wall({
 }: {
   wallId: string;
   artistName: string;
-  /** null이면 글쓰기 잠금 (작가 본인·후원한 테오만 작성) */
+  /** null이면 글쓰기 잠금 (작가 본인·선물한 테오만 작성) */
   author: WallAuthor | null;
   lockedCta?: { href: string; label: string };
 }) {

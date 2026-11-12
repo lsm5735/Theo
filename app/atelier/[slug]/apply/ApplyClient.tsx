@@ -12,9 +12,6 @@ interface Artist {
   oneLiner: string;
   profileImage: string;
   coverImage: string;
-  location: string;
-  genre: string;
-  media: string[];
   totalSponsors: number;
 }
 
@@ -86,7 +83,6 @@ export default function ApplyClient({ artist, project }: Props) {
   const [agree, setAgree] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const pct = project ? Math.round((project.fundedAmount / project.targetAmount) * 100) : 0;
 
   function validate() {
     const e: Record<string, string> = {};
@@ -148,12 +144,6 @@ export default function ApplyClient({ artist, project }: Props) {
                 <p className="font-bold text-navy-900 text-[14px]">{artist.name}</p>
                 <p className="text-[12px] text-navy-500 mt-0.5 line-clamp-1">{artist.oneLiner}</p>
               </div>
-              {project && (
-                <div className="shrink-0 text-right">
-                  <p className="text-[11px] text-navy-400 mb-0.5">달성률</p>
-                  <p className="text-[14px] font-bold text-navy-800">{pct}%</p>
-                </div>
-              )}
             </div>
 
             <p className="text-[12px] text-navy-400 mb-6 leading-relaxed">
@@ -201,20 +191,14 @@ export default function ApplyClient({ artist, project }: Props) {
             <Image src={artist.profileImage} alt={artist.name} fill sizes="48px" className="object-cover" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[11px] font-bold tracking-[0.16em] text-navy-400 uppercase mb-0.5">후원 신청</p>
+            <p className="text-[11px] font-bold tracking-[0.16em] text-navy-400 uppercase mb-0.5">선물 신청</p>
             <p className="font-bold text-navy-900 text-[15px] leading-tight">{artist.name}</p>
             <p className="text-[12px] text-navy-500 mt-0.5 line-clamp-1">{project?.title ?? artist.oneLiner}</p>
           </div>
-          {project && (
-            <div className="shrink-0 text-right">
-              <p className="text-[11px] text-navy-400 mb-0.5">현재 달성</p>
-              <p className="text-[16px] font-bold text-navy-800">{pct}%</p>
-            </div>
-          )}
         </div>
 
         <h1 className="text-[22px] font-bold text-ink leading-snug mb-1">
-          후원자 정보를 입력해주세요
+          선물하는 분 정보를 입력해주세요
         </h1>
         <p className="text-[13px] text-navy-500 mb-8 leading-relaxed">
           재료는 테오가 안전하게 중개해 작가에게 전달합니다.<br />
@@ -313,7 +297,7 @@ export default function ApplyClient({ artist, project }: Props) {
             <span className="text-[12.5px] text-navy-600 leading-relaxed">
               <b className="text-navy-800">개인정보 수집·이용에 동의</b>합니다.
               <span className="text-navy-400 block mt-0.5 text-[11.5px]">
-                수집 항목: 이름, 이메일, 연락처 / 목적: 후원 신청 처리 / 보관: 후원 완료 후 1년
+                수집 항목: 이름, 이메일, 연락처 / 목적: 선물 신청 처리 / 보관: 선물 완료 후 1년
               </span>
             </span>
           </label>

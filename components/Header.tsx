@@ -136,20 +136,14 @@ export default function Header() {
               </div>
             </div>
           </div>
+          <Link href="/show" className="nav-link text-body hover:text-ink transition-colors text-[14px] font-medium">
+            Show
+          </Link>
           <Link href="/atelier" className="nav-link text-body hover:text-ink transition-colors text-[14px] font-medium">
             Atelier
           </Link>
           <Link href="/community" className="nav-link text-body hover:text-ink transition-colors text-[14px] font-medium">
             Community
-          </Link>
-          <Link href="/how" className="nav-link text-body hover:text-ink transition-colors text-[14px] font-medium">
-            {t("nav_how")}
-          </Link>
-          <Link
-            href="/my"
-            className="nav-link text-[14px] font-semibold text-ink transition-colors"
-          >
-            {t("nav_my")}
           </Link>
         </nav>
 
@@ -211,16 +205,6 @@ export default function Header() {
             )}
           </div>
 
-          {/* Mobile: MY 버튼 */}
-          <Link
-            href="/my"
-            className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg transition-colors hover:opacity-80"
-            style={{ background: "var(--sv)", color: "var(--ink)" }}
-            aria-label="마이테오"
-          >
-            <span className="text-[11px] font-black tracking-wider">MY</span>
-          </Link>
-
           {/* Mobile: 탭 메뉴 토글 버튼 */}
           <button
             className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-navy-200 bg-paper transition-colors hover:bg-navy-100"
@@ -279,6 +263,15 @@ export default function Header() {
           </li>
           <li>
             <Link
+              href="/show"
+              className="block py-3 text-[13px] tracking-[0.1em] uppercase text-muted border-b border-line/60"
+              onClick={() => setMenuOpen(false)}
+            >
+              Show
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/atelier"
               className="block py-3 text-[13px] tracking-[0.1em] uppercase text-muted border-b border-line/60"
               onClick={() => setMenuOpen(false)}
@@ -293,15 +286,6 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
             >
               Community
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/how"
-              className="block py-3 text-[13px] tracking-[0.1em] uppercase text-muted border-b border-line/60"
-              onClick={() => setMenuOpen(false)}
-            >
-              {t("nav_how")}
             </Link>
           </li>
           {/* 모바일 설정 영역 */}

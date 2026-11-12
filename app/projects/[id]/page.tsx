@@ -12,20 +12,6 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
-function ProgressBar({ pct }: { pct: number }) {
-  return (
-    <div className="w-full bg-white/20 rounded-full h-3 overflow-hidden">
-      <div
-        className="h-full rounded-full transition-all duration-700"
-        style={{
-          width: `${Math.min(pct, 100)}%`,
-          background: "linear-gradient(90deg,var(--sv),var(--sv-deep))",
-        }}
-      />
-    </div>
-  );
-}
-
 
 function SponsorAvatar({ nickname }: { nickname: string }) {
   const colors = [
@@ -64,7 +50,6 @@ export default async function ProjectDetailPage({ params }: Props) {
     .filter((s) => s.projectId === id)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  const pct = Math.round((project.fundedAmount / project.targetAmount) * 100);
   const remaining = project.targetAmount - project.fundedAmount;
 
   return (
@@ -114,22 +99,6 @@ export default async function ProjectDetailPage({ params }: Props) {
           <h1 className="text-2xl md:text-3xl font-semibold text-white leading-snug mb-3">
             {project.title}
           </h1>
-          <div className="flex flex-wrap gap-2">
-            <span className="bg-white/15 backdrop-blur-sm text-white/90 text-xs font-medium px-3 py-1 rounded-full">
-              {artist.genre}
-            </span>
-            {artist.media.map((m) => (
-              <span
-                key={m}
-                className="bg-white/10 backdrop-blur-sm text-white/80 text-xs px-3 py-1 rounded-full"
-              >
-                {m}
-              </span>
-            ))}
-            <span className="bg-white/10 backdrop-blur-sm text-white/80 text-xs px-3 py-1 rounded-full">
-              {project.expectedWeeks}주 예상
-            </span>
-          </div>
         </div>
       </div>
 
@@ -144,7 +113,6 @@ export default async function ProjectDetailPage({ params }: Props) {
               <span className="text-white/50 text-sm ml-2">모였어요</span>
             </div>
             <div className="flex items-center gap-4 text-sm">
-              <span className="font-black text-sv text-xl">{pct}%</span>
               <span className="text-white/60">
                 목표{" "}
                 <span className="text-white/80 font-semibold">
@@ -153,7 +121,6 @@ export default async function ProjectDetailPage({ params }: Props) {
               </span>
             </div>
           </div>
-          <ProgressBar pct={pct} />
           <div className="flex justify-between text-xs mt-2.5">
             <span className="text-white/50">
               테오{" "}
@@ -224,20 +191,9 @@ export default async function ProjectDetailPage({ params }: Props) {
                 </div>
               </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5 mt-4">
-                {artist.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs text-navy-600 bg-navy-100 px-2.5 py-1 rounded-full font-medium"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </section>
 
-            {/* 재료 위시리스트 + 후원 플로우 (클라이언트) */}
+            {/* 재료 위시리스트 + 선물 플로우 (클라이언트) */}
             {projectMaterials.length > 0 && (
               <SponsorFlowSheet
                 materials={projectMaterials.map((m) => ({
@@ -252,10 +208,10 @@ export default async function ProjectDetailPage({ params }: Props) {
               />
             )}
 
-            {/* 후원자 명단 */}
+            {/* 선물한 테오 명단 */}
             {projectSponsors.length > 0 && (
               <section>
-                <h2 className="text-[22px] font-semibold text-ink mb-1">후원자 명단</h2>
+                <h2 className="text-[22px] font-semibold text-ink mb-1">선물한 테오 명단</h2>
                 <p className="text-xs text-muted mb-5">
                   {projectSponsors.length}명의 테오가 이 작품을 응원합니다
                 </p>
@@ -281,7 +237,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                               </span>
                             </div>
                             <p className="text-xs text-navy-600 mt-0.5">
-                              재료 후원{" "}
+                              재료 선물{" "}
                               <span className="font-semibold text-navy-700">
                                 {sp.amount.toLocaleString()}원
                               </span>
@@ -318,24 +274,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 재료 선물하기
               </p>
 
-              {/* Mini progress */}
-              <div className="mb-4">
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-white font-bold">{pct}% 달성</span>
-                  <span className="text-white/60 text-xs">
-                    {project.sponsorCount}명 참여
-                  </span>
-                </div>
-                <div className="w-full bg-white/15 rounded-full h-2 overflow-hidden">
-                  <div
-                    className="h-full rounded-full"
-                    style={{
-                      width: `${Math.min(pct, 100)}%`,
-                      background: "linear-gradient(90deg,var(--sv),var(--sv-deep))",
-                    }}
-                  />
-                </div>
-              </div>
+              <p className="text-white/60 text-xs mb-4">{project.sponsorCount}명 참여</p>
 
               <p className="text-white/60 text-xs mb-5 leading-relaxed">
                 재료를 선물하면 {artist.name} 작가의<br />
@@ -387,7 +326,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             {/* Delivery steps */}
             <div className="bg-card rounded-2xl p-4 border border-line">
               <p className="text-xs font-bold text-navy-700 mb-3">전달 4단계</p>
-              {["후원 완료", "재료 준비 중", "작가에게 가는 중", "작가가 받았어요"].map(
+              {["선물 완료", "재료 준비 중", "작가에게 가는 중", "작가가 받았어요"].map(
                 (step, i) => (
                   <div key={step} className="flex items-center gap-2.5 py-1.5">
                     <div

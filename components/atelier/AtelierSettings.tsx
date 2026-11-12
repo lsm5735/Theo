@@ -3,8 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useT } from "@/contexts/LangContext";
 import {
-  GENRE_OPTIONS,
-  MEDIA_OPTIONS,
   MyAtelier,
   MyMaterial,
   normalizeUrl,
@@ -157,10 +155,6 @@ export default function AtelierSettings({
     setDraft((d) => ({ ...d, materials }));
   }
 
-  function toggleMedia(m: string) {
-    set("media", draft.media.includes(m) ? draft.media.filter((x) => x !== m) : [...draft.media, m]);
-  }
-
   const projectTouched = !!(project.title.trim() || project.concept.trim() || project.targetAmount || project.image);
 
   function validateProject(): Errors {
@@ -195,7 +189,6 @@ export default function AtelierSettings({
       portfolio: draft.portfolio.trim() ? normalizeUrl(draft.portfolio) ?? "" : "",
       artistNote: draft.artistNote.trim(),
       oneLiner: draft.oneLiner.trim(),
-      location: draft.location.trim(),
       materials: cleanMaterials(draft.materials),
       project: projectTouched
         ? {
@@ -250,34 +243,6 @@ export default function AtelierSettings({
               <Field label={<>{t("st_oneliner")} <span className="font-normal text-navy-400">({draft.oneLiner.length}/40)</span></>}>
                 <input value={draft.oneLiner} onChange={(e) => set("oneLiner", e.target.value.slice(0, 40))}
                   placeholder={t("st_oneliner_ph")} className={INPUT_CLS} />
-              </Field>
-              <Field label={t("st_location")}>
-                <input value={draft.location} onChange={(e) => set("location", e.target.value)}
-                  placeholder={t("st_location_ph")} className={INPUT_CLS} />
-              </Field>
-              <Field label={t("st_genre")}>
-                <div className="flex flex-wrap gap-2">
-                  {GENRE_OPTIONS.map((g) => (
-                    <button key={g} type="button" onClick={() => set("genre", draft.genre === g ? "" : g)}
-                      className={`text-[12px] px-3.5 py-1.5 rounded-full border-2 font-semibold transition-all ${
-                        draft.genre === g ? "bg-navy-900 text-white border-navy-800" : "border-navy-300 text-navy-600 hover:border-navy-600"
-                      }`}>
-                      {g}
-                    </button>
-                  ))}
-                </div>
-              </Field>
-              <Field label={t("st_media")}>
-                <div className="flex flex-wrap gap-2">
-                  {MEDIA_OPTIONS.map((m) => (
-                    <button key={m} type="button" onClick={() => toggleMedia(m)}
-                      className={`text-[12px] px-3.5 py-1.5 rounded-full border-2 font-semibold transition-all ${
-                        draft.media.includes(m) ? "bg-navy-900 text-white border-navy-800" : "border-navy-300 text-navy-600 hover:border-navy-600"
-                      }`}>
-                      {m}
-                    </button>
-                  ))}
-                </div>
               </Field>
 
               {/* 아틀리에 삭제 — 두 번 눌러 확인 */}

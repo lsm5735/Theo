@@ -567,7 +567,7 @@ export default function SponsorClient({ artistId }: Props) {
           disabled={!selected}
           onClick={() => {
             if (!selectedMaterial || !project) return;
-            // 모의 결제 완료 → 내 후원 기록 + 메시지는 작가 담벼락에 테오 글로
+            // 모의 결제 완료 → 내 선물 기록 + 메시지는 작가 담벼락에 테오 글로
             recordSponsorship({ artistId: artist.id, projectId: project.id, material: selectedMaterial.name, amount: selectedMaterial.price, nickname: "테오" });
             if (message.trim()) addWallPost({ wallId: artist.id, role: "theo", authorName: "테오", text: message.trim(), image: "" });
             setDone(true);

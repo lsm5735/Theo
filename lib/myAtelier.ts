@@ -8,8 +8,6 @@ import { deleteWallPostsOf } from "./wall";
 export const MATERIAL_SLOTS = 3; // 처음 보여주는 재료 칸 수
 export const MAX_MATERIALS = 10;
 
-export const GENRE_OPTIONS = ["회화", "한국화", "드로잉", "판화", "조각", "설치", "사진", "미디어", "공예", "혼합"];
-export const MEDIA_OPTIONS = ["유화", "아크릴", "수채", "과슈", "목탄", "연필", "먹", "파스텔", "세라믹", "직물", "혼합매체"];
 
 export interface MyMaterial {
   link: string;
@@ -32,9 +30,6 @@ export interface MyAtelier {
   artistNote: string;
   materials: MyMaterial[];
   oneLiner: string;
-  location: string;
-  genre: string;
-  media: string[];
   profileImage: string;
   coverImage: string;
   project: MyProject | null;
@@ -53,9 +48,6 @@ export function emptyAtelier(): MyAtelier {
     artistNote: "",
     materials: [],
     oneLiner: "",
-    location: "",
-    genre: "",
-    media: [],
     profileImage: "",
     coverImage: "",
     project: null,

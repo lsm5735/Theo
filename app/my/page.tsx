@@ -216,14 +216,13 @@ function RoleSwitch({ role, onChange }: { role: Role; onChange: (r: Role) => voi
   );
 }
 
-/* ─── 테오(후원자) ───────────────────────────────────────────────────── */
+/* ─── 테오(선물하는 분) ───────────────────────────────────────────────────── */
 function SponsorshipCard({ sp, stepsDisplay }: { sp: MySponsorship; stepsDisplay: string[] }) {
   const t = useT();
   const { lang } = useLang();
   const artist = artists.find((a) => a.id === sp.artistId);
   const project = projects.find((p) => p.id === sp.projectId);
   if (!artist || !project) return null;
-  const pct = Math.round((project.fundedAmount / project.targetAmount) * 100);
 
   return (
     <div className="rounded-2xl border border-line overflow-hidden bg-card" style={CARD_SHADOW}>
@@ -242,7 +241,6 @@ function SponsorshipCard({ sp, stepsDisplay }: { sp: MySponsorship; stepsDisplay
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: "var(--navy-100)", color: "var(--navy-700)" }}>
                 {sp.amount.toLocaleString()}원
               </span>
-              <span className="text-[10px] text-muted">{pct}{t("my_pct_suf")}</span>
             </div>
           </div>
         </div>
@@ -361,7 +359,7 @@ function TheoView() {
         </div>
       </div>
 
-      {/* ── 내 후원 현황 ── */}
+      {/* ── 내 선물 현황 ── */}
       <section className="mb-10">
         <h2 className="text-[20px] font-semibold text-ink mb-4">{t("my_section_status")}</h2>
         <div className="space-y-4">
@@ -451,11 +449,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
           <div className="rounded-2xl border border-line bg-card p-4" style={CARD_SHADOW}>
             <p className="font-bold text-navy-800 text-sm mb-1">{project.title}</p>
             <p className="text-xs text-muted line-clamp-2 mb-3">{project.concept}</p>
-            <div className="w-full bg-navy-100 rounded-full h-1.5" />
-            <div className="flex justify-between text-[11px] text-muted mt-1.5">
-              <span>0{t("ma_pct")}</span>
-              <span>{t("ma_goal")} {project.targetAmount.toLocaleString()}원</span>
-            </div>
+            <p className="text-[11px] text-muted">{t("ma_goal")} {project.targetAmount.toLocaleString()}원</p>
             <div className="mt-3 pt-3 border-t border-navy-100">
               <Link href={`${base}?settings=project`} className="text-xs font-bold text-navy-700 hover:text-navy-900">
                 {t("my_gogh_edit")}

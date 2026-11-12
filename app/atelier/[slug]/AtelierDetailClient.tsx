@@ -5,23 +5,17 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Wall from "@/components/atelier/Wall";
 import { useMySponsorships } from "@/lib/sponsorships";
-import { useWallPosts } from "@/lib/wall";
 import { useT } from "@/contexts/LangContext";
 
 interface Artist {
   id: string;
   slug: string;
   name: string;
+  nameEn?: string;
   oneLiner: string;
-  genre: string;
-  media: string[];
   careerStage: string;
-  location: string;
-  tags: string[];
   profileImage: string;
   coverImage: string;
-  followers: number;
-  totalSponsors: number;
   artistNote: string;
 }
 
@@ -53,29 +47,11 @@ interface Props {
   materials: Material[];
 }
 
-function ProgressBar({ pct }: { pct: number }) {
-  return (
-    <div className="w-full bg-navy-100 rounded-full h-2 overflow-hidden">
-      <div
-        className="h-full rounded-full transition-all duration-700"
-        style={{
-          width: `${Math.min(pct, 100)}%`,
-          background: "linear-gradient(90deg,var(--sv),var(--sv-deep))",
-        }}
-      />
-    </div>
-  );
-}
-
 export default function AtelierDetailClient({ artist, project, materials }: Props) {
   const t = useT();
-  const wallPosts = useWallPosts(artist.id);
-  // 이 작가를 후원한 테오만 담벼락에 글을 남길 수 있음
+  // 이 작가를 선물한 테오만 담벼락에 글을 남길 수 있음
   const mySponsorship = useMySponsorships()?.find((sp) => sp.artistId === artist.id);
 
-  const pct = project
-    ? Math.round((project.fundedAmount / project.targetAmount) * 100)
-    : 0;
 
   return (
     <div className="min-h-screen bg-paper">
@@ -106,20 +82,6 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
           </Link>
         </div>
 
-        {/* Badges */}
-        <div className="absolute bottom-5 left-5 md:left-8 flex flex-wrap gap-2">
-          <span className="bg-navy-900 text-white text-xs font-semibold px-3 py-1.5 rounded-full">
-            {artist.genre}
-          </span>
-          {artist.media.map((m) => (
-            <span
-              key={m}
-              className="bg-white/20 text-white text-xs font-medium px-3 py-1.5 rounded-full backdrop-blur-sm"
-            >
-              {m}
-            </span>
-          ))}
-        </div>
       </div>
 
       {/* Main content */}
@@ -137,40 +99,18 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
               </div>
               <div className="flex-1 min-w-0 pt-1">
                 <h1 className="text-[30px] font-semibold text-ink mb-1 leading-tight" style={{ letterSpacing: "-0.03em" }}>{artist.name}</h1>
+                {artist.nameEn && <p className="text-[11px] font-semibold tracking-[0.2em] text-navy-400 mb-1.5">{artist.nameEn}</p>}
                 <p className="font-myeongjo text-navy-600 text-sm mb-2">{artist.oneLiner}</p>
                 <p className="text-xs text-muted">
-                  {artist.location} · {artist.careerStage} 작가
+                  {artist.careerStage} 작가
                 </p>
               </div>
             </div>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5 mb-5">
-              {artist.tags.map((tag) => (
-                <span key={tag} className="text-xs text-navy-600 bg-navy-100 px-2.5 py-1 rounded-full font-medium">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
             {/* Artist note */}
-            <p className="text-sm text-ink leading-[1.95] mb-5 pb-5 border-b border-navy-100">
+            <p className="text-sm text-ink leading-[1.95]">
               {artist.artistNote}
             </p>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 text-center">
-              {[
-                { value: artist.followers,     label: t("stat_followers") },
-                { value: artist.totalSponsors, label: t("stat_theos") },
-                { value: wallPosts?.length ?? 0, label: t("stat_letters") },
-              ].map((s) => (
-                <div key={s.label}>
-                  <p className="font-bold text-xl text-navy-800">{s.value}</p>
-                  <p className="text-xs text-muted mt-0.5">{s.label}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
 
@@ -206,9 +146,7 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
                       <span className="font-semibold text-navy-800">
                         {project.fundedAmount.toLocaleString()}{t("raised_suffix")}
                       </span>
-                      <span className="font-black text-navy-700">{pct}%</span>
                     </div>
-                    <ProgressBar pct={pct} />
                     <div className="flex justify-between text-xs text-muted mt-1.5">
                       <span>{t("goal_label")} {project.targetAmount.toLocaleString()}원</span>
                       <span>테오 {project.sponsorCount}{t("sponsor_count_suffix")}</span>
@@ -226,7 +164,7 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
               </section>
             )}
 
-            {/* 후원 상점 */}
+            {/* 선물하기 */}
             {materials.length > 0 && (
               <section data-sr="up">
                 <h2 className="text-[22px] font-semibold text-ink mb-4">{t("section_materials")}</h2>

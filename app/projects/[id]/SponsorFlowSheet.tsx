@@ -123,7 +123,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
     setMessage("");
   }
 
-  // 모의 결제 완료 → 내 후원 기록 + 메시지는 작가 담벼락에 테오 글로
+  // 모의 결제 완료 → 내 선물 기록 + 메시지는 작가 담벼락에 테오 글로
   function completeSponsorship() {
     if (!active) return;
     const name = nickname.trim() || "테오";
@@ -148,7 +148,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
             </span>
           )}
         </div>
-        <p className="text-xs text-muted mb-4">재료를 클릭하면 후원 플로우가 시작됩니다</p>
+        <p className="text-xs text-muted mb-4">재료를 클릭하면 선물 플로우가 시작됩니다</p>
 
         <div className="space-y-3">
           {materials.map((m) => (

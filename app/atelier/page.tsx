@@ -5,7 +5,7 @@ import projects from "@/data/projects.json";
 
 export const metadata = {
   title: "Atelier — Theo",
-  description: "지금 후원 가능한 신진 작가 20명",
+  description: "지금 선물 가능한 신진 작가 4명",
 };
 
 export default function AtelierPage() {
@@ -24,7 +24,7 @@ export default function AtelierPage() {
         </p>
         <div>
           <h1 data-sr="up" className="text-[34px] md:text-[52px] font-semibold text-ink leading-[1.1]">
-            지금 후원 가능한 작가
+            지금 선물 가능한 작가
           </h1>
           <p data-sr="up" data-d="1" className="text-muted text-sm md:text-base mt-2 leading-relaxed">
             창작에 필요한 재료를 선물하고, 창작 과정을 담벼락에서 함께 지켜보세요.
@@ -36,7 +36,6 @@ export default function AtelierPage() {
       <AtelierClient
         artists={artists as any}
         projectMap={projectMap as any}
-        total={artists.length}
       />
     </div>
   );
