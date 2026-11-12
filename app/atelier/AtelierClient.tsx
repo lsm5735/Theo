@@ -83,7 +83,7 @@ export default function AtelierClient({ artists }: { artists: Artist[] }) {
           <div className="flex flex-col md:flex-row py-10 md:py-12 gap-6 md:gap-0">
             <div className="md:w-[calc((100vw-var(--gap)*2)*0.25-1.5rem)] shrink-0">
               <span className="type-section">{t("ma_local_title")}</span>
-              <p className="text-[13px] text-muted mt-2 max-w-[14rem]">{t("ma_local_note")}</p>
+              <p className="text-[14px] text-muted mt-2 max-w-[14rem]">{t("ma_local_note")}</p>
             </div>
             <div className="w-full md:w-[calc((100vw-var(--gap)*2)*0.75)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...myAteliers].reverse().map((a) => <MyAtelierCard key={a.id} atelier={a} />)}

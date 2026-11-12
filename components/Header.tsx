@@ -27,24 +27,27 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-paper text-ink">
-      <div className="flex w-full items-center h-16 px-[var(--gap)]">
-        {/* 로고 — 왼쪽 라벨 영역 */}
-        <div className="md:w-[calc((100vw-var(--gap)*2)*0.25)] shrink-0 flex items-center">
-          <Link href="/" className="flex items-center gap-2" onClick={() => setMenuOpen(false)}>
+      <div className="flex w-full items-stretch h-[var(--header-h)] px-[var(--gap)]">
+        {/* 로고 — 화면 왼쪽 끝에 붙는 노란 탭. 왼쪽 라벨 영역(25%) 폭을 차지한다 */}
+        <div className="md:w-[calc((100vw-var(--gap)*2)*0.25)] shrink-0 flex items-stretch">
+          <Link
+            href="/"
+            className="flex items-center bg-sun -ml-[var(--gap)] pl-[var(--gap)] pr-6 md:pr-8"
+            onClick={() => setMenuOpen(false)}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-face.png" alt="THEO" className="w-7 h-7 shrink-0" />
-            <b className="logo-wordmark tracking-[0.08em] text-[24px] text-navy-900">Theo</b>
+            <img src="/logo-theo.png" alt="Theo" width={751} height={220} className="h-[22px] md:h-[25px] w-auto" />
           </Link>
         </div>
 
-        <div className="flex w-full items-center justify-end md:justify-between text-[18px] md:text-[20px]">
+        <div className="flex w-full items-center justify-end md:justify-between text-[17px] md:text-[18px]">
           {/* Desktop nav — About, Show, Atelier, Community. */}
           <nav className="hidden md:flex">
             <ul className="flex gap-x-10">
               <li className="flex relative group">
                 <button className="underlined cursor-pointer">About</button>
                 <div className="absolute left-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-150 z-50">
-                  <ul className="bg-paper border border-ink/60 min-w-[160px] py-2">
+                  <ul className="bg-card border border-ink min-w-[168px] py-2 text-[16px]">
                     {ABOUT_LINKS.map((l) =>
                       l.external ? (
                         <li key={l.label}>
@@ -84,7 +87,7 @@ export default function Header() {
               </button>
             </li>
             <li className="hidden md:flex">
-              <Link href="/#start" className="underlined">{t("btn_start")}</Link>
+              <Link href="/#start" className="nb-btn px-5 !min-h-[38px] text-[15px]">{t("btn_start")}</Link>
             </li>
             <li className="flex md:hidden">
               <button
@@ -106,10 +109,10 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden absolute left-0 right-0 top-full bg-paper border-b border-ink/40 px-[var(--gap)] pt-6 pb-8">
+        <div className="md:hidden absolute left-0 right-0 top-full tone-sun px-[var(--gap)] pt-8 pb-10">
           <ul className="flex flex-col gap-4">
             {NAV.map((n) => (
-              <li key={n.href} className="type-xl leading-none">
+              <li key={n.href} className="font-display text-[44px] leading-none uppercase">
                 <Link href={n.href} className="underlined" onClick={() => setMenuOpen(false)}>{n.label}</Link>
               </li>
             ))}

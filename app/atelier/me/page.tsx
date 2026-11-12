@@ -23,7 +23,7 @@ export default function MyAtelierListPage() {
         <p className="nb-tag mb-5">MY ATELIER</p>
         <div className="flex items-end justify-between gap-4 mb-2">
           <h1 className="text-3xl font-semibold text-ink leading-tight">{t("ma_list_title")}</h1>
-          <Link href="/onboarding/artist" className="nb-btn shrink-0 px-4 py-2.5 rounded-xl font-black text-[14px]">
+          <Link href="/onboarding/artist" className="nb-btn shrink-0 px-4 py-2.5 rounded-xl font-black text-[15px]">
             {t("ma_list_new")}
           </Link>
         </div>

@@ -97,10 +97,10 @@ export default function ArtistOnboarding() {
 
         {existingCount > 0 && (
           <div className="rounded-2xl border border-line-strong bg-card px-5 py-4 mb-6">
-            <p className="text-[14px] text-navy-700 leading-[1.7] mb-2" style={{ wordBreak: "keep-all" }}>
+            <p className="text-[15px] text-navy-700 leading-[1.7] mb-2" style={{ wordBreak: "keep-all" }}>
               {t("ob_exists_pre")}{existingCount}{t("ob_exists_post")}
             </p>
-            <Link href="/atelier/me" className="text-[14px] font-bold text-navy-800 underline underline-offset-2">
+            <Link href="/atelier/me" className="text-[15px] font-bold text-navy-800 underline underline-offset-2">
               {t("ob_exists_btn")}
             </Link>
           </div>

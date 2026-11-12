@@ -36,7 +36,7 @@ export default function ShowPage() {
       <Header />
 
       <main>
-        <section className="px-[var(--gap)] pt-10 md:pt-16">
+        <section className="tone-sun px-[var(--gap)] pt-10 md:pt-16">
           <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
             <BigTitle text="[CONTINUE]" />
           </div>
@@ -48,7 +48,7 @@ export default function ShowPage() {
           <div data-sr="up" className="relative w-full aspect-[16/9] md:aspect-[16/7] overflow-hidden bg-surface-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/hero-museum.jpg" alt="[CONTINUE] 전시 이미지" className="absolute inset-0 w-full h-full object-cover" />
-            <span className="absolute left-4 bottom-4 bg-paper px-3 py-1 text-[14px]">[입력 예시] 전시 포스터·메인 이미지</span>
+            <span className="absolute left-4 bottom-4 bg-paper px-3 py-1 text-[15px]">[입력 예시] 전시 포스터·메인 이미지</span>
           </div>
           <hr className="dots-x mt-12 md:mt-16" />
         </section>

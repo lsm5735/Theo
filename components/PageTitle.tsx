@@ -1,13 +1,8 @@
-import BigTitle from "@/components/BigTitle";
-
-/** 하위 페이지 공통 상단 — 가로폭을 꽉 채우는 대형 타이틀 + 점선 */
+/** 기능 페이지(선물·신청·마이 등) 공통 상단 — 내용이 바로 보이도록 낮은 노란 띠에 제목만 */
 export default function PageTitle({ text }: { text: string }) {
   return (
-    <section className="px-[var(--gap)] pt-8 md:pt-14 w-full">
-      <div className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-6 md:pb-10">
-        <BigTitle text={text} minChars={10} />
-      </div>
-      <hr className="dots-x" />
+    <section className="tone-sun px-[var(--gap)] py-5 md:py-7 w-full">
+      <h1 className="leading-[.95]" style={{ fontSize: "clamp(34px, 4.4vw, 60px)" }}>{text}</h1>
     </section>
   );
 }

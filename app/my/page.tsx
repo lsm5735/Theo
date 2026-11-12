@@ -46,7 +46,7 @@ function SunflowerSvg({ size }: { size: number }) {
           key={deg}
           cx={c} cy={14}
           rx={6} ry={13}
-          fill="#F4D35E"
+          fill="#FCD05B"
           transform={`rotate(${deg} ${c} ${c})`}
         />
       ))}
@@ -85,9 +85,9 @@ function WheatSvg({ size }: { size: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 48 48">
       <line x1="24" y1="42" x2="24" y2="8" stroke="#C2A43F" strokeWidth="2.5" strokeLinecap="round"/>
-      <ellipse cx="24" cy="11" rx="5" ry="7" fill="#F4D35E" />
-      <ellipse cx="17" cy="19" rx="4.5" ry="6.5" fill="#F4D35E" transform="rotate(-28 17 19)" />
-      <ellipse cx="31" cy="19" rx="4.5" ry="6.5" fill="#F4D35E" transform="rotate(28 31 19)" />
+      <ellipse cx="24" cy="11" rx="5" ry="7" fill="#FCD05B" />
+      <ellipse cx="17" cy="19" rx="4.5" ry="6.5" fill="#FCD05B" transform="rotate(-28 17 19)" />
+      <ellipse cx="31" cy="19" rx="4.5" ry="6.5" fill="#FCD05B" transform="rotate(28 31 19)" />
       <ellipse cx="15" cy="29" rx="4" ry="5.5" fill="#C2A43F" transform="rotate(-38 15 29)" />
       <ellipse cx="33" cy="29" rx="4" ry="5.5" fill="#C2A43F" transform="rotate(38 33 29)" />
     </svg>
@@ -99,11 +99,11 @@ function StarNightSvg({ size }: { size: number }) {
     <svg width={size} height={size} viewBox="0 0 48 48">
       <polygon
         points="24,5 27.6,15.8 39,15.8 29.7,22.5 33.3,33.3 24,26.6 14.7,33.3 18.3,22.5 9,15.8 20.4,15.8"
-        fill="#F4D35E"
+        fill="#FCD05B"
       />
-      <circle cx="37" cy="8" r="2.5" fill="#F4D35E" opacity={0.6} />
-      <circle cx="41" cy="15" r="1.5" fill="#F4D35E" opacity={0.4} />
-      <circle cx="42" cy="28" r="2" fill="#F4D35E" opacity={0.35} />
+      <circle cx="37" cy="8" r="2.5" fill="#FCD05B" opacity={0.6} />
+      <circle cx="41" cy="15" r="1.5" fill="#FCD05B" opacity={0.4} />
+      <circle cx="42" cy="28" r="2" fill="#FCD05B" opacity={0.35} />
     </svg>
   );
 }
@@ -137,7 +137,7 @@ function DeliveryTracker({ step, stepsDisplay }: { step: number; stepsDisplay: s
           return (
             <div key={i} className="flex items-center" style={{ flex: i < stepsDisplay.length - 1 ? "1 1 0" : "none" }}>
               <div
-                className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-[12px] shrink-0"
+                className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-[13px] shrink-0"
                 style={{
                   background: done ? "var(--navy-800)" : active ? "var(--sv)" : "var(--navy-100)",
                   color: done ? "#fff" : active ? "var(--ink)" : "var(--navy-300)",
@@ -235,18 +235,18 @@ function SponsorshipCard({ sp, stepsDisplay }: { sp: MySponsorship; stepsDisplay
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2 mb-0.5">
               <span className="font-bold text-navy-800 text-sm">{artist.name}</span>
-              <time className="text-[11px] text-muted shrink-0">{formatDay(sp.sponsoredAt, lang)}{t("my_date_suf")}</time>
+              <time className="text-[13px] text-muted shrink-0">{formatDay(sp.sponsoredAt, lang)}{t("my_date_suf")}</time>
             </div>
             <p className="text-xs text-navy-600 truncate">{project.title}</p>
             <div className="flex items-center gap-2 mt-1">
-              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full" style={{ background: "var(--navy-100)", color: "var(--navy-700)" }}>
+              <span className="text-[13px] font-bold px-2 py-0.5 rounded-full" style={{ background: "var(--navy-100)", color: "var(--navy-700)" }}>
                 {sp.amount.toLocaleString()}원
               </span>
             </div>
           </div>
         </div>
 
-        <p className="text-[12px] mb-1 truncate" style={{ color: "var(--muted)" }}>
+        <p className="text-[13px] mb-1 truncate" style={{ color: "var(--muted)" }}>
           <span className="font-semibold" style={{ color: "var(--navy-600)" }}>{t("my_material_pre")}</span>
           {sp.material}
         </p>
@@ -279,9 +279,9 @@ function ArtistUpdate({ post }: { post: WallPost }) {
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between gap-2 mb-0.5">
           <span className="font-bold text-navy-800 text-sm">{artist.name}</span>
-          <time className="text-[12px] text-muted shrink-0">{formatDay(post.createdAt, lang)}</time>
+          <time className="text-[13px] text-muted shrink-0">{formatDay(post.createdAt, lang)}</time>
         </div>
-        <p className="font-myeongjo text-navy-700 text-[14px] leading-snug truncate">{firstLine(post.text)}</p>
+        <p className="font-myeongjo text-navy-700 text-[15px] leading-snug truncate">{firstLine(post.text)}</p>
       </div>
       <span className="text-navy-300 group-hover:text-navy-500 transition-colors text-base mt-1 shrink-0">›</span>
     </Link>
@@ -328,7 +328,7 @@ function TheoView() {
               <div>
                 <p className="text-white font-black text-lg leading-none">{badgeName(badge.name)} {t("my_badge_suf")}</p>
                 {nextBadge && (
-                  <p className="text-[12px] mt-0.5" style={{ color: "rgba(255,255,255,.45)" }}>
+                  <p className="text-[13px] mt-0.5" style={{ color: "rgba(255,255,255,.45)" }}>
                     <BadgeIconInline name={nextBadge.name} /> {badgeName(nextBadge.name)}{t("my_badge_until")} {nextBadge.threshold - count}{t("my_badge_more")}
                   </p>
                 )}
@@ -340,8 +340,8 @@ function TheoView() {
                   <div className="h-full rounded-full" style={{ width: `${progressPct}%`, background: "var(--sv)" }} />
                 </div>
                 <div className="flex justify-between mt-1">
-                  <span className="text-[11px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(badge.name)}</span>
-                  <span className="text-[11px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(nextBadge.name)} {nextBadge.threshold}회</span>
+                  <span className="text-[13px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(badge.name)}</span>
+                  <span className="text-[13px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(nextBadge.name)} {nextBadge.threshold}회</span>
                 </div>
               </>
             )}
@@ -349,11 +349,11 @@ function TheoView() {
 
           <div className="flex gap-5 shrink-0">
             <div className="text-right">
-              <p className="text-[11px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_total")}</p>
+              <p className="text-[13px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_total")}</p>
               <p className="text-white font-black text-base">{totalAmount.toLocaleString()}원</p>
             </div>
             <div className="text-right">
-              <p className="text-[11px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_artists")}</p>
+              <p className="text-[13px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_artists")}</p>
               <p className="text-white font-black text-base">{artistIds.length}{t("my_people_suf")}</p>
             </div>
           </div>
@@ -428,16 +428,16 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
         <div className="grid grid-cols-3 gap-3">
           {stats.map((s) => (
             <div key={s.label}>
-              <p className="text-[11px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{s.label}</p>
+              <p className="text-[13px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{s.label}</p>
               <p className="text-white font-black text-lg">{s.value}</p>
             </div>
           ))}
         </div>
         <div className="flex gap-2 mt-6">
-          <Link href={base} className="flex-1 text-center bg-sv text-ink font-bold text-[14px] py-2.5 rounded-lg hover:bg-sv-soft transition-colors">
+          <Link href={base} className="flex-1 text-center bg-sv text-ink font-bold text-[15px] py-2.5 rounded-lg hover:bg-sv-soft transition-colors">
             {t("my_gogh_view")}
           </Link>
-          <Link href={`${base}?settings=profile`} className="flex-1 text-center border border-white/30 text-white font-bold text-[14px] py-2.5 rounded-lg hover:bg-white/10 transition-colors">
+          <Link href={`${base}?settings=profile`} className="flex-1 text-center border border-white/30 text-white font-bold text-[15px] py-2.5 rounded-lg hover:bg-white/10 transition-colors">
             {t("ma_settings")}
           </Link>
         </div>
@@ -450,7 +450,7 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
           <div className="rounded-2xl border border-line bg-card p-4" style={CARD_SHADOW}>
             <p className="font-bold text-navy-800 text-sm mb-1">{project.title}</p>
             <p className="text-xs text-muted line-clamp-2 mb-3">{project.concept}</p>
-            <p className="text-[12px] text-muted">{t("ma_goal")} {project.targetAmount.toLocaleString()}원</p>
+            <p className="text-[13px] text-muted">{t("ma_goal")} {project.targetAmount.toLocaleString()}원</p>
             <div className="mt-3 pt-3 border-t border-navy-100">
               <Link href={`${base}?settings=project`} className="text-xs font-bold text-navy-700 hover:text-navy-900">
                 {t("my_gogh_edit")}
@@ -459,8 +459,8 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
           </div>
         ) : (
           <div className="rounded-2xl border border-dashed border-line-strong p-6 text-center">
-            <p className="text-[14px] text-navy-600 mb-3" style={{ wordBreak: "keep-all" }}>{t("ma_project_empty_sub")}</p>
-            <Link href={`${base}?settings=project`} className="nb-btn inline-block px-5 py-2.5 rounded-lg font-black text-[14px]">
+            <p className="text-[15px] text-navy-600 mb-3" style={{ wordBreak: "keep-all" }}>{t("ma_project_empty_sub")}</p>
+            <Link href={`${base}?settings=project`} className="nb-btn inline-block px-5 py-2.5 rounded-lg font-black text-[15px]">
               {t("ma_project_add")}
             </Link>
           </div>
@@ -479,8 +479,8 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
           {atelier.materials.map((m, i) => (
             <a key={i} href={m.link} target="_blank" rel="noopener noreferrer"
               className="block rounded-xl border border-line bg-card px-4 py-3 hover:border-navy-300 transition-colors">
-              <p className="text-[12px] font-bold text-navy-400 mb-0.5">{hostOf(m.link)}</p>
-              <p className="text-[14px] text-navy-800 line-clamp-2" style={{ wordBreak: "keep-all" }}>{m.reason}</p>
+              <p className="text-[13px] font-bold text-navy-400 mb-0.5">{hostOf(m.link)}</p>
+              <p className="text-[15px] text-navy-800 line-clamp-2" style={{ wordBreak: "keep-all" }}>{m.reason}</p>
             </a>
           ))}
         </div>
@@ -499,18 +499,18 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
             {posts.slice(0, 3).map((p) => (
               <div key={p.id} className="rounded-xl border border-line bg-card px-4 py-3">
                 <div className="flex justify-between gap-2 mb-0.5">
-                  <span className="text-[13px] font-bold text-navy-700">
+                  <span className="text-[14px] font-bold text-navy-700">
                     {p.role === "artist" ? t("wall_role_artist") : p.authorName}
                   </span>
-                  <time className="text-[12px] text-muted">{formatDay(p.createdAt, lang)}</time>
+                  <time className="text-[13px] text-muted">{formatDay(p.createdAt, lang)}</time>
                 </div>
-                <p className="text-[14px] text-ink line-clamp-2">{p.text || "📷"}</p>
+                <p className="text-[15px] text-ink line-clamp-2">{p.text || "📷"}</p>
               </div>
             ))}
           </div>
         ) : (
           <div className="rounded-xl p-6 text-center border" style={{ background: "var(--chiffon)", borderColor: "rgba(194,164,63,.2)" }}>
-            <p className="text-[14px] text-muted mb-3" style={{ wordBreak: "keep-all" }}>{t("my_gogh_wall_empty")}</p>
+            <p className="text-[15px] text-muted mb-3" style={{ wordBreak: "keep-all" }}>{t("my_gogh_wall_empty")}</p>
             <Link href={`${base}#wall`} className="text-xs font-bold text-navy-800 underline underline-offset-2">
               {t("my_gogh_wall_btn")}
             </Link>
@@ -526,7 +526,7 @@ function GoghEmpty() {
   return (
     <div className="rounded-2xl border border-dashed border-line-strong p-10 text-center">
       <p className="text-[16px] font-black text-navy-800 mb-2">{t("my_gogh_empty")}</p>
-      <p className="text-[14px] text-muted mb-6" style={{ wordBreak: "keep-all" }}>{t("my_gogh_empty_sub")}</p>
+      <p className="text-[15px] text-muted mb-6" style={{ wordBreak: "keep-all" }}>{t("my_gogh_empty_sub")}</p>
       <Link href="/onboarding/artist" className="nb-btn inline-block px-6 py-3 rounded-xl font-black text-[15px]">
         {t("ma_empty_btn")}
       </Link>
@@ -541,14 +541,14 @@ function AtelierPicker({ ateliers, selectedId, onSelect }: { ateliers: MyAtelier
     <div className="flex items-center gap-2 overflow-x-auto mb-5 pb-1" style={{ scrollbarWidth: "none" }}>
       {ateliers.map((a) => (
         <button key={a.id} onClick={() => onSelect(a.id)}
-          className={`shrink-0 text-[14px] font-semibold px-4 py-1.5 rounded-full border transition-all ${
+          className={`shrink-0 text-[15px] font-semibold px-4 py-1.5 rounded-full border transition-all ${
             a.id === selectedId ? "bg-navy-800 text-white border-navy-800" : "bg-card text-navy-700 border-navy-200 hover:border-navy-500"
           }`}>
           {a.name}
         </button>
       ))}
       <Link href="/onboarding/artist"
-        className="shrink-0 text-[14px] font-semibold px-4 py-1.5 rounded-full border border-dashed border-navy-300 text-navy-500 hover:text-navy-800">
+        className="shrink-0 text-[15px] font-semibold px-4 py-1.5 rounded-full border border-dashed border-navy-300 text-navy-500 hover:text-navy-800">
         {t("ma_list_new")}
       </Link>
     </div>
@@ -587,7 +587,7 @@ export default function MyDashboard() {
         <Link href="/" className="text-xs text-muted hover:text-navy-700 transition-colors mb-6 inline-block">
           {t("my_back")}
         </Link>
-        <p className="text-[11px] font-black tracking-[0.22em] uppercase text-navy-400 mb-3">{t("my_label")}</p>
+        <p className="text-[13px] font-black tracking-[0.22em] uppercase text-navy-400 mb-3">{t("my_label")}</p>
 
         <RoleSwitch role={role} onChange={changeRole} />
 

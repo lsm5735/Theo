@@ -118,7 +118,7 @@ const PARTICLE_DATA = [
   { left: 48, top: -40, size: 9,  delay: 0.55, dur: 1.7, shape: 0, ci: 3 },
   { left: 24, top: -42, size: 7,  delay: 0.60, dur: 2.0, shape: 1, ci: 4 },
 ];
-const PARTICLE_COLORS = ["#F4D35E", "#0D3B66", "#F8D07A", "#A6B8C9", "#FAF0CA"];
+const PARTICLE_COLORS = ["#FCD05B", "#2E211D", "#F8D07A", "#A6B8C9", "#FAF0CA"];
 
 function Confetti() {
   const [visible, setVisible] = useState(false);
@@ -249,7 +249,7 @@ export default function SponsorClient({ artistId }: Props) {
           {/* Badge with pulse ring */}
           <div className="relative inline-flex items-center justify-center mb-6">
             <span className="absolute w-20 h-20 rounded-full" style={{
-              background: "rgba(244,211,94,0.25)",
+              background: "rgba(252,208,91,0.25)",
               animation: "pulseRing 1.8s 0.3s ease-out infinite",
             }} />
             <div
@@ -307,7 +307,7 @@ export default function SponsorClient({ artistId }: Props) {
             style={{
               background: "var(--chiffon)",
               border: "1px solid rgba(194,164,63,0.25)",
-              boxShadow: "0 20px 48px rgba(7,34,60,.14)",
+              boxShadow: "0 20px 48px rgba(36,24,21,.14)",
               animation: "fadeUp .55s 0.85s both",
             }}
           >
@@ -323,7 +323,7 @@ export default function SponsorClient({ artistId }: Props) {
             </div>
 
             <div className="border-t pt-4 space-y-2.5" style={{ borderColor: "rgba(194,164,63,0.2)" }}>
-              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_gift_title")}</p>
+              <p className="text-[13px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_gift_title")}</p>
               <div className="flex justify-between text-sm">
                 <span className="text-muted">{t("done_mat")}</span>
                 <span className="font-semibold text-navy-800 text-right max-w-[60%] leading-snug">{selectedMaterial.name}</span>
@@ -341,7 +341,7 @@ export default function SponsorClient({ artistId }: Props) {
               </div>
             </div>
 
-            <p className="text-[12px] text-muted mt-3 leading-relaxed text-center">
+            <p className="text-[13px] text-muted mt-3 leading-relaxed text-center">
               {t("done_delivery")}
             </p>
           </div>
@@ -356,7 +356,7 @@ export default function SponsorClient({ artistId }: Props) {
                 animation: "fadeUp .5s 0.95s both",
               }}
             >
-              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_msg_title")}</p>
+              <p className="text-[13px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_msg_title")}</p>
               <p className="font-myeongjo text-sm text-ink leading-relaxed">{message}</p>
             </div>
           )}
@@ -370,7 +370,7 @@ export default function SponsorClient({ artistId }: Props) {
               animation: "fadeUp .5s 1.05s both",
             }}
           >
-            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-muted mb-4">{t("done_next_title")}</p>
+            <p className="text-[13px] font-bold tracking-[0.2em] uppercase text-muted mb-4">{t("done_next_title")}</p>
             <ol className="space-y-3">
               {NEXT_STEPS.map((step, idx) => (
                 <li key={idx} className="flex items-start gap-3">
@@ -384,7 +384,7 @@ export default function SponsorClient({ artistId }: Props) {
                   >
                     {step.done
                       ? <IconCheckCircle />
-                      : <span className="text-[11px] font-bold">{idx + 1}</span>
+                      : <span className="text-[13px] font-bold">{idx + 1}</span>
                     }
                   </div>
                   <div className="flex-1 pt-0.5">
@@ -441,7 +441,7 @@ export default function SponsorClient({ artistId }: Props) {
             </Link>
           </div>
 
-          <p className="text-[12px] text-center mt-5" style={{ color: "var(--muted)" }}>
+          <p className="text-[13px] text-center mt-5" style={{ color: "var(--muted)" }}>
             {t("sp_demo")}
           </p>
         </div>
@@ -501,7 +501,7 @@ export default function SponsorClient({ artistId }: Props) {
                       ? "border-navy-800 bg-card"
                       : "border-navy-100 bg-card hover:border-navy-300"
                   }`}
-                  style={selected === m.id ? { boxShadow: '0 8px 22px rgba(23,29,43,.06)' } : undefined}
+                  style={selected === m.id ? { boxShadow: '0 8px 22px rgba(36,24,21,.06)' } : undefined}
                 >
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-navy-800 text-sm leading-snug">{m.name}</p>
@@ -548,7 +548,7 @@ export default function SponsorClient({ artistId }: Props) {
 
         {/* STEP 3: Summary */}
         {selectedMaterial && (
-          <div className="bg-card border border-line rounded-2xl p-5 mb-4" style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}>
+          <div className="bg-card border border-line rounded-2xl p-5 mb-4" style={{ boxShadow: '0 8px 22px rgba(36,24,21,.06)' }}>
             <div className="space-y-2 mb-4 pb-4 border-b border-navy-100">
               <div className="flex justify-between text-sm">
                 <span className="text-muted">{t("sp_cost")}</span>
@@ -579,7 +579,7 @@ export default function SponsorClient({ artistId }: Props) {
               ? "bg-navy-800 text-white hover:bg-navy-800"
               : "bg-navy-100 text-navy-300 cursor-not-allowed"
           }`}
-          style={selected ? { boxShadow: '0 8px 22px rgba(23,29,43,.06)' } : undefined}
+          style={selected ? { boxShadow: '0 8px 22px rgba(36,24,21,.06)' } : undefined}
         >
           {selected
             ? `${total.toLocaleString()}원 ${t("sp_btn_gift")}`

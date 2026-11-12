@@ -88,9 +88,9 @@ export function Field({
 }) {
   return (
     <div data-error={error ? "true" : undefined}>
-      {label && <label className="block text-[14px] font-bold text-navy-700 mb-1.5">{label}</label>}
+      {label && <label className="block text-[15px] font-bold text-navy-700 mb-1.5">{label}</label>}
       {children}
-      {help && !error && <p className="text-[13px] text-navy-400 mt-1">{help}</p>}
+      {help && !error && <p className="text-[14px] text-navy-400 mt-1">{help}</p>}
       {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   );
@@ -145,7 +145,7 @@ export function NoteField({
       </p>
       <ul className="space-y-1.5 rounded-xl bg-navy-100/60 px-4 py-3">
         {(["ob_note_q1", "ob_note_q2", "ob_note_q3"] as const).map((k) => (
-          <li key={k} className="flex gap-2 text-[14px] text-navy-700 leading-[1.7]" style={{ wordBreak: "keep-all" }}>
+          <li key={k} className="flex gap-2 text-[15px] text-navy-700 leading-[1.7]" style={{ wordBreak: "keep-all" }}>
             <span className="text-navy-400 shrink-0">·</span>
             {t(k)}
           </li>
@@ -186,10 +186,10 @@ export function MaterialFields({
       {materials.map((m, i) => (
         <div key={i} className="rounded-2xl bg-surface-card p-4 space-y-3">
           <div className="flex items-center justify-between">
-            <p className="text-[14px] font-bold text-navy-700">{t("ob_mat_n")} {i + 1}</p>
+            <p className="text-[15px] font-bold text-navy-700">{t("ob_mat_n")} {i + 1}</p>
             {materials.length > 1 && (
               <button type="button" onClick={() => onChange(materials.filter((_, idx) => idx !== i))}
-                className="text-[13px] text-navy-400 hover:text-red-500 transition-colors">
+                className="text-[14px] text-navy-400 hover:text-red-500 transition-colors">
                 {t("ob_mat_remove")}
               </button>
             )}
@@ -208,11 +208,11 @@ export function MaterialFields({
       ))}
       {materials.length < MAX_MATERIALS ? (
         <button type="button" onClick={() => onChange([...materials, EMPTY_MATERIAL])}
-          className="w-full rounded-2xl border border-dashed border-line-strong py-3 text-[14px] font-bold text-navy-600 hover:border-navy-400 hover:text-navy-800 transition-colors">
+          className="w-full rounded-2xl border border-dashed border-line-strong py-3 text-[15px] font-bold text-navy-600 hover:border-navy-400 hover:text-navy-800 transition-colors">
           {t("ob_mat_add")}
         </button>
       ) : (
-        <p className="text-center text-[13px] text-navy-400">{t("ob_mat_max_pre")}{MAX_MATERIALS}{t("ob_mat_max_post")}</p>
+        <p className="text-center text-[14px] text-navy-400">{t("ob_mat_max_pre")}{MAX_MATERIALS}{t("ob_mat_max_post")}</p>
       )}
     </>
   );

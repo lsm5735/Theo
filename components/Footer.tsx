@@ -46,43 +46,31 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="mt-auto pt-[10rem] md:pt-6 text-ink">
-      <div className="px-[var(--gap)]">
-        <hr className="dots-x" />
-      </div>
-
-      {/* 마퀴 */}
-      <div className="flex flex-nowrap overflow-hidden py-6" aria-hidden="true">
-        <div className="animate-marquee flex flex-nowrap shrink-0">
-          {[0, 1, 2, 3].map((n) => (
-            <div key={n} className="flex items-center justify-center h-[14rem] w-[100vw] md:w-[49rem] shrink-0">
-              <span className="type-label-xl text-center">{MARQUEE[n % 2]}</span>
-            </div>
-          ))}
-        </div>
-        <div className="animate-marquee flex flex-nowrap shrink-0">
-          {[0, 1, 2, 3].map((n) => (
-            <div key={n} className="flex items-center justify-center h-[14rem] w-[100vw] md:w-[49rem] shrink-0">
-              <span className="type-label-xl text-center">{MARQUEE[n % 2]}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="px-[var(--gap)]">
-        <hr className="dots-x" />
-      </div>
-
-      <div className="px-[var(--gap)] py-10 flex flex-col md:flex-row gap-10 md:gap-0">
-        <div className="md:grid-left md:w-[calc((100vw-var(--gap)*2)*0.25)] shrink-0">
-          <div className="flex items-center gap-2 mb-4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-face.png" alt="THEO" className="w-7 h-7" />
-            <b className="logo-wordmark tracking-[0.06em] text-[21px]">Theo</b>
+    <footer className="tone-sun mt-auto overflow-hidden">
+      {/* 마퀴 — 슬로건을 화면 높이만큼 크게 흘려보낸다 */}
+      <div className="flex flex-nowrap pt-10 md:pt-14 pb-6 md:pb-8 select-none" aria-hidden="true">
+        {[0, 1].map((track) => (
+          <div key={track} className="animate-marquee flex flex-nowrap shrink-0">
+            {[0, 1, 2, 3].map((n) => (
+              <span key={n} className="font-display uppercase whitespace-nowrap leading-[.86] text-[21vw] md:text-[12.5vw] pr-[.28em]">
+                {MARQUEE[n % 2]}
+              </span>
+            ))}
           </div>
+        ))}
+      </div>
+
+      <div className="px-[var(--gap)]">
+        <hr className="dots-x" />
+      </div>
+
+      <div className="px-[var(--gap)] py-12 md:py-14 flex flex-col md:flex-row gap-10 md:gap-0">
+        <div className="md:w-[calc((100vw-var(--gap)*2)*0.25)] shrink-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-theo.png" alt="Theo" width={751} height={220} className="h-[34px] md:h-[40px] w-auto" />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:flex-1">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 md:flex-1">
           {cols.map((c) => (
             <div key={c.title}>
               <p className="type-label mb-4">{c.title}</p>
@@ -104,7 +92,7 @@ export default function Footer() {
 
       <div className="px-[var(--gap)]">
         <hr className="dots-x" />
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 py-6 text-[13px] text-muted">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 py-6 text-[14px] text-muted">
           <span>{t("footer_copy")}</span>
           <span>{t("footer_disclaimer")}</span>
         </div>

@@ -14,7 +14,7 @@ export default function AtelierPage() {
       <Header />
 
       <main>
-        <section className="px-[var(--gap)] pt-10 md:pt-16">
+        <section className="tone-sun px-[var(--gap)] pt-10 md:pt-16">
           <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
             <BigTitle text="Atelier" />
           </div>

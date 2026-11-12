@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 // 레퍼런스의 페이지 타이틀 — 글자를 컨테이너 가로폭에 꽉 채워 늘리는 대형 디스플레이 타이틀
 // · 줄바꿈("\n")이 있으면 각 줄을 가로폭에 맞춰 위아래로 쌓는다.
@@ -39,7 +39,7 @@ function Line({ text, shown, minChars }: { text: string; shown: number; minChars
   );
 }
 
-export default function BigTitle({ text, typing = false, speed = 70, minChars = 0 }: { text: string; typing?: boolean; speed?: number; minChars?: number }) {
+export default function BigTitle({ text, typing = false, speed = 70, minChars = 0, between }: { text: string; typing?: boolean; speed?: number; minChars?: number; between?: React.ReactNode }) {
   const lines = text.split("\n");
   const total = lines.reduce((n, l) => n + l.length, 0);
   // 타이핑이 아니면 처음부터 전부 보임. 타이핑이면 0부터 시작 (reduced-motion 이면 바로 전부)
@@ -70,9 +70,13 @@ export default function BigTitle({ text, typing = false, speed = 70, minChars = 
   const starts = lines.map((_, i) => lines.slice(0, i).reduce((n, l) => n + l.length, 0));
 
   return (
-    <h1 aria-label={lines.join(" ")} className="flex flex-col gap-[1.5vw] m-0">
+    <h1 aria-label={lines.join(" ")} className={`flex flex-col m-0 ${between ? "" : "gap-[1.5vw]"}`}>
       {lines.map((l, i) => (
-        <Line key={l} text={l} minChars={minChars} shown={Math.max(0, Math.min(l.length, count - starts[i]))} />
+        <Fragment key={l}>
+          {/* between: 줄과 줄 사이에 끼워 넣는 요소 (히어로 사진 등) */}
+          {i > 0 && between}
+          <Line text={l} minChars={minChars} shown={Math.max(0, Math.min(l.length, count - starts[i]))} />
+        </Fragment>
       ))}
     </h1>
   );

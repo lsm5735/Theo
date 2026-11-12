@@ -89,7 +89,7 @@ export default function PartnershipPage() {
       <PageTitle text="Partnership" />
 
       <div className="max-w-[600px] w-full mx-auto px-5 md:px-8 py-10">
-        <Link href="/" className="text-[14px] text-muted hover:text-ink transition-colors mb-8 block w-fit">
+        <Link href="/" className="text-[15px] text-muted hover:text-ink transition-colors mb-8 block w-fit">
           ← 홈으로
         </Link>
 
@@ -104,7 +104,7 @@ export default function PartnershipPage() {
 
           {/* 회사명 */}
           <div data-sr="up" data-d="1">
-            <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
+            <label className="block text-[14.5px] font-bold text-navy-700 mb-1.5">
               회사명 <span className="text-[#C2A43F]">*</span>
             </label>
             <input
@@ -120,7 +120,7 @@ export default function PartnershipPage() {
 
           {/* 담당자 이름 */}
           <div data-sr="up" data-d="2">
-            <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
+            <label className="block text-[14.5px] font-bold text-navy-700 mb-1.5">
               담당자 이름 <span className="text-[#C2A43F]">*</span>
             </label>
             <input
@@ -137,7 +137,7 @@ export default function PartnershipPage() {
           {/* 연락처 + 이메일 (2열) */}
           <div data-sr="up" data-d="3" className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
+              <label className="block text-[14.5px] font-bold text-navy-700 mb-1.5">
                 연락처 <span className="text-[#C2A43F]">*</span>
               </label>
               <input
@@ -151,7 +151,7 @@ export default function PartnershipPage() {
               {errors.phone && <p className="text-[12.5px] text-red-500 mt-1">{errors.phone}</p>}
             </div>
             <div>
-              <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
+              <label className="block text-[14.5px] font-bold text-navy-700 mb-1.5">
                 이메일 <span className="text-[#C2A43F]">*</span>
               </label>
               <input
@@ -167,7 +167,7 @@ export default function PartnershipPage() {
 
           {/* 문의 유형 */}
           <div data-sr="up" data-d="4">
-            <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
+            <label className="block text-[14.5px] font-bold text-navy-700 mb-1.5">
               문의 유형 <span className="text-[#C2A43F]">*</span>
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -195,7 +195,7 @@ export default function PartnershipPage() {
                     onChange={() => setCategory(cat)}
                     className="sr-only"
                   />
-                  <span className="text-[13.5px] text-navy-800">{cat}</span>
+                  <span className="text-[14.5px] text-navy-800">{cat}</span>
                 </label>
               ))}
             </div>
@@ -204,7 +204,7 @@ export default function PartnershipPage() {
 
           {/* 문의 내용 */}
           <div data-sr="up" data-d="5">
-            <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
+            <label className="block text-[14.5px] font-bold text-navy-700 mb-1.5">
               요청 및 문의 내용 <span className="text-[#C2A43F]">*</span>
             </label>
             <textarea
@@ -220,7 +220,7 @@ export default function PartnershipPage() {
                 ? <p className="text-[12.5px] text-red-500">{errors.message}</p>
                 : <span />
               }
-              <p className="text-[12px] text-navy-400 ml-auto">{message.length}/1000</p>
+              <p className="text-[13px] text-navy-400 ml-auto">{message.length}/1000</p>
             </div>
           </div>
 

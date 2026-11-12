@@ -56,8 +56,8 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       <main>
         {/* 타이틀 */}
-        <section className="px-[var(--gap)] pt-6 md:pt-10">
-          <Link href={`/atelier/${artist.slug}`} className="link-line text-[14px] inline-block mb-8 md:mb-12">
+        <section className="tone-sun px-[var(--gap)] pt-6 md:pt-10">
+          <Link href={`/atelier/${artist.slug}`} className="link-line text-[15px] inline-block mb-8 md:mb-12">
             ← {artist.name} 아틀리에
           </Link>
           <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
@@ -100,7 +100,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             {artist.palette.map((color) => (
               <span key={color} title={color} className="w-7 h-7 rounded-full border border-ink/20" style={{ background: color }} />
             ))}
-            <span className="text-[14px] text-muted ml-2">작가 팔레트</span>
+            <span className="text-[15px] text-muted ml-2">작가 팔레트</span>
           </div>
           <Link href={`/atelier/${artist.slug}`} className="group flex items-center gap-4">
             <span className="relative w-14 aspect-[1/1.25] overflow-hidden bg-surface-card shrink-0">
@@ -108,7 +108,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             </span>
             <span>
               <span className="block text-[19px] underlined group-hover:underline">{artist.name}</span>
-              <span className="block text-[14px] text-muted">{artist.oneLiner}</span>
+              <span className="block text-[15px] text-muted">{artist.oneLiner}</span>
             </span>
           </Link>
         </Row>
@@ -142,7 +142,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                     <hr className="dots-x" />
                     <div className="py-5 grid grid-cols-[1fr_auto] gap-x-6 gap-y-1">
                       <span className="text-[18px]">{sp.nickname} 님</span>
-                      <span className="text-[14px] text-muted">{formatDate(sp.date)}</span>
+                      <span className="text-[15px] text-muted">{formatDate(sp.date)}</span>
                       <span className="text-[15px] text-muted col-span-2">
                         재료 선물 {sp.amount.toLocaleString()}원{mat ? ` · ${mat.usageNote}` : ""}
                       </span>

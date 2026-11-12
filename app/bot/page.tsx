@@ -222,7 +222,7 @@ export default function BotPage() {
                 <div className="max-w-[85%] w-full">
                   <div className="flex items-start gap-2.5">
                     <div className="w-7 h-7 rounded-full bg-navy-800 flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-sv text-[11px] font-black">T</span>
+                      <span className="text-sv text-[13px] font-black">T</span>
                     </div>
                     <div
                       className="bg-card border border-line rounded-2xl rounded-tl-sm px-4 py-3.5"
@@ -240,7 +240,7 @@ export default function BotPage() {
                         <button
                           key={chip}
                           onClick={() => handleChip(chip)}
-                          className="text-[13.5px] px-3.5 py-2 rounded-full border border-navy-300 text-navy-700 hover:bg-navy-800 hover:text-chiffon hover:border-navy-800 transition-all"
+                          className="text-[14.5px] px-3.5 py-2 rounded-full border border-navy-300 text-navy-700 hover:bg-navy-800 hover:text-chiffon hover:border-navy-800 transition-all"
                         >
                           {chip}
                         </button>
@@ -249,7 +249,7 @@ export default function BotPage() {
                       {step >= 2 && (
                         <button
                           onClick={handleQuickMatch}
-                          className="text-[13.5px] px-3.5 py-2 rounded-full bg-sv text-ink font-semibold hover:opacity-90 transition-all"
+                          className="text-[14.5px] px-3.5 py-2 rounded-full bg-sv text-ink font-semibold hover:opacity-90 transition-all"
                         >
                           {t("bot_quick_match")}
                         </button>
@@ -269,7 +269,7 @@ export default function BotPage() {
           {isLoading && (
             <div className="flex items-start gap-2.5">
               <div className="w-7 h-7 rounded-full bg-navy-800 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-sv text-[11px] font-black">T</span>
+                <span className="text-sv text-[13px] font-black">T</span>
               </div>
               <div
                 className="bg-card border border-line rounded-2xl rounded-tl-sm px-6 py-5"
@@ -282,19 +282,19 @@ export default function BotPage() {
                       style={{ animationDuration: "1.3s", animationTimingFunction: "linear" }}
                       width="44" height="44" viewBox="0 0 44 44" fill="none"
                     >
-                      <path d="M22 3 A19 19 0 1 1 3 22" stroke="#0D3B66" strokeWidth="3" strokeLinecap="round" />
-                      <path d="M22 3 A19 19 0 0 0 3 22" stroke="#0D3B66" strokeWidth="3" strokeLinecap="round" opacity="0.12" />
+                      <path d="M22 3 A19 19 0 1 1 3 22" stroke="#2E211D" strokeWidth="3" strokeLinecap="round" />
+                      <path d="M22 3 A19 19 0 0 0 3 22" stroke="#2E211D" strokeWidth="3" strokeLinecap="round" opacity="0.12" />
                     </svg>
                     <svg
                       className="absolute inset-0 animate-spin"
                       style={{ animationDuration: "1.3s", animationTimingFunction: "linear", animationDirection: "reverse" }}
                       width="44" height="44" viewBox="0 0 44 44" fill="none"
                     >
-                      <path d="M22 9 A13 13 0 1 0 9 22" stroke="#F4D35E" strokeWidth="2.5" strokeLinecap="round" />
-                      <path d="M22 9 A13 13 0 0 1 9 22" stroke="#F4D35E" strokeWidth="2.5" strokeLinecap="round" opacity="0.12" />
+                      <path d="M22 9 A13 13 0 1 0 9 22" stroke="#FCD05B" strokeWidth="2.5" strokeLinecap="round" />
+                      <path d="M22 9 A13 13 0 0 1 9 22" stroke="#FCD05B" strokeWidth="2.5" strokeLinecap="round" opacity="0.12" />
                     </svg>
                   </div>
-                  <p className="text-[14px] text-navy-700 font-medium">{t("bot_matching_msg")}</p>
+                  <p className="text-[15px] text-navy-700 font-medium">{t("bot_matching_msg")}</p>
                 </div>
               </div>
             </div>
@@ -304,7 +304,7 @@ export default function BotPage() {
           {!isLoading && results.length > 0 && (
             <div className="flex items-start gap-2.5">
               <div className="w-7 h-7 rounded-full bg-navy-800 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-sv text-[11px] font-black">T</span>
+                <span className="text-sv text-[13px] font-black">T</span>
               </div>
               <div className="flex-1 space-y-3">
                 {/* 봇 텍스트 */}
@@ -335,10 +335,10 @@ export default function BotPage() {
                             className="w-full h-full object-cover"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                          <span className={`absolute top-2.5 left-2.5 text-[11px] font-bold px-2 py-1 rounded-md ${RANK_STYLE[i]}`}>
+                          <span className={`absolute top-2.5 left-2.5 text-[13px] font-bold px-2 py-1 rounded-md ${RANK_STYLE[i]}`}>
                             {RANK_LABEL[i]}
                           </span>
-                          <p className="absolute bottom-2.5 left-3 text-[12px] text-white/75 font-medium">{repArtwork.title}</p>
+                          <p className="absolute bottom-2.5 left-3 text-[13px] text-white/75 font-medium">{repArtwork.title}</p>
                         </div>
                       )}
                       <div className="p-4">
@@ -351,7 +351,7 @@ export default function BotPage() {
                             className="w-12 h-12 rounded-xl object-cover"
                           />
                           {!repArtwork && (
-                            <span className={`absolute -top-1.5 -left-1.5 text-[11px] font-bold px-1.5 py-0.5 rounded-md ${RANK_STYLE[i]}`}>
+                            <span className={`absolute -top-1.5 -left-1.5 text-[13px] font-bold px-1.5 py-0.5 rounded-md ${RANK_STYLE[i]}`}>
                               {RANK_LABEL[i]}
                             </span>
                           )}
@@ -360,13 +360,13 @@ export default function BotPage() {
                           <p className="text-[16px] font-bold text-navy-900">
                             {r.artist.name}
                           </p>
-                          <p className="text-[13px] text-muted mt-0.5 leading-relaxed">
+                          <p className="text-[14px] text-muted mt-0.5 leading-relaxed">
                             {r.artist.oneLiner}
                           </p>
                         </div>
                         <Link
                           href={`/atelier/${r.artist.slug}`}
-                          className="shrink-0 text-[12px] font-semibold text-navy-700 border border-navy-300 px-2.5 py-1.5 rounded-lg hover:bg-navy-800 hover:text-chiffon hover:border-navy-800 transition-all"
+                          className="shrink-0 text-[13px] font-semibold text-navy-700 border border-navy-300 px-2.5 py-1.5 rounded-lg hover:bg-navy-800 hover:text-chiffon hover:border-navy-800 transition-all"
                         >
                           {t("bot_atelier_btn")}
                         </Link>
@@ -374,14 +374,14 @@ export default function BotPage() {
 
                       {/* 추천 이유 */}
                       <div className="mt-3 bg-navy-100 rounded-xl px-3.5 py-3.5">
-                        <p className="text-[11px] font-bold tracking-[0.14em] text-navy-400 uppercase mb-2">
+                        <p className="text-[13px] font-bold tracking-[0.14em] text-navy-400 uppercase mb-2">
                           {t("bot_reason_title")}
                         </p>
-                        <p className="text-[14px] text-navy-800 leading-[1.85]">
+                        <p className="text-[15px] text-navy-800 leading-[1.85]">
                           {r.reason}
                         </p>
                         {r.quote && (
-                          <p className="text-[13px] text-navy-500 italic mt-2.5 pl-3 border-l-2 border-navy-300 leading-[1.7]">
+                          <p className="text-[14px] text-navy-500 italic mt-2.5 pl-3 border-l-2 border-navy-300 leading-[1.7]">
                             &ldquo;{r.quote}&rdquo;
                           </p>
                         )}
@@ -393,7 +393,7 @@ export default function BotPage() {
 
                 {/* 하단 액션 */}
                 <div className="text-center pt-1 pb-2 space-y-3">
-                  <p className="text-[12px] text-navy-300">
+                  <p className="text-[13px] text-navy-300">
                     {t("bot_ai_note")}
                   </p>
                   <div className="flex gap-2 justify-center">

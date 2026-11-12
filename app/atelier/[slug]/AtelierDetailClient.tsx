@@ -76,8 +76,8 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
 
       <main>
         {/* 타이틀 */}
-        <section className="px-[var(--gap)] pt-6 md:pt-10">
-          <Link href="/atelier" className="link-line text-[14px] inline-block mb-8 md:mb-12">
+        <section className="tone-sun px-[var(--gap)] pt-6 md:pt-10">
+          <Link href="/atelier" className="link-line text-[15px] inline-block mb-8 md:mb-12">
             {t("back_atelier")}
           </Link>
           <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
@@ -122,7 +122,7 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
                 <h3 className="type-l mb-5" style={{ fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400, wordBreak: "keep-all" }}>{project.title}</h3>
                 <p className="text-[16px] leading-[1.85] text-muted mb-8" style={{ wordBreak: "keep-all" }}>{project.concept}</p>
                 <p className="text-[17px] mb-1">{project.fundedAmount.toLocaleString()}{t("raised_suffix")}</p>
-                <p className="text-[14px] text-muted mb-8">
+                <p className="text-[15px] text-muted mb-8">
                   {t("goal_label")} {project.targetAmount.toLocaleString()}원 · 테오 {project.sponsorCount}{t("sponsor_count_suffix")}
                 </p>
                 <Link href={`/projects/${project.id}`} className="link-line text-[16px]">{t("project_detail")}</Link>
@@ -143,11 +143,11 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
                       <img src={m.imageUrl} alt={m.name} className="absolute inset-0 w-full h-full object-cover" />
                     )}
                     {m.isFunded && (
-                      <span className="absolute top-2 left-2 text-[12px] bg-sv text-ink px-2 py-0.5 font-bold">{t("material_gifted")}</span>
+                      <span className="absolute top-2 left-2 text-[13px] bg-sv text-ink px-2 py-0.5 font-bold">{t("material_gifted")}</span>
                     )}
                   </div>
                   <p className="text-[16px] leading-snug line-clamp-2 mb-1">{m.name}</p>
-                  <p className="text-[14px] text-muted leading-snug line-clamp-2 mb-2">{m.usageNote}</p>
+                  <p className="text-[15px] text-muted leading-snug line-clamp-2 mb-2">{m.usageNote}</p>
                   <p className="text-[16px] font-bold">{m.price.toLocaleString()}원</p>
                 </div>
               ))}

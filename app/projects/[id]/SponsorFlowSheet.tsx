@@ -26,29 +26,29 @@ function StarSVG() {
         <radialGradient id="sc" cx="50%" cy="50%" r="50%">
           <stop offset="0%"   stopColor="#FFFFFF" stopOpacity="1" />
           <stop offset="35%"  stopColor="#F8D07A" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#F4D35E" stopOpacity="0" />
+          <stop offset="100%" stopColor="#FCD05B" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="rH" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stopColor="#F4D35E" stopOpacity="0" />
-          <stop offset="50%"  stopColor="#F4D35E" stopOpacity="0.72" />
-          <stop offset="100%" stopColor="#F4D35E" stopOpacity="0" />
+          <stop offset="0%"   stopColor="#FCD05B" stopOpacity="0" />
+          <stop offset="50%"  stopColor="#FCD05B" stopOpacity="0.72" />
+          <stop offset="100%" stopColor="#FCD05B" stopOpacity="0" />
         </linearGradient>
         <linearGradient id="rV" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%"   stopColor="#F4D35E" stopOpacity="0" />
-          <stop offset="50%"  stopColor="#F4D35E" stopOpacity="0.72" />
-          <stop offset="100%" stopColor="#F4D35E" stopOpacity="0" />
+          <stop offset="0%"   stopColor="#FCD05B" stopOpacity="0" />
+          <stop offset="50%"  stopColor="#FCD05B" stopOpacity="0.72" />
+          <stop offset="100%" stopColor="#FCD05B" stopOpacity="0" />
         </linearGradient>
       </defs>
       {/* 헤일로 */}
-      <circle r="28" fill="#F4D35E" opacity="0.05" />
-      <circle r="18" fill="#F4D35E" opacity="0.10" />
+      <circle r="28" fill="#FCD05B" opacity="0.05" />
+      <circle r="18" fill="#FCD05B" opacity="0.10" />
       <circle r="10" fill="url(#sc)" />
       {/* 십자 광선 */}
       <rect x="-28" y="-1.3" width="56" height="2.6" rx="1.3" fill="url(#rH)" />
       <rect x="-1.3" y="-28" width="2.6" height="56" rx="1.3" fill="url(#rV)" />
       {/* 대각 광선 (짧고 흐리게) */}
-      <line x1="-17" y1="-17" x2="17" y2="17"  stroke="#F4D35E" strokeWidth="1.3" strokeLinecap="round" opacity="0.28" />
-      <line x1="17"  y1="-17" x2="-17" y2="17" stroke="#F4D35E" strokeWidth="1.3" strokeLinecap="round" opacity="0.28" />
+      <line x1="-17" y1="-17" x2="17" y2="17"  stroke="#FCD05B" strokeWidth="1.3" strokeLinecap="round" opacity="0.28" />
+      <line x1="17"  y1="-17" x2="-17" y2="17" stroke="#FCD05B" strokeWidth="1.3" strokeLinecap="round" opacity="0.28" />
       {/* 코어 */}
       <circle r="4.5" fill="#F8D07A" opacity="0.95" />
       <circle r="2.2" fill="white" />
@@ -162,7 +162,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   ? "bg-navy-100/40 border-navy-200 cursor-not-allowed opacity-70"
                   : "bg-card border-line hover:border-navy-500 hover:shadow-md cursor-pointer"
               }`}
-              style={!m.isFunded ? { boxShadow: "0 8px 22px rgba(23,29,43,.06)" } : undefined}
+              style={!m.isFunded ? { boxShadow: "0 8px 22px rgba(36,24,21,.06)" } : undefined}
             >
               <MaterialIcon note={m.usageNote} />
               <div className="flex-1 min-w-0">
@@ -221,9 +221,9 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
               100% { transform: scale(1) rotate(0deg); opacity: 1; }
             }
             @keyframes ring-pulse {
-              0%   { box-shadow: 0 0 0 0    rgba(244,211,94,.55); }
-              70%  { box-shadow: 0 0 0 22px rgba(244,211,94,.0);  }
-              100% { box-shadow: 0 0 0 0    rgba(244,211,94,.0);  }
+              0%   { box-shadow: 0 0 0 0    rgba(252,208,91,.55); }
+              70%  { box-shadow: 0 0 0 22px rgba(252,208,91,.0);  }
+              100% { box-shadow: 0 0 0 0    rgba(252,208,91,.0);  }
             }
 
             /* ── 공용 fade-up ── */
@@ -341,7 +341,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
               ══════════════════════════════════════ */}
             {step === 1 && (
               <div className="px-5 pt-6 pb-10">
-                <p className="text-[12px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
+                <p className="text-[13px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
                   Step 1 · 재료 확인
                 </p>
                 <h3 className="text-xl font-black text-navy-800 mb-6">
@@ -351,7 +351,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                 {/* Selected material card */}
                 <div
                   className="bg-card rounded-xl p-4 border border-navy-200 mb-5"
-                  style={{ boxShadow: "0 4px 16px rgba(23,29,43,.08)" }}
+                  style={{ boxShadow: "0 4px 16px rgba(36,24,21,.08)" }}
                 >
                   <div className="flex items-start gap-3">
                     <MaterialIcon note={active.usageNote} />
@@ -382,7 +382,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                       </span>
                     </div>
                   </div>
-                  <p className="text-[12px] text-muted mt-3 leading-relaxed">
+                  <p className="text-[13px] text-muted mt-3 leading-relaxed">
                     재료가 작가에게 전달됩니다.
                   </p>
                 </div>
@@ -401,7 +401,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
               ══════════════════════════════════════ */}
             {step === 2 && (
               <div className="px-5 pt-6 pb-10">
-                <p className="text-[12px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
+                <p className="text-[13px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
                   Step 2 · 메시지
                 </p>
                 <h3 className="text-xl font-black text-navy-800 mb-1">
@@ -463,7 +463,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
               ══════════════════════════════════════ */}
             {step === 3 && (
               <div className="px-5 pt-6 pb-10">
-                <p className="text-[12px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
+                <p className="text-[13px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
                   Step 3 · 모의 결제
                 </p>
                 <h3 className="text-xl font-black text-navy-800 mb-6">
@@ -473,7 +473,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                 {/* Order summary */}
                 <div
                   className="bg-card rounded-2xl border border-line p-5 mb-6"
-                  style={{ boxShadow: "0 4px 16px rgba(23,29,43,.06)" }}
+                  style={{ boxShadow: "0 4px 16px rgba(36,24,21,.06)" }}
                 >
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
@@ -514,7 +514,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   style={{
                     background: "var(--sv)",
                     color: "var(--ink)",
-                    boxShadow: "0 6px 24px rgba(244,211,94,.45)",
+                    boxShadow: "0 6px 24px rgba(252,208,91,.45)",
                   }}
                 >
                   <svg
@@ -582,7 +582,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   {/* 하늘 캡션 */}
                   <p
                     className="sky-caption absolute bottom-4 left-0 right-0 text-center text-xs font-medium pointer-events-none"
-                    style={{ color: "rgba(244,211,94,.55)" }}
+                    style={{ color: "rgba(252,208,91,.55)" }}
                   >
                     이 하늘의 첫 별이 됐어요
                   </p>
@@ -596,7 +596,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                     <div className="badge-anim w-20 h-20 bg-navy-800 rounded-full flex flex-col items-center justify-center mx-auto">
                       <span className="text-2xl leading-none mb-0.5">⭐</span>
                       <span
-                        className="text-[11px] font-black tracking-widest"
+                        className="text-[13px] font-black tracking-widest"
                         style={{ color: "var(--sv)" }}
                       >
                         씨앗
@@ -621,7 +621,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                       className="text-3xl font-black"
                       style={{
                         color: "var(--sv)",
-                        textShadow: "0 2px 12px rgba(244,211,94,.4)",
+                        textShadow: "0 2px 12px rgba(252,208,91,.4)",
                       }}
                     >
                       테오입니다.
@@ -630,7 +630,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
 
                   {/* 선물한 재료 */}
                   <div className="fu3 bg-chiffon border border-sv/25 rounded-xl p-4 text-left mb-3">
-                    <p className="text-[12px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
+                    <p className="text-[13px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
                       선물한 재료
                     </p>
                     <p className="text-sm font-semibold text-navy-800 leading-snug">
@@ -648,7 +648,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   {/* 메시지 영수증 */}
                   {message.trim() && (
                     <div className="fu3 bg-chiffon border border-sv/25 rounded-xl p-4 text-left mb-3">
-                      <p className="text-[12px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
+                      <p className="text-[13px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
                         Dear Gogh 메시지
                       </p>
                       <p className="font-myeongjo text-sm text-ink leading-relaxed">

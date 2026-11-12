@@ -68,12 +68,12 @@ export default function MyAtelierPage() {
       {/* 소유자 바 */}
       <div className="bg-navy-800 px-5 md:px-8 py-3">
         <div className="max-w-[1080px] mx-auto flex items-center justify-between gap-3">
-          <p className="text-[13.5px] font-semibold text-chiffon/80 min-w-0" style={{ wordBreak: "keep-all" }}>
+          <p className="text-[14.5px] font-semibold text-chiffon/80 min-w-0" style={{ wordBreak: "keep-all" }}>
             {justCreated ? t("ma_created") : t("ma_owner_bar")}
           </p>
           <button
             onClick={() => setSettingsTab("profile")}
-            className="shrink-0 bg-sv text-ink text-[13.5px] font-bold px-4 py-2 rounded-lg hover:bg-sv-soft transition-colors"
+            className="shrink-0 bg-sv text-ink text-[14.5px] font-bold px-4 py-2 rounded-lg hover:bg-sv-soft transition-colors"
           >
             {t("ma_settings")}
           </button>
@@ -88,7 +88,7 @@ export default function MyAtelierPage() {
           <img src={atelier.coverImage} alt="" className="w-full h-full object-cover" />
         )}
         <div className="absolute inset-0"
-          style={{ background: "linear-gradient(to top,rgba(7,34,60,.7) 0%,rgba(13,59,102,.2) 50%,transparent 100%)" }} />
+          style={{ background: "linear-gradient(to top,rgba(36,24,21,.7) 0%,rgba(13,59,102,.2) 50%,transparent 100%)" }} />
         <div className="absolute top-4 left-5 md:left-8">
           <Link href="/atelier/me" className="inline-flex items-center gap-1.5 text-white/80 hover:text-white text-sm font-medium transition-colors">
             {t("ma_back_list")}
@@ -119,7 +119,7 @@ export default function MyAtelierPage() {
                   <p className="font-myeongjo text-navy-600 text-sm mb-2">{atelier.oneLiner}</p>
                 ) : (
                   <button onClick={() => setSettingsTab("profile")}
-                    className="text-[14px] text-navy-400 underline underline-offset-2 mb-2 text-left">
+                    className="text-[15px] text-navy-400 underline underline-offset-2 mb-2 text-left">
                     {t("ma_oneliner_empty")}
                   </button>
                 )}
@@ -140,7 +140,7 @@ export default function MyAtelierPage() {
                     <div className="relative h-48">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top,rgba(7,34,60,.6),transparent 60%)" }} />
+                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top,rgba(36,24,21,.6),transparent 60%)" }} />
                     </div>
                   )}
                   <div className="p-6">
@@ -160,7 +160,7 @@ export default function MyAtelierPage() {
               ) : (
                 <div className="rounded-2xl border border-dashed border-line-strong p-8 text-center">
                   <p className="font-bold text-navy-700 mb-1.5">{t("ma_project_empty")}</p>
-                  <p className="text-[14px] text-muted leading-[1.7] mb-5 max-w-[360px] mx-auto" style={{ wordBreak: "keep-all" }}>
+                  <p className="text-[15px] text-muted leading-[1.7] mb-5 max-w-[360px] mx-auto" style={{ wordBreak: "keep-all" }}>
                     {t("ma_project_empty_sub")}
                   </p>
                   <button onClick={() => setSettingsTab("project")}
@@ -188,14 +188,14 @@ export default function MyAtelierPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {atelier.materials.map((m, i) => (
                     <div key={i} className="rounded-2xl border border-line bg-card p-4 flex flex-col" style={CARD_SHADOW}>
-                      <p className="text-[12px] font-bold tracking-[0.14em] uppercase text-navy-400 mb-2 truncate">
+                      <p className="text-[13px] font-bold tracking-[0.14em] uppercase text-navy-400 mb-2 truncate">
                         {hostOf(m.link)}
                       </p>
-                      <p className="text-[14px] text-navy-800 leading-[1.7] flex-1 mb-3" style={{ wordBreak: "keep-all" }}>
+                      <p className="text-[15px] text-navy-800 leading-[1.7] flex-1 mb-3" style={{ wordBreak: "keep-all" }}>
                         {m.reason}
                       </p>
                       <a href={m.link} target="_blank" rel="noopener noreferrer"
-                        className="text-[13.5px] font-bold text-navy-700 hover:text-navy-900 transition-colors">
+                        className="text-[14.5px] font-bold text-navy-700 hover:text-navy-900 transition-colors">
                         {t("ma_material_open")}
                       </a>
                     </div>
@@ -213,7 +213,7 @@ export default function MyAtelierPage() {
             {(sns || atelier.portfolio) && (
               <div className="bg-card rounded-2xl p-5 border border-line">
                 <p className="text-xs font-bold text-navy-700 mb-3">{t("ma_links_title")}</p>
-                <div className="space-y-2.5 text-[14px]">
+                <div className="space-y-2.5 text-[15px]">
                   {sns && (
                     <a href={sns} target="_blank" rel="noopener noreferrer" className="flex justify-between gap-3 group">
                       <span className="text-navy-400 font-semibold shrink-0">{t("ob_sns")}</span>

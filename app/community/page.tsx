@@ -88,7 +88,7 @@ export default function CommunityPage() {
       <Header />
 
       <main>
-        <section className="px-[var(--gap)] pt-10 md:pt-16">
+        <section className="tone-sun px-[var(--gap)] pt-10 md:pt-16">
           <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
             <BigTitle text="Community" />
           </div>
@@ -159,7 +159,7 @@ export default function CommunityPage() {
           );
         })}
 
-        <section className="px-[var(--gap)] py-12 text-[14px] text-muted leading-relaxed">
+        <section className="px-[var(--gap)] py-12 text-[15px] text-muted leading-relaxed">
           프로그램 신청 및 문의는 각 작가 아틀리에 페이지에서 가능합니다. 선물한 테오만 신청할 수 있는 프로그램이 있을 수 있습니다.
         </section>
       </main>

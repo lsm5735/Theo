@@ -54,7 +54,7 @@ export default function AuthModal({ onClose }: Props) {
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center px-5"
-      style={{ background: "rgba(7,34,60,.55)", backdropFilter: "blur(6px)" }}
+      style={{ background: "rgba(36,24,21,.55)", backdropFilter: "blur(6px)" }}
       onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="nb-card w-full max-w-[420px] p-8 bg-paper relative">
         <button onClick={onClose}
@@ -63,8 +63,10 @@ export default function AuthModal({ onClose }: Props) {
         </button>
 
         <div className="flex items-center gap-2.5 mb-7">
-          <img src="/logo-face.png" alt="THEO" className="w-8 h-8" />
-          <b className="logo-wordmark tracking-[0.08em] text-[25px] text-navy-900">Theo</b>
+          <span className="inline-flex items-center bg-sun px-4 h-11">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo-theo.png" alt="Theo" className="h-[22px] w-auto" />
+          </span>
         </div>
 
         {mode === "done" ? (
@@ -82,7 +84,7 @@ export default function AuthModal({ onClose }: Props) {
             <div className="flex gap-1 mb-7 bg-navy-100 rounded-xl p-1">
               {(["login", "signup"] as const).map((m) => (
                 <button key={m} onClick={() => { setMode(m); setError(""); }}
-                  className="flex-1 py-2.5 rounded-lg text-[14px] font-black transition-all"
+                  className="flex-1 py-2.5 rounded-lg text-[15px] font-black transition-all"
                   style={mode === m
                     ? { background: "var(--navy-900)", color: "#fff" }
                     : { color: "var(--navy-500)" }}>
@@ -93,27 +95,27 @@ export default function AuthModal({ onClose }: Props) {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-[13px] font-black text-navy-600 uppercase tracking-[0.1em] mb-1.5">이메일</label>
+                <label className="block text-[14px] font-black text-navy-600 uppercase tracking-[0.1em] mb-1.5">이메일</label>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                   placeholder="hello@example.com" required
                   className="w-full border-2 border-navy-200 rounded-xl px-4 py-3 text-[15px] text-navy-900 placeholder:text-navy-300 bg-white outline-none focus:border-navy-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-[13px] font-black text-navy-600 uppercase tracking-[0.1em] mb-1.5">
+                <label className="block text-[14px] font-black text-navy-600 uppercase tracking-[0.1em] mb-1.5">
                   비밀번호 {mode === "signup" && <span className="font-normal normal-case text-navy-400">(6자 이상)</span>}
                 </label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••" required minLength={6}
                   className="w-full border-2 border-navy-200 rounded-xl px-4 py-3 text-[15px] text-navy-900 placeholder:text-navy-300 bg-white outline-none focus:border-navy-700 transition-colors" />
               </div>
-              {error && <p className="text-[14px] font-semibold text-red-500 bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">{error}</p>}
+              {error && <p className="text-[15px] font-semibold text-red-500 bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">{error}</p>}
               <button type="submit" disabled={loading}
                 className="nb-btn w-full py-3.5 rounded-xl font-black text-[16px] disabled:opacity-60 mt-2">
                 {loading ? "처리 중..." : mode === "login" ? "로그인" : "계정 만들기"}
               </button>
             </form>
 
-            <p className="text-center text-[13px] text-navy-400 mt-5">
+            <p className="text-center text-[14px] text-navy-400 mt-5">
               {mode === "login" ? "아직 계정이 없으신가요?" : "이미 계정이 있으신가요?"}{" "}
               <button onClick={() => { setMode(mode === "login" ? "signup" : "login"); setError(""); }}
                 className="font-black text-navy-700 hover:underline">
