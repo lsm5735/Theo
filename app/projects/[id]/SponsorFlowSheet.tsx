@@ -141,7 +141,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
       {/* ─── Materials wishlist ─── */}
       <section>
         <div className="flex items-baseline justify-between mb-1">
-          <h2 className="text-[22px] font-semibold text-ink">재료 위시리스트</h2>
+          <h2 className="text-[24px] font-semibold text-ink">재료 위시리스트</h2>
           {fundedCount > 0 && (
             <span className="text-xs text-navy-600 font-medium">
               {materials.length}개 중 {fundedCount}개 선물됨
@@ -341,7 +341,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
               ══════════════════════════════════════ */}
             {step === 1 && (
               <div className="px-5 pt-6 pb-10">
-                <p className="text-[11px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
+                <p className="text-[12px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
                   Step 1 · 재료 확인
                 </p>
                 <h3 className="text-xl font-black text-navy-800 mb-6">
@@ -382,7 +382,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                       </span>
                     </div>
                   </div>
-                  <p className="text-[11px] text-muted mt-3 leading-relaxed">
+                  <p className="text-[12px] text-muted mt-3 leading-relaxed">
                     재료가 작가에게 전달됩니다.
                   </p>
                 </div>
@@ -401,7 +401,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
               ══════════════════════════════════════ */}
             {step === 2 && (
               <div className="px-5 pt-6 pb-10">
-                <p className="text-[11px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
+                <p className="text-[12px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
                   Step 2 · 메시지
                 </p>
                 <h3 className="text-xl font-black text-navy-800 mb-1">
@@ -463,7 +463,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
               ══════════════════════════════════════ */}
             {step === 3 && (
               <div className="px-5 pt-6 pb-10">
-                <p className="text-[11px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
+                <p className="text-[12px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
                   Step 3 · 모의 결제
                 </p>
                 <h3 className="text-xl font-black text-navy-800 mb-6">
@@ -596,7 +596,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                     <div className="badge-anim w-20 h-20 bg-navy-800 rounded-full flex flex-col items-center justify-center mx-auto">
                       <span className="text-2xl leading-none mb-0.5">⭐</span>
                       <span
-                        className="text-[10px] font-black tracking-widest"
+                        className="text-[11px] font-black tracking-widest"
                         style={{ color: "var(--sv)" }}
                       >
                         씨앗
@@ -630,7 +630,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
 
                   {/* 선물한 재료 */}
                   <div className="fu3 bg-chiffon border border-sv/25 rounded-xl p-4 text-left mb-3">
-                    <p className="text-[11px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
+                    <p className="text-[12px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
                       선물한 재료
                     </p>
                     <p className="text-sm font-semibold text-navy-800 leading-snug">
@@ -648,7 +648,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   {/* 메시지 영수증 */}
                   {message.trim() && (
                     <div className="fu3 bg-chiffon border border-sv/25 rounded-xl p-4 text-left mb-3">
-                      <p className="text-[11px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
+                      <p className="text-[12px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
                         Dear Gogh 메시지
                       </p>
                       <p className="font-myeongjo text-sm text-ink leading-relaxed">

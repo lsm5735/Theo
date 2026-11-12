@@ -1,7 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap');
-@import url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css');
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════
+   디자인 시스템 — Bisou Gallery 레퍼런스 (에디토리얼·플랫·라이트 전용)
+   · 영문 볼드: Archivo Black / 영문 본문: PT Serif / 한글: Noto Sans KR
+   · 둥근 모서리·그림자 없음, 점선(dotted) 구분선, 텍스트 링크 중심
+   · 브랜드 컬러(네이비·선플라워 옐로우)는 유지
+   ═══════════════════════════════════════════════════════════ */
 :root {
   --navy-900: #07223C;
   --navy-800: #0D3B66;
@@ -16,21 +20,22 @@
   --sv:       #F4D35E;
   --sv-deep:  #C2A43F;
   --sv-soft:  #F8D07A;
+  --theo-yellow: #F0C775;  /* 로고 배경 노랑 (스크린샷에서 추출) — 슬로건 글자색 */
   --gold-text: #58450E;
 
-  --paper:   #FFFAF0;   /* canvas — 크림 톤 화이트 */
+  --paper:   #F6F4EE;   /* canvas — 따뜻한 오프화이트 */
   --chiffon: #FAF0CA;
-  --card:      #ffffff;
-  --card-soft: #FAF5E8;  /* surface-soft — 푸터·CTA 밴드 */
-  --surface-card:   #F5F0E0;  /* 크림 카드 */
-  --surface-strong: #EBE6D6;
-  --line:      #E7E1D2;  /* hairline */
-  --line-strong: #D6CFBD;
-  --ink:     #0A0A0A;
-  --body:    #3A3A3A;
-  --muted:   #6A6A6A;
+  --card:      #FBFAF6;
+  --card-soft: #F6F4EE;
+  --surface-card:   #ECE9DF;
+  --surface-strong: #E2DED1;
+  --line:      #D8D4C8;  /* hairline */
+  --line-strong: #B9B4A4;
+  --ink:     #07223C;    /* 본문·제목 — 브랜드 네이비 (옐로우 위에서도 충분한 대비) */
+  --body:    #07223C;
+  --muted:   #5E6B78;
 
-  /* 피처 카드 팔레트 — 같은 색을 연달아 쓰지 않기 */
+  /* 피처 카드 팔레트 (일부 하위 페이지에서 사용) */
   --clay-pink:     #FF4D8B;
   --clay-teal:     #1A3A3A;
   --clay-lavender: #B8A4ED;
@@ -38,6 +43,9 @@
   --clay-ochre:    #E8B94A;
   --clay-mint:     #A4D4C5;
   --clay-coral:    #FF6B5A;
+
+  /* 레이아웃 */
+  --gap: 1.5rem;
 }
 
 @theme inline {
@@ -71,24 +79,42 @@
   --color-clay-ochre:    var(--clay-ochre);
   --color-clay-mint:     var(--clay-mint);
 
-  --font-myeongjo: 'Nanum Myeongjo', serif;
-  --font-suit:     'SUIT', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --font-display:  'Archivo Black', 'Noto Sans KR', sans-serif;
+  --font-serif:    'PT Serif', 'Noto Sans KR', serif;
+  --font-myeongjo: 'PT Serif', 'Noto Sans KR', serif;
+  --font-suit:     'PT Serif', 'Noto Sans KR', serif;
 }
 
-/* 굵기 스케일 — 디스플레이는 묵직함보다 또렷함 (font-black 900 → 700) */
 @theme {
+  /* 글자 크기 스케일 — 기본보다 한 단계 크게 */
+  --text-xs:   0.8125rem;
+  --text-sm:   0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg:   1.1875rem;
+  --text-xl:   1.3125rem;
   --font-weight-black: 700;
   --font-weight-extrabold: 700;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: 'SUIT', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  font-family: 'PT Serif', 'Noto Sans KR', serif;
+  font-size: 17px;
+  line-height: 1.55;
+  letter-spacing: -0.02em;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2 { letter-spacing: -0.03em; }
+/* 제목 — 영문은 Archivo Black, 한글은 Noto Sans KR 볼드 */
+h1, h2, h3, .font-display {
+  font-family: 'Archivo Black', 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+  font-synthesis: none;
+  letter-spacing: -0.03em;
+}
 
 /* 로고 "THEO" 워드마크 — 마포애민체 (T·H·E·O 글자만 담은 경량 파일) */
 @font-face {
@@ -98,167 +124,165 @@ h1, h2 { letter-spacing: -0.03em; }
   font-display: block;
 }
 .logo-wordmark {
-  font-family: 'MapoAgape-Logo', var(--font-suit);
+  font-family: 'MapoAgape-Logo', 'Archivo Black', sans-serif;
   font-weight: 400;
   font-synthesis: none;
 }
 
 .font-myeongjo {
-  font-family: 'Nanum Myeongjo', serif;
-  line-height: 2.05;
+  font-family: 'PT Serif', 'Noto Sans KR', serif;
+  line-height: 1.95;
 }
 
-/* ── Dark Mode ── */
-[data-theme="dark"] {
-  --paper:      #0D1B2A;
-  --card:       #1E3454;
-  --card-soft:  #1A2E45;
-  --line:       #243040;
-  --ink:        #EDE8D8;
-  --muted:      #7D9AB5;
-  --navy-100:   #1A2E45;
-  --navy-200:   #243447;
-  --surface-card: #1A2E45;
-  --line-strong:  #34465C;
-  --body:       #C9C4B5;
-  /* --chiffon 은 어두운 배경 위 텍스트 색으로도 쓰이므로 그대로 유지 */
-  --gold-text: var(--sv);   /* 배지 조건 텍스트: 밝은 골드로 */
-}
-
-[data-theme="dark"] .nb-card,
-[data-theme="dark"] .soft-surface { background: var(--card); border-color: rgba(255,255,255,.12); }
-[data-theme="dark"] .nb-card-dark { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); }
-[data-theme="dark"] .nb-btn { background: var(--chiffon); color: #0A0A0A; }
-[data-theme="dark"] .nb-btn:hover { background: #fff; }
-[data-theme="dark"] .nb-btn-outline { background: transparent; color: var(--ink); border-color: rgba(255,255,255,.25); }
-[data-theme="dark"] .nb-btn-outline span { color: inherit !important; }
-[data-theme="dark"] .nb-tag { background: rgba(255,255,255,.1); color: var(--ink); }
-
-/* 골드(bg-sv) 위 텍스트는 항상 다크 — ink가 밝아져도 유지 */
-[data-theme="dark"] .bg-sv { color: #141414; }
-
-/* ArtistCard 칩·보더·섀도우 */
-[data-theme="dark"] .bg-navy-100     { background-color: rgba(255,255,255,.13); }
-[data-theme="dark"] .border-navy-100 { border-color: rgba(255,255,255,.15); }
-[data-theme="dark"] .shadow-card     { box-shadow: 0 8px 28px rgba(0,0,0,.40); }
-
-/* 텍스트 가독성: text-navy-* → ink/muted (bg-navy-* 배경은 영향 없음) */
-[data-theme="dark"] .text-navy-900,
-[data-theme="dark"] .text-navy-800,
-[data-theme="dark"] .text-navy-700,
-[data-theme="dark"] .text-navy-600 { color: var(--ink); }
-
-[data-theme="dark"] .text-navy-400,
-[data-theme="dark"] .text-navy-300 { color: var(--muted); }
+/* 둥근 모서리 제거 — 원형(rounded-full)만 유지 */
+[class*="rounded"]:not([class*="rounded-full"]) { border-radius: 0; }
+[class*="shadow"] { box-shadow: none; }
 
 @layer utilities {
   .text-balance    { text-wrap: balance; }
   .shadow-card     { box-shadow: none; }
-  .shadow-modal    { box-shadow: 0 24px 60px rgba(20,24,36,.18); }
-  .shadow-float    { box-shadow: 0 18px 44px rgba(6,26,46,.42); }
+  .shadow-modal    { box-shadow: 0 24px 60px rgba(7,34,60,.18); }
+  .shadow-float    { box-shadow: 0 18px 44px rgba(7,34,60,.30); }
 }
+
+/* ── 타이포그래피 스케일 (레퍼런스 type-*) ── */
+.type-xxl {
+  font-family: 'Archivo Black', 'Noto Sans KR', sans-serif; font-weight: 700; font-synthesis: none;
+  font-size: 53px; line-height: 80%; letter-spacing: -0.212rem;
+}
+@media (min-width: 768px) { .type-xxl { font-size: 60px; letter-spacing: -0.24rem; } }
+.type-xl { font-size: 22px; line-height: 120%; letter-spacing: -0.04rem; }
+@media (min-width: 768px) { .type-xl { font-size: 36px; letter-spacing: -0.072rem; } }
+.type-l  { font-size: 26px; line-height: 115%; letter-spacing: -0.03em; }
+@media (min-width: 768px) { .type-l { font-size: 34px; line-height: 110%; } }
+.type-m  { font-size: 22px; line-height: 125%; }
+@media (min-width: 768px) { .type-m { font-size: 26px; line-height: 120%; } }
+.type-label {
+  font-family: 'Archivo Black', 'Noto Sans KR', sans-serif; font-weight: 700; font-synthesis: none;
+  font-size: 12px; line-height: 1; letter-spacing: -0.02em; text-transform: uppercase;
+}
+/* 섹션 라벨 (Intro·Show 등 왼쪽 라벨) */
+.type-section {
+  font-family: 'Archivo Black', 'Noto Sans KR', sans-serif; font-weight: 700; font-synthesis: none;
+  font-size: 16px; line-height: 1.1; letter-spacing: -0.02em; text-transform: uppercase;
+}
+@media (min-width: 768px) { .type-section { font-size: 20px; } }
+.type-label-xl {
+  font-family: 'Archivo Black', 'Noto Sans KR', sans-serif; font-weight: 700; font-synthesis: none;
+  font-size: 22px; line-height: 1; letter-spacing: -0.04rem; text-transform: uppercase;
+}
+
+/* 링크 — 평소엔 그대로, hover 시 1px 밑줄 */
+.underlined:hover, a.underlined:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.link-line { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.link-line:hover { background: var(--sv); }
+
+/* 점선 구분선 */
+.dots-x {
+  width: 100%; height: 1px; border: 0;
+  background-image: linear-gradient(90deg, currentColor 33%, transparent 0);
+  background-repeat: repeat-x; background-size: 4px 1px; background-position: bottom;
+  color: var(--ink); opacity: .55;
+}
+.dots-y {
+  width: 1px; height: 100%; border: 0;
+  background-image: linear-gradient(currentColor 33%, transparent 0);
+  background-repeat: repeat-y; background-size: 1px 4px; background-position: right;
+  color: var(--ink); opacity: .55;
+}
+
+/* 12·20분할 그리드 영역 — 왼쪽 라벨 25% / 오른쪽 본문 75% */
+.grid-left  { width: 100%; }
+.grid-right { width: 100%; }
+@media (min-width: 768px) {
+  .grid-left  { width: calc((100vw - var(--gap) * 2) * 0.25); flex-shrink: 0; }
+  .grid-right { width: calc((100vw - var(--gap) * 2) * 0.75); }
+}
+
+/* 마퀴 */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.animate-marquee { animation: marquee 60s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .animate-marquee { animation: none; } }
 
 @keyframes chatbotFloat {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-7px); }
 }
 
-/* ── 컴포넌트 (Clay 레퍼런스: 플랫, 1px 헤어라인, 큰 라운드, 그림자 없음) ── */
+/* ── 컴포넌트 (플랫: 각진 모서리, 1px 선, 그림자 없음) ── */
 :root { --brutal: #07223C; }   /* 레거시 참조용 */
 
-/* 카드 — product-mockup / content card */
 .nb-card {
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 16px;
 }
-
-/* 다크 배경 위 카드 */
 .nb-card-dark {
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(250,240,202,.16);
-  border-radius: 16px;
 }
 
-/* 섹션 라벨 — badge-pill */
+/* 섹션 라벨 — 알약 대신 작은 대문자 텍스트 */
 .nb-tag,
 .nb-tag-light {
   display: inline-flex; align-items: center;
-  font-size: 12px; font-weight: 600;
-  letter-spacing: .12em; text-transform: uppercase;
-  padding: 6px 14px; border-radius: 9999px;
+  font-family: 'Archivo Black', 'Noto Sans KR', sans-serif; font-weight: 700; font-synthesis: none;
+  font-size: 13px; letter-spacing: -0.02em; text-transform: uppercase;
+  padding: 0; background: none;
 }
-.nb-tag       { background: var(--surface-card); color: var(--ink); }
-.nb-tag-light { background: rgba(255,255,255,.12); color: var(--chiffon); }
+.nb-tag       { color: var(--ink); }
+.nb-tag-light { color: var(--chiffon); }
 
-/* 주 버튼 — 다크 네이비 */
+/* 주 버튼 — 네이비 사각, hover 시 옐로우 */
 .nb-btn {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 44px;
   background: var(--navy-900); color: #fff;
-  border-radius: 12px;
-  font-weight: 600;
-  transition: background-color .15s ease;
+  font-weight: 700;
+  transition: background-color .15s ease, color .15s ease;
 }
-.nb-btn:hover  { background: var(--navy-800); }
+.nb-btn:hover  { background: var(--sv); color: var(--navy-900); }
 .nb-btn span   { color: inherit; }
 
-/* 보조 버튼 — 크림 + 헤어라인 */
+/* 보조 버튼 — 1px 네이비 선, hover 시 옐로우 */
 .nb-btn-outline {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 44px;
-  background: var(--paper); color: var(--ink);
-  border: 1px solid var(--line-strong);
-  border-radius: 12px;
-  font-weight: 600;
-  transition: border-color .15s ease, background-color .15s ease;
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--ink);
+  font-weight: 700;
+  transition: background-color .15s ease;
 }
-.nb-btn-outline:hover { border-color: var(--ink); }
+.nb-btn-outline:hover { background: var(--sv); }
 
-/* 컬러 카드 위 버튼 — button-on-color */
 .nb-btn-light {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 44px;
   background: var(--paper); color: var(--ink);
-  border-radius: 12px;
-  font-weight: 600;
+  font-weight: 700;
 }
+.nb-btn-light:hover { background: var(--sv); }
 
-/* 피처 카드 — 채도 높은 단색 면 */
-.clay-card { border-radius: 24px; padding: 32px; }
+.clay-card { padding: 32px; }
 
-/* 네비게이션 hover 노란 언더라인 */
-.nav-link {
-  position: relative;
-}
+/* 헤더 메뉴 링크 */
+.nav-link { position: relative; }
 .nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 1.5px;
-  background: var(--ink);
-  border-radius: 2px;
-  transition: width 0.2s cubic-bezier(.22,1,.36,1);
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1px; background: var(--ink);
+  transition: width .2s cubic-bezier(.22,1,.36,1);
 }
 .nav-link:hover::after { width: 100%; }
 
-/* 스텝 번호 */
 .nb-step {
   background: var(--navy-900); color: #fff;
-  border-radius: 9999px;
   width: 36px; height: 36px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  font-weight: 600; font-size: 13px;
+  font-weight: 700; font-size: 13px;
 }
 
-/* 소프트 표면 — 카드 안의 작은 UI 조각 */
-.soft-surface {
-  background: var(--card);
-  border: 1px solid var(--line);
-}
+.soft-surface { background: var(--card); border: 1px solid var(--line); }
+
+::selection { background: var(--sv); color: var(--navy-900); }
 
 /* ── Scroll-Telling 애니메이션 ── */
 @keyframes srUp    { from { opacity:0; transform:translateY(40px); }  to { opacity:1; transform:translateY(0); } }

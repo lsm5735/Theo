@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
+import PageTitle from "@/components/PageTitle";
 import artists from "@/data/artists.json";
 import projects from "@/data/projects.json";
 import materials from "@/data/materials.json";
@@ -322,7 +323,7 @@ export default function SponsorClient({ artistId }: Props) {
             </div>
 
             <div className="border-t pt-4 space-y-2.5" style={{ borderColor: "rgba(194,164,63,0.2)" }}>
-              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_gift_title")}</p>
+              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_gift_title")}</p>
               <div className="flex justify-between text-sm">
                 <span className="text-muted">{t("done_mat")}</span>
                 <span className="font-semibold text-navy-800 text-right max-w-[60%] leading-snug">{selectedMaterial.name}</span>
@@ -340,7 +341,7 @@ export default function SponsorClient({ artistId }: Props) {
               </div>
             </div>
 
-            <p className="text-[11px] text-muted mt-3 leading-relaxed text-center">
+            <p className="text-[12px] text-muted mt-3 leading-relaxed text-center">
               {t("done_delivery")}
             </p>
           </div>
@@ -355,7 +356,7 @@ export default function SponsorClient({ artistId }: Props) {
                 animation: "fadeUp .5s 0.95s both",
               }}
             >
-              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_msg_title")}</p>
+              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_msg_title")}</p>
               <p className="font-myeongjo text-sm text-ink leading-relaxed">{message}</p>
             </div>
           )}
@@ -369,7 +370,7 @@ export default function SponsorClient({ artistId }: Props) {
               animation: "fadeUp .5s 1.05s both",
             }}
           >
-            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-4">{t("done_next_title")}</p>
+            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-muted mb-4">{t("done_next_title")}</p>
             <ol className="space-y-3">
               {NEXT_STEPS.map((step, idx) => (
                 <li key={idx} className="flex items-start gap-3">
@@ -383,7 +384,7 @@ export default function SponsorClient({ artistId }: Props) {
                   >
                     {step.done
                       ? <IconCheckCircle />
-                      : <span className="text-[10px] font-bold">{idx + 1}</span>
+                      : <span className="text-[11px] font-bold">{idx + 1}</span>
                     }
                   </div>
                   <div className="flex-1 pt-0.5">
@@ -440,7 +441,7 @@ export default function SponsorClient({ artistId }: Props) {
             </Link>
           </div>
 
-          <p className="text-[11px] text-center mt-5" style={{ color: "var(--muted)" }}>
+          <p className="text-[12px] text-center mt-5" style={{ color: "var(--muted)" }}>
             {t("sp_demo")}
           </p>
         </div>
@@ -452,6 +453,7 @@ export default function SponsorClient({ artistId }: Props) {
   return (
     <div className="min-h-screen bg-paper">
       <Header />
+      <PageTitle text="Gift" />
 
       <div className="max-w-[640px] mx-auto px-5 md:px-8 py-10">
 

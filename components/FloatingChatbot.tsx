@@ -27,7 +27,7 @@ export default function FloatingChatbot() {
             className="bg-card border border-line rounded-2xl px-4 py-2.5 whitespace-nowrap group-hover:border-navy-400 transition-colors duration-200"
             style={{ boxShadow: "0 4px 20px rgba(13,59,102,.14)" }}
           >
-            <p className="text-[12.5px] font-semibold text-navy-800 leading-snug">
+            <p className="text-[13.5px] font-semibold text-navy-800 leading-snug">
               서비스 소개서 요청하기 →
             </p>
           </div>

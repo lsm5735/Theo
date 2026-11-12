@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
+import PageTitle from "@/components/PageTitle";
 
 type Step = "form" | "done";
 
@@ -62,16 +63,16 @@ export default function PartnershipPage() {
               </svg>
             </div>
             <h1 className="text-[26px] font-bold text-ink mb-3">문의가 접수됐습니다</h1>
-            <p className="text-[14px] text-navy-500 leading-[1.85] mb-2">
+            <p className="text-[15px] text-navy-500 leading-[1.85] mb-2">
               <b className="text-navy-800">{company}</b> · <b className="text-navy-800">{name}</b> 담당자님,
             </p>
-            <p className="text-[14px] text-navy-500 leading-[1.85] mb-8">
+            <p className="text-[15px] text-navy-500 leading-[1.85] mb-8">
               검토 후 <b className="text-navy-800">{email}</b>로 영업일 3일 이내 회신드리겠습니다.
             </p>
             <div className="flex flex-col gap-2.5">
               <Link
                 href="/"
-                className="block w-full text-center text-[13.5px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
+                className="block w-full text-center text-[14.5px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
               >
                 홈으로 돌아가기
               </Link>
@@ -85,15 +86,16 @@ export default function PartnershipPage() {
   return (
     <div className="min-h-screen bg-paper flex flex-col">
       <Header />
+      <PageTitle text="Partnership" />
 
       <div className="max-w-[600px] w-full mx-auto px-5 md:px-8 py-10">
-        <Link href="/" className="text-[13px] text-muted hover:text-ink transition-colors mb-8 block w-fit">
+        <Link href="/" className="text-[14px] text-muted hover:text-ink transition-colors mb-8 block w-fit">
           ← 홈으로
         </Link>
 
         <p data-sr="fade" className="nb-tag mb-5">PARTNERSHIP</p>
         <h1 data-sr="up" className="text-[34px] md:text-[44px] font-semibold text-ink leading-[1.1] mb-3">제휴 문의</h1>
-        <p data-sr="up" data-d="1" className="text-[15px] text-body leading-relaxed mb-10">
+        <p data-sr="up" data-d="1" className="text-[16px] text-body leading-relaxed mb-10">
           화방·갤러리·미디어·기술 파트너십, 공동 기획 등 다양한 협력을 환영합니다.<br />
           문의 내용을 남겨주시면 영업일 3일 이내 회신드립니다.
         </p>
@@ -102,7 +104,7 @@ export default function PartnershipPage() {
 
           {/* 회사명 */}
           <div data-sr="up" data-d="1">
-            <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5">
+            <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
               회사명 <span className="text-[#C2A43F]">*</span>
             </label>
             <input
@@ -111,14 +113,14 @@ export default function PartnershipPage() {
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               maxLength={60}
-              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
+              className="w-full text-[14.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
             />
-            {errors.company && <p className="text-[11.5px] text-red-500 mt-1">{errors.company}</p>}
+            {errors.company && <p className="text-[12.5px] text-red-500 mt-1">{errors.company}</p>}
           </div>
 
           {/* 담당자 이름 */}
           <div data-sr="up" data-d="2">
-            <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5">
+            <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
               담당자 이름 <span className="text-[#C2A43F]">*</span>
             </label>
             <input
@@ -127,15 +129,15 @@ export default function PartnershipPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               maxLength={30}
-              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
+              className="w-full text-[14.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
             />
-            {errors.name && <p className="text-[11.5px] text-red-500 mt-1">{errors.name}</p>}
+            {errors.name && <p className="text-[12.5px] text-red-500 mt-1">{errors.name}</p>}
           </div>
 
           {/* 연락처 + 이메일 (2열) */}
           <div data-sr="up" data-d="3" className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5">
+              <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
                 연락처 <span className="text-[#C2A43F]">*</span>
               </label>
               <input
@@ -144,12 +146,12 @@ export default function PartnershipPage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 maxLength={13}
-                className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
+                className="w-full text-[14.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
               />
-              {errors.phone && <p className="text-[11.5px] text-red-500 mt-1">{errors.phone}</p>}
+              {errors.phone && <p className="text-[12.5px] text-red-500 mt-1">{errors.phone}</p>}
             </div>
             <div>
-              <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5">
+              <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
                 이메일 <span className="text-[#C2A43F]">*</span>
               </label>
               <input
@@ -157,15 +159,15 @@ export default function PartnershipPage() {
                 placeholder="partner@company.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
+                className="w-full text-[14.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
               />
-              {errors.email && <p className="text-[11.5px] text-red-500 mt-1">{errors.email}</p>}
+              {errors.email && <p className="text-[12.5px] text-red-500 mt-1">{errors.email}</p>}
             </div>
           </div>
 
           {/* 문의 유형 */}
           <div data-sr="up" data-d="4">
-            <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5">
+            <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
               문의 유형 <span className="text-[#C2A43F]">*</span>
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -193,16 +195,16 @@ export default function PartnershipPage() {
                     onChange={() => setCategory(cat)}
                     className="sr-only"
                   />
-                  <span className="text-[12.5px] text-navy-800">{cat}</span>
+                  <span className="text-[13.5px] text-navy-800">{cat}</span>
                 </label>
               ))}
             </div>
-            {errors.category && <p className="text-[11.5px] text-red-500 mt-1">{errors.category}</p>}
+            {errors.category && <p className="text-[12.5px] text-red-500 mt-1">{errors.category}</p>}
           </div>
 
           {/* 문의 내용 */}
           <div data-sr="up" data-d="5">
-            <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5">
+            <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5">
               요청 및 문의 내용 <span className="text-[#C2A43F]">*</span>
             </label>
             <textarea
@@ -211,14 +213,14 @@ export default function PartnershipPage() {
               onChange={(e) => setMessage(e.target.value)}
               maxLength={1000}
               rows={6}
-              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all resize-none leading-[1.85]"
+              className="w-full text-[14.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all resize-none leading-[1.85]"
             />
             <div className="flex justify-between mt-1">
               {errors.message
-                ? <p className="text-[11.5px] text-red-500">{errors.message}</p>
+                ? <p className="text-[12.5px] text-red-500">{errors.message}</p>
                 : <span />
               }
-              <p className="text-[11px] text-navy-400 ml-auto">{message.length}/1000</p>
+              <p className="text-[12px] text-navy-400 ml-auto">{message.length}/1000</p>
             </div>
           </div>
 
@@ -226,11 +228,11 @@ export default function PartnershipPage() {
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full text-[14px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
+              className="w-full text-[15px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
             >
               문의 보내기
             </button>
-            <p className="text-[11.5px] text-navy-400 text-center mt-3">
+            <p className="text-[12.5px] text-navy-400 text-center mt-3">
               제출된 정보는 제휴 검토 목적으로만 활용되며, 외부에 공개되지 않습니다.
             </p>
           </div>

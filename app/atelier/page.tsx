@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
+import BigTitle from "@/components/BigTitle";
 import AtelierClient from "./AtelierClient";
 import artists from "@/data/artists.json";
-import projects from "@/data/projects.json";
 
 export const metadata = {
   title: "Atelier — Theo",
@@ -9,34 +9,21 @@ export const metadata = {
 };
 
 export default function AtelierPage() {
-  const projectMap = Object.fromEntries(
-    projects.map((p) => [p.artistId, p])
-  );
-
   return (
     <div className="min-h-screen bg-paper">
       <Header />
 
-      {/* Page header */}
-      <section className="max-w-[1080px] mx-auto px-5 md:px-8 pt-14 pb-8">
-        <p data-sr="fade" className="nb-tag mb-5">
-          ATELIER
-        </p>
-        <div>
-          <h1 data-sr="up" className="text-[34px] md:text-[52px] font-semibold text-ink leading-[1.1]">
-            지금 선물 가능한 작가
-          </h1>
-          <p data-sr="up" data-d="1" className="text-muted text-sm md:text-base mt-2 leading-relaxed">
-            창작에 필요한 재료를 선물하고, 창작 과정을 담벼락에서 함께 지켜보세요.
-          </p>
-        </div>
-      </section>
+      <main>
+        <section className="px-[var(--gap)] pt-10 md:pt-16">
+          <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
+            <BigTitle text="Atelier" />
+          </div>
+          <hr className="dots-x" />
+        </section>
 
-      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-      <AtelierClient
-        artists={artists as any}
-        projectMap={projectMap as any}
-      />
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        <AtelierClient artists={artists as any} />
+      </main>
     </div>
   );
 }

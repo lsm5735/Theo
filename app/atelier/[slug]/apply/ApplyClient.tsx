@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
+import PageTitle from "@/components/PageTitle";
 
 interface Artist {
   id: string;
@@ -40,7 +41,7 @@ const MOTIVATION_OPTIONS = [
 
 function FieldLabel({ children, required }: { children: React.ReactNode; required?: boolean }) {
   return (
-    <label className="block text-[12.5px] font-bold text-navy-700 mb-1.5 tracking-[0.04em]">
+    <label className="block text-[13.5px] font-bold text-navy-700 mb-1.5 tracking-[0.04em]">
       {children}
       {required && <span className="text-[#C2A43F] ml-0.5">*</span>}
     </label>
@@ -67,7 +68,7 @@ function Input({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       maxLength={maxLength}
-      className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
+      className="w-full text-[14.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all"
     />
   );
 }
@@ -125,10 +126,10 @@ export default function ApplyClient({ artist, project }: Props) {
             <h1 className="text-[26px] font-bold text-ink leading-snug mb-3">
               신청이 완료됐어요
             </h1>
-            <p className="text-[14px] text-navy-500 leading-[1.85] mb-2">
+            <p className="text-[15px] text-navy-500 leading-[1.85] mb-2">
               <b className="text-navy-800">{name}</b>님은 이제
             </p>
-            <p className="text-[14px] text-navy-500 leading-[1.85] mb-8">
+            <p className="text-[15px] text-navy-500 leading-[1.85] mb-8">
               <b className="text-navy-800">{artist.name}</b> 작가의{" "}
               <b className="text-navy-800">{artist.totalSponsors !== undefined ? artist.totalSponsors + 1 : ""}번째 테오</b>입니다.
             </p>
@@ -141,12 +142,12 @@ export default function ApplyClient({ artist, project }: Props) {
                 <Image src={artist.profileImage} alt={artist.name} fill sizes="44px" className="object-cover" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-navy-900 text-[14px]">{artist.name}</p>
-                <p className="text-[12px] text-navy-500 mt-0.5 line-clamp-1">{artist.oneLiner}</p>
+                <p className="font-bold text-navy-900 text-[15px]">{artist.name}</p>
+                <p className="text-[13px] text-navy-500 mt-0.5 line-clamp-1">{artist.oneLiner}</p>
               </div>
             </div>
 
-            <p className="text-[12px] text-navy-400 mb-6 leading-relaxed">
+            <p className="text-[13px] text-navy-400 mb-6 leading-relaxed">
               입력하신 이메일(<b className="text-navy-600">{email}</b>)로<br />
               확인 안내를 보내드릴게요. 창작 과정은 아틀리에 담벼락에서 함께 볼 수 있어요.
             </p>
@@ -154,13 +155,13 @@ export default function ApplyClient({ artist, project }: Props) {
             <div className="flex flex-col gap-2.5">
               <Link
                 href={`/atelier/${artist.slug}`}
-                className="block w-full text-center text-[13.5px] font-bold bg-navy-900 text-white py-3 rounded-xl hover:bg-navy-800 transition-colors"
+                className="block w-full text-center text-[14.5px] font-bold bg-navy-900 text-white py-3 rounded-xl hover:bg-navy-800 transition-colors"
               >
                 {artist.name} 작가 아틀리에 보기
               </Link>
               <Link
                 href="/atelier"
-                className="block w-full text-center text-[13px] text-navy-500 border border-navy-200 py-3 rounded-xl hover:bg-navy-100 transition-colors"
+                className="block w-full text-center text-[14px] text-navy-500 border border-navy-200 py-3 rounded-xl hover:bg-navy-100 transition-colors"
               >
                 다른 작가 둘러보기
               </Link>
@@ -175,11 +176,12 @@ export default function ApplyClient({ artist, project }: Props) {
   return (
     <div className="min-h-screen bg-paper flex flex-col">
       <Header />
+      <PageTitle text="Apply" />
 
       <div className="max-w-[580px] w-full mx-auto px-5 md:px-8 py-10 flex flex-col">
 
         {/* 뒤로 */}
-        <Link href={`/atelier/${artist.slug}`} className="text-[12.5px] text-navy-400 hover:text-navy-700 transition-colors mb-8 inline-block">
+        <Link href={`/atelier/${artist.slug}`} className="text-[13.5px] text-navy-400 hover:text-navy-700 transition-colors mb-8 inline-block">
           ← {artist.name} 아틀리에로
         </Link>
 
@@ -191,16 +193,16 @@ export default function ApplyClient({ artist, project }: Props) {
             <Image src={artist.profileImage} alt={artist.name} fill sizes="48px" className="object-cover" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[11px] font-bold tracking-[0.16em] text-navy-400 uppercase mb-0.5">선물 신청</p>
-            <p className="font-bold text-navy-900 text-[15px] leading-tight">{artist.name}</p>
-            <p className="text-[12px] text-navy-500 mt-0.5 line-clamp-1">{project?.title ?? artist.oneLiner}</p>
+            <p className="text-[12px] font-bold tracking-[0.16em] text-navy-400 uppercase mb-0.5">선물 신청</p>
+            <p className="font-bold text-navy-900 text-[16px] leading-tight">{artist.name}</p>
+            <p className="text-[13px] text-navy-500 mt-0.5 line-clamp-1">{project?.title ?? artist.oneLiner}</p>
           </div>
         </div>
 
-        <h1 className="text-[22px] font-bold text-ink leading-snug mb-1">
+        <h1 className="text-[24px] font-bold text-ink leading-snug mb-1">
           선물하는 분 정보를 입력해주세요
         </h1>
-        <p className="text-[13px] text-navy-500 mb-8 leading-relaxed">
+        <p className="text-[14px] text-navy-500 mb-8 leading-relaxed">
           재료는 테오가 안전하게 중개해 작가에게 전달합니다.<br />
           작가에게 배송지나 개인정보는 공개되지 않아요.
         </p>
@@ -211,21 +213,21 @@ export default function ApplyClient({ artist, project }: Props) {
           <div>
             <FieldLabel required>이름</FieldLabel>
             <Input placeholder="홍길동" value={name} onChange={setName} maxLength={30} />
-            {errors.name && <p className="text-[11.5px] text-red-500 mt-1">{errors.name}</p>}
+            {errors.name && <p className="text-[12.5px] text-red-500 mt-1">{errors.name}</p>}
           </div>
 
           {/* 이메일 */}
           <div>
             <FieldLabel required>이메일</FieldLabel>
             <Input type="email" placeholder="hello@example.com" value={email} onChange={setEmail} />
-            {errors.email && <p className="text-[11.5px] text-red-500 mt-1">{errors.email}</p>}
+            {errors.email && <p className="text-[12.5px] text-red-500 mt-1">{errors.email}</p>}
           </div>
 
           {/* 연락처 */}
           <div>
             <FieldLabel required>연락처</FieldLabel>
             <Input type="tel" placeholder="010-1234-5678" value={phone} onChange={setPhone} maxLength={13} />
-            {errors.phone && <p className="text-[11.5px] text-red-500 mt-1">{errors.phone}</p>}
+            {errors.phone && <p className="text-[12.5px] text-red-500 mt-1">{errors.phone}</p>}
           </div>
 
           {/* 신청 동기 */}
@@ -258,11 +260,11 @@ export default function ApplyClient({ artist, project }: Props) {
                     onChange={() => setMotivation(opt)}
                     className="sr-only"
                   />
-                  <span className="text-[13px] text-navy-800">{opt}</span>
+                  <span className="text-[14px] text-navy-800">{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.motivation && <p className="text-[11.5px] text-red-500 mt-1">{errors.motivation}</p>}
+            {errors.motivation && <p className="text-[12.5px] text-red-500 mt-1">{errors.motivation}</p>}
           </div>
 
           {/* 작가에게 한마디 */}
@@ -274,9 +276,9 @@ export default function ApplyClient({ artist, project }: Props) {
               onChange={(e) => setMessage(e.target.value)}
               maxLength={300}
               rows={4}
-              className="w-full text-[13.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all resize-none font-myeongjo leading-[1.9]"
+              className="w-full text-[14.5px] text-navy-900 placeholder:text-navy-300 bg-card border border-line-strong rounded-xl px-4 py-3 outline-none focus:border-ink transition-all resize-none font-myeongjo leading-[1.9]"
             />
-            <p className="text-[11px] text-navy-400 text-right mt-1">{message.length}/300</p>
+            <p className="text-[12px] text-navy-400 text-right mt-1">{message.length}/300</p>
           </div>
 
           {/* 동의 */}
@@ -294,24 +296,24 @@ export default function ApplyClient({ artist, project }: Props) {
               )}
             </span>
             <input type="checkbox" checked={agree} onChange={() => setAgree((p) => !p)} className="sr-only" />
-            <span className="text-[12.5px] text-navy-600 leading-relaxed">
+            <span className="text-[13.5px] text-navy-600 leading-relaxed">
               <b className="text-navy-800">개인정보 수집·이용에 동의</b>합니다.
-              <span className="text-navy-400 block mt-0.5 text-[11.5px]">
+              <span className="text-navy-400 block mt-0.5 text-[12.5px]">
                 수집 항목: 이름, 이메일, 연락처 / 목적: 선물 신청 처리 / 보관: 선물 완료 후 1년
               </span>
             </span>
           </label>
-          {errors.agree && <p className="text-[11.5px] text-red-500 -mt-3">{errors.agree}</p>}
+          {errors.agree && <p className="text-[12.5px] text-red-500 -mt-3">{errors.agree}</p>}
 
           {/* 제출 */}
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full text-[14px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
+              className="w-full text-[15px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
             >
               신청 완료하기
             </button>
-            <p className="text-[11.5px] text-navy-400 text-center mt-3 leading-relaxed">
+            <p className="text-[12.5px] text-navy-400 text-center mt-3 leading-relaxed">
               재료가 작가에게 전달됩니다.
             </p>
           </div>

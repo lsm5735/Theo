@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import FloatingChatbot from "@/components/FloatingChatbot";
 import ScrollObserver from "@/components/ScrollObserver";
+import Footer from "@/components/Footer";
 import { LangProvider } from "@/contexts/LangContext";
 import { GA_ID } from "@/lib/site";
 
@@ -17,13 +18,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="h-full scroll-smooth" suppressHydrationWarning>
+    <html lang="ko" className="h-full scroll-smooth">
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})()` }} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+KR:wght@400;500;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        />
       </head>
       <body className="min-h-full flex flex-col bg-paper text-ink antialiased">
         <LangProvider>
           {children}
+          <Footer />
           <FloatingChatbot />
           <ScrollObserver />
         </LangProvider>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
+import PageTitle from "@/components/PageTitle";
 import { useT } from "@/contexts/LangContext";
 import { MyMaterial, createMyAtelier, emptyAtelier, normalizeUrl, useMyAteliers } from "@/lib/myAtelier";
 import {
@@ -78,6 +79,7 @@ export default function ArtistOnboarding() {
   return (
     <div className="min-h-screen bg-paper">
       <Header />
+      <PageTitle text="Artist" />
 
       <div className="max-w-[560px] mx-auto px-5 md:px-8 pt-16 pb-24">
         <Link href="/" className="text-sm text-navy-400 hover:text-navy-700 transition-colors mb-10 inline-block">
@@ -89,16 +91,16 @@ export default function ArtistOnboarding() {
           style={{ letterSpacing: "-0.02em" }}>
           {t("ob_h1a")}<br />{t("ob_h1b")}
         </h1>
-        <p className="text-[15px] text-muted leading-[1.85] mb-10">
+        <p className="text-[16px] text-muted leading-[1.85] mb-10">
           {t("ob_sub")}
         </p>
 
         {existingCount > 0 && (
           <div className="rounded-2xl border border-line-strong bg-card px-5 py-4 mb-6">
-            <p className="text-[13px] text-navy-700 leading-[1.7] mb-2" style={{ wordBreak: "keep-all" }}>
+            <p className="text-[14px] text-navy-700 leading-[1.7] mb-2" style={{ wordBreak: "keep-all" }}>
               {t("ob_exists_pre")}{existingCount}{t("ob_exists_post")}
             </p>
-            <Link href="/atelier/me" className="text-[13px] font-bold text-navy-800 underline underline-offset-2">
+            <Link href="/atelier/me" className="text-[14px] font-bold text-navy-800 underline underline-offset-2">
               {t("ob_exists_btn")}
             </Link>
           </div>
@@ -122,7 +124,7 @@ export default function ArtistOnboarding() {
 
           {saveError && <p className="text-red-500 text-xs text-center">{saveError}</p>}
           <button onClick={handleSubmit}
-            className="nb-btn w-full py-4 rounded-xl font-black text-[16px]">
+            className="nb-btn w-full py-4 rounded-xl font-black text-[17px]">
             {t("ob_submit")}
           </button>
           <p className="text-center text-xs text-navy-400">{t("ob_demo_note")}</p>

@@ -1,452 +1,293 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import Header from "@/components/Header";
+import BigTitle from "@/components/BigTitle";
 import ArtistCard from "@/components/ArtistCard";
 import artists from "@/data/artists.json";
-import projects from "@/data/projects.json";
 import { useT } from "@/contexts/LangContext";
 import { NOTION_URL } from "@/lib/site";
 import { trackNotionClick } from "@/lib/analytics";
 
-function IconPen() {
+const LEFT = "md:w-[calc((100vw-var(--gap)*2)*0.25-1.5rem)] shrink-0";
+const RIGHT = "w-full md:w-[calc((100vw-var(--gap)*2)*0.75)]";
+const SERIF = { fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400 } as const;
+
+/** 레퍼런스식 2단 행 — 왼쪽 라벨(25%) / 오른쪽 본문(75%) */
+function Row({ label, children, id }: { label: string; children: React.ReactNode; id?: string }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-    </svg>
+    <section className="px-[var(--gap)]" id={id}>
+      <div className="flex flex-col md:flex-row py-12 md:py-16 gap-6 md:gap-0">
+        <div className={LEFT}>
+          <span className="type-section">{label}</span>
+        </div>
+        <div className={RIGHT}>{children}</div>
+      </div>
+      <hr className="dots-x" />
+    </section>
   );
 }
-function IconUser() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
-    </svg>
-  );
-}
-function IconArrow() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-  );
-}
+
+const PROGRAMS = [
+  { name: "팝업 전시 [CONTINUE]", date: "11. 28 – 11. 29" },
+  { name: "오픈 스튜디오", date: "11. 28" },
+  { name: "라이브 페인팅", date: "11. 28" },
+  { name: "Theo 아트 나이트", date: "11. 28" },
+];
+
+const STEPS = [
+  {
+    n: "01", label: "ARTIST", title: "작가님이 새로운 프로젝트를 등록해요", img: "/how/step-1.jpg",
+    items: [
+      "새로 시작하려는 작품의 구상과 필요한 재료 목록을 올립니다.",
+      "작가님의 아틀리에에 입장해 새로운 작품을 준비하기 위한 과정을 살펴보세요.",
+      "내가 응원하고 싶은 작가님이 테오에 없다면, 테오에게 작가님 초대를 요청해주세요.",
+    ],
+  },
+  {
+    n: "02", label: "GIFTER", title: "물감을 골라 선물하세요", img: "/how/step-2.jpg",
+    items: [
+      "다음 작품을 만들기 위한 재료를 선물해 보세요.",
+      "QR 혹은 온라인 링크를 통해 쉽게 선물할 수 있어요.",
+      "마음에 드는 재료를 골라 결제해주세요.",
+      "선물은 작가님의 작업실로 안전하게 배송해드립니다.",
+    ],
+  },
+  {
+    n: "03", label: "WALL", title: "아틀리에 담벼락에서 창작 과정을 함께 해요", img: "/how/step-3.jpg",
+    items: [
+      "선물이 작업실에 도착하면 담벼락에 도착 인증 사진이 올라와요.",
+      "선물한 테오도 응원 메세지를 남길 수 있어요.",
+      "작품이 만들어지는 과정과 완성된 작품의 사진을 확인해보세요.",
+    ],
+  },
+  {
+    n: "04", label: "THANK YOU", title: "작품이 완성되면 선물이 와요", img: "/how/step-4.jpg",
+    items: ["작품으로 만들어지는 굿즈", "전시회 초대권", "커뮤니티 입장권", "작품 선구매권", "더 많은 혜택이 열립니다."],
+  },
+];
 
 export default function Home() {
   const t = useT();
-  const featuredArtists = artists.slice(0, 3);
-  const projectMap = Object.fromEntries(projects.map((p) => [p.artistId, p]));
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--paper)" }}>
+    <div className="min-h-screen bg-paper" id="start">
       <Header />
 
-      {/* ════════════════════════════════════════
-          § 1. HERO
-          ════════════════════════════════════════ */}
-      <header className="relative overflow-hidden" id="start">
-        {/* 배경 사진 — 글자 뒤로 흐리게, 아래로 갈수록 캔버스색에 녹아듦 */}
-        <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero-museum.jpg" alt="" className="w-full h-full object-cover scale-[1.03]"
-            style={{ filter: "blur(2px)" }} />
-          {/* 크림 오버레이 — 형체는 보이되 글자가 읽히도록, 가운데(글자 뒤)만 조금 더 밝게 */}
-          <div className="absolute inset-0"
-            style={{ background: "linear-gradient(to bottom, rgba(255,250,240,.42) 0%, rgba(255,250,240,.34) 50%, rgba(255,250,240,.82) 88%, var(--paper) 100%)" }} />
-          <div className="absolute inset-0"
-            style={{ background: "radial-gradient(ellipse 60% 55% at 50% 48%, rgba(255,250,240,.55) 0%, rgba(255,250,240,0) 100%)" }} />
-        </div>
-
-        <div className="relative max-w-[1080px] mx-auto px-5 md:px-8 pt-24 md:pt-40 pb-20 md:pb-32 text-center">
-
-          <h1
-            data-sr="up"
-            className="font-semibold text-[38px] sm:text-[56px] md:text-[76px] leading-[1.08] text-ink mb-8 md:mb-10"
-            style={{ wordBreak: "keep-all", letterSpacing: "-0.045em" }}
-          >
-            {t("hero_line1")}<br />
-            {t("hero_line2a")} {t("hero_highlight")}{t("hero_line2b")}
-          </h1>
-
-          <p
-            data-sr="up" data-d="2"
-            className="text-[15px] md:text-[18px] leading-[1.85] max-w-[580px] mx-auto mb-12 text-body"
-            style={{ wordBreak: "keep-all" }}
-          >
-            {t("hero_desc")}
-          </p>
-
-          <div data-sr="up" data-d="3" className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-            <Link href="/bot" className="nb-btn flex-col w-full sm:w-[240px] text-[15px] px-8 py-3.5">
-              <span className="font-semibold">{t("btn_patron_main")}</span>
-              <span className="block text-[11.5px] font-medium opacity-60 mt-0.5">{t("btn_patron_sub")}</span>
-            </Link>
-            <Link href="/onboarding/artist" className="nb-btn-outline flex-col w-full sm:w-[240px] text-[15px] px-8 py-3.5">
-              <span className="font-semibold">{t("btn_artist_main")}</span>
-              <span className="block text-[11.5px] font-medium text-muted mt-0.5">{t("btn_artist_sub")}</span>
-            </Link>
+      <main>
+        {/* ═══ HERO 타이틀 ═══ */}
+        <section className="px-[var(--gap)]">
+          {/* 슬로건 — 큰 사진을 뒷 배경으로 */}
+          <div className="relative -mx-[var(--gap)] px-[var(--gap)] pt-10 md:pt-16 overflow-hidden text-[var(--theo-yellow)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/hero-museum.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+            <div aria-hidden="true" className="absolute inset-0 bg-navy-900/45" />
+            <div data-sr="fade" className="relative pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
+              <BigTitle text={"GIVE PAINT,\nNOT FLOWERS"} typing />
+            </div>
           </div>
+          <hr className="dots-x" />
 
-          <p data-sr="fade" data-d="4" className="text-[13px] text-muted">
-            {t("hero_login")}{" "}
-            <Link href="#" className="text-ink font-semibold underline underline-offset-2">{t("hero_login_link")}</Link>
-          </p>
-
-
-        </div>
-      </header>
-
-      {/* ════════════════════════════════════════
-          § 2. THE GAP
-          ════════════════════════════════════════ */}
-      <section className="py-24 md:py-32">
-        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
-
-          <div data-sr="up" className="text-center mb-14">
-            <span className="nb-tag mb-6 inline-flex">{t("gap_tag")}</span>
-            <h2
-              className="font-semibold text-[32px] md:text-[48px] leading-[1.12] mt-4 mb-5 text-ink"
-              style={{ wordBreak: "keep-all" }}
-            >
-              {t("gap_h2").split("\n").map((line, i) => (
-                <span key={i}>{line}{i === 0 && <br />}</span>
-              ))}
-            </h2>
-            <p className="text-[16px] leading-[1.8] max-w-[520px] mx-auto text-muted" style={{ wordBreak: "keep-all" }}>
-              {t("gap_sub")}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14">
-            <div data-sr="right" className="clay-card bg-clay-peach text-ink">
-              <div className="w-11 h-11 rounded-2xl flex items-center justify-center mb-10 bg-white/55">
-                <IconUser />
+          {/* ═══ 1. INTRO ═══ */}
+          <div className="flex flex-col md:flex-row py-12 md:py-16 gap-6 md:gap-0">
+            <div className={LEFT}>
+              <span className="type-section">Intro</span>
+            </div>
+            <div className={RIGHT}>
+              <h2 data-sr="up" className="type-xl" style={{ wordBreak: "keep-all", ...SERIF }}>
+                꽃다발 대신 물감을 선물하세요.<br />
+                꽃은 시들지만 물감은 작품으로 피어납니다.
+              </h2>
+              <div data-sr="up" data-d="1" className="text-[15px] xl:text-[clamp(13px,1.1vw,17px)] xl:whitespace-nowrap leading-[1.85] mt-8 text-muted space-y-3" style={{ wordBreak: "keep-all" }}>
+                <p>테오는 당신의 ‘응원하고 싶은 마음’을 응원합니다. 작품을 사지 않더라도 작가를 아끼는 그 마음을 누구보다 잘 알기에.</p>
+                <p>꽃에는 작가를 응원하는 소중한 마음이 담겨 있었습니다. 다만 꽃은 며칠이면 시들어 버립니다.</p>
+                <p>꽃 대신 물감을 선물하고, 그 물감이 작품이 되는 과정에 당신이 함께할 수 있다면</p>
               </div>
-              <h4 className="font-semibold text-[22px] mb-3" style={{ letterSpacing: "-0.02em" }}>{t("gap_fan_title")}</h4>
-              <p className="text-[15px] leading-[1.8] text-ink/75" style={{ wordBreak: "keep-all" }}>
-                {t("gap_fan_body")}
+            </div>
+          </div>
+          <hr className="dots-x" />
+        </section>
+
+        {/* ═══ 2. THEO STORY ═══ */}
+        <Row label="Theo Story">
+          <h2 data-sr="up" className="type-l mb-8" style={{ wordBreak: "keep-all", ...SERIF }}>
+            모두의 고흐가 되기 전<br />
+            나만의 고흐를 만나보세요.
+          </h2>
+          <div data-sr="up" data-d="1" className="text-[15px] xl:text-[clamp(13px,1.1vw,17px)] xl:whitespace-nowrap leading-[1.85] text-muted space-y-3" style={{ wordBreak: "keep-all" }}>
+            <p>반 고흐에게는 평생 그를 응원해준 동생 테오가 있었기에 세계가 사랑하는 명작이 탄생할 수 있었습니다.</p>
+            <p>세상이 알아보기 전, 당신이 먼저 발견한 예술가에게 재료를 선물하고, 위대한 작품이 태어나는 과정을 함께 만들어 보세요.</p>
+          </div>
+          <div data-sr="up" data-d="2" className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-12">
+            <Link href="/bot" className="nb-btn px-7 py-3 text-[15px]">
+              {t("btn_patron_main")} — {t("btn_patron_sub")} →
+            </Link>
+            <Link href="/onboarding/artist" className="nb-btn-outline px-7 py-3 text-[15px]">
+              {t("btn_artist_main")} — {t("btn_artist_sub")} →
+            </Link>
+          </div>
+        </Row>
+
+        {/* ═══ 3. THE GAP ═══ */}
+        <Row label="The Gap">
+          <h2 data-sr="up" className="type-l mb-12" style={{ wordBreak: "keep-all", ...SERIF }}>
+            미술 시장은 커지고 있다는데,<br />
+            젊은 예술가들의 현실은 어떤가요?
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 mb-16">
+            <div data-sr="up" data-d="1">
+              <hr className="dots-x mb-5" />
+              <h3 className="text-[18px] mb-4">팬의 목소리</h3>
+              <p className="text-[16px] leading-[1.8] mb-4" style={{ wordBreak: "keep-all" }}>
+                “작품을 사는 게 작가님께 가장 큰 도움이 된다는 걸 우리도 알아요.<br />
+                그래도 매번 작품을 살 수는 없잖아요. 그럼 우리는 미술을 좋아하면 안 되나요?”
+              </p>
+              <p className="text-[15px] leading-[1.8] text-muted" style={{ wordBreak: "keep-all" }}>
+                완성작을 사기에는 부담스럽고, SNS 좋아요나 팔로우 만으로는 아무것도 전해지지 않는 것 같아 아쉽습니다.
               </p>
             </div>
-            <div data-sr="left" className="clay-card bg-clay-lavender text-ink">
-              <div className="w-11 h-11 rounded-2xl flex items-center justify-center mb-10 bg-white/55">
-                <IconPen />
-              </div>
-              <h4 className="font-semibold text-[22px] mb-3" style={{ letterSpacing: "-0.02em" }}>{t("gap_artist_title")}</h4>
-              <p className="text-[15px] leading-[1.8] text-ink/75" style={{ wordBreak: "keep-all" }}>
-                {t("gap_artist_body")}
+            <div data-sr="up" data-d="2">
+              <hr className="dots-x mb-5" />
+              <h3 className="text-[18px] mb-4">작가의 현실</h3>
+              <p className="text-[16px] leading-[1.8] mb-4" style={{ wordBreak: "keep-all" }}>
+                화려한 전시장에서 꽃다발 가득 축하를 받고, 다시 캄캄한 작업실에 돌아와 다음 작업을 위한 재료비를 걱정합니다.
+              </p>
+              <p className="text-[15px] leading-[1.8] text-muted mb-3" style={{ wordBreak: "keep-all" }}>
+                새 작업을 시작하고, 전시를 열기 위해서는 재료비가 먼저 나갑니다. 작품에 대한 고민을 하기도 전에 생계를 먼저 생각하게 됩니다.
+              </p>
+              <p className="text-[15px] leading-[1.8] text-muted" style={{ wordBreak: "keep-all" }}>
+                그럼에도 작업을 이어 갈 수 있는 건 작품을 기다려주고 전시를 보러와주는 분들이 있기 때문입니다.
               </p>
             </div>
           </div>
 
-          <p data-sr="up" data-d="2"
-            className="text-center font-semibold text-[22px] md:text-[30px] leading-[1.5] text-ink"
-            style={{ wordBreak: "keep-all", letterSpacing: "-0.03em" }}>
-            {t("gap_conclusion_pre")}{" "}
-            <em className="not-italic text-navy-700">{t("gap_conclusion_em")}</em>{t("gap_conclusion_post")}
+          <p data-sr="up" className="type-l" style={{ wordBreak: "keep-all", ...SERIF }}>
+            THEO는 그 사이를 잇는 새로운 방법을 만들어나갑니다.
           </p>
+        </Row>
 
-        </div>
-      </section>
+        {/* ═══ 4. HOW IT WORKS ═══ */}
+        <Row label="How it works" id="how">
+          <h2 data-sr="up" className="type-l mb-12" style={{ wordBreak: "keep-all", ...SERIF }}>
+            당신의 물감 선물은 하나의 작품을 함께 완성시키는 일입니다.
+          </h2>
 
-      {/* ════════════════════════════════════════
-          § 3. HOW IT WORKS
-          ════════════════════════════════════════ */}
-      <section className="py-24 md:py-32" style={{ background: "var(--paper)" }} id="how">
-        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
-
-          <div data-sr="up" className="text-center mb-20">
-            <span className="nb-tag mb-5 inline-flex">{t("how_tag")}</span>
-            <h2 className="font-semibold text-[32px] md:text-[48px] leading-[1.12] mt-4 mb-4 text-navy-900"
-              style={{ letterSpacing: "-0.02em" }}>{t("how_h2")}</h2>
-            <p className="text-[15px] text-muted leading-[1.9] max-w-[480px] mx-auto" style={{ wordBreak: "keep-all" }}>
-              {t("how_sub_pre")} <strong className="text-ink font-semibold">{t("how_sub_em")}</strong>{t("how_sub_post")}
-            </p>
-          </div>
-
-          <div className="space-y-20 md:space-y-28">
-
-            {[
-              {
-                n: "01", label: t("how_s1_label"), h3: t("how_s1_h3"), img: "/how/step-1.jpg",
-                body: <>{t("how_s1_body_pre")} <strong className="text-ink font-semibold">{t("how_s1_body_em1")}</strong>{t("how_s1_body_mid")}</>,
-              },
-              { n: "02", label: t("how_s2_label"), h3: t("how_s2_h3"), img: "/how/step-2.jpg", body: <>{t("how_s2_body")}</> },
-              {
-                n: "03", label: t("how_s3_label"), h3: t("how_s3_h3"), img: "/how/step-3.jpg",
-                body: <>{t("how_s3_body_pre")} <strong className="text-ink font-semibold">{t("how_s3_body_em1")}</strong>{t("how_s3_body_post")}</>,
-              },
-              {
-                n: "04", label: t("how_s4_label"), h3: t("how_s4_h3"), img: "/how/step-4.jpg",
-                body: <>{t("how_s4_body_pre")} <strong className="text-ink font-semibold">{t("how_s4_body_em1")}</strong> {t("how_s4_body_mid")} <strong className="text-ink font-semibold">{t("how_s4_body_em2")}</strong>{t("how_s4_body_post")}</>,
-              },
-            ].map((step, i) => {
-              // 사진은 좌우로 번갈아 배치 (모바일은 글 → 사진 순)
-              const photoLeft = i % 2 === 1;
-              return (
-                <div key={step.n} className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
-                  <div data-sr={photoLeft ? "left" : "right"} className={photoLeft ? "md:order-2" : ""}>
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="nb-step">{step.n}</div>
-                      <span className="text-[11px] tracking-[0.18em] text-navy-400 font-bold uppercase">{step.label}</span>
-                    </div>
-                    <h3 className="font-semibold text-[28px] md:text-[36px] text-ink mb-4 leading-[1.15]"
-                      style={{ wordBreak: "keep-all", letterSpacing: "-0.02em" }}>
-                      {step.h3}
-                    </h3>
-                    <p className="text-[16px] text-body leading-[1.85] max-w-[420px]" style={{ wordBreak: "keep-all" }}>
-                      {step.body}
-                    </p>
-                  </div>
-                  <div data-sr={photoLeft ? "right" : "left"} data-d="1"
-                    className={`rounded-[24px] overflow-hidden aspect-[4/3] bg-surface-card ${photoLeft ? "md:order-1" : ""}`}>
+          <div>
+            {STEPS.map((s) => (
+              <div key={s.n}>
+                <hr className="dots-x" />
+                {/* 사진 — 글 왼쪽 앞 */}
+                <div className="grid grid-cols-1 md:grid-cols-[17rem_1fr] gap-6 md:gap-10 py-8 md:py-10">
+                  <div data-sr="up" className="relative aspect-[4/3] md:aspect-[4/5] overflow-hidden bg-surface-card">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={step.img} alt="" className="w-full h-full object-cover" loading="lazy" />
+                    <img src={s.img} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════
-          § 4. OPEN PROJECTS
-          ════════════════════════════════════════ */}
-      <section className="py-20 md:py-28" style={{ background: "var(--paper)" }} id="projects">
-        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
-
-          <div data-sr="up" className="text-center mb-14">
-            <span className="nb-tag mb-5 inline-flex">{t("projects_tag")}</span>
-            <h2 className="font-semibold text-[32px] md:text-[48px] leading-[1.12] mt-4 mb-3 text-navy-900"
-              style={{ letterSpacing: "-0.02em" }}>{t("projects_h2")}</h2>
-            <p className="text-[15px] text-muted leading-[1.9]">{t("projects_sub")}</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {featuredArtists.map((artist, i) => {
-              const project = projectMap[artist.id];
-              if (!project) return null;
-              return (
-                <div key={artist.id} data-sr="up" data-d={String(i + 1)}>
-                  <ArtistCard artist={artist} project={project} />
-                </div>
-              );
-            })}
-          </div>
-
-          {artists.length > 3 && (
-            <div data-sr="up" data-d="4" className="text-center mt-12">
-              <Link href="/atelier" className="nb-btn-outline text-[14px] px-7 py-3.5 rounded-xl font-black">
-                {t("projects_btn")} ({artists.length}명) →
-              </Link>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════
-          § 6. BADGES
-          ════════════════════════════════════════ */}
-      <section className="py-20 md:py-28" style={{ background: "var(--paper)" }} id="badges">
-        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
-
-          <div data-sr="up" className="text-center mb-14">
-            <span className="nb-tag mb-5 inline-flex">{t("badges_tag")}</span>
-            <h2 className="font-semibold text-[32px] md:text-[48px] leading-[1.12] mt-4 mb-4 text-navy-900"
-              style={{ letterSpacing: "-0.02em" }}>{t("badges_h2")}</h2>
-            <p className="text-[15px] text-muted max-w-[400px] mx-auto leading-relaxed" style={{ wordBreak: "keep-all" }}>
-              {t("badges_sub")}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              {
-                lv: "LV.01", nameKey: "badge_lv1_name" as const, condKey: "badge_lv1_cond" as const, descKey: "badge_lv1_desc" as const,
-                symbol: (
-                  <div className="w-14 h-14 mx-auto rounded-2xl bg-clay-mint flex items-center justify-center">
-                    <div className="w-5 h-7 rounded-full" style={{ border: "2px solid var(--brutal)", background: "rgba(7,34,60,.15)" }} />
-                  </div>
-                ),
-              },
-              {
-                lv: "LV.02", nameKey: "badge_lv2_name" as const, condKey: "badge_lv2_cond" as const, descKey: "badge_lv2_desc" as const,
-                symbol: (
-                  <div className="w-14 h-14 mx-auto rounded-2xl bg-clay-ochre flex items-center justify-center">
-                    <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
-                      {[0,45,90,135,180,225,270,315].map((deg) => (
-                        <ellipse key={deg} cx="18" cy="8" rx="3" ry="5.5" fill="var(--brutal)" opacity={0.6} transform={`rotate(${deg} 18 18)`} />
+                  <div data-sr="up" data-d="1">
+                    <p className="type-label mb-4">{s.n}. {s.label}</p>
+                    <h3 className="type-m mb-5" style={{ wordBreak: "keep-all", ...SERIF }}>{s.title}</h3>
+                    <ul className="space-y-2">
+                      {s.items.map((it) => (
+                        <li key={it} className="flex gap-3 text-[15px] md:text-[16px] leading-[1.7] text-muted" style={{ wordBreak: "keep-all" }}>
+                          <span aria-hidden="true">–</span>
+                          <span>{it}</span>
+                        </li>
                       ))}
-                      <circle cx="18" cy="18" r="6.5" fill="var(--brutal)" />
-                      <circle cx="18" cy="18" r="4" fill="var(--sv)" opacity={0.6} />
-                    </svg>
+                    </ul>
                   </div>
-                ),
-              },
-              {
-                lv: "LV.03", nameKey: "badge_lv3_name" as const, condKey: "badge_lv3_cond" as const, descKey: "badge_lv3_desc" as const,
-                symbol: (
-                  <div className="w-14 h-14 mx-auto rounded-2xl bg-clay-peach flex items-center justify-center gap-0.5">
-                    {[0,1,2].map((i) => (
-                      <div key={i} className="flex flex-col items-center gap-0.5">
-                        <div className="w-1.5 h-2 rounded-sm" style={{ background: "var(--brutal)", opacity: 0.7 }} />
-                        <div className="w-0.5 h-4 rounded-full" style={{ background: "var(--brutal)", opacity: 0.5 }} />
-                      </div>
-                    ))}
-                  </div>
-                ),
-              },
-              {
-                lv: "LV.04", nameKey: "badge_lv4_name" as const, condKey: "badge_lv4_cond" as const, descKey: "badge_lv4_desc" as const,
-                symbol: (
-                  <div className="w-14 h-14 mx-auto rounded-2xl bg-clay-lavender flex items-center justify-center">
-                    <div className="w-7 h-7" style={{
-                      background: "var(--brutal)",
-                      clipPath: "polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)",
-                    }} />
-                  </div>
-                ),
-              },
-            ].map((b, i) => (
-              <div key={b.lv} data-sr="scale" data-d={String(i + 1)} className="rounded-3xl bg-surface-card p-7 text-center">
-                <p className="text-[10px] tracking-[0.18em] text-navy-400 font-bold mb-4">{b.lv}</p>
-                <div className="mb-4">{b.symbol}</div>
-                <h5 className="font-semibold text-[17px] text-ink mb-1.5">{t(b.nameKey)}</h5>
-                <p className="text-[11.5px] font-bold mb-3" style={{ color: "var(--gold-text)" }}>{t(b.condKey)}</p>
-                <p className="text-[11.5px] text-muted leading-[1.75]" style={{ wordBreak: "keep-all" }}>{t(b.descKey)}</p>
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </Row>
 
-      {/* ════════════════════════════════════════
-          § 7. ARTY
-          ════════════════════════════════════════ */}
-      <section className="py-20 md:py-28" style={{ background: "var(--paper)" }} id="community">
-        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-[1.1fr_.9fr] gap-12 items-center">
+        {/* ═══ 5. ARTISTS ═══ */}
+        <section className="px-[var(--gap)]" id="projects">
+          <div className="flex flex-col md:flex-row py-12 md:py-16 gap-6 md:gap-0">
+            <div className={LEFT}>
+              <span className="type-section">Artists</span>
+            </div>
+            <div className={RIGHT}>
+              <h2 data-sr="up" className="type-l" style={SERIF}>테오와 함께하는 작가님들</h2>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 pb-12">
+            {artists.map((artist, i) => (
+              <div key={artist.id} data-sr="up" data-d={String((i % 4) + 1)}>
+                <ArtistCard artist={artist} />
+              </div>
+            ))}
+          </div>
+          <div className="pb-12 flex justify-end">
+            <Link href="/atelier" className="link-line text-[15px]">
+              {t("projects_btn")} →
+            </Link>
+          </div>
+          <hr className="dots-x" />
+        </section>
 
-            <div data-sr="right">
-              <span className="nb-tag mb-5 inline-flex">{t("arty_tag")}</span>
-              <h2 className="font-semibold text-[30px] md:text-[42px] text-ink leading-[1.15] mt-4 mb-5"
-                style={{ wordBreak: "keep-all", letterSpacing: "-0.02em" }}>
-                {t("arty_h2").split("\n").map((line, i) => (
+        {/* ═══ 6. SHOW ═══ */}
+        <Row label="Show">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 items-start">
+            <div data-sr="up" className="relative aspect-[1/1.1] overflow-hidden bg-surface-card">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/how/step-4.jpg" alt="팝업 전시 [CONTINUE]" className="absolute inset-0 w-full h-full object-cover" />
+            </div>
+            <div data-sr="up" data-d="1">
+              <p className="type-label text-muted mb-4">Pop-up Exhibition</p>
+              <h2 className="type-l mb-5">[CONTINUE]</h2>
+              <p className="text-[15px] leading-[1.8] mb-2">2026. 11. 28 (토) – 11. 29 (일)</p>
+              <p className="text-[15px] leading-[1.8] mb-8">서울 종로구 창덕궁길 83-1</p>
+              <Link href="/show" className="link-line text-[15px]">Read More →</Link>
+            </div>
+          </div>
+        </Row>
+
+        {/* ═══ 7. ARTY ═══ */}
+        <Row label="Arty" id="community">
+          <h2 data-sr="up" className="type-l mb-12" style={{ wordBreak: "keep-all", ...SERIF }}>
+            내가 함께 만든 작품 앞에서<br />
+            우리가 만납니다
+          </h2>
+
+          <div>
+            {PROGRAMS.map((p) => (
+              <div key={p.name}>
+                <hr className="dots-x" />
+                <Link href="/community" className="group flex items-baseline justify-between gap-4 py-4">
+                  <span className="type-m group-hover:underline underline-offset-4">{p.name}</span>
+                  <span className="text-[14px] text-muted shrink-0">2026. {p.date}</span>
+                </Link>
+              </div>
+            ))}
+            <hr className="dots-x" />
+          </div>
+        </Row>
+
+        {/* ═══ 8. CONTACT ═══ */}
+        <section className="px-[var(--gap)]">
+          <div className="flex flex-col md:flex-row py-16 md:py-24 gap-6 md:gap-0">
+            <div className={LEFT}>
+              <span className="type-section">Contact</span>
+            </div>
+            <div className={RIGHT}>
+              <h2 data-sr="up" className="type-xl mb-8 max-w-[40rem]" style={{ wordBreak: "keep-all", ...SERIF }}>
+                {t("cta_h2").split("\n").map((line, i) => (
                   <span key={i}>{line}{i === 0 && <br />}</span>
                 ))}
               </h2>
-              <p className="text-[15px] text-muted leading-[1.95]" style={{ wordBreak: "keep-all" }}>
-                {t("arty_body1_pre")} <strong className="text-ink font-semibold">{t("arty_body1_em")}</strong>{t("arty_body1_post")}{" "}
-                <strong className="text-ink font-semibold">{t("arty_body1_em2")}</strong>{t("arty_body1_end")}
-              </p>
-              <p className="text-[15px] text-muted leading-[1.95] mt-4" style={{ wordBreak: "keep-all" }}>
-                {t("arty_body2_pre")}<strong className="text-ink font-semibold">{t("arty_body2_em")}</strong>{t("arty_body2_post")}
-              </p>
-            </div>
-
-            <div data-sr="left" data-d="1" className="clay-card" style={{ background: "var(--navy-900)" }}>
-              <span className="nb-tag-light mb-4 inline-flex">{t("arty_card_tag")}</span>
-              <h4 className="font-semibold text-[22px] mt-3 mb-2" style={{ color: "var(--chiffon)", letterSpacing: "-0.02em" }}>{t("arty_card_title")}</h4>
-              <p className="text-[13px] leading-[1.8]" style={{ color: "rgba(250,240,202,.7)", wordBreak: "keep-all" }}>
-                {t("arty_card_body")}
-              </p>
-              <div className="flex gap-2 flex-wrap mt-4 mb-5">
-                {[t("arty_card_date"), t("arty_card_place"), t("arty_card_seats")].map((tag) => (
-                  <span key={tag} className="text-[11.5px] px-3 py-1.5 rounded-lg font-semibold"
-                    style={{ background: "rgba(250,240,202,.1)", border: "1px solid rgba(250,240,202,.25)", color: "var(--chiffon)" }}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link href="#" className="nb-btn-light w-full text-[14px]">
-                {t("arty_card_btn")}
-              </Link>
-              <p className="mt-4 pt-4 text-[12.5px] leading-[1.7] font-semibold"
-                style={{ borderTop: "1px solid rgba(250,240,202,.16)", color: "rgba(250,240,202,.75)" }}>
-                <strong style={{ color: "var(--sv)" }}>+1</strong> {t("arty_card_plus1")}
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════
-          § 8. CLOSING CTA
-          ════════════════════════════════════════ */}
-      <section className="px-5 md:px-8 pb-24 md:pb-32">
-        <div className="relative overflow-hidden max-w-[1080px] mx-auto rounded-[28px] text-center px-6 py-20 md:py-24"
-          style={{ background: "var(--surface-card)" }}>
-          <div className="relative max-w-[680px] mx-auto">
-            <h2 data-sr="up" className="font-semibold text-[34px] md:text-[52px] leading-[1.12] mb-5 text-ink"
-              style={{ wordBreak: "keep-all" }}>
-              {t("cta_h2").split("\n").map((line, i) => (
-                <span key={i}>{line}{i === 0 && <br />}</span>
-              ))}
-            </h2>
-            <p data-sr="up" data-d="1" className="text-[16px] mb-10 text-body">
-              {t("cta_sub")}
-            </p>
-
-            <a data-sr="up" data-d="2" href={NOTION_URL} target="_blank" rel="noopener noreferrer"
-              onClick={() => trackNotionClick("landing_cta")}
-              className="nb-btn inline-flex items-center gap-2 text-[15px] px-7">
-              {t("cta_btn")} <IconArrow />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── FOOTER ─── */}
-      <footer className="pt-16 pb-10 border-t border-line" style={{ background: "var(--card-soft)" }}>
-        <div className="max-w-[1080px] mx-auto px-5 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-10">
-            <div className="col-span-2 md:col-span-1">
-              <div className="flex items-center gap-2.5 mb-4">
-                <img src="/logo-face.png" alt="THEO" className="w-7 h-7" />
-                <b className="logo-wordmark tracking-[0.06em] text-[20px] text-ink">Theo</b>
-              </div>
-              <p className="text-[12px] leading-[1.8] max-w-[230px]" style={{ color: "var(--muted)" }}>
-                {t("footer_desc")}
-              </p>
-            </div>
-            <div>
-              <p className="text-[11px] tracking-[0.14em] mb-4 uppercase font-bold" style={{ color: "var(--muted)" }}>{t("footer_service")}</p>
-              <ul className="space-y-2.5">
-                {[
-                  { labelKey: "footer_link_artist" as const, href: "/onboarding/artist" },
-                  { labelKey: "footer_link_bot" as const, href: "/bot" },
-                  { labelKey: "footer_link_projects" as const, href: "#projects" },
-                  { labelKey: "footer_link_arty" as const, href: "#community" },
-                ].map((l) => (
-                  <li key={l.labelKey}><Link href={l.href} className="text-[13px] text-body hover:text-ink transition-colors">{t(l.labelKey)}</Link></li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-[11px] tracking-[0.14em] mb-4 uppercase font-bold" style={{ color: "var(--muted)" }}>{t("footer_help")}</p>
-              <ul className="space-y-2.5">
-                {(["footer_link_how", "footer_link_faq", "footer_link_contact"] as const).map((key) => (
-                  <li key={key}><Link href="#how" className="text-[13px] text-body hover:text-ink transition-colors">{t(key)}</Link></li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-[11px] tracking-[0.14em] mb-4 uppercase font-bold" style={{ color: "var(--muted)" }}>{t("footer_company")}</p>
-              <ul className="space-y-2.5">
-                {(["footer_link_story", "footer_link_terms", "footer_link_privacy", "footer_link_trade"] as const).map((key) => (
-                  <li key={key}><Link href="#" className="text-[13px] text-body hover:text-ink transition-colors">{t(key)}</Link></li>
-                ))}
-              </ul>
+              <a
+                data-sr="up" data-d="1"
+                href={NOTION_URL} target="_blank" rel="noopener noreferrer"
+                onClick={() => trackNotionClick("landing_cta")}
+                className="nb-btn px-7 py-3 text-[15px]"
+              >
+                {t("cta_btn")} →
+              </a>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-3 pt-6 text-[11.5px] font-medium"
-            style={{ borderTop: "1px solid var(--line)", color: "var(--muted)" }}>
-            <span>{t("footer_copy")}</span>
-            <span>{t("footer_disclaimer")}</span>
-          </div>
-        </div>
-      </footer>
+        </section>
+      </main>
     </div>
   );
 }

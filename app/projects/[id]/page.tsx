@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
+import BigTitle from "@/components/BigTitle";
 import SponsorFlowSheet from "./SponsorFlowSheet";
 import artists from "@/data/artists.json";
 import projects from "@/data/projects.json";
@@ -13,28 +14,25 @@ interface Props {
 }
 
 
-function SponsorAvatar({ nickname }: { nickname: string }) {
-  const colors = [
-    "bg-[#0D3B66] text-white",
-    "bg-[#1D3161] text-white",
-    "bg-[#376590] text-white",
-    "bg-[#4E7A46] text-white",
-    "bg-[#5C2A20] text-white",
-    "bg-[#6B5B8C] text-white",
-    "bg-[#8A5A1E] text-white",
-    "bg-[#3E6C93] text-white",
-  ];
-  const color = colors[nickname.charCodeAt(0) % colors.length];
-  return (
-    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${color}`}>
-      {nickname.slice(0, 1)}
-    </div>
-  );
-}
-
 function formatDate(dateStr: string) {
   const d = new Date(dateStr);
   return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+}
+
+const LEFT = "md:w-[calc((100vw-var(--gap)*2)*0.25-1.5rem)] shrink-0";
+const RIGHT = "w-full md:w-[calc((100vw-var(--gap)*2)*0.75)]";
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+  <section className="px-[var(--gap)]">
+    <div className="flex flex-col md:flex-row py-12 md:py-16 gap-6 md:gap-0">
+      <div className={LEFT}>
+        <span className="type-section">{label}</span>
+      </div>
+      <div className={RIGHT}>{children}</div>
+    </div>
+    <hr className="dots-x" />
+  </section>
+  );
 }
 
 export default async function ProjectDetailPage({ params }: Props) {
@@ -56,301 +54,125 @@ export default async function ProjectDetailPage({ params }: Props) {
     <div className="min-h-screen bg-paper">
       <Header />
 
-      {/* Hero */}
-      <div className="relative h-72 md:h-96 w-full bg-navy-900">
-        <Image
-          src={project.sketchImage}
-          alt={project.title}
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to top,rgba(7,34,60,.85) 0%,rgba(13,59,102,.3) 55%,transparent 100%)",
-          }}
-        />
-
-        {/* Back */}
-        <div className="absolute top-4 left-5 md:left-8">
-          <Link
-            href={`/atelier/${artist.slug}`}
-            className="inline-flex items-center gap-1.5 text-white/80 hover:text-white text-sm font-medium transition-colors"
-          >
+      <main>
+        {/* 타이틀 */}
+        <section className="px-[var(--gap)] pt-6 md:pt-10">
+          <Link href={`/atelier/${artist.slug}`} className="link-line text-[14px] inline-block mb-8 md:mb-12">
             ← {artist.name} 아틀리에
           </Link>
-        </div>
+          <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
+            <BigTitle text={project.title} />
+          </div>
+          <hr className="dots-x" />
+        </section>
 
-        {/* Status badge */}
-        <div className="absolute top-4 right-5 md:right-8">
-          <span className="bg-sv text-ink text-xs font-bold px-3 py-1.5 rounded-full">
-            모집 중
-          </span>
-        </div>
+        {/* 이미지 */}
+        <section className="px-[var(--gap)] py-12 md:py-16">
+          <div data-sr="up" className="relative w-full aspect-[16/9] md:aspect-[16/6] overflow-hidden bg-surface-card">
+            <Image src={project.sketchImage} alt={project.title} fill sizes="100vw" className="object-cover" priority />
+          </div>
+          <hr className="dots-x mt-12 md:mt-16" />
+        </section>
 
-        {/* Title area */}
-        <div className="absolute bottom-6 left-5 md:left-8 right-5 md:right-8">
-          <p className="text-white/70 text-sm mb-1.5 font-medium">
-            {artist.name} 작가의 프로젝트
+        {/* 현황 */}
+        <Row label="Status">
+          <dl className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6">
+            {[
+              { k: "모인 금액", v: `${project.fundedAmount.toLocaleString()}원` },
+              { k: "목표 금액", v: `${project.targetAmount.toLocaleString()}원` },
+              { k: "남은 금액", v: `${remaining.toLocaleString()}원` },
+              { k: "함께하는 테오", v: `${project.sponsorCount}명` },
+            ].map((x) => (
+              <div key={x.k} data-sr="up">
+                <dt className="type-label text-muted mb-3">{x.k}</dt>
+                <dd className="type-m">{x.v}</dd>
+              </div>
+            ))}
+          </dl>
+        </Row>
+
+        {/* 작품 구상 */}
+        <Row label="Concept">
+          <p data-sr="up" className="type-m max-w-[40rem] mb-8" style={{ wordBreak: "keep-all", fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400 }}>
+            {project.concept}
           </p>
-          <h1 className="text-2xl md:text-3xl font-semibold text-white leading-snug mb-3">
-            {project.title}
-          </h1>
-        </div>
-      </div>
+          <div className="flex items-center gap-2 mb-10">
+            {artist.palette.map((color) => (
+              <span key={color} title={color} className="w-7 h-7 rounded-full border border-ink/20" style={{ background: color }} />
+            ))}
+            <span className="text-[14px] text-muted ml-2">작가 팔레트</span>
+          </div>
+          <Link href={`/atelier/${artist.slug}`} className="group flex items-center gap-4">
+            <span className="relative w-14 aspect-[1/1.25] overflow-hidden bg-surface-card shrink-0">
+              <Image src={artist.profileImage} alt={artist.name} fill sizes="56px" className="object-cover" />
+            </span>
+            <span>
+              <span className="block text-[19px] underlined group-hover:underline">{artist.name}</span>
+              <span className="block text-[14px] text-muted">{artist.oneLiner}</span>
+            </span>
+          </Link>
+        </Row>
 
-      {/* Funding summary bar */}
-      <div className="bg-navy-800 py-6 px-5 md:px-8">
-        <div className="max-w-[1080px] mx-auto">
-          <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+        {/* 재료 선물 플로우 */}
+        {projectMaterials.length > 0 && (
+          <Row label="Gift">
+            <SponsorFlowSheet
+              materials={projectMaterials.map((m) => ({
+                id: m.id,
+                name: m.name,
+                price: m.price,
+                usageNote: m.usageNote,
+                isFunded: m.isFunded,
+              }))}
+              artist={{ id: artist.id, name: artist.name, slug: artist.slug }}
+              project={{ id: project.id, title: project.title, sponsorCount: project.sponsorCount }}
+            />
+          </Row>
+        )}
+
+        {/* 선물한 테오 명단 */}
+        {projectSponsors.length > 0 && (
+          <Row label="Theos">
+            <p className="text-[15px] text-muted mb-6">{projectSponsors.length}명의 테오가 이 작품을 응원합니다</p>
             <div>
-              <span className="text-2xl font-black text-white">
-                {project.fundedAmount.toLocaleString()}원
-              </span>
-              <span className="text-white/50 text-sm ml-2">모였어요</span>
-            </div>
-            <div className="flex items-center gap-4 text-sm">
-              <span className="text-white/60">
-                목표{" "}
-                <span className="text-white/80 font-semibold">
-                  {project.targetAmount.toLocaleString()}원
-                </span>
-              </span>
-            </div>
-          </div>
-          <div className="flex justify-between text-xs mt-2.5">
-            <span className="text-white/50">
-              테오{" "}
-              <span className="text-sv font-bold">{project.sponsorCount}명</span>이 함께합니다
-            </span>
-            <span className="text-white/50">
-              남은 금액{" "}
-              <span className="text-white/70 font-medium">
-                {remaining.toLocaleString()}원
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main content */}
-      <div className="max-w-[1080px] mx-auto px-5 md:px-8 py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">
-
-          {/* Left column */}
-          <div className="space-y-12">
-
-            {/* 작품 구상 */}
-            <section>
-              <h2 className="text-[22px] font-semibold text-ink mb-1">작품 구상</h2>
-              <p className="text-xs text-muted mb-4">{artist.name} 작가의 창작 계획</p>
-
-              {/* Artist palette */}
-              <div className="flex gap-1.5 mb-5">
-                {artist.palette.map((color) => (
-                  <div
-                    key={color}
-                    title={color}
-                    className="w-6 h-6 rounded-full border-2 border-white shadow-sm"
-                    style={{ background: color }}
-                  />
-                ))}
-                <span className="text-xs text-muted self-center ml-1">작가 팔레트</span>
-              </div>
-
-              <div
-                className="bg-card rounded-2xl p-6 md:p-8 border border-line"
-              >
-                <p className="font-myeongjo text-ink leading-[2.1] text-[15px]">
-                  {project.concept}
-                </p>
-
-                <div className="mt-6 pt-5 border-t border-navy-100 flex items-center gap-3">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-sv-soft shrink-0">
-                    <Image
-                      src={artist.profileImage}
-                      alt={artist.name}
-                      fill
-                      sizes="40px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-navy-800">{artist.name}</p>
-                    <p className="text-xs text-muted">{artist.oneLiner}</p>
-                  </div>
-                  <Link
-                    href={`/atelier/${artist.slug}`}
-                    className="ml-auto text-xs text-navy-600 hover:text-navy-800 font-medium transition-colors shrink-0"
-                  >
-                    아틀리에 →
-                  </Link>
-                </div>
-              </div>
-
-            </section>
-
-            {/* 재료 위시리스트 + 선물 플로우 (클라이언트) */}
-            {projectMaterials.length > 0 && (
-              <SponsorFlowSheet
-                materials={projectMaterials.map((m) => ({
-                  id: m.id,
-                  name: m.name,
-                  price: m.price,
-                  usageNote: m.usageNote,
-                  isFunded: m.isFunded,
-                }))}
-                artist={{ id: artist.id, name: artist.name, slug: artist.slug }}
-                project={{ id: project.id, title: project.title, sponsorCount: project.sponsorCount }}
-              />
-            )}
-
-            {/* 선물한 테오 명단 */}
-            {projectSponsors.length > 0 && (
-              <section>
-                <h2 className="text-[22px] font-semibold text-ink mb-1">선물한 테오 명단</h2>
-                <p className="text-xs text-muted mb-5">
-                  {projectSponsors.length}명의 테오가 이 작품을 응원합니다
-                </p>
-
-                <div className="space-y-3">
-                  {projectSponsors.map((sp) => {
-                    const mat = materials.find((m) => m.id === sp.materialId);
-                    return (
-                      <div
-                        key={sp.id}
-                        className="bg-card rounded-2xl p-4 border border-line"
-                        style={{ boxShadow: "0 4px 12px rgba(23,29,43,.04)" }}
-                      >
-                        <div className="flex items-start gap-3">
-                          <SponsorAvatar nickname={sp.nickname} />
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-baseline justify-between gap-2">
-                              <span className="text-sm font-bold text-navy-800">
-                                {sp.nickname} 님
-                              </span>
-                              <span className="text-xs text-muted shrink-0">
-                                {formatDate(sp.date)}
-                              </span>
-                            </div>
-                            <p className="text-xs text-navy-600 mt-0.5">
-                              재료 선물{" "}
-                              <span className="font-semibold text-navy-700">
-                                {sp.amount.toLocaleString()}원
-                              </span>
-                            </p>
-                            {mat && (
-                              <p className="text-xs text-muted mt-0.5 truncate">
-                                → {mat.usageNote}
-                              </p>
-                            )}
-                            {sp.message && (
-                              <p className="mt-2 text-sm text-ink leading-relaxed bg-navy-50 rounded-lg px-3 py-2 border-l-2 border-sv">
-                                "{sp.message}"
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
-            )}
-
-          </div>
-
-          {/* Right sticky */}
-          <div className="lg:sticky lg:top-24 lg:self-start space-y-4">
-
-            {/* CTA card */}
-            <div
-              className="bg-navy-800 rounded-xl p-6"
-            >
-              <p className="text-sv text-xs font-bold tracking-[0.16em] uppercase mb-3">
-                재료 선물하기
-              </p>
-
-              <p className="text-white/60 text-xs mb-4">{project.sponsorCount}명 참여</p>
-
-              <p className="text-white/60 text-xs mb-5 leading-relaxed">
-                재료를 선물하면 {artist.name} 작가의<br />
-                담벼락에 함께 글을 남길 수 있어요.
-              </p>
-
-              <Link
-                href={`/sponsor/${artist.id}`}
-                className="w-full block bg-sv text-ink font-bold py-3.5 rounded-lg hover:bg-sv-soft transition-colors text-sm text-center"
-              >
-                재료 선물하기 →
-              </Link>
-            </div>
-
-            {/* 재료 요약 */}
-            {projectMaterials.length > 0 && (
-              <div
-                className="bg-card rounded-2xl p-4 border border-line"
-                style={{ boxShadow: "0 4px 12px rgba(23,29,43,.04)" }}
-              >
-                <p className="text-xs font-bold text-navy-700 mb-3">재료 현황</p>
-                {projectMaterials.map((m, i) => (
-                  <div key={m.id} className={`flex items-center justify-between py-2 ${i < projectMaterials.length - 1 ? "border-b border-navy-100" : ""}`}>
-                    <div className="flex-1 min-w-0 mr-2">
-                      <p className="text-xs text-navy-700 font-medium truncate">{m.usageNote}</p>
-                      <p className="text-xs text-muted truncate">{m.name}</p>
-                    </div>
-                    <div className="shrink-0 text-right">
-                      <p className="text-xs font-bold text-navy-700">{m.price.toLocaleString()}원</p>
-                      {m.isFunded ? (
-                        <span className="text-[10px] text-green-600 font-medium">선물 완료</span>
-                      ) : (
-                        <span className="text-[10px] text-muted">필요</span>
-                      )}
+              {projectSponsors.map((sp) => {
+                const mat = materials.find((m) => m.id === sp.materialId);
+                return (
+                  <div key={sp.id}>
+                    <hr className="dots-x" />
+                    <div className="py-5 grid grid-cols-[1fr_auto] gap-x-6 gap-y-1">
+                      <span className="text-[18px]">{sp.nickname} 님</span>
+                      <span className="text-[14px] text-muted">{formatDate(sp.date)}</span>
+                      <span className="text-[15px] text-muted col-span-2">
+                        재료 선물 {sp.amount.toLocaleString()}원{mat ? ` · ${mat.usageNote}` : ""}
+                      </span>
+                      {sp.message && <p className="col-span-2 mt-2 text-[16px] leading-relaxed">&ldquo;{sp.message}&rdquo;</p>}
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
-
-            {/* Fee info */}
-            <div className="bg-chiffon rounded-xl p-4 border border-sv/20 text-center">
-              <p className="text-xs text-navy-600 leading-relaxed">
-                재료가 {artist.name} 작가에게 전달됩니다.<br />
-                배송지는 공개되지 않습니다.
-              </p>
+                );
+              })}
             </div>
+          </Row>
+        )}
 
-            {/* Delivery steps */}
-            <div className="bg-card rounded-2xl p-4 border border-line">
-              <p className="text-xs font-bold text-navy-700 mb-3">전달 4단계</p>
-              {["선물 완료", "재료 준비 중", "작가에게 가는 중", "작가가 받았어요"].map(
-                (step, i) => (
-                  <div key={step} className="flex items-center gap-2.5 py-1.5">
-                    <div
-                      className={`w-5 h-5 rounded-full flex items-center justify-center font-black text-xs shrink-0 ${
-                        i === 0 ? "bg-sv text-ink" : "bg-navy-100 text-navy-400"
-                      }`}
-                    >
-                      {i + 1}
-                    </div>
-                    <span
-                      className={`text-xs ${
-                        i === 0 ? "font-semibold text-navy-800" : "text-muted"
-                      }`}
-                    >
-                      {step}
-                    </span>
-                  </div>
-                )
-              )}
-            </div>
-
-          </div>
-        </div>
-      </div>
+        {/* 전달 안내 */}
+        <Row label="Delivery">
+          <p className="text-[16px] leading-[1.8] mb-8 max-w-[34rem]">
+            재료가 {artist.name} 작가에게 전달됩니다. 배송지는 공개되지 않습니다.
+          </p>
+          <ol className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {["선물 완료", "재료 준비 중", "작가에게 가는 중", "작가가 받았어요"].map((step, i) => (
+              <li key={step}>
+                <span className="type-label text-muted block mb-2">0{i + 1}</span>
+                <span className="text-[16px]">{step}</span>
+              </li>
+            ))}
+          </ol>
+          <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[15px] mt-10 inline-flex">
+            재료 선물하기 →
+          </Link>
+        </Row>
+      </main>
     </div>
   );
 }

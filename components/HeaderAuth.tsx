@@ -28,11 +28,11 @@ export default function HeaderAuth() {
   if (user) {
     return (
       <div className="flex items-center gap-2">
-        <span className="text-[13px] font-semibold text-navy-600 hidden md:inline truncate max-w-[140px]">
+        <span className="text-[14px] font-semibold text-navy-600 hidden md:inline truncate max-w-[140px]">
           {user.email}
         </span>
         <button onClick={handleLogout}
-          className="text-[13px] font-semibold text-ink border border-line-strong px-3.5 py-2 rounded-xl hover:border-ink transition-colors"
+          className="text-[14px] font-semibold text-ink border border-line-strong px-3.5 py-2 rounded-xl hover:border-ink transition-colors"
           >
           로그아웃
         </button>
@@ -43,7 +43,7 @@ export default function HeaderAuth() {
   return (
     <>
       <button onClick={() => setShowModal(true)}
-        className="hidden md:inline-flex items-center text-[14px] font-semibold text-white bg-navy-900 hover:bg-navy-800 px-5 h-10 rounded-xl transition-colors">
+        className="hidden md:inline-flex items-center text-[15px] font-semibold text-white bg-navy-900 hover:bg-navy-800 px-5 h-10 rounded-xl transition-colors">
         로그인
       </button>
       {showModal && <AuthModal onClose={() => setShowModal(false)} />}

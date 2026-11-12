@@ -4,6 +4,7 @@ import { useState, useSyncExternalStore } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
+import PageTitle from "@/components/PageTitle";
 import AtelierSettings, { SettingsTab } from "@/components/atelier/AtelierSettings";
 import Wall from "@/components/atelier/Wall";
 import { useT } from "@/contexts/LangContext";
@@ -48,7 +49,7 @@ export default function MyAtelierPage() {
         <Header />
         <div className="max-w-[560px] mx-auto px-5 pt-32 text-center">
           <p className="text-navy-400 mb-6">{t("ma_not_found")}</p>
-          <Link href="/atelier/me" className="nb-btn px-8 py-3.5 rounded-xl font-black text-[15px]">
+          <Link href="/atelier/me" className="nb-btn px-8 py-3.5 rounded-xl font-black text-[16px]">
             {t("ma_list_btn")}
           </Link>
         </div>
@@ -62,16 +63,17 @@ export default function MyAtelierPage() {
   return (
     <div className="min-h-screen bg-paper">
       <Header />
+      <PageTitle text="My Atelier" />
 
       {/* 소유자 바 */}
       <div className="bg-navy-800 px-5 md:px-8 py-3">
         <div className="max-w-[1080px] mx-auto flex items-center justify-between gap-3">
-          <p className="text-[12.5px] font-semibold text-chiffon/80 min-w-0" style={{ wordBreak: "keep-all" }}>
+          <p className="text-[13.5px] font-semibold text-chiffon/80 min-w-0" style={{ wordBreak: "keep-all" }}>
             {justCreated ? t("ma_created") : t("ma_owner_bar")}
           </p>
           <button
             onClick={() => setSettingsTab("profile")}
-            className="shrink-0 bg-sv text-ink text-[12.5px] font-bold px-4 py-2 rounded-lg hover:bg-sv-soft transition-colors"
+            className="shrink-0 bg-sv text-ink text-[13.5px] font-bold px-4 py-2 rounded-lg hover:bg-sv-soft transition-colors"
           >
             {t("ma_settings")}
           </button>
@@ -117,7 +119,7 @@ export default function MyAtelierPage() {
                   <p className="font-myeongjo text-navy-600 text-sm mb-2">{atelier.oneLiner}</p>
                 ) : (
                   <button onClick={() => setSettingsTab("profile")}
-                    className="text-[13px] text-navy-400 underline underline-offset-2 mb-2 text-left">
+                    className="text-[14px] text-navy-400 underline underline-offset-2 mb-2 text-left">
                     {t("ma_oneliner_empty")}
                   </button>
                 )}
@@ -131,7 +133,7 @@ export default function MyAtelierPage() {
           <div className="space-y-10 min-w-0">
             {/* 프로젝트 */}
             <section>
-              <h2 className="text-[22px] font-semibold text-ink mb-4">{t("ma_project_title")}</h2>
+              <h2 className="text-[24px] font-semibold text-ink mb-4">{t("ma_project_title")}</h2>
               {project ? (
                 <div className="bg-card rounded-2xl overflow-hidden border border-line" style={CARD_SHADOW}>
                   {project.image && (
@@ -142,7 +144,7 @@ export default function MyAtelierPage() {
                     </div>
                   )}
                   <div className="p-6">
-                    <p className="font-black text-navy-900 text-[18px] mb-2">{project.title}</p>
+                    <p className="font-black text-navy-900 text-[19px] mb-2">{project.title}</p>
                     <p className="text-sm text-ink leading-relaxed mb-5 whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
                       {project.concept}
                     </p>
@@ -158,11 +160,11 @@ export default function MyAtelierPage() {
               ) : (
                 <div className="rounded-2xl border border-dashed border-line-strong p-8 text-center">
                   <p className="font-bold text-navy-700 mb-1.5">{t("ma_project_empty")}</p>
-                  <p className="text-[13px] text-muted leading-[1.7] mb-5 max-w-[360px] mx-auto" style={{ wordBreak: "keep-all" }}>
+                  <p className="text-[14px] text-muted leading-[1.7] mb-5 max-w-[360px] mx-auto" style={{ wordBreak: "keep-all" }}>
                     {t("ma_project_empty_sub")}
                   </p>
                   <button onClick={() => setSettingsTab("project")}
-                    className="nb-btn px-6 py-3 rounded-xl font-black text-[14px]">
+                    className="nb-btn px-6 py-3 rounded-xl font-black text-[15px]">
                     {t("ma_project_add")}
                   </button>
                 </div>
@@ -171,9 +173,9 @@ export default function MyAtelierPage() {
 
             {/* 작가노트 */}
             <section>
-              <h2 className="text-[22px] font-semibold text-ink mb-4">{t("ma_note_title")}</h2>
+              <h2 className="text-[24px] font-semibold text-ink mb-4">{t("ma_note_title")}</h2>
               <div className="bg-card rounded-2xl p-6 border border-line" style={CARD_SHADOW}>
-                <p className="text-[15px] text-navy-900 leading-[2.0] font-myeongjo whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
+                <p className="text-[16px] text-navy-900 leading-[2.0] font-myeongjo whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
                   {atelier.artistNote}
                 </p>
               </div>
@@ -182,18 +184,18 @@ export default function MyAtelierPage() {
             {/* 필요한 재료 */}
             {atelier.materials.length > 0 && (
               <section>
-                <h2 className="text-[22px] font-semibold text-ink mb-4">{t("ma_materials_title")}</h2>
+                <h2 className="text-[24px] font-semibold text-ink mb-4">{t("ma_materials_title")}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {atelier.materials.map((m, i) => (
                     <div key={i} className="rounded-2xl border border-line bg-card p-4 flex flex-col" style={CARD_SHADOW}>
-                      <p className="text-[11px] font-bold tracking-[0.14em] uppercase text-navy-400 mb-2 truncate">
+                      <p className="text-[12px] font-bold tracking-[0.14em] uppercase text-navy-400 mb-2 truncate">
                         {hostOf(m.link)}
                       </p>
-                      <p className="text-[13px] text-navy-800 leading-[1.7] flex-1 mb-3" style={{ wordBreak: "keep-all" }}>
+                      <p className="text-[14px] text-navy-800 leading-[1.7] flex-1 mb-3" style={{ wordBreak: "keep-all" }}>
                         {m.reason}
                       </p>
                       <a href={m.link} target="_blank" rel="noopener noreferrer"
-                        className="text-[12.5px] font-bold text-navy-700 hover:text-navy-900 transition-colors">
+                        className="text-[13.5px] font-bold text-navy-700 hover:text-navy-900 transition-colors">
                         {t("ma_material_open")}
                       </a>
                     </div>
@@ -211,7 +213,7 @@ export default function MyAtelierPage() {
             {(sns || atelier.portfolio) && (
               <div className="bg-card rounded-2xl p-5 border border-line">
                 <p className="text-xs font-bold text-navy-700 mb-3">{t("ma_links_title")}</p>
-                <div className="space-y-2.5 text-[13px]">
+                <div className="space-y-2.5 text-[14px]">
                   {sns && (
                     <a href={sns} target="_blank" rel="noopener noreferrer" className="flex justify-between gap-3 group">
                       <span className="text-navy-400 font-semibold shrink-0">{t("ob_sns")}</span>
@@ -229,7 +231,7 @@ export default function MyAtelierPage() {
             )}
 
             <button onClick={() => setSettingsTab("profile")}
-              className="nb-btn-outline w-full py-3 rounded-xl font-black text-[14px]">
+              className="nb-btn-outline w-full py-3 rounded-xl font-black text-[15px]">
               {t("ma_settings")}
             </button>
           </div>

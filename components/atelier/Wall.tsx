@@ -54,7 +54,7 @@ function Composer({ wallId, author }: { wallId: string; author: WallAuthor }) {
     <div className="bg-card rounded-2xl border border-line p-4 mb-8">
       <div className="flex items-center gap-2 mb-3">
         <RoleBadge role={author.role} />
-        <span className="text-[13px] font-bold text-navy-800">{author.name}</span>
+        <span className="text-[14px] font-bold text-navy-800">{author.name}</span>
       </div>
       <textarea
         value={text}
@@ -77,13 +77,13 @@ function Composer({ wallId, author }: { wallId: string; author: WallAuthor }) {
       {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
       <div className="flex items-center justify-between mt-3">
         <button type="button" onClick={() => fileRef.current?.click()}
-          className="text-[13px] font-semibold text-navy-600 hover:text-navy-800 transition-colors">
+          className="text-[14px] font-semibold text-navy-600 hover:text-navy-800 transition-colors">
           {t("wall_add_photo")}
         </button>
         <div className="flex items-center gap-3">
-          <span className="text-[11px] text-navy-400">{text.length}/{MAX_TEXT}</span>
+          <span className="text-[12px] text-navy-400">{text.length}/{MAX_TEXT}</span>
           <button type="button" onClick={submit} disabled={!text.trim() && !image}
-            className="nb-btn px-5 py-2 rounded-lg font-black text-[13px] disabled:opacity-40 disabled:pointer-events-none">
+            className="nb-btn px-5 py-2 rounded-lg font-black text-[14px] disabled:opacity-40 disabled:pointer-events-none">
             {t("wall_submit")}
           </button>
         </div>
@@ -97,9 +97,9 @@ function Composer({ wallId, author }: { wallId: string; author: WallAuthor }) {
 function RoleBadge({ role }: { role: WallRole }) {
   const t = useT();
   return role === "artist" ? (
-    <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-sv text-ink">{t("wall_role_artist")}</span>
+    <span className="text-[11px] font-black px-2 py-0.5 rounded-full bg-sv text-ink">{t("wall_role_artist")}</span>
   ) : (
-    <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-navy-100 text-navy-700">{t("wall_role_theo")}</span>
+    <span className="text-[11px] font-black px-2 py-0.5 rounded-full bg-navy-100 text-navy-700">{t("wall_role_theo")}</span>
   );
 }
 
@@ -123,20 +123,20 @@ function PostCard({ post, artistName }: { post: WallPost; artistName: string }) 
       <div className={`flex items-center justify-between gap-2 mb-2 ${isArtist ? "flex-row-reverse" : ""}`}>
         <div className={`flex items-center gap-2 min-w-0 ${isArtist ? "flex-row-reverse" : ""}`}>
           <RoleBadge role={post.role} />
-          <span className="text-[13px] font-bold text-navy-800 truncate">{isArtist ? artistName : post.authorName}</span>
+          <span className="text-[14px] font-bold text-navy-800 truncate">{isArtist ? artistName : post.authorName}</span>
         </div>
-        <time className="text-[11px] text-muted shrink-0">{formatDate(post.createdAt, lang)}</time>
+        <time className="text-[12px] text-muted shrink-0">{formatDate(post.createdAt, lang)}</time>
       </div>
       {hasTitle ? (
         <>
-          <p className="font-myeongjo font-bold text-navy-800 text-[14px] mb-1.5">{title}</p>
-          <p className="text-[13.5px] text-ink leading-[1.85] whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
+          <p className="font-myeongjo font-bold text-navy-800 text-[15px] mb-1.5">{title}</p>
+          <p className="text-[14.5px] text-ink leading-[1.85] whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
             {rest.join("\n\n")}
           </p>
         </>
       ) : (
         post.text && (
-          <p className={`text-[13.5px] text-ink leading-[1.85] whitespace-pre-line ${isArtist ? "font-myeongjo" : ""}`}
+          <p className={`text-[14.5px] text-ink leading-[1.85] whitespace-pre-line ${isArtist ? "font-myeongjo" : ""}`}
             style={{ wordBreak: "keep-all" }}>
             {post.text}
           </p>
@@ -149,7 +149,7 @@ function PostCard({ post, artistName }: { post: WallPost; artistName: string }) 
       {post.mine && (
         <div className={`mt-2 ${isArtist ? "text-left" : "text-right"}`}>
           <button onClick={() => deleteWallPost(post.id)}
-            className="text-[11px] text-navy-400 hover:text-red-500 underline underline-offset-2">
+            className="text-[12px] text-navy-400 hover:text-red-500 underline underline-offset-2">
             {t("wall_delete")}
           </button>
         </div>
@@ -175,23 +175,23 @@ export default function Wall({
 
   return (
     <section id="wall">
-      <h2 className="text-[22px] font-semibold text-ink mb-1">{t("wall_title")}</h2>
+      <h2 className="text-[24px] font-semibold text-ink mb-1">{t("wall_title")}</h2>
       <p className="text-xs text-muted mb-6">{t("wall_sub")}</p>
 
       {author ? (
         <Composer wallId={wallId} author={author} />
       ) : (
         <div className="rounded-2xl border border-dashed border-line-strong px-5 py-4 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <p className="text-[13px] text-navy-600 leading-[1.7]" style={{ wordBreak: "keep-all" }}>{t("wall_locked")}</p>
+          <p className="text-[14px] text-navy-600 leading-[1.7]" style={{ wordBreak: "keep-all" }}>{t("wall_locked")}</p>
           {lockedCta && (
-            <Link href={lockedCta.href} className="nb-btn shrink-0 px-4 py-2 rounded-lg font-black text-[13px] text-center">
+            <Link href={lockedCta.href} className="nb-btn shrink-0 px-4 py-2 rounded-lg font-black text-[14px] text-center">
               {lockedCta.label}
             </Link>
           )}
         </div>
       )}
 
-      <div className="flex justify-between text-[11px] font-bold text-navy-400 mb-3 px-1">
+      <div className="flex justify-between text-[12px] font-bold text-navy-400 mb-3 px-1">
         <span>{t("wall_side_theo")}</span>
         <span>{t("wall_side_artist")}</span>
       </div>
@@ -221,9 +221,9 @@ export default function Wall({
           {/* 시작점 */}
           <li className="relative flex flex-col items-center pt-2">
             <span aria-hidden="true" className="w-3 h-3 rounded-full bg-white border-2 border-navy-400 mb-2" />
-            <p className="text-[12.5px] font-bold text-navy-600 bg-paper px-2">{t("wall_root")}</p>
+            <p className="text-[13.5px] font-bold text-navy-600 bg-paper px-2">{t("wall_root")}</p>
             {posts && posts.length === 0 && (
-              <p className="text-[12px] text-muted mt-0.5 bg-paper px-2">{t("wall_empty")}</p>
+              <p className="text-[13px] text-muted mt-0.5 bg-paper px-2">{t("wall_empty")}</p>
             )}
           </li>
         </ol>

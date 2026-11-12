@@ -86,12 +86,12 @@ function ImagePicker({
         </div>
         <div className="flex flex-col gap-2">
           <button type="button" onClick={() => inputRef.current?.click()}
-            className="nb-btn-outline px-4 py-2 rounded-lg font-bold text-[13px]">
+            className="nb-btn-outline px-4 py-2 rounded-lg font-bold text-[14px]">
             {t("st_upload")}
           </button>
           {value && (
             <button type="button" onClick={() => onChange("")}
-              className="text-[12px] text-navy-400 hover:text-navy-700 underline underline-offset-2 text-left">
+              className="text-[13px] text-navy-400 hover:text-navy-700 underline underline-offset-2 text-left">
               {t("st_remove")}
             </button>
           )}
@@ -213,7 +213,7 @@ export default function AtelierSettings({
         {/* 헤더 */}
         <div className="flex items-center justify-between px-6 pt-5 pb-3">
           <h2 className="text-lg font-semibold text-ink">{t("st_title")}</h2>
-          <button onClick={onClose} className="text-[13px] font-semibold text-navy-400 hover:text-navy-800 px-2 py-1">
+          <button onClick={onClose} className="text-[14px] font-semibold text-navy-400 hover:text-navy-800 px-2 py-1">
             {t("st_close")}
           </button>
         </div>
@@ -222,7 +222,7 @@ export default function AtelierSettings({
         <div className="flex gap-1 px-6 border-b border-line">
           {TABS.map((tb) => (
             <button key={tb.id} onClick={() => setTab(tb.id)}
-              className={`relative px-3 py-2.5 text-[13px] font-bold border-b-2 -mb-px transition-colors ${
+              className={`relative px-3 py-2.5 text-[14px] font-bold border-b-2 -mb-px transition-colors ${
                 tab === tb.id ? "border-navy-800 text-navy-900" : "border-transparent text-navy-400 hover:text-navy-700"
               }`}>
               {t(tb.key)}
@@ -249,23 +249,23 @@ export default function AtelierSettings({
               <div className="pt-5 mt-2 border-t border-line">
                 {confirmDelete ? (
                   <div className="rounded-xl border-2 border-red-200 bg-red-50 p-4">
-                    <p className="text-[13px] text-red-700 font-semibold mb-3" style={{ wordBreak: "keep-all" }}>
+                    <p className="text-[14px] text-red-700 font-semibold mb-3" style={{ wordBreak: "keep-all" }}>
                       {t("st_delete_confirm")}
                     </p>
                     <div className="flex gap-2">
                       <button type="button" onClick={onDelete}
-                        className="flex-1 bg-red-600 text-white text-[13px] font-bold py-2.5 rounded-lg hover:bg-red-700 transition-colors">
+                        className="flex-1 bg-red-600 text-white text-[14px] font-bold py-2.5 rounded-lg hover:bg-red-700 transition-colors">
                         {t("st_delete_yes")}
                       </button>
                       <button type="button" onClick={() => setConfirmDelete(false)}
-                        className="flex-1 border border-navy-200 text-navy-700 text-[13px] font-bold py-2.5 rounded-lg hover:bg-navy-100 transition-colors">
+                        className="flex-1 border border-navy-200 text-navy-700 text-[14px] font-bold py-2.5 rounded-lg hover:bg-navy-100 transition-colors">
                         {t("st_delete_no")}
                       </button>
                     </div>
                   </div>
                 ) : (
                   <button type="button" onClick={() => setConfirmDelete(true)}
-                    className="text-[12.5px] text-red-500 hover:text-red-600 underline underline-offset-2">
+                    className="text-[13.5px] text-red-500 hover:text-red-600 underline underline-offset-2">
                     {t("st_delete")}
                   </button>
                 )}
@@ -283,7 +283,7 @@ export default function AtelierSettings({
 
           {tab === "project" && (
             <>
-              <p className="text-[14px] text-muted leading-[1.8]" style={{ wordBreak: "keep-all" }}>
+              <p className="text-[15px] text-muted leading-[1.8]" style={{ wordBreak: "keep-all" }}>
                 {t("st_proj_desc")}
               </p>
               <Field label={t("st_proj_title")} error={errors.proj_title}>
@@ -305,7 +305,7 @@ export default function AtelierSettings({
               {projectTouched && (
                 <button type="button"
                   onClick={() => { setProject({ title: "", concept: "", targetAmount: "", image: "" }); setErrors({}); }}
-                  className="text-[12.5px] text-red-500 hover:text-red-600 underline underline-offset-2">
+                  className="text-[13.5px] text-red-500 hover:text-red-600 underline underline-offset-2">
                   {t("st_proj_delete")}
                 </button>
               )}
@@ -316,7 +316,7 @@ export default function AtelierSettings({
         {/* 하단 저장 */}
         <div className="border-t border-line px-6 py-4 bg-paper">
           {saveError && <p className="text-red-500 text-xs mb-2">{saveError}</p>}
-          <button onClick={handleSave} className="nb-btn w-full py-3.5 rounded-xl font-black text-[15px]">
+          <button onClick={handleSave} className="nb-btn w-full py-3.5 rounded-xl font-black text-[16px]">
             {t("st_save")}
           </button>
         </div>
