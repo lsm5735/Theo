@@ -12,3 +12,10 @@ export const NOTION_URL =
  * 비워두면 애널리틱스가 아예 로드되지 않습니다. (측정 꺼짐)
  */
 export const GA_ID: string = "G-ST6EYVML8L";
+
+/**
+ * 테오 봇 "문의 남기기"를 받을 이메일 주소.
+ * 비워두면 문의가 어디로도 전달되지 않고, 봇이 "아직 연결되지 않았다"고 안내합니다.
+ * (서버에서 자동 발송하려면 Vercel 환경변수 RESEND_API_KEY 도 필요합니다 — 없으면 사용자의 메일 앱으로 열어 보냅니다.)
+ */
+export const INQUIRY_EMAIL: string = "atheoart0@gmail.com";

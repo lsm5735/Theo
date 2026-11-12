@@ -2,8 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { NOTION_URL } from "@/lib/site";
-import { trackNotionClick } from "@/lib/analytics";
 
 export default function FloatingChatbot() {
   const pathname = usePathname();
@@ -14,21 +12,18 @@ export default function FloatingChatbot() {
   return (
     <div className="fixed bottom-6 right-5 md:right-8 z-50 pointer-events-none select-none">
       <div className="flex flex-col items-center">
-        {/* 말풍선 → 노션 참여 모집 페이지 */}
-        <a
-          href={NOTION_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackNotionClick("chatbot_bubble")}
+        {/* 말풍선 → 테오 봇(문의) */}
+        <Link
+          href="/bot"
           className="relative mb-4 pointer-events-auto group"
-          aria-label="서비스 소개서 요청하기"
+          aria-label="테오에게 문의하기"
         >
           <div
             className="bg-card border border-line rounded-2xl px-4 py-2.5 whitespace-nowrap group-hover:border-navy-400 transition-colors duration-200"
             style={{ boxShadow: "0 4px 20px rgba(13,59,102,.14)" }}
           >
             <p className="text-[13.5px] font-semibold text-navy-800 leading-snug">
-              서비스 소개서 요청하기 →
+              테오에게 문의하기 →
             </p>
           </div>
 
@@ -56,7 +51,7 @@ export default function FloatingChatbot() {
               borderTop: "9px solid #ffffff",
             }}
           />
-        </a>
+        </Link>
 
         {/* 캐릭터 이미지 → 테오 봇 */}
         <Link

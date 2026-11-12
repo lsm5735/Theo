@@ -17,7 +17,7 @@ const SERIF = { fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400 }
 function Row({ label, children, id }: { label: string; children: React.ReactNode; id?: string }) {
   return (
     <section className="px-[var(--gap)]" id={id}>
-      <div className="flex flex-col md:flex-row py-12 md:py-16 gap-6 md:gap-0">
+      <div className="flex flex-col md:flex-row py-20 md:py-32 gap-6 md:gap-0">
         <div className={LEFT}>
           <span className="type-section">{label}</span>
         </div>
@@ -78,18 +78,18 @@ export default function Home() {
         {/* ═══ HERO 타이틀 ═══ */}
         <section className="px-[var(--gap)]">
           {/* 슬로건 — 큰 사진을 뒷 배경으로 */}
-          <div className="relative -mx-[var(--gap)] px-[var(--gap)] pt-10 md:pt-16 overflow-hidden text-[var(--theo-yellow)]">
+          <div className="relative -mx-[var(--gap)] px-[var(--gap)] pt-24 md:pt-44 overflow-hidden text-[var(--theo-yellow)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/hero-museum.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
             <div aria-hidden="true" className="absolute inset-0 bg-navy-900/45" />
-            <div data-sr="fade" className="relative pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
+            <div data-sr="fade" className="relative pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-24 md:pb-44">
               <BigTitle text={"GIVE PAINT,\nNOT FLOWERS"} typing />
             </div>
           </div>
           <hr className="dots-x" />
 
           {/* ═══ 1. INTRO ═══ */}
-          <div className="flex flex-col md:flex-row py-12 md:py-16 gap-6 md:gap-0">
+          <div className="flex flex-col md:flex-row py-20 md:py-32 gap-6 md:gap-0">
             <div className={LEFT}>
               <span className="type-section">Intro</span>
             </div>
@@ -203,7 +203,7 @@ export default function Home() {
 
         {/* ═══ 5. ARTISTS ═══ */}
         <section className="px-[var(--gap)]" id="projects">
-          <div className="flex flex-col md:flex-row py-12 md:py-16 gap-6 md:gap-0">
+          <div className="flex flex-col md:flex-row py-20 md:py-32 gap-6 md:gap-0">
             <div className={LEFT}>
               <span className="type-section">Artists</span>
             </div>
@@ -266,7 +266,7 @@ export default function Home() {
 
         {/* ═══ 8. CONTACT ═══ */}
         <section className="px-[var(--gap)]">
-          <div className="flex flex-col md:flex-row py-16 md:py-24 gap-6 md:gap-0">
+          <div className="flex flex-col md:flex-row py-24 md:py-36 gap-6 md:gap-0">
             <div className={LEFT}>
               <span className="type-section">Contact</span>
             </div>
