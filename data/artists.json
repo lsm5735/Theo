@@ -129,9 +129,9 @@
     "slug": "zinhyung",
     "name": "진형",
     "nameEn": "ZINHYUNG",
-    "oneLiner": "[입력 예시] 한 줄 소개를 입력해 주세요.",
+    "oneLiner": "거기 누구 있나요? 우린 아직 존재하고 있나요?",
     "careerStage": "신진",
-    "artistNote": "[입력 예시] 작가노트가 들어갈 자리입니다. 이번 전시를 준비하는 과정에서 어떤 이야기를 담고 있는지, 어떤 재료와 방식으로 작업하는지 작가 본인의 말로 적어 주세요. 정식 내용이 확정되면 data/artists.json의 artistNote를 교체하면 됩니다.",
+    "artistNote": "저는 대혐오의 파도에 의해 인류가 멸종에 가까워지고 있다는 사실이 무섭습니다.\n어둠의 시대에 혐오의 불꽃에 타버리지 않고 내면의 빛을 스스로 밝히는 것.\n이것이 스스로 멸종의 위기로 들어가려는 인간의 조용한 해답이 되기를 바랍니다.",
     "palette": [
       "#2A1F2E",
       "#5B3E63",
@@ -142,8 +142,18 @@
     "status": "active",
     "profileImage": "/artists/zinhyung.jpg",
     "cardImage": "/artists/zinhyung-cover.jpg",
-    "coverImage": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&h=480&fit=crop&q=80",
+    "coverImage": "/artists/zinhyung-banner.jpg",
     "followers": 0,
-    "totalSponsors": 1
+    "totalSponsors": 1,
+    "titleColor": "#f4c444",
+    "buttonColor": "#b3841a",
+    "statement": "좋은 결과만 있으면 하는 바람에 끝을 내기도 전에 덮어버린 작품이 많았습니다.\n어떻게 하면 과정까지 사랑할 수 있을까요?\n\n어렸을 때 시골 동네에서 동네 어른들에게 들키지 않고 PC방을 가기란 결코 쉬운 일이 아니었습니다.\n그렇게 5분 걸릴 거리를 저는 논과 밭, 산 길을 돌고 돌아서야 40분을 걸려 도착할 수 있었습니다.\n그 과정을 너무 즐겨버린 탓에 그럴 필요가 없어졌을 때 까지도 저는 먼 길을 돌아가곤 했습니다.\n\n문득 바쁜 현실의 속도에 발맞춰 살아가느라 과정을 즐겨버리는 방법을 잃어버린 건 아닐까라는 생각이 들었습니다.\n그렇게 또 다짐합니다. 과정없는 결과를 바라지 말자고. 그리고 과정을 사랑하자고.\n\n이 세상 그 어떤 아름다운 꽃들도 다 흔들리면서 피었나니, 흔들리지 않고 가는 사랑도,  사람도 어디 있을까요.\n힘든 결과를 버텨낼 만큼 좋아하는 것이 있는 사람만큼 아름다운 사람은 없는 것 같습니다.",
+    "coverPosition": "50% 45%",
+    "workImage": "/artists/zinhyung-work.jpg",
+    "extraImages": [
+      "/artists/zinhyung-notes.jpg"
+    ],
+    "shopUrl": "https://smartstore.naver.com/atheoart/category/264371afde8a437fa33740c237d3d6b9?cp=1",
+    "usageColor": "#b8881c"
   }
 ]

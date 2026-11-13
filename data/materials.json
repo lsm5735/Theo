@@ -102,30 +102,33 @@
     "id": "project_artist_theo_004_mat_01",
     "projectId": "project_artist_theo_004",
     "artistId": "artist_theo_004",
-    "name": "[입력 예시] 캔버스 F30호 1점",
-    "price": 45000,
-    "usageNote": "[입력 예시] 작품 바탕",
-    "isFunded": true,
-    "imageUrl": "/mat-canvas1.jpeg"
+    "name": "쉴드 겔 미디엄 250ml+(리워드 1종)",
+    "price": 10000,
+    "usageNote": "디지털 이미지를 캔버스 위로 옮겨주는 재료에요.",
+    "isFunded": false,
+    "imageUrl": "/artists/zinhyung-mat-1.jpg",
+    "link": "https://smartstore.naver.com/atheoart/products/13870225013"
   },
   {
     "id": "project_artist_theo_004_mat_02",
     "projectId": "project_artist_theo_004",
     "artistId": "artist_theo_004",
-    "name": "[입력 예시] 메인 물감 3색 세트",
-    "price": 32000,
-    "usageNote": "[입력 예시] 주요 색 작업",
+    "name": "조소냐 과슈 아크릴물감 백그라운드컬러 250ml 702 Charcoal+(리워드 2종)",
+    "price": 30000,
+    "usageNote": "이번 오픈 스튜디오 작업에서 쓰여요.",
     "isFunded": false,
-    "imageUrl": "/mat-oil.jpg"
+    "imageUrl": "/artists/zinhyung-mat-2.jpg",
+    "link": "https://smartstore.naver.com/atheoart/products/13870263431"
   },
   {
     "id": "project_artist_theo_004_mat_03",
     "projectId": "project_artist_theo_004",
     "artistId": "artist_theo_004",
-    "name": "[입력 예시] 붓 3종 세트",
-    "price": 18000,
-    "usageNote": "[입력 예시] 밑칠과 디테일",
+    "name": "리퀴텍스 매트 젤 미디엄 473ml+(리워드 2종)",
+    "price": 50000,
+    "usageNote": "디지털 이미지를 캔버스 위로 옮겨주는 재료에요.",
     "isFunded": false,
-    "imageUrl": "/mat-brush.jpg"
+    "imageUrl": "/artists/zinhyung-mat-3.jpg",
+    "link": "https://smartstore.naver.com/atheoart/products/13870272803"
   }
 ]
