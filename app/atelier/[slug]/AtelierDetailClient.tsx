@@ -23,9 +23,12 @@ interface Artist {
   shopUrl?: string;
   titleColor?: string;
   buttonColor?: string;
+  usageColor?: string;
   coverPosition?: string;
   extraImages?: string[];
   workImageMore?: string[];
+  coverNatural?: boolean;
+  noteFlow?: ({ t: string; corner?: { img: string; alt?: string }; img?: undefined; row?: undefined; size?: undefined; alt?: undefined } | { row: { img: string; alt?: string }[]; t?: undefined; img?: undefined; size?: undefined; alt?: undefined } | { t?: undefined; row?: undefined; img: string; size?: string; alt?: string })[];
 }
 
 interface Material {
@@ -115,11 +118,55 @@ export default function AtelierDetailClient({ artist, materials }: Props) {
 
         {/* 커버 이미지 */}
         <section className="px-[var(--gap)] py-12 md:py-16">
+          {artist.coverNatural ? (
+            <div data-sr="up" className="w-full overflow-hidden bg-surface-card">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={artist.coverImage} alt={`${artist.name} 작품 모음`} className="block w-full h-auto" />
+            </div>
+          ) : (
           <div data-sr="up" className="relative w-full aspect-[16/9] md:aspect-[16/6] overflow-hidden bg-surface-card">
             <Image src={artist.coverImage} alt={`${artist.name} 커버`} fill sizes="100vw" className="object-cover" style={{ objectPosition: artist.coverPosition ?? "center" }} priority />
           </div>
+          )}
           <hr className="dots-x mt-12 md:mt-16" />
         </section>
+
+        {/* 작가 노트 — 글 사이사이에 작품 사진 */}
+        {artist.noteFlow && (
+          <Row label="Note">
+            <div className="space-y-10 md:space-y-14">
+              {artist.noteFlow.map((b, i) =>
+                b.t !== undefined ? (
+                  b.corner ? (
+                    // 글 아래, 오른쪽 끝에 작은 사진
+                    <div key={i} data-sr="up" className="w-full max-w-[62rem]">
+                      <p className="text-[16.9px] leading-[1.95] whitespace-pre-line" style={{ wordBreak: "keep-all" }}>{b.t}</p>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={b.corner.img} alt={b.corner.alt ?? `${artist.name} 작품`} className="block ml-auto mt-6 w-[11rem] md:w-[17.5rem] h-auto" />
+                    </div>
+                  ) : (
+                    <p key={i} data-sr="up" className="text-[16.9px] leading-[1.95] whitespace-pre-line" style={{ wordBreak: "keep-all" }}>{b.t}</p>
+                  )
+                ) : b.row ? (
+                  <div key={i} data-sr="up" className="grid grid-cols-2 gap-3 md:gap-5 w-full max-w-[62rem]">
+                    {b.row.map((r) => (
+                      <div key={r.img} className="overflow-hidden bg-surface-card">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={r.img} alt={r.alt ?? `${artist.name} 작품`} className="block w-full h-auto" />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div key={i} data-sr="up"
+                    className={`overflow-hidden bg-surface-card w-full ${b.size === "md" ? "max-w-[30rem]" : b.size === "lg" ? "max-w-[62rem]" : ""}`}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={b.img!} alt={b.alt ?? `${artist.name} 작품`} className="block w-full h-auto" />
+                  </div>
+                )
+              )}
+            </div>
+          </Row>
+        )}
 
         {/* 작가 노트 (본문 + 작품) */}
         {artist.statement && (
@@ -175,7 +222,7 @@ export default function AtelierDetailClient({ artist, materials }: Props) {
                       )}
                     </div>
                     <p className="text-[16px] leading-snug line-clamp-2 mb-1 group-hover:underline underline-offset-4">{m.name}</p>
-                    <p className="text-[14px] text-muted leading-snug line-clamp-2 mb-2">{m.usageNote}</p>
+                    <p className={`text-[14px] leading-snug line-clamp-2 mb-2 ${artist.usageColor ? "" : "text-muted"}`} style={artist.usageColor ? { color: artist.usageColor } : undefined}>{m.usageNote}</p>
                     <p className="text-[16px] font-bold">{m.price.toLocaleString()}원</p>
                   </CardLink>
                 </div>

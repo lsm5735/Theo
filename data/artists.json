@@ -55,16 +55,17 @@
     "workImageMore": [
       "/artists/lee-dong-gu-work2.jpg"
     ],
-    "buttonColor": "#6f2b28"
+    "buttonColor": "#6f2b28",
+    "usageColor": "#8c3632"
   },
   {
     "id": "artist_theo_003",
     "slug": "jun-yejin",
     "name": "전예진",
     "nameEn": "JUN YEJIN",
-    "oneLiner": "[입력 예시] 한 줄 소개를 입력해 주세요.",
+    "oneLiner": "가끔은 눈을 뜬 세상보다 눈을 감은 세상이 궁금했어요",
     "careerStage": "신진",
-    "artistNote": "[입력 예시] 작가노트가 들어갈 자리입니다. 이번 전시를 준비하는 과정에서 어떤 이야기를 담고 있는지, 어떤 재료와 방식으로 작업하는지 작가 본인의 말로 적어 주세요. 정식 내용이 확정되면 data/artists.json의 artistNote를 교체하면 됩니다.",
+    "artistNote": "눈을 감아야만 갈 수 있는 세계를 그리고 있어요.\n그곳에서 복면을 쓴 존재들이 길을 잃으면 어디선가 빛나는 오리가 나타나 길을 안내해 줍니다.\n쓰임새 있는 존재가 되기 위해 삶에서 도태되지 않기 위해 치열하게 현실을 살아가는 여러분에게도 발광오리가 나타나 여러분이 가야 할 곳을 안내해 주었으면 합니다.",
     "palette": [
       "#2B3A55",
       "#5B7599",
@@ -75,9 +76,52 @@
     "status": "active",
     "profileImage": "/artists/jun-yejin.jpg",
     "cardImage": "/artists/jun-yejin-cover.jpg",
-    "coverImage": "https://images.unsplash.com/photo-1535813547-99c456a41d4a?w=1200&h=480&fit=crop&q=80",
+    "coverImage": "/artists/jun-yejin-1.jpg",
     "followers": 0,
-    "totalSponsors": 1
+    "totalSponsors": 1,
+    "titleColor": "#9287ab",
+    "buttonColor": "#665a8c",
+    "coverNatural": true,
+    "noteFlow": [
+      {
+        "t": "흘러가는 시간 속에서 영원한 것이 있을까요.\n가까운 이의 죽음을 지켜보며 그런 건 없다는 걸 알게 된 뒤 저는 현재의 '순간'을 수집하는 작업을 합니다."
+      },
+      {
+        "t": "가끔은 눈을 뜬 세상보다 눈을 감은 세상이 궁금했어요.\n그렇게 ‘뒤틀어진 세계 : Twisted World’ 를 그리기 시작했어요."
+      },
+      {
+        "t": "이 세계 속 복면을 쓴 존재들은 나이도 성별도 알 수 없습니다. 그래서 누구의 시선에도 얽매이지 않고 오직 지금 이 순간에만 머물 수 있어요."
+      },
+      {
+        "row": [
+          {
+            "img": "/artists/jun-yejin-3.jpg",
+            "alt": "전예진 작품 — 눈을 감은 세상"
+          },
+          {
+            "img": "/artists/jun-yejin-2.jpg",
+            "alt": "전예진 작품 — 지금 이 순간에 머무는 복면들"
+          }
+        ]
+      },
+      {
+        "t": "정처없이 방황하다가 길을 잃게되면 어디선가 기이한 발광 오리가 나타나 길잃은 복면들이 향할 곳을 안내합니다."
+      },
+      {
+        "img": "/artists/jun-yejin-4.jpg",
+        "size": "lg",
+        "alt": "전예진 작품 — 발광 오리가 안내하는 길"
+      },
+      {
+        "t": "잠시나마 각자에게 주어진 지금 이 순간에 온전히 머물 수 있기를 바랍니다.\n사실 우리는 어디로 가야할지 저 마음 깊숙이 이미 알고 있지 않나요?\n그 길을 따라가세요.",
+        "corner": {
+          "img": "/artists/jun-yejin-5.jpg",
+          "alt": "전예진 작품 — 그 길을 따라가세요"
+        }
+      }
+    ],
+    "shopUrl": "https://smartstore.naver.com/atheoart/category/f8e279af1fe9494989d3b9a475e4b706?cp=1",
+    "usageColor": "#7a6da0"
   },
   {
     "id": "artist_theo_004",

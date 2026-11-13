@@ -66,31 +66,34 @@
     "id": "project_artist_theo_003_mat_01",
     "projectId": "project_artist_theo_003",
     "artistId": "artist_theo_003",
-    "name": "[입력 예시] 캔버스 F30호 1점",
-    "price": 45000,
-    "usageNote": "[입력 예시] 작품 바탕",
-    "isFunded": true,
-    "imageUrl": "/mat-canvas1.jpeg"
+    "name": "리퀴텍스 베이직 아크릴물감 118ml 680 라이트블루 바이올렛+(리워드 1종)",
+    "price": 10000,
+    "usageNote": "푸른색과 보라색 사이 오묘한 세계의 빛깔을 만들어내요.",
+    "isFunded": false,
+    "imageUrl": "/artists/jun-yejin-mat-1.jpg",
+    "link": "https://smartstore.naver.com/atheoart/products/13867483078"
   },
   {
     "id": "project_artist_theo_003_mat_02",
     "projectId": "project_artist_theo_003",
     "artistId": "artist_theo_003",
-    "name": "[입력 예시] 메인 물감 3색 세트",
-    "price": 32000,
-    "usageNote": "[입력 예시] 주요 색 작업",
+    "name": "OPEN 아크릴물감 60ml 시리즈7+(리워드 2종)",
+    "price": 30000,
+    "usageNote": "숲, 자연, 식물에 초록의 숨결을 불어넣어줘요.",
     "isFunded": false,
-    "imageUrl": "/mat-oil.jpg"
+    "imageUrl": "/artists/jun-yejin-mat-2.jpg",
+    "link": "https://smartstore.naver.com/atheoart/products/13867551621"
   },
   {
     "id": "project_artist_theo_003_mat_03",
     "projectId": "project_artist_theo_003",
     "artistId": "artist_theo_003",
-    "name": "[입력 예시] 붓 3종 세트",
-    "price": 18000,
-    "usageNote": "[입력 예시] 밑칠과 디테일",
+    "name": "헤비바디 전문가용 아크릴물감 형광 118ml+(리워드 2종)",
+    "price": 40000,
+    "usageNote": "극한의 발색으로 형광오리와 복면의 빛을 밝혀줘요.",
     "isFunded": false,
-    "imageUrl": "/mat-brush.jpg"
+    "imageUrl": "/artists/jun-yejin-mat-3.jpg",
+    "link": "https://smartstore.naver.com/atheoart/products/13867576817"
   },
   {
     "id": "project_artist_theo_004_mat_01",
