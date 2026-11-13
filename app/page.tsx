@@ -123,7 +123,8 @@ export default function Home() {
             <p>반 고흐에게는 평생 그를 응원해준 동생 테오가 있었기에 세계가 사랑하는 명작이 탄생할 수 있었습니다.</p>
             <p>세상이 알아보기 전, 당신이 먼저 발견한 예술가에게 재료를 선물하고, 위대한 작품이 태어나는 과정을 함께 만들어 보세요.</p>
           </div>
-          <div data-sr="up" data-d="2" className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-12">
+          {/* 두 버튼은 가로 너비가 같도록: 더 긴 쪽 폭에 맞춰 동일한 칸으로 나눈다 */}
+          <div data-sr="up" data-d="2" className="grid grid-cols-1 sm:grid-flow-col sm:auto-cols-fr sm:w-fit gap-3 sm:gap-4 mt-12">
             <Link href="/atelier" className="nb-btn px-7 py-3 text-[15px]">
               {t("btn_patron_main")} — {t("btn_patron_sub")} →
             </Link>
