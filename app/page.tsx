@@ -21,7 +21,7 @@ const SERIF = { fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400 }
 function Row({ label, children, id, tone = "paper", rule = true }: { label: string; children: React.ReactNode; id?: string; tone?: "paper" | "ink" | "sun"; rule?: boolean }) {
   return (
     <section className={`px-[var(--gap)] ${tone === "ink" ? "tone-ink" : tone === "sun" ? "tone-sun" : ""}`} id={id}>
-      <div className="flex flex-col md:flex-row py-24 md:py-40 gap-6 md:gap-0">
+      <div className="flex flex-col md:flex-row py-14 md:py-40 gap-6 md:gap-0">
         <div className={LEFT}>
           <span className="type-section lp-label">{label}</span>
         </div>
@@ -34,7 +34,6 @@ function Row({ label, children, id, tone = "paper", rule = true }: { label: stri
 
 
 const PROGRAMS = [
-  { name: "팝업 전시 [CONTINUE]", date: "11. 28 – 11. 29" },
   { name: "오픈 스튜디오", date: "11. 28" },
   { name: "라이브 페인팅", date: "11. 28" },
   { name: "Theo 아트 나이트", date: "11. 28" },
@@ -93,8 +92,11 @@ export default function Home() {
           </div>
           <hr className="dots-x" />
 
-          {/* ═══ 1. INTRO ═══ */}
-          <div className="flex flex-col md:flex-row py-24 md:py-40 gap-6 md:gap-0">
+        </section>
+
+        {/* ═══ INTRO ═══ */}
+        <section className="px-[var(--gap)]">
+          <div className="flex flex-col md:flex-row py-14 md:py-32 gap-6 md:gap-0">
             <div className={LEFT}>
               <span className="type-section lp-label">Intro</span>
             </div>
@@ -111,6 +113,76 @@ export default function Home() {
             </div>
           </div>
           <hr className="dots-x" />
+        </section>
+
+        {/* ═══ 5. ARTISTS ═══ */}
+        <section className="px-[var(--gap)]" id="projects">
+          <div className="flex flex-col md:flex-row pt-12 md:pt-32 pb-8 md:pb-16 gap-6 md:gap-0">
+            <div className={LEFT}>
+              <span className="type-section lp-label">Artists</span>
+            </div>
+            <div className={`${RIGHT} flex flex-wrap items-end justify-between gap-x-8 gap-y-4`}>
+              <h2 data-sr="up" className="statement fit-h">테오와 함께하는 작가님들</h2>
+              <Link href="/atelier" className="link-line text-[16px]">
+                {t("projects_btn")} →
+              </Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-12 pb-12 md:pb-32">
+            {artists.map((artist, i) => (
+              <div key={artist.id} data-sr="up" data-d={String((i % 4) + 1)}>
+                <ArtistCard artist={artist} />
+              </div>
+            ))}
+          </div>
+          <hr className="dots-x" />
+        </section>
+
+        {/* ═══ 4. HOW IT WORKS — 노랑 한 색 + 진행 바·화살표로 순서 표시 ═══ */}
+        <Row label="How it works" id="how" rule={false}>
+          <h2 data-sr="up" className="statement fit-h">
+            당신의 선물은 하나의 작품을 함께 만들어가는 일입니다.
+          </h2>
+        </Row>
+        {/* 칸 사이는 가는 선으로 나누고, 위쪽 진행 바(1/4 → 4/4)와 화살표로 순서를 보여준다 */}
+        <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-px bg-[rgba(36,24,21,.4)] border-y border-[rgba(36,24,21,.4)]">
+          {STEPS.map((s, i) => (
+            <div key={s.n} className="swatch swatch-sun step-card relative flex flex-col px-[var(--gap)] pt-8 pb-10 md:pb-20">
+              {/* 진행 바 — i+1 칸이 채워진다 */}
+              <div className="flex gap-1.5 mb-5" aria-hidden="true">
+                {STEPS.map((_, j) => (
+                  <span key={j} className={`h-[6px] flex-1 ${j <= i ? "bg-[var(--blk)]" : "bg-[rgba(36,24,21,.18)]"}`} />
+                ))}
+              </div>
+              <div className="flex items-start justify-between gap-4 mb-6">
+                <p className="type-numeral" aria-hidden="true">{s.n}</p>
+                <p className="type-label pt-1"><span className="sr-only">{s.n}. </span>{s.label}</p>
+              </div>
+              <div className="relative aspect-[4/3] sm:aspect-[4/5] overflow-hidden mb-7">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={s.img} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+              </div>
+              <h3 className="statement lp-m mb-5 xl:min-h-[2.6em]">{s.title}</h3>
+              <ul className="space-y-2">
+                {s.items.map((it) => (
+                  <li key={it} className="flex gap-3 text-[16px] leading-[1.7]">
+                    <span aria-hidden="true">–</span>
+                    <span>{it}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* 다음 단계로 이어지는 화살표 (마지막 칸 제외) */}
+              {i < STEPS.length - 1 && (
+                <>
+                  {/* 한 줄 배치(sm 이상): 오른쪽 칸으로 → . 2열일 때는 줄이 바뀌는 2번째 칸 제외 */}
+                  <span aria-hidden="true" className={`step-arrow absolute z-10 top-[1.65rem] -right-[19px] w-9 h-9 items-center justify-center bg-[var(--blk)] text-[var(--sun)] text-[18px] ${i === 1 ? "hidden xl:flex" : "hidden sm:flex"}`}>→</span>
+                  {/* 한 줄(모바일): 아래 칸으로 ↓ */}
+                  <span aria-hidden="true" className="sm:hidden absolute z-10 left-1/2 -translate-x-1/2 -bottom-[19px] w-9 h-9 flex items-center justify-center bg-[var(--blk)] text-[var(--sun)] text-[18px]">↓</span>
+                </>
+              )}
+            </div>
+          ))}
         </section>
 
         {/* ═══ 2. THEO STORY ═══ */}
@@ -173,75 +245,6 @@ export default function Home() {
           </p>
         </Row>
 
-        {/* ═══ 4. HOW IT WORKS — 노랑 한 색 + 진행 바·화살표로 순서 표시 ═══ */}
-        <Row label="How it works" id="how" rule={false}>
-          <h2 data-sr="up" className="statement fit-h">
-            당신의 선물은 하나의 작품을 함께 만들어가는 일입니다.
-          </h2>
-        </Row>
-        {/* 칸 사이는 가는 선으로 나누고, 위쪽 진행 바(1/4 → 4/4)와 화살표로 순서를 보여준다 */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-px bg-[rgba(36,24,21,.4)] border-y border-[rgba(36,24,21,.4)]">
-          {STEPS.map((s, i) => (
-            <div key={s.n} className="swatch swatch-sun step-card relative flex flex-col px-[var(--gap)] pt-8 pb-14 md:pb-20">
-              {/* 진행 바 — i+1 칸이 채워진다 */}
-              <div className="flex gap-1.5 mb-5" aria-hidden="true">
-                {STEPS.map((_, j) => (
-                  <span key={j} className={`h-[6px] flex-1 ${j <= i ? "bg-[var(--blk)]" : "bg-[rgba(36,24,21,.18)]"}`} />
-                ))}
-              </div>
-              <div className="flex items-start justify-between gap-4 mb-6">
-                <p className="type-numeral" aria-hidden="true">{s.n}</p>
-                <p className="type-label pt-1"><span className="sr-only">{s.n}. </span>{s.label}</p>
-              </div>
-              <div className="relative aspect-[4/3] sm:aspect-[4/5] overflow-hidden mb-7">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={s.img} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-              </div>
-              <h3 className="statement lp-m mb-5 xl:min-h-[2.6em]">{s.title}</h3>
-              <ul className="space-y-2">
-                {s.items.map((it) => (
-                  <li key={it} className="flex gap-3 text-[16px] leading-[1.7]">
-                    <span aria-hidden="true">–</span>
-                    <span>{it}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* 다음 단계로 이어지는 화살표 (마지막 칸 제외) */}
-              {i < STEPS.length - 1 && (
-                <>
-                  {/* 한 줄 배치(sm 이상): 오른쪽 칸으로 → . 2열일 때는 줄이 바뀌는 2번째 칸 제외 */}
-                  <span aria-hidden="true" className={`step-arrow absolute z-10 top-[1.65rem] -right-[19px] w-9 h-9 items-center justify-center bg-[var(--blk)] text-[var(--sun)] text-[18px] ${i === 1 ? "hidden xl:flex" : "hidden sm:flex"}`}>→</span>
-                  {/* 한 줄(모바일): 아래 칸으로 ↓ */}
-                  <span aria-hidden="true" className="sm:hidden absolute z-10 left-1/2 -translate-x-1/2 -bottom-[19px] w-9 h-9 flex items-center justify-center bg-[var(--blk)] text-[var(--sun)] text-[18px]">↓</span>
-                </>
-              )}
-            </div>
-          ))}
-        </section>
-
-        {/* ═══ 5. ARTISTS ═══ */}
-        <section className="px-[var(--gap)]" id="projects">
-          <div className="flex flex-col md:flex-row pt-20 md:pt-32 pb-12 md:pb-16 gap-6 md:gap-0">
-            <div className={LEFT}>
-              <span className="type-section lp-label">Artists</span>
-            </div>
-            <div className={`${RIGHT} flex flex-wrap items-end justify-between gap-x-8 gap-y-4`}>
-              <h2 data-sr="up" className="statement fit-h">테오와 함께하는 작가님들</h2>
-              <Link href="/atelier" className="link-line text-[16px]">
-                {t("projects_btn")} →
-              </Link>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-12 pb-20 md:pb-32">
-            {artists.map((artist, i) => (
-              <div key={artist.id} data-sr="up" data-d={String((i % 4) + 1)}>
-                <ArtistCard artist={artist} />
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* ═══ 6. SHOW — 노란 블록 ═══ */}
         <Row label="Show" tone="sun">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 items-end">
@@ -285,7 +288,7 @@ export default function Home() {
 
         {/* ═══ 8. CONTACT ═══ */}
         <section className="px-[var(--gap)]">
-          <div className="flex flex-col md:flex-row py-28 md:py-44 gap-6 md:gap-0">
+          <div className="flex flex-col md:flex-row py-16 md:py-44 gap-6 md:gap-0">
             <div className={LEFT}>
               <span className="type-section lp-label">Contact</span>
             </div>

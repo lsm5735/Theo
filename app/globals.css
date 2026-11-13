@@ -377,3 +377,8 @@ h1, h2, h3, .font-display {
 .prog-card:hover { background: var(--sun); --muted: #55400A; }
 .prog-card:hover .nb-btn { background: var(--blk); color: var(--sun); }
 .prog-card:hover .nb-btn:hover { background: #F7F6F3; color: var(--blk); }
+
+/* 폰 화면 가독성 — 작은 라벨을 한 단계 키운다 */
+@media (max-width: 767px) {
+  .type-label { font-size: 13px; }
+}

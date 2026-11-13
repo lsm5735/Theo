@@ -20,6 +20,7 @@ interface Program {
   title: string;
   description: string;
   date: string;
+  time: string;
   location: string;
   capacity: number | null;
   coverImage: string;
@@ -37,48 +38,43 @@ const cover = (name: string) => artistsData.find((x) => x.name === name)!.coverI
 
 const PROGRAMS: Program[] = [
   {
-    id: "prog_000",
-    type: "팝업 전시",
-    artists: [],
-    title: "팝업 전시 [CONTINUE]",
-    description: "작품이 완성되고 나서도 이어지는 창작의 시간을 전시로 만나는 이틀입니다.",
-    date: DATE_POPUP,
-    location: LOCATION,
-    capacity: null,
-    coverImage: "/hero-museum.jpg",
-  },
-  {
     id: "prog_001",
     type: "오픈 스튜디오",
     artists: [byName("진형")],
     title: "진형 작가 오픈 스튜디오",
-    description: "작가의 작업 공간을 열어 작업 과정과 재료를 가까이에서 보고, 작가와 직접 이야기를 나눌 수 있는 시간입니다.",
+    description:
+      "진형 작가의 작업실 문이 열립니다.\n\n작가님의 작업실에 놀러 온 것처럼 어깨너머로 작가님이 그리는 모습을 지켜보세요.\n완성된 작품은 다른 곳에서도 볼 수 있지만 그리는 순간은 그 자리에 있어야만 만날 수 있어요.",
     date: DATE,
+    time: "2:00 - 3:30 pm",
     location: LOCATION,
     capacity: null,
-    coverImage: cover("진형"),
+    coverImage: "/community-open-studio.jpg",
   },
   {
     id: "prog_002",
     type: "라이브 페인팅",
     artists: [byName("이동구")],
     title: "이동구 작가 라이브 페인팅",
-    description: "작가가 현장에서 한 점의 그림을 그려 나가는 과정을 처음부터 끝까지 함께 지켜볼 수 있습니다.",
+    description:
+      "선물한 재료로 채워지는 캔버스를 눈앞에서 라이브로 만나보세요.\n\n한 사람의 내면에 여러 모습이 함께 살듯이 그림 속 인물의 얼굴에도 여러 표정이 깃들어 있습니다. 이동구 작가의 손에서 태어나는 그 표정들을 가장 가까이에서 만나보세요.",
     date: DATE,
+    time: "4:00 - 5:30 pm",
     location: LOCATION,
     capacity: null,
-    coverImage: cover("이동구"),
+    coverImage: "/community-live-painting.jpg",
   },
   {
     id: "prog_003",
     type: "Theo 아트 나이트",
     artists: ["김동형", "이동구", "전예진", "진형"].map(byName),
     title: "Theo 아트 나이트",
-    description: "김동형·이동구·전예진·진형, 네 작가가 함께하는 저녁입니다. 작가들과 테오가 한자리에서 만납니다.",
+    description:
+      "Sponsored by HEINEKEN Korea (하이네켄 코리아)\n\n웰컴드링크(맥주)를 마시면서 작가와 가까이에서 이야기 나눠보세요.\n김동형·이동구·전예진·진형 네 작가가 함께하는 저녁입니다.",
     date: DATE,
+    time: "1회차 6:00 - 7:00 pm / 2회차 7:00 - 8:00 pm",
     location: LOCATION,
     capacity: null,
-    coverImage: "/hero-museum.jpg",
+    coverImage: "/community-art-night.jpg",
   },
 ];
 
@@ -102,8 +98,8 @@ export default function CommunityPage() {
               <span className="type-section">Programs</span>
             </div>
             <div className="w-full md:w-[calc((100vw-var(--gap)*2)*0.75)]">
-              <p data-sr="up" className="type-m max-w-[36rem]" style={{ wordBreak: "keep-all" }}>
-                작가와 직접 만나는 시간. 선물 너머 작가의 창작 현장에 함께할 수 있는 프로그램입니다.
+              <p data-sr="up" className="type-m max-w-[60rem] whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
+                {"작가와 직접 만나는 시간.\n선물 너머 작가의 과정에 함께할 수 있는 프로그램을 준비했습니다."}
               </p>
             </div>
           </div>
@@ -112,21 +108,17 @@ export default function CommunityPage() {
 
         {/* 프로그램 목록 — 2×2 카드. 카드에 마우스를 올리면 노랗게 채워진다 */}
         <section className="px-[var(--gap)] py-12 md:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-px bg-[rgba(7,34,60,.25)] border-y border-[rgba(7,34,60,.25)]">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-[rgba(7,34,60,.25)] border-y border-[rgba(7,34,60,.25)]">
             {PROGRAMS.map((prog, i) => {
               const multi = prog.artists.length !== 1;
               return (
-                <article key={prog.id} data-sr="up" data-d={String((i % 4) + 1)} className="prog-card bg-paper flex flex-col p-5">
+                <article key={prog.id} data-sr="up" data-d={String((i % 4) + 1)} className="prog-card bg-paper flex flex-col p-5 md:last:col-span-2 xl:last:col-span-1">
                   <div className="relative aspect-[4/3] overflow-hidden bg-surface-card mb-5">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={prog.coverImage} alt={prog.title} className="absolute inset-0 w-full h-full object-cover" />
                   </div>
 
-                  <div className="flex flex-col gap-1 mb-3">
-                    <span className="type-section">{prog.type}</span>
-                    <span className="text-[14px] text-muted">{prog.date}</span>
-                  </div>
-                  <h2 className="type-m mb-4" style={{ fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400, wordBreak: "keep-all" }}>
+                  <h2 className="type-m mb-4" style={{ fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 700, wordBreak: "keep-all" }}>
                     {prog.title}
                   </h2>
                   {prog.artists.length > 0 && (
@@ -140,23 +132,36 @@ export default function CommunityPage() {
                       <span className="text-[15px]">{prog.artists.map((a) => a.name).join(" · ")} 작가</span>
                     </div>
                   )}
-                  <p className="text-[15px] leading-[1.75] text-muted max-w-[34rem] mb-4" style={{ wordBreak: "keep-all" }}>
-                    {prog.description}
-                  </p>
-                  <p className="text-[14px] mb-5">{prog.location}</p>
-                  <Link
-                    href={multi ? (prog.artists.length ? "/atelier" : "/show") : `/atelier/${prog.artists[0].slug}/apply`}
-                    className="nb-btn px-6 py-2.5 text-[14px] self-start mt-auto"
-                  >
-                    {multi ? (prog.artists.length ? "참여 작가 보기" : "전시 보기") : "신청하기"} →
-                  </Link>
+                  {(() => {
+                    // 설명의 첫 줄은 굵게 (작가 이름 바로 아래 한 줄)
+                    const [head, ...rest] = prog.description.split("\n");
+                    return (
+                      <p className="text-[15px] leading-[1.75] text-muted max-w-[34rem] mb-4 whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
+                        <strong className="font-bold text-ink">{head}</strong>
+                        {rest.length > 0 ? "\n" + rest.join("\n") : ""}
+                      </p>
+                    );
+                  })()}
+                  {/* 주소와 버튼을 카드 맨 아래에 붙여서, 카드마다 주소 위치가 같게 한다 */}
+                  <div className="mt-auto pt-10 flex flex-col items-start">
+                    <p className="text-[15px] md:text-[14px] text-ink mb-1.5">
+                      {prog.date} {prog.time}
+                    </p>
+                    <p className="text-[15px] md:text-[14px] text-ink mb-5">{prog.location}</p>
+                    <Link
+                      href={multi ? (prog.artists.length ? "/atelier" : "/show") : `/atelier/${prog.artists[0].slug}/apply`}
+                      className="nb-btn px-6 py-2.5 text-[15px] md:text-[14px]"
+                    >
+                      신청하기 →
+                    </Link>
+                  </div>
                 </article>
               );
             })}
           </div>
         </section>
 
-        <section className="px-[var(--gap)] py-12 text-[14px] text-muted leading-relaxed">
+        <section className="px-[var(--gap)] py-12 text-[15px] md:text-[14px] text-muted leading-relaxed">
           프로그램 신청 및 문의는 각 작가 아틀리에 페이지에서 가능합니다. 선물한 테오만 신청할 수 있는 프로그램이 있을 수 있습니다.
         </section>
       </main>

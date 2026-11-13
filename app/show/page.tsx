@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
 import BigTitle from "@/components/BigTitle";
 import Link from "next/link";
+import Image from "next/image";
+import artists from "@/data/artists.json";
 
 export const metadata = {
   title: "Show — Theo",
@@ -8,7 +10,7 @@ export const metadata = {
 };
 
 const INFO = [
-  { label: "전시명", value: "팝업 전시 [CONTINUE]" },
+  { label: "전시명", value: "CONTINUE : What comes Next?" },
   { label: "일정", value: "2026. 11. 28 (토) – 11. 29 (일)" },
   { label: "장소", value: "서울 종로구 창덕궁길 83-1" },
 ];
@@ -74,16 +76,32 @@ export default function ShowPage() {
         </Row>
 
         <Row label="About">
-          <p data-sr="up" className="type-m max-w-[38rem] mb-6" style={{ wordBreak: "keep-all" }}>
-            [입력 예시] 전시를 소개하는 한두 문장이 들어갈 자리입니다.
+          <p data-sr="up" className="type-m max-w-[44rem] mb-8" style={{ wordBreak: "keep-all" }}>
+            당신의 색으로 만들어질 다음 장면은 무엇일까요?
           </p>
-          <p data-sr="up" className="text-[16px] leading-[1.95] text-muted max-w-[38rem]" style={{ wordBreak: "keep-all" }}>
-            [입력 예시] 전시의 기획 의도와 이야기가 들어갈 자리입니다. 어떤 주제로 열리는 전시인지, 어떤 작품을 만날 수 있는지 적어 주세요.
-          </p>
+          <div className="space-y-8 max-w-[56rem]">
+            <p data-sr="up" className="text-[16.5px] leading-[1.95] text-muted whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
+              {"그림이 태어나는 과정을 보러 오세요.\n이곳에서 관객은 꽃다발 대신 물감을 보냅니다.\n당신이 고른 색은 작가에게 도착하고, 작가의 손과 시간을 지나 새로운 장면이 됩니다.\n누군가의 마음이 재료가 되고, 그 재료는 하나의 작품으로 피어납니다."}
+            </p>
+            <p data-sr="up" className="text-[16.5px] leading-[1.95] text-muted whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
+              {"전시장은 갤러리가 아니라 작가의 아틀리에입니다.\n벽과 캐비닛에는 스케치, 메모, 습작, 재료, 작업 기록이 그대로 놓여 있습니다.\n이를 통해 관람객은 작품이 한순간에 완성되지 않았음을, 수많은 시도와 망설임, 선택과 우연을 지나 지금의 모습에 이르렀음을 마주하게 됩니다."}
+            </p>
+          </div>
         </Row>
 
         <Row label="Artists">
-          <p data-sr="up" className="text-[16px] text-muted">[입력 예시] 참여 작가 소개가 들어갈 자리입니다.</p>
+          <ul className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
+            {artists.map((a, i) => (
+              <li key={a.id} data-sr="up" data-d={String((i % 4) + 1)}>
+                <Link href={`/atelier/${a.slug}`} className="group block text-center">
+                  <span className="relative block aspect-square w-full max-w-[12rem] mx-auto overflow-hidden rounded-full bg-surface-card transition-transform duration-300 group-hover:scale-[1.04]">
+                    <Image src={a.profileImage} alt={a.name} fill sizes="12rem" className="object-cover" />
+                  </span>
+                  <span className="mt-4 block text-[18px] font-bold group-hover:underline underline-offset-4">{a.name}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </Row>
 
         <section className="px-[var(--gap)] py-12 md:py-16">

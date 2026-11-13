@@ -10,12 +10,12 @@ export default function FloatingChatbot() {
   if (pathname === "/bot") return null;
 
   return (
-    <div className="fixed bottom-6 right-5 md:right-8 z-50 pointer-events-none select-none">
+    <div className="fixed bottom-4 md:bottom-6 right-3 md:right-8 z-50 pointer-events-none select-none">
       <div className="flex flex-col items-center">
         {/* 말풍선 → 테오 봇(문의) */}
         <Link
           href="/bot"
-          className="relative mb-4 pointer-events-auto group"
+          className="relative mb-4 pointer-events-auto group hidden md:block"
           aria-label="테오에게 문의하기"
         >
           <div
@@ -57,7 +57,7 @@ export default function FloatingChatbot() {
         <Link
           href="/bot"
           aria-label="테오 봇"
-          className="block w-20 md:w-[88px] pointer-events-auto transition-transform duration-200 hover:scale-105"
+          className="block w-14 md:w-[88px] pointer-events-auto transition-transform duration-200 hover:scale-105"
           style={{
             animation: "chatbotFloat 3s ease-in-out infinite",
             willChange: "transform",
