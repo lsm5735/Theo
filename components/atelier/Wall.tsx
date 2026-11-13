@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { useT, useLang } from "@/contexts/LangContext";
 import { resizeImage } from "@/lib/myAtelier";
-import { WallPost, WallRole, addWallPost, deleteWallPost, useWallPosts } from "@/lib/wall";
+import { WallPost, WallRole, deleteWallPost, isRemoteWall, submitWallPost, useWallPosts } from "@/lib/wall";
 import { TEXTAREA_CLS } from "./AtelierFields";
 
 const MAX_TEXT = 500;
@@ -29,6 +29,7 @@ function Composer({ wallId, author }: { wallId: string; author: WallAuthor }) {
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
   const [name, setName] = useState("");
+  const [pending, setPending] = useState(false);
 
   async function pickImage(file: File | undefined) {
     if (!file) return;
@@ -40,11 +41,20 @@ function Composer({ wallId, author }: { wallId: string; author: WallAuthor }) {
     }
   }
 
-  function submit() {
-    if (!text.trim() && !image) return;
-    const ok = addWallPost({ wallId, role: author.role, authorName: author.role === "theo" ? (name.trim() || author.name) : author.name, text: text.trim(), image });
+  async function submit() {
+    if (pending || (!text.trim() && !image)) return;
+    setPending(true);
+    setError("");
+    const ok = await submitWallPost({
+      wallId,
+      role: author.role,
+      authorName: author.role === "theo" ? (name.trim() || author.name) : author.name,
+      text: text.trim(),
+      image,
+    });
+    setPending(false);
     if (!ok) {
-      setError(t("st_save_fail"));
+      setError(isRemoteWall(wallId) ? t("wall_post_fail") : t("st_save_fail"));
       return;
     }
     setText("");
@@ -94,9 +104,9 @@ function Composer({ wallId, author }: { wallId: string; author: WallAuthor }) {
         </button>
         <div className="flex items-center gap-3">
           <span className="text-[12px] text-navy-400">{text.length}/{MAX_TEXT}</span>
-          <button type="button" onClick={submit} disabled={!text.trim() && !image}
+          <button type="button" onClick={submit} disabled={pending || (!text.trim() && !image)}
             className="nb-btn px-5 py-2 rounded-lg font-black text-[14px] disabled:opacity-40 disabled:pointer-events-none">
-            {t("wall_submit")}
+            {pending ? "…" : t("wall_submit")}
           </button>
         </div>
       </div>
@@ -160,7 +170,7 @@ function PostCard({ post, artistName }: { post: WallPost; artistName: string }) 
       )}
       {post.mine && (
         <div className={`mt-2 ${isArtist ? "text-left" : "text-right"}`}>
-          <button onClick={() => deleteWallPost(post.id)}
+          <button onClick={() => deleteWallPost(post.id, post.wallId)}
             className="text-[12px] text-navy-400 hover:text-red-500 underline underline-offset-2">
             {t("wall_delete")}
           </button>

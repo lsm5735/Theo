@@ -236,8 +236,7 @@ export default function AtelierDetailClient({ artist, materials }: Props) {
           <Wall
             wallId={artist.id}
             artistName={artist.name}
-            author={mySponsorship ? { role: "theo", name: mySponsorship.nickname } : null}
-            lockedCta={{ href: `/sponsor/${artist.id}`, label: t("wall_locked_cta") }}
+            author={{ role: "theo", name: mySponsorship?.nickname ?? "" }}
           />
         </Row>
       </main>
