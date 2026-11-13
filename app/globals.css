@@ -306,3 +306,72 @@ h1, h2, h3, .font-display {
 [data-sr].sr-on[data-d="4"] { animation-delay:.32s; }
 [data-sr].sr-on[data-d="5"] { animation-delay:.40s; }
 [data-sr].sr-on[data-d="6"] { animation-delay:.50s; }
+
+/* ═══════════════════════════════════════════════════════════
+   랜딩 일부 섹션용 추가 스타일 (친구 PR 디자인 중 선택 적용분)
+   · 기존 색·글꼴·type-* 은 건드리지 않고 새 이름으로만 추가
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --sun: #FCD05B;        /* 로고 노랑 */
+  --blk: #241815;        /* 로고 글자색 — 따뜻한 검정 */
+}
+@theme inline { --color-sun: var(--sun); }
+
+/* 섹션 안 글자는 컨테이너(오른쪽 75% 영역) 폭에 맞춰 줄어들어, 넓은 화면(1024px~)에서 문장마다 한 줄로 놓인다 */
+.lp-fit { container-type: inline-size; }
+.fit-h { font-size: 26px; line-height: 1.3; letter-spacing: -0.035em; }
+.fit-p { font-size: 15px; }
+.fit-q { font-size: 16px; }
+@media (min-width: 768px) { .fit-h { font-size: 32px; } }
+@media (min-width: 1024px) {
+  .fit-h { font-size: min(40px, 4cqw);   white-space: nowrap; }
+  .fit-q { font-size: min(19px, 1.9cqw); white-space: nowrap; }
+  .fit-p { font-size: min(16px, 1.7cqw); white-space: nowrap; }
+}
+
+/* 왼쪽 섹션 라벨(INTRO 등) — 기존보다 조금 크게 */
+.lp-label { font-size: 18px; }
+@media (min-width: 768px)  { .lp-label { font-size: 20px; } }
+@media (min-width: 1024px) { .lp-label { font-size: 24px; } }
+
+/* 큰 문장 크기 스케일 (랜딩 전용) */
+.lp-xl { font-size: clamp(25px, 3.3vw, 50px); line-height: 1.28; letter-spacing: -0.035em; }
+.lp-l  { font-size: clamp(24px, 2.7vw, 40px); line-height: 1.3;  letter-spacing: -0.03em; }
+.lp-m  { font-size: clamp(20px, 1.9vw, 28px); line-height: 1.3;  letter-spacing: -0.035em; }
+.statement { font-family: 'Noto Sans KR', sans-serif; font-weight: 500; text-wrap: balance; word-break: keep-all; }
+:root:lang(en) .statement { font-family: 'PT Serif', 'Noto Sans KR', serif; }
+.type-numeral {
+  font-family: 'Archivo Black', sans-serif; font-weight: 400;
+  font-size: clamp(56px, 7vw, 112px); line-height: .8; letter-spacing: -0.05em;
+}
+
+/* 컬러 블록 — 섹션을 통째로 칠한다 */
+.tone-ink { background: var(--blk); color: #F7F6F3; --muted: #B9B2AC; }
+.tone-sun { background: var(--sun); color: var(--blk); --muted: #55400A; }
+.tone-ink .dots-x, .tone-sun .dots-x { color: inherit; opacity: .6; }
+.tone-ink ::selection { background: var(--sun); color: var(--blk); }
+.tone-sun ::selection { background: var(--blk); color: var(--sun); }
+.tone-sun .link-line:hover { background: var(--blk); color: var(--sun); }
+.tone-ink .link-line:hover { background: var(--sun); color: var(--blk); }
+
+/* 컬러 블록 위의 버튼 */
+.tone-ink .nb-btn { background: var(--sun); color: var(--blk); }
+.tone-ink .nb-btn:hover { background: #F7F6F3; color: var(--blk); }
+.tone-ink .nb-btn-outline { color: inherit; border-color: currentColor; }
+.tone-ink .nb-btn-outline:hover { background: var(--sun); color: var(--blk); border-color: var(--sun); }
+
+/* How it works — 물감 색상표 */
+.swatch { --muted: currentColor; }
+.swatch-sun       { background: var(--sun);       color: var(--blk); }
+.swatch ::selection { background: var(--blk); color: #F7F6F3; }
+
+/* Arty — 목록 행 hover 시 색이 채워진다 */
+.row-fill { transition: background-color .18s ease, padding .25s cubic-bezier(.22,1,.36,1); }
+.row-fill:hover { background: var(--sun); color: var(--blk); padding-left: .75rem; padding-right: .75rem; }
+.row-fill:hover .text-muted { color: var(--blk); }
+
+/* Community — 프로그램 카드: 마우스를 올리면 노랗게 */
+.prog-card { transition: background-color .18s ease; }
+.prog-card:hover { background: var(--sun); --muted: #55400A; }
+.prog-card:hover .nb-btn { background: var(--blk); color: var(--sun); }
+.prog-card:hover .nb-btn:hover { background: #F7F6F3; color: var(--blk); }

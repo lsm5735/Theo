@@ -110,54 +110,51 @@ export default function CommunityPage() {
           <hr className="dots-x" />
         </section>
 
-        {/* 프로그램 목록 */}
-        {PROGRAMS.map((prog) => {
-          const multi = prog.artists.length !== 1;
-          return (
-            <section key={prog.id} className="px-[var(--gap)]">
-              <div className="flex flex-col md:flex-row py-12 md:py-16 gap-6 md:gap-0">
-                <div className="md:w-[calc((100vw-var(--gap)*2)*0.25-1.5rem)] shrink-0">
-                  <span className="type-section block mb-2">{prog.type}</span>
-                  <span className="text-[15px] text-muted block">{prog.date}</span>
-                </div>
-                <div className="w-full md:w-[calc((100vw-var(--gap)*2)*0.75)] grid grid-cols-1 lg:grid-cols-[1fr_22rem] gap-8 lg:gap-12 items-start">
-                  <div data-sr="up">
-                    <h2 className="type-l mb-5" style={{ fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400, wordBreak: "keep-all" }}>
-                      {prog.title}
-                    </h2>
-                    {prog.artists.length > 0 && (
-                      <div className="flex items-center gap-3 mb-5">
-                        <div className="flex -space-x-2 shrink-0">
-                          {prog.artists.map((a) => (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img key={a.slug} src={a.image} alt={a.name} className="w-9 h-9 rounded-full object-cover border-2 border-paper" />
-                          ))}
-                        </div>
-                        <span className="text-[15px]">{prog.artists.map((a) => a.name).join(" · ")} 작가</span>
-                      </div>
-                    )}
-                    <p className="text-[16px] leading-[1.85] text-muted max-w-[34rem] mb-6" style={{ wordBreak: "keep-all" }}>
-                      {prog.description}
-                    </p>
-                    <p className="text-[15px] mb-1">{prog.date}</p>
-                    <p className="text-[15px] mb-8">{prog.location}</p>
-                    <Link
-                      href={multi ? (prog.artists.length ? "/atelier" : "/show") : `/atelier/${prog.artists[0].slug}/apply`}
-                      className="nb-btn px-7 py-3 text-[15px]"
-                    >
-                      {multi ? (prog.artists.length ? "참여 작가 보기" : "전시 보기") : "신청하기"} →
-                    </Link>
-                  </div>
-                  <div data-sr="up" data-d="1" className="relative aspect-[4/5] overflow-hidden bg-surface-card">
+        {/* 프로그램 목록 — 2×2 카드. 카드에 마우스를 올리면 노랗게 채워진다 */}
+        <section className="px-[var(--gap)] py-12 md:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-px bg-[rgba(7,34,60,.25)] border-y border-[rgba(7,34,60,.25)]">
+            {PROGRAMS.map((prog, i) => {
+              const multi = prog.artists.length !== 1;
+              return (
+                <article key={prog.id} data-sr="up" data-d={String((i % 4) + 1)} className="prog-card bg-paper flex flex-col p-5">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-surface-card mb-5">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={prog.coverImage} alt={prog.title} className="absolute inset-0 w-full h-full object-cover" />
                   </div>
-                </div>
-              </div>
-              <hr className="dots-x" />
-            </section>
-          );
-        })}
+
+                  <div className="flex flex-col gap-1 mb-3">
+                    <span className="type-section">{prog.type}</span>
+                    <span className="text-[14px] text-muted">{prog.date}</span>
+                  </div>
+                  <h2 className="type-m mb-4" style={{ fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400, wordBreak: "keep-all" }}>
+                    {prog.title}
+                  </h2>
+                  {prog.artists.length > 0 && (
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="flex -space-x-2 shrink-0">
+                        {prog.artists.map((a) => (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img key={a.slug} src={a.image} alt={a.name} className="w-9 h-9 rounded-full object-cover border-2 border-paper" />
+                        ))}
+                      </div>
+                      <span className="text-[15px]">{prog.artists.map((a) => a.name).join(" · ")} 작가</span>
+                    </div>
+                  )}
+                  <p className="text-[15px] leading-[1.75] text-muted max-w-[34rem] mb-4" style={{ wordBreak: "keep-all" }}>
+                    {prog.description}
+                  </p>
+                  <p className="text-[14px] mb-5">{prog.location}</p>
+                  <Link
+                    href={multi ? (prog.artists.length ? "/atelier" : "/show") : `/atelier/${prog.artists[0].slug}/apply`}
+                    className="nb-btn px-6 py-2.5 text-[14px] self-start mt-auto"
+                  >
+                    {multi ? (prog.artists.length ? "참여 작가 보기" : "전시 보기") : "신청하기"} →
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
+        </section>
 
         <section className="px-[var(--gap)] py-12 text-[14px] text-muted leading-relaxed">
           프로그램 신청 및 문의는 각 작가 아틀리에 페이지에서 가능합니다. 선물한 테오만 신청할 수 있는 프로그램이 있을 수 있습니다.

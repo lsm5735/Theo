@@ -44,13 +44,19 @@ export default function ShowPage() {
         </section>
 
         {/* 전시 이미지 */}
-        <section className="px-[var(--gap)] py-12 md:py-16">
-          <div data-sr="up" className="relative w-full aspect-[16/9] md:aspect-[16/7] overflow-hidden bg-surface-card">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/hero-museum.jpg" alt="[CONTINUE] 전시 이미지" className="absolute inset-0 w-full h-full object-cover" />
-            <span className="absolute left-4 bottom-4 bg-paper px-3 py-1 text-[14px]">[입력 예시] 전시 포스터·메인 이미지</span>
+        <section className="pb-12 md:pb-16">
+          {/* 포스터(843×1191)를 위·아래 반(843×595)으로 나눠 가로로 나란히 붙인다: 왼쪽 = 위쪽 절반, 오른쪽 = 아래쪽 절반. 화면 폭 끝까지 꽉 채운다 */}
+          <div data-sr="up" role="img" aria-label="[CONTINUE] 전시 포스터" className="grid grid-cols-2 w-full overflow-hidden bg-surface-card">
+            <div className="relative aspect-[843/595.5] overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/show-poster.jpg" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-top" />
+            </div>
+            <div className="relative aspect-[843/595.5] overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/show-poster.jpg" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-bottom" />
+            </div>
           </div>
-          <hr className="dots-x mt-12 md:mt-16" />
+          <div className="px-[var(--gap)]"><hr className="dots-x mt-12 md:mt-16" /></div>
         </section>
 
         <Row label="Info">

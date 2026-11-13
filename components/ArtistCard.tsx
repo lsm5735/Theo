@@ -26,20 +26,21 @@ export default function ArtistCard({ artist, mode = "atelier" }: { artist: Artis
           src={artist.coverImage}
           alt={`${artist.name}의 작품`}
           fill
-          sizes="(max-width: 768px) 100vw, 25vw"
-          className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
+          sizes="(max-width: 768px) 50vw, 25vw"
+          className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
         />
       </Link>
 
-      {/* 캡션 */}
-      <div className="pt-3 flex flex-col flex-1">
-        <p className="type-label mb-1.5 text-muted">{artist.nameEn ?? ""}</p>
-        <h3 className="leading-[1.1]" style={{ fontSize: "clamp(32px, 3vw, 46px)" }}>{artist.name}</h3>
+      {/* 캡션 — 점선 아래 이름을 크게 */}
+      <div className="pt-4 flex flex-col flex-1">
+        <hr className="dots-x mb-3" />
+        <p className="type-label mb-2 text-muted">{artist.nameEn ?? ""}</p>
+        <h3 className="leading-[1.05]" style={{ fontSize: "clamp(30px, 3.4vw, 54px)" }}>{artist.name}</h3>
 
         <Link
           href={href}
           onClick={(e) => e.stopPropagation()}
-          className="mt-3 self-start text-[14px] link-line"
+          className="mt-4 self-start text-[16px] link-line"
         >
           {mode === "apply" ? "신청하기" : "아틀리에 입장"} →
         </Link>
