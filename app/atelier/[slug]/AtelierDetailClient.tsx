@@ -18,18 +18,9 @@ interface Artist {
   profileImage: string;
   coverImage: string;
   artistNote: string;
-}
-
-interface Project {
-  id: string;
-  artistId: string;
-  title: string;
-  concept: string;
-  targetAmount: number;
-  fundedAmount: number;
-  sponsorCount: number;
-  status: string;
-  sketchImage: string;
+  statement?: string;
+  workImage?: string;
+  shopUrl?: string;
 }
 
 interface Material {
@@ -40,11 +31,11 @@ interface Material {
   price: number;
   isFunded: boolean;
   imageUrl?: string;
+  link?: string;
 }
 
 interface Props {
   artist: Artist;
-  project: Project | null;
   materials: Material[];
 }
 
@@ -65,7 +56,15 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
   );
 }
 
-export default function AtelierDetailClient({ artist, project, materials }: Props) {
+function CardLink({ href, children }: { href?: string; children: React.ReactNode }) {
+  return href ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="block group">{children}</a>
+  ) : (
+    <div>{children}</div>
+  );
+}
+
+export default function AtelierDetailClient({ artist, materials }: Props) {
   const t = useT();
   // 이 작가를 선물한 테오만 담벼락에 글을 남길 수 있음
   const mySponsorship = useMySponsorships()?.find((sp) => sp.artistId === artist.id);
@@ -90,12 +89,18 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
         <Row label="Artist">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_16rem] gap-8 lg:gap-12">
             <div data-sr="up">
-              <h2 className="type-xl mb-6" style={{ fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400 }}>{artist.name}</h2>
+              <h2 className="text-[34px] md:text-[52px] leading-[1.1] mb-6" style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 800, letterSpacing: "-0.04em" }}>{artist.name}</h2>
               <p className="type-m mb-8" style={{ wordBreak: "keep-all", fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400 }}>{artist.oneLiner}</p>
-              <p className="text-[16px] leading-[1.9] max-w-[40rem] text-muted" style={{ wordBreak: "keep-all" }}>{artist.artistNote}</p>
-              <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[15px] mt-10 inline-flex">
-                {t("cta_gift_btn")}
-              </Link>
+              <p className="text-[17px] md:text-[19px] leading-[1.9] max-w-[44rem] text-muted whitespace-pre-line" style={{ wordBreak: "keep-all" }}>{artist.artistNote}</p>
+              {artist.shopUrl ? (
+                <a href={artist.shopUrl} target="_blank" rel="noopener noreferrer" className="nb-btn px-7 py-3 text-[15px] mt-10 inline-flex">
+                  {t("cta_gift_btn")}
+                </a>
+              ) : (
+                <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[15px] mt-10 inline-flex">
+                  {t("cta_gift_btn")}
+                </Link>
+              )}
             </div>
             <div data-sr="up" data-d="1" className="relative aspect-[1/1.25] w-full max-w-[16rem] overflow-hidden bg-surface-card">
               <Image src={artist.profileImage} alt={artist.name} fill sizes="16rem" className="object-cover" />
@@ -111,22 +116,20 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
           <hr className="dots-x mt-12 md:mt-16" />
         </section>
 
-        {/* 프로젝트 */}
-        {project && (
-          <Row label={t("section_project")}>
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 items-start">
-              <div data-sr="up" className="relative aspect-[4/3] overflow-hidden bg-surface-card">
-                <Image src={project.sketchImage} alt={project.title} fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
+        {/* 작가 노트 (본문 + 작품) */}
+        {artist.statement && (
+          <Row label="Note">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_22rem] gap-10 lg:gap-14 items-start">
+              <div className="space-y-8">
+                {artist.statement.split("\n\n").map((para, i) => (
+                  <p key={i} data-sr="up" className="text-[16.5px] leading-[1.95] whitespace-pre-line" style={{ wordBreak: "keep-all" }}>{para}</p>
+                ))}
               </div>
-              <div data-sr="up" data-d="1">
-                <h3 className="type-l mb-5" style={{ fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400, wordBreak: "keep-all" }}>{project.title}</h3>
-                <p className="text-[16px] leading-[1.85] text-muted mb-8" style={{ wordBreak: "keep-all" }}>{project.concept}</p>
-                <p className="text-[17px] mb-1">{project.fundedAmount.toLocaleString()}{t("raised_suffix")}</p>
-                <p className="text-[14px] text-muted mb-8">
-                  {t("goal_label")} {project.targetAmount.toLocaleString()}원 · 테오 {project.sponsorCount}{t("sponsor_count_suffix")}
-                </p>
-                <Link href={`/projects/${project.id}`} className="link-line text-[16px]">{t("project_detail")}</Link>
-              </div>
+              {artist.workImage && (
+                <div data-sr="up" data-d="1" className="relative aspect-[4/5] w-full max-w-[22rem] overflow-hidden bg-surface-card">
+                  <Image src={artist.workImage} alt={`${artist.name} 작품`} fill sizes="22rem" className="object-cover" />
+                </div>
+              )}
             </div>
           </Row>
         )}
@@ -134,27 +137,23 @@ export default function AtelierDetailClient({ artist, project, materials }: Prop
         {/* 선물하기 */}
         {materials.length > 0 && (
           <Row label={t("section_materials")}>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 mb-10">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
               {materials.map((m, i) => (
-                <div key={m.id} data-sr="up" data-d={String((i % 3) + 1)} className={m.isFunded ? "opacity-55" : ""}>
-                  <div className="relative aspect-[4/3] bg-surface-card overflow-hidden mb-3">
-                    {m.imageUrl && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={m.imageUrl} alt={m.name} className="absolute inset-0 w-full h-full object-cover" />
-                    )}
-                    {m.isFunded && (
-                      <span className="absolute top-2 left-2 text-[12px] bg-sv text-ink px-2 py-0.5 font-bold">{t("material_gifted")}</span>
-                    )}
-                  </div>
-                  <p className="text-[16px] leading-snug line-clamp-2 mb-1">{m.name}</p>
-                  <p className="text-[14px] text-muted leading-snug line-clamp-2 mb-2">{m.usageNote}</p>
-                  <p className="text-[16px] font-bold">{m.price.toLocaleString()}원</p>
+                <div key={m.id} data-sr="up" data-d={String((i % 3) + 1)}>
+                  <CardLink href={m.link}>
+                    <div className="relative aspect-square bg-surface-card overflow-hidden mb-3">
+                      {m.imageUrl && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={m.imageUrl} alt={m.name} className="absolute inset-0 w-full h-full object-cover" />
+                      )}
+                    </div>
+                    <p className="text-[16px] leading-snug line-clamp-2 mb-1 group-hover:underline underline-offset-4">{m.name}</p>
+                    <p className="text-[14px] text-muted leading-snug line-clamp-2 mb-2">{m.usageNote}</p>
+                    <p className="text-[16px] font-bold">{m.price.toLocaleString()}원</p>
+                  </CardLink>
                 </div>
               ))}
             </div>
-            <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[15px]">
-              {t("cta_gift_btn")}
-            </Link>
           </Row>
         )}
 

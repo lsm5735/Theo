@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import artists from "@/data/artists.json";
-import projects from "@/data/projects.json";
 import materials from "@/data/materials.json";
 import AtelierDetailClient from "./AtelierDetailClient";
 
@@ -13,13 +12,11 @@ export default async function AtelierDetailPage({ params }: Props) {
   const artist = artists.find((a) => a.slug === slug);
   if (!artist) notFound();
 
-  const project    = projects.find((p) => p.artistId === artist.id) ?? null;
   const artistMaterials = materials.filter((m) => m.artistId === artist.id);
 
   return (
     <AtelierDetailClient
       artist={artist}
-      project={project}
       materials={artistMaterials}
     />
   );

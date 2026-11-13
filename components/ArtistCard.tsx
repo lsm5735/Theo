@@ -11,6 +11,7 @@ interface Artist {
   oneLiner: string;
   profileImage: string;
   coverImage: string;
+  cardImage?: string;
   followers: number;
   totalSponsors: number;
 }
@@ -23,7 +24,7 @@ export default function ArtistCard({ artist, mode = "atelier" }: { artist: Artis
       {/* 이미지 — 4:5, 각진 모서리 */}
       <Link href={`/atelier/${artist.slug}`} className="block relative aspect-[1/1.25] overflow-hidden bg-surface-card">
         <Image
-          src={artist.coverImage}
+          src={artist.cardImage ?? artist.coverImage}
           alt={`${artist.name}의 작품`}
           fill
           sizes="(max-width: 768px) 50vw, 25vw"

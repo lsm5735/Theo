@@ -4,9 +4,9 @@
     "slug": "kim-donghyung",
     "name": "김동형",
     "nameEn": "KIM DONGHYUNG",
-    "oneLiner": "[입력 예시] 한 줄 소개를 입력해 주세요.",
+    "oneLiner": "희미해진 것들을 선명하게 바라볼 수 있을까요",
     "careerStage": "신진",
-    "artistNote": "[입력 예시] 작가노트가 들어갈 자리입니다. 이번 전시를 준비하는 과정에서 어떤 이야기를 담고 있는지, 어떤 재료와 방식으로 작업하는지 작가 본인의 말로 적어 주세요. 정식 내용이 확정되면 data/artists.json의 artistNote를 교체하면 됩니다.",
+    "artistNote": "애써 그려온 모든 것들을 흰색으로 덮고 나서야 깨달았습니다.\n지우고 비워내는 것이 오히려 채우는 일이었다는 것을요.\n혹시 당신에게도 흐릿해졌지만 지워지지 않은 시간이 있나요?\n그림 앞에서 잠시 그 시간을 떠올려 보셨으면 합니다.",
     "palette": [
       "#1F2E2C",
       "#3E5F5B",
@@ -15,10 +15,14 @@
       "#E8EBE6"
     ],
     "status": "active",
-    "profileImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200&h=480&fit=crop&q=80",
+    "profileImage": "/artists/kim-donghyung.jpg",
+    "cardImage": "/artists/kim-donghyung-cover.jpg",
+    "coverImage": "/artists/kim-donghyung-wall.jpg",
     "followers": 0,
-    "totalSponsors": 1
+    "totalSponsors": 1,
+    "statement": "저는 건축 일을 하시는 아버지 덕분에 어릴 때부터 공사 현장을 보며 자랐습니다.\n그래서인지 오래된 건물 벽에 번진 얼룩과 갈라진 틈을 보면 그 안에 쌓인 시간이 느껴집니다.\n\n그 시간의 질감을 캔버스에 담고 싶었습니다.\n캔버스 위에 건축 자재로 표면을 쌓고, 한지를 덮고, 그 위에 여러 색을 반복해서 쌓고 또 쌓았습니다.\n\n그러다 문득 아무리 더해도 마음에 차지 않았습니다.\n그래서 다 지워 보기로 했습니다. 애써 그려온 것들을 흰색으로 덮었습니다.\n\n그러고 나서야 알게 되었습니다.\n지우고 비워내는 일이 오히려 채우는 일이었다는 것을요.\n흰색 아래로 희미해진 것들 사이에서 시간이 지나온 흔적이 더 또렷하게 보였습니다.\n저에게 흰색이라는 색은 희미해진 것들 사이로 지나온 시간의 흔적을 더 선명하게 바라볼 수 있게 만듭니다.",
+    "workImage": "/artists/kim-donghyung-work.jpg",
+    "shopUrl": "https://smartstore.naver.com/atheoart/category/118cdde1ccc24045880b23ada7b3291b?cp=1"
   },
   {
     "id": "artist_theo_002",
@@ -36,7 +40,8 @@
       "#F7EBD6"
     ],
     "status": "active",
-    "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&q=80",
+    "profileImage": "/artists/lee-dong-gu.jpg",
+    "cardImage": "/artists/lee-dong-gu-cover.jpg",
     "coverImage": "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=1200&h=480&fit=crop&q=80",
     "followers": 0,
     "totalSponsors": 1
@@ -57,7 +62,8 @@
       "#EEF3F8"
     ],
     "status": "active",
-    "profileImage": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&h=400&fit=crop&q=80",
+    "profileImage": "/artists/jun-yejin.jpg",
+    "cardImage": "/artists/jun-yejin-cover.jpg",
     "coverImage": "https://images.unsplash.com/photo-1535813547-99c456a41d4a?w=1200&h=480&fit=crop&q=80",
     "followers": 0,
     "totalSponsors": 1
@@ -78,7 +84,8 @@
       "#F0E6F3"
     ],
     "status": "active",
-    "profileImage": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&q=80",
+    "profileImage": "/artists/zinhyung.jpg",
+    "cardImage": "/artists/zinhyung-cover.jpg",
     "coverImage": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&h=480&fit=crop&q=80",
     "followers": 0,
     "totalSponsors": 1

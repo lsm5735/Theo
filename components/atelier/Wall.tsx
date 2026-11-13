@@ -28,6 +28,7 @@ function Composer({ wallId, author }: { wallId: string; author: WallAuthor }) {
   const [text, setText] = useState("");
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
+  const [name, setName] = useState("");
 
   async function pickImage(file: File | undefined) {
     if (!file) return;
@@ -41,7 +42,7 @@ function Composer({ wallId, author }: { wallId: string; author: WallAuthor }) {
 
   function submit() {
     if (!text.trim() && !image) return;
-    const ok = addWallPost({ wallId, role: author.role, authorName: author.name, text: text.trim(), image });
+    const ok = addWallPost({ wallId, role: author.role, authorName: author.role === "theo" ? (name.trim() || author.name) : author.name, text: text.trim(), image });
     if (!ok) {
       setError(t("st_save_fail"));
       return;
@@ -54,7 +55,18 @@ function Composer({ wallId, author }: { wallId: string; author: WallAuthor }) {
     <div className="bg-card rounded-2xl border border-line p-4 mb-8">
       <div className="flex items-center gap-2 mb-3">
         <RoleBadge role={author.role} />
-        <span className="text-[14px] font-bold text-navy-800">{author.name}</span>
+        {author.role === "theo" ? (
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value.slice(0, 20))}
+            placeholder={t("wall_name_ph")}
+            aria-label={t("wall_name_ph")}
+            className="flex-1 min-w-0 max-w-[16rem] bg-transparent border-b border-line-strong focus:border-navy-800 outline-none text-[14px] font-bold text-navy-800 py-1 placeholder:font-normal placeholder:text-[#bdbdbd]"
+          />
+        ) : (
+          <span className="text-[14px] font-bold text-navy-800">{author.name}</span>
+        )}
       </div>
       <textarea
         value={text}

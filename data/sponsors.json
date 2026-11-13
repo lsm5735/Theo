@@ -2,37 +2,37 @@
   {
     "id": "sp_001_01",
     "projectId": "project_artist_theo_001",
-    "nickname": "[예시] 테오",
+    "nickname": "시민",
     "amount": 45000,
     "materialId": "project_artist_theo_001_mat_01",
-    "message": "[입력 예시] 응원 메시지가 들어갑니다.",
-    "date": "2026-11-01"
+    "message": "작가님이 쌓아오신 모든 시간을 응원해요.",
+    "date": "2026-11-14"
   },
   {
     "id": "sp_002_01",
     "projectId": "project_artist_theo_002",
-    "nickname": "[예시] 테오",
+    "nickname": "시민",
     "amount": 45000,
     "materialId": "project_artist_theo_002_mat_01",
-    "message": "[입력 예시] 응원 메시지가 들어갑니다.",
-    "date": "2026-11-01"
+    "message": "작가님이 쌓아오신 모든 시간을 응원해요.",
+    "date": "2026-11-14"
   },
   {
     "id": "sp_003_01",
     "projectId": "project_artist_theo_003",
-    "nickname": "[예시] 테오",
+    "nickname": "시민",
     "amount": 45000,
     "materialId": "project_artist_theo_003_mat_01",
-    "message": "[입력 예시] 응원 메시지가 들어갑니다.",
-    "date": "2026-11-01"
+    "message": "작가님이 쌓아오신 모든 시간을 응원해요.",
+    "date": "2026-11-14"
   },
   {
     "id": "sp_004_01",
     "projectId": "project_artist_theo_004",
-    "nickname": "[예시] 테오",
+    "nickname": "시민",
     "amount": 45000,
     "materialId": "project_artist_theo_004_mat_01",
-    "message": "[입력 예시] 응원 메시지가 들어갑니다.",
-    "date": "2026-11-01"
+    "message": "작가님이 쌓아오신 모든 시간을 응원해요.",
+    "date": "2026-11-14"
   }
 ]

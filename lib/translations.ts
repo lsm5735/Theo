@@ -120,7 +120,7 @@ export const DICT = {
     section_materials: "선물하기", material_gifted: "선물 완료",
     cta_gift_title: "재료 선물하기",
     cta_gift_desc: "재료를 선물하면 작가의\n담벼락에 함께 글을 남길 수 있어요.",
-    cta_gift_btn: "재료 선물하기 →",
+    cta_gift_btn: "물감 선물하기 →",
     tracking_title: "전달 4단계 추적",
     track_s1: "선물 완료", track_s2: "재료 준비 중",
     track_s3: "작가에게 가는 중", track_s4: "작가가 받았어요",
@@ -268,10 +268,11 @@ export const DICT = {
 
     // Wall
     wall_title: "담벼락",
-    wall_sub: "작가와 이 작가를 선물한 테오만 글과 사진을 남길 수 있어요.",
+    wall_sub: "작가님에게 응원의 메세지를 남겨주세요.",
     wall_role_artist: "고흐", wall_role_theo: "테오",
     wall_ph_artist: "오늘 작업실에서 있었던 일을 남겨보세요.",
     wall_ph_theo: "작가에게 응원의 한마디를 남겨보세요.",
+    wall_name_ph: "이름을 입력해 주세요",
     wall_add_photo: "📷 사진 추가", wall_submit: "남기기", wall_delete: "삭제",
     wall_locked: "이 작가를 선물한 테오와 작가만 담벼락에 글을 남길 수 있어요.",
     wall_locked_cta: "선물하고 글 남기기",
@@ -403,7 +404,7 @@ export const DICT = {
     section_materials: "Send a Gift", material_gifted: "Gifted",
     cta_gift_title: "Gift Materials",
     cta_gift_desc: "Gift materials and join\nthe conversation on the artist's wall.",
-    cta_gift_btn: "Gift Materials →",
+    cta_gift_btn: "Gift Paints →",
     tracking_title: "4-Step Delivery Tracking",
     track_s1: "Gifted", track_s2: "Preparing",
     track_s3: "En route", track_s4: "Received",
@@ -551,10 +552,11 @@ export const DICT = {
 
     // Wall
     wall_title: "Wall",
-    wall_sub: "Only the artist and their gifters can post notes and photos.",
+    wall_sub: "Leave a message of support for the artist.",
     wall_role_artist: "Gogh", wall_role_theo: "Theo",
     wall_ph_artist: "Share what happened in the studio today.",
     wall_ph_theo: "Leave a note of cheer for the artist.",
+    wall_name_ph: "Enter your name",
     wall_add_photo: "📷 Add photo", wall_submit: "Post", wall_delete: "Delete",
     wall_locked: "Only gifters of this artist and the artist can post on this wall.",
     wall_locked_cta: "Gift to post",

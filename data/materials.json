@@ -3,31 +3,34 @@
     "id": "project_artist_theo_001_mat_01",
     "projectId": "project_artist_theo_001",
     "artistId": "artist_theo_001",
-    "name": "[입력 예시] 캔버스 F30호 1점",
-    "price": 45000,
-    "usageNote": "[입력 예시] 작품 바탕",
-    "isFunded": true,
-    "imageUrl": "/mat-canvas1.jpeg"
+    "name": "조소냐 과슈 아크릴물감 75ml+(리워드1종)",
+    "price": 10000,
+    "usageNote": "여러 층의 색을 켜켜이 쌓는 작업에 쓰여요.",
+    "isFunded": false,
+    "imageUrl": "/artists/kim-donghyung-mat-1.jpg",
+    "link": "https://smartstore.naver.com/atheoart/products/13867776437"
   },
   {
     "id": "project_artist_theo_001_mat_02",
     "projectId": "project_artist_theo_001",
     "artistId": "artist_theo_001",
-    "name": "[입력 예시] 메인 물감 3색 세트",
-    "price": 32000,
-    "usageNote": "[입력 예시] 주요 색 작업",
+    "name": "조소냐 과슈 아크릴물감 250ml+(리워드2종)",
+    "price": 30000,
+    "usageNote": "여러 층의 색을 켜켜이 쌓는 작업에 쓰여요.",
     "isFunded": false,
-    "imageUrl": "/mat-oil.jpg"
+    "imageUrl": "/artists/kim-donghyung-mat-2.jpg",
+    "link": "https://smartstore.naver.com/atheoart/products/13867805868"
   },
   {
     "id": "project_artist_theo_001_mat_03",
     "projectId": "project_artist_theo_001",
     "artistId": "artist_theo_001",
-    "name": "[입력 예시] 붓 3종 세트",
-    "price": 18000,
-    "usageNote": "[입력 예시] 밑칠과 디테일",
+    "name": "매트 아크릴 118ml 티타늄 화이트+(리워드2종)",
+    "price": 30000,
+    "usageNote": "모든 작업의 마무리 흰색으로 덮어내는 작업을 해요.",
     "isFunded": false,
-    "imageUrl": "/mat-brush.jpg"
+    "imageUrl": "/artists/kim-donghyung-mat-3.jpg",
+    "link": "https://smartstore.naver.com/atheoart/products/13867798215"
   },
   {
     "id": "project_artist_theo_002_mat_01",

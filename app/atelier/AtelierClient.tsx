@@ -16,6 +16,7 @@ interface Artist {
   careerStage: string;
   profileImage: string;
   coverImage: string;
+  cardImage?: string;
 }
 
 export default function AtelierClient({ artists }: { artists: Artist[] }) {
@@ -50,7 +51,7 @@ export default function AtelierClient({ artists }: { artists: Artist[] }) {
                     <Link href={`/atelier/${a.slug}`} className="flex items-center gap-4 group">
                       {/* 모바일 썸네일 */}
                       <span className="relative block md:hidden w-14 aspect-[1/1.25] shrink-0 overflow-hidden bg-surface-card">
-                        <Image src={a.coverImage} alt={a.name} fill sizes="56px" className="object-cover" />
+                        <Image src={a.cardImage ?? a.coverImage} alt={a.name} fill sizes="56px" className="object-cover" />
                       </span>
                       <span className="flex flex-col md:flex-row md:items-baseline md:gap-5 min-w-0">
                         <span className="type-xl leading-none underlined group-hover:underline">{a.name}</span>
@@ -67,7 +68,7 @@ export default function AtelierClient({ artists }: { artists: Artist[] }) {
               <div className="relative aspect-[1/1.25] w-[14rem] bg-surface-card">
                 {artists.map((a, i) => (
                   <div key={a.id} className={`absolute inset-0 transition-opacity duration-200 ${hover === i ? "opacity-100" : "opacity-0"}`}>
-                    <Image src={a.coverImage} alt={a.name} fill sizes="14rem" className="object-cover" />
+                    <Image src={a.cardImage ?? a.coverImage} alt={a.name} fill sizes="14rem" className="object-cover" />
                   </div>
                 ))}
               </div>
