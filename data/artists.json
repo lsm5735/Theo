@@ -29,9 +29,9 @@
     "slug": "lee-dong-gu",
     "name": "이동구",
     "nameEn": "LEE DONG GU",
-    "oneLiner": "[입력 예시] 한 줄 소개를 입력해 주세요.",
+    "oneLiner": "지금 어디쯤 서 있나요? 무거운 쪽인가요 가벼운 쪽인가요?",
     "careerStage": "신진",
-    "artistNote": "[입력 예시] 작가노트가 들어갈 자리입니다. 이번 전시를 준비하는 과정에서 어떤 이야기를 담고 있는지, 어떤 재료와 방식으로 작업하는지 작가 본인의 말로 적어 주세요. 정식 내용이 확정되면 data/artists.json의 artistNote를 교체하면 됩니다.",
+    "artistNote": "삶은 고통과 권태를 오가는 진자운동 같습니다. 마치 시계추처럼요.\n이제는 이 흔들림이 부끄럽지 않습니다.\n멈추지 않고 계속 흔들리면서도 가고 있다는 것이 바로 제가 살아 있다는 가장 확실한 증거일지도 모릅니다.\n제 그림 속 얼굴들도 하나로 정해지지 못한 채 흔들리고 있습니다.\n\n당신의 마음도 그렇다면 우리는 꽤 닮은 사람일 겁니다.",
     "palette": [
       "#3B2A1F",
       "#8A5A3B",
@@ -42,9 +42,20 @@
     "status": "active",
     "profileImage": "/artists/lee-dong-gu.jpg",
     "cardImage": "/artists/lee-dong-gu-cover.jpg",
-    "coverImage": "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=1200&h=480&fit=crop&q=80",
+    "coverImage": "/artists/lee-dong-gu-banner.jpg",
     "followers": 0,
-    "totalSponsors": 1
+    "totalSponsors": 1,
+    "titleColor": "#8c3632",
+    "statement": "한동안은 무거운 것들을 그리고 싶었습니다. 사회와 세대, 우리가 말하는 다양성 같은 것들을요.\n그 시간이 길어질수록 제게 남은 건 분노와 지침뿐이었습니다.\n\n그런데 가벼움으로 돌아가 보니 이번에는 그 가벼움에 몸서리가 쳐졌습니다.\n의미를 붙잡고 씨름하던 무거운 날들이 다시 그리워졌고요.\n\n삶은 고통과 권태를 오가는 진자운동 같습니다. 마치 시계추처럼요.\n저는 무게와 유희 사이를 끝없이 오가며 그림을 그리고 있습니다.\n\n이제는 이 흔들림이 부끄럽지 않습니다.\n무거운 저와 가벼운 저는 서로가 있어야 존재할 수 있는 하나의 세계였으니까요.\n\n멈추지 않고 계속 흔들리면서도 가고있다는 것이 바로 제가 살아 있다는 가장 확실한 증거일지도 모릅니다.\n제 그림 속 얼굴들도 하나로 정해지지 못한 채 흔들리고 있습니다.\n당신의 마음도 그렇다면 우리는 꽤 닮은 사람일 겁니다.",
+    "coverPosition": "50% 25%",
+    "workImage": "/artists/lee-dong-gu-work.jpg",
+    "extraImages": [
+      "/artists/lee-dong-gu-notes.jpg"
+    ],
+    "workImageMore": [
+      "/artists/lee-dong-gu-work2.jpg"
+    ],
+    "buttonColor": "#6f2b28"
   },
   {
     "id": "artist_theo_003",

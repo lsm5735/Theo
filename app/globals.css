@@ -242,6 +242,8 @@ h1, h2, h3, .font-display {
 }
 .nb-btn:hover  { background: var(--sv); color: var(--navy-900); }
 .nb-btn span   { color: inherit; }
+/* 진한 회색 버전 (hover 는 .nb-btn:hover 그대로 옐로우) */
+.nb-btn-gray { background: var(--btn-bg, #4d4d4d); }
 
 /* 보조 버튼 — 1px 네이비 선, hover 시 옐로우 */
 .nb-btn-outline {
