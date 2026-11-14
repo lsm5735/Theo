@@ -391,7 +391,7 @@ export default function HowPage() {
                   href="/atelier"
                   className="block w-full text-center text-[14.5px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
                 >
-                  아틀리에에서 작가 찾기 →
+                  아틀리에에서 작가 찾기
                 </Link>
               </>
             ) : (
@@ -442,7 +442,7 @@ export default function HowPage() {
                   href="/onboarding/artist"
                   className="block w-full text-center text-[14.5px] font-bold bg-navy-900 text-white py-3.5 rounded-xl hover:bg-navy-800 transition-colors"
                 >
-                  작가로 시작하기 →
+                  작가로 시작하기
                 </Link>
               </>
             )}

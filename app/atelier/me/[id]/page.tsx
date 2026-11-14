@@ -152,7 +152,7 @@ export default function MyAtelierPage() {
                     <div className="mt-4 pt-4 border-t border-navy-100">
                       <button onClick={() => setSettingsTab("project")}
                         className="text-xs text-navy-600 hover:text-navy-800 font-semibold transition-colors">
-                        {t("ma_settings")} →
+                        {t("ma_settings")}
                       </button>
                     </div>
                   </div>

@@ -58,7 +58,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         {/* 타이틀 */}
         <section className="px-[var(--gap)] pt-6 md:pt-10">
           <Link href={`/atelier/${artist.slug}`} className="link-line text-[14px] inline-block mb-8 md:mb-12">
-            ← {artist.name} 아틀리에
+            {artist.name} 아틀리에
           </Link>
           <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
             <BigTitle text={project.title} />
@@ -169,7 +169,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             ))}
           </ol>
           <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[15px] mt-10 inline-flex">
-            재료 선물하기 →
+            재료 선물하기
           </Link>
         </Row>
       </main>

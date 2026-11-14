@@ -43,7 +43,7 @@ export default function ArtistCard({ artist, mode = "atelier" }: { artist: Artis
           onClick={(e) => e.stopPropagation()}
           className="mt-4 self-start text-[16px] link-line"
         >
-          {mode === "apply" ? "신청하기" : "아틀리에 입장"} →
+          {mode === "apply" ? "신청하기" : "아틀리에 입장 →"}
         </Link>
       </div>
     </article>

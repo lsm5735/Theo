@@ -23,7 +23,7 @@ export default function FloatingChatbot() {
             style={{ boxShadow: "0 4px 20px rgba(13,59,102,.14)" }}
           >
             <p className="text-[13.5px] font-semibold text-navy-800 leading-snug">
-              테오에게 문의하기 →
+              테오에게 문의하기
             </p>
           </div>
 

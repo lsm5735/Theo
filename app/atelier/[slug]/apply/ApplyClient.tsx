@@ -182,7 +182,7 @@ export default function ApplyClient({ artist, project }: Props) {
 
         {/* 뒤로 */}
         <Link href={`/atelier/${artist.slug}`} className="text-[13.5px] text-navy-400 hover:text-navy-700 transition-colors mb-8 inline-block">
-          ← {artist.name} 아틀리에로
+          {artist.name} 아틀리에로
         </Link>
 
         {/* 작가 헤더 */}

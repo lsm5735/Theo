@@ -301,7 +301,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                       onClick={() => setStep((s) => (s - 1) as Step)}
                       className="text-sm text-navy-600 hover:text-navy-800 font-medium"
                     >
-                      ← 이전
+                      이전
                     </button>
                   ) : null}
                 </div>

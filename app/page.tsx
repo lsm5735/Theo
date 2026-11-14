@@ -124,7 +124,7 @@ export default function Home() {
             <div className={`${RIGHT} flex flex-wrap items-end justify-between gap-x-8 gap-y-4`}>
               <h2 data-sr="up" className="statement fit-h">테오와 함께하는 작가님들</h2>
               <Link href="/atelier" className="link-line text-[16px]">
-                {t("projects_btn")} →
+                {t("projects_btn")}
               </Link>
             </div>
           </div>
@@ -198,10 +198,10 @@ export default function Home() {
           {/* 두 버튼은 가로 너비가 같도록: 더 긴 쪽 폭에 맞춰 동일한 칸으로 나눈다 */}
           <div data-sr="up" data-d="2" className="grid grid-cols-1 sm:grid-flow-col sm:auto-cols-fr sm:w-fit gap-3 sm:gap-4 mt-12">
             <Link href="/atelier" className="nb-btn px-7 py-3 text-[15px]">
-              {t("btn_patron_main")} — {t("btn_patron_sub")} →
+              {t("btn_patron_main")}({t("btn_patron_sub")})
             </Link>
             <Link href="/onboarding/artist" className="nb-btn-outline px-7 py-3 text-[15px]">
-              {t("btn_artist_main")} — {t("btn_artist_sub")} →
+              {t("btn_artist_main")}({t("btn_artist_sub")})
             </Link>
           </div>
         </Row>
@@ -260,7 +260,7 @@ export default function Home() {
               <hr className="dots-x" />
               <p className="text-[16px] md:text-[18px] leading-[1.8] py-3">서울 종로구 창덕궁길 83-1</p>
               <hr className="dots-x mb-8" />
-              <Link href="/show" className="en link-line text-[16px]">Read More →</Link>
+              <Link href="/show" className="en link-line text-[16px]">Read More</Link>
             </div>
           </div>
         </Row>
@@ -303,7 +303,7 @@ export default function Home() {
                 href={DECK_MAILTO}
                 className="nb-btn px-7 py-3 text-[15px]"
               >
-                {t("cta_btn")} →
+                {t("cta_btn")}
               </a>
             </div>
           </div>

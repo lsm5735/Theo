@@ -85,7 +85,7 @@ function InquiryForm() {
           지금은 이 화면에서 바로 전송되지 않아요. 아래 버튼을 누르면 메일 앱이 열리고, 내용이 미리 채워져 있어요. 보내기만 눌러 주세요.
         </p>
         <a href={mailto} className="nb-btn px-6 py-3 text-[15px]">
-          메일 앱으로 보내기 →
+          메일 앱으로 보내기
         </a>
         <p className="text-[13px] text-muted mt-3">받는 곳: {INQUIRY_EMAIL}</p>
       </div>
@@ -110,7 +110,7 @@ function InquiryForm() {
       </div>
       {error && <p className="text-[14px] text-red-600">{error}</p>}
       <button type="submit" disabled={state === "sending"} className="nb-btn px-6 py-3 text-[15px] disabled:opacity-60">
-        {state === "sending" ? "보내는 중…" : "문의 보내기 →"}
+        {state === "sending" ? "보내는 중…" : "문의 보내기"}
       </button>
     </form>
   );
@@ -224,7 +224,7 @@ export default function BotPage() {
                           {m.text && <p className="text-[16px] leading-[1.8]" style={{ wordBreak: "keep-all" }}>{m.text}</p>}
                           {m.link && (
                             <Link href={m.link.href} className="link-line text-[15px] inline-block mt-3">
-                              {m.link.label} →
+                              {m.link.label}
                             </Link>
                           )}
                           {m.form && active && <div className="mt-5"><InquiryForm /></div>}

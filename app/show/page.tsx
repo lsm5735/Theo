@@ -81,10 +81,10 @@ export default function ShowPage() {
           </p>
           <div className="space-y-8 max-w-[56rem]">
             <p data-sr="up" className="text-[16.5px] leading-[1.95] text-muted whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
-              {"그림이 태어나는 과정을 보러 오세요.\n이곳에서 관객은 꽃다발 대신 물감을 보냅니다.\n당신이 고른 색은 작가에게 도착하고, 작가의 손과 시간을 지나 새로운 장면이 됩니다.\n누군가의 마음이 재료가 되고, 그 재료는 하나의 작품으로 피어납니다."}
+              {"그림이 태어나는 과정을 보러 오세요.\n이곳에서 관객은 꽃다발 대신 물감을 보냅니다.\n당신이 고른 색은 작가에게 도착하고, 작가의 손을 거쳐 새로운 장면이 됩니다.\n누군가의 마음이 재료가 되고, 그 재료는 하나의 작품으로 피어납니다."}
             </p>
             <p data-sr="up" className="text-[16.5px] leading-[1.95] text-muted whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
-              {"전시장은 갤러리가 아니라 작가의 아틀리에입니다.\n벽과 캐비닛에는 스케치, 메모, 습작, 재료, 작업 기록이 그대로 놓여 있습니다.\n이를 통해 관람객은 작품이 한순간에 완성되지 않았음을, 수많은 시도와 망설임, 선택과 우연을 지나 지금의 모습에 이르렀음을 마주하게 됩니다."}
+              {"전시장은 작가의 아틀리에로 변합니다.\n벽과 캐비닛에는 스케치, 메모, 습작, 재료, 작가의 작업 과정이 놓여 있습니다.\n이를 통해 관람객은 작품이 수많은 시도와 망설임, 선택과 우연을 지나 지금의 모습에 이르렀음을 마주하게 됩니다."}
             </p>
           </div>
         </Row>
@@ -108,8 +108,8 @@ export default function ShowPage() {
           <div className="flex flex-col md:flex-row gap-6 md:gap-0">
             <div className={LEFT} />
             <div className={`${RIGHT} flex flex-wrap gap-3`}>
-              <Link href="/community" className="nb-btn px-7 py-3 text-[15px]">함께하는 프로그램 보기 →</Link>
-              <Link href="/atelier" className="nb-btn-outline px-7 py-3 text-[15px]">작가 아틀리에 보기 →</Link>
+              <Link href="/community" className="nb-btn px-7 py-3 text-[15px]">함께하는 프로그램 보기</Link>
+              <Link href="/atelier" className="nb-btn-outline px-7 py-3 text-[15px]">작가 아틀리에 보기</Link>
             </div>
           </div>
         </section>

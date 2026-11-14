@@ -462,7 +462,7 @@ export default function SponsorClient({ artistId }: Props) {
           href={`/atelier/${artist.slug}`}
           className="inline-flex items-center gap-1.5 text-sm text-navy-600 hover:text-navy-800 font-medium mb-8 transition-colors"
         >
-          ← {artist.name} {t("sp_back")}
+          {artist.name} {t("sp_back")}
         </Link>
 
         {/* Artist summary banner */}

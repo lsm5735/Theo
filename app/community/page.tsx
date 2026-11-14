@@ -85,8 +85,8 @@ export default function CommunityPage() {
 
       <main>
         <section className="px-[var(--gap)] pt-10 md:pt-16">
-          <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
-            <BigTitle text="Community" />
+          <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14 text-sun">
+            <BigTitle text="Arty" />
           </div>
           <hr className="dots-x" />
         </section>
@@ -98,8 +98,9 @@ export default function CommunityPage() {
               <span className="type-section">Programs</span>
             </div>
             <div className="w-full md:w-[calc((100vw-var(--gap)*2)*0.75)]">
-              <p data-sr="up" className="type-m max-w-[60rem] whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
-                {"작가와 직접 만나는 시간.\n선물 너머 작가의 과정에 함께할 수 있는 프로그램을 준비했습니다."}
+              <p data-sr="up" className="type-m max-w-[60rem]" style={{ wordBreak: "keep-all" }}>
+                <span className="block">Art + Party = Arty 테오와 고흐가 만나는 자리입니다.</span>
+                <span className="block mt-3 md:mt-4">작가의 과정에 함께할 수 있는 프로그램을 준비했습니다.</span>
               </p>
             </div>
           </div>
@@ -152,7 +153,7 @@ export default function CommunityPage() {
                       href={multi ? (prog.artists.length ? "/atelier" : "/show") : `/atelier/${prog.artists[0].slug}/apply`}
                       className="nb-btn px-6 py-2.5 text-[15px] md:text-[14px]"
                     >
-                      신청하기 →
+                      신청하기
                     </Link>
                   </div>
                 </article>

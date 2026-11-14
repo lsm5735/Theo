@@ -90,7 +90,7 @@ export default function PartnershipPage() {
 
       <div className="max-w-[600px] w-full mx-auto px-5 md:px-8 py-10">
         <Link href="/" className="text-[14px] text-muted hover:text-ink transition-colors mb-8 block w-fit">
-          ← 홈으로
+          홈으로
         </Link>
 
         <p data-sr="fade" className="nb-tag mb-5">PARTNERSHIP</p>

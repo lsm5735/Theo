@@ -8,7 +8,7 @@ import { useLang, useT } from "@/contexts/LangContext";
 const NAV = [
   { label: "Show", href: "/show" },
   { label: "Atelier", href: "/atelier" },
-  { label: "Community", href: "/community" },
+  { label: "Arty", href: "/community" },
 ];
 
 const ABOUT_LINKS = [
@@ -38,7 +38,7 @@ export default function Header() {
         </div>
 
         <div className="flex w-full items-center justify-end md:justify-between text-[18px] md:text-[20px]">
-          {/* Desktop nav — About, Show, Atelier, Community. */}
+          {/* Desktop nav — About, Show, Atelier, Arty. */}
           <nav className="hidden md:flex">
             <ul className="flex gap-x-10">
               <li className="flex relative group">

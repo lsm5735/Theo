@@ -15,7 +15,7 @@ export default function Footer() {
       links: [
         { label: "Show", href: "/show" },
         { label: "Atelier", href: "/atelier" },
-        { label: "Community", href: "/community" },
+        { label: "Arty", href: "/community" },
         { label: "About", href: "/partnership" },
       ],
     },
