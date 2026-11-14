@@ -101,8 +101,8 @@ export const DICT = {
     footer_link_contact: "문의하기",
     footer_link_story: "브랜드 스토리", footer_link_terms: "이용약관",
     footer_link_privacy: "개인정보처리방침", footer_link_trade: "통신판매중개 고지",
-    footer_copy: "© 2026 Theo",
-    footer_disclaimer: "테오는 재료 거래의 중개자이며, 재료의 하자·배송 책임은 약관에 따릅니다.",
+    footer_copy: "© 2026 오크르(Okrr)",
+    footer_disclaimer: "오크르(Okrr)는 상품의 판매자이며, 작가 회원이 게시한 콘텐츠에 대한 책임은 해당 작가 회원에게 있습니다.",
 
     // Atelier list
     atelier_label: "ATELIER", atelier_h1: "지금 선물 가능한 작가",
@@ -386,8 +386,8 @@ export const DICT = {
     footer_link_contact: "Contact",
     footer_link_story: "Brand story", footer_link_terms: "Terms of service",
     footer_link_privacy: "Privacy policy", footer_link_trade: "Commerce disclosure",
-    footer_copy: "© 2026 Theo",
-    footer_disclaimer: "Theo acts as an intermediary for material transactions. Responsibility for defects and delivery is governed by the terms of service.",
+    footer_copy: "© 2026 오크르(Okrr)",
+    footer_disclaimer: "Okrr is the seller of the products; creators are responsible for the content they post.",
 
     // Atelier list
     atelier_label: "ATELIER", atelier_h1: "Artists Accepting Gifts",

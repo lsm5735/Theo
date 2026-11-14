@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useT } from "@/contexts/LangContext";
+import { BIZ } from "@/lib/legal";
 
 const MARQUEE = ["GIVE PAINT,", "NOT FLOWERS"];
 
@@ -38,9 +39,8 @@ export default function Footer() {
       title: t("footer_company"),
       links: [
         { label: t("footer_link_story"), href: "https://www.okrr.art/" },
-        { label: t("footer_link_terms"), href: "#" },
-        { label: t("footer_link_privacy"), href: "#" },
-        { label: t("footer_link_trade"), href: "#" },
+        { label: t("footer_link_terms"), href: "/terms" },
+        { label: t("footer_link_privacy"), href: "/privacy" },
       ],
     },
   ];
@@ -102,11 +102,37 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* 사업자 정보 */}
+      <div className="px-[var(--gap)]">
+        <hr className="dots-x" />
+        <address className="not-italic py-6 text-[13px] leading-[1.9] text-muted">
+          <p className="flex flex-wrap gap-x-4">
+            <span>상호명 및 대표자 : {BIZ.name} / {BIZ.ceo}</span>
+            <span>
+              사업자등록번호 : {BIZ.regNo}{" "}
+              <a href={BIZ.ftcUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-ink">
+                사업자정보확인
+              </a>
+            </span>
+          </p>
+          <p className="flex flex-wrap gap-x-4">
+            <span>통신판매업신고번호 : {BIZ.mailOrderNo}</span>
+            <span>주소 : {BIZ.address}</span>
+          </p>
+          <p className="flex flex-wrap gap-x-4">
+            <span>
+              고객문의메일 :{" "}
+              <a href={`mailto:${BIZ.email}`} className="underline underline-offset-2 hover:text-ink">{BIZ.email}</a>
+            </span>
+            <span>개인정보보호책임자 : {BIZ.privacyOfficer}</span>
+          </p>
+        </address>
+      </div>
+
       <div className="px-[var(--gap)]">
         <hr className="dots-x" />
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 py-6 text-[13px] text-muted">
           <span>{t("footer_copy")}</span>
-          <span>{t("footer_disclaimer")}</span>
         </div>
       </div>
     </footer>
