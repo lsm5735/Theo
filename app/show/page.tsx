@@ -75,9 +75,9 @@ const GUIDE = [
 const LEFT = "md:w-[calc((100vw-var(--gap)*2)*0.25-1.5rem)] shrink-0";
 const RIGHT = "w-full md:w-[calc((100vw-var(--gap)*2)*0.75)]";
 
-function Row({ label, children }: { label: string; children: React.ReactNode }) {
+function Row({ label, id, children }: { label: string; id?: string; children: React.ReactNode }) {
   return (
-    <section className="px-[var(--gap)]">
+    <section id={id} className="px-[var(--gap)] scroll-mt-20">
       <div className="flex flex-col md:flex-row py-12 md:py-16 gap-6 md:gap-0">
         <div className={LEFT}>
           <span className="type-section">{label}</span>
@@ -115,7 +115,10 @@ export default function ShowPage() {
               <img src="/show-poster-right.jpg" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           </div>
-          <div className="px-[var(--gap)]"><hr className="dots-x mt-12 md:mt-16 max-md:hidden" /></div>
+          <div className="px-[var(--gap)] pt-12 md:pt-16 flex flex-col items-center">
+            <a href="#guide" className="nb-btn px-7 py-3 text-[15px] max-md:text-[13px]">전시 사용설명서 ↓</a>
+            <hr className="dots-x w-full mt-12 md:mt-16 max-md:hidden" />
+          </div>
         </section>
 
         <Row label="Info">
@@ -183,7 +186,7 @@ export default function ShowPage() {
           </div>
         </Row>
 
-        <Row label="Guide">
+        <Row label="Guide" id="guide">
           <p data-sr="up" className="type-m max-md:font-bold max-md:text-[21px]! mb-8 md:mb-10">전시 사용 설명서</p>
           <ol>
             {GUIDE.map((g, n) => (
@@ -231,19 +234,6 @@ export default function ShowPage() {
             ))}
           </ul>
         </Row>
-
-        <section className="px-[var(--gap)] py-12 md:py-16">
-          <div className="flex flex-col md:flex-row gap-6 md:gap-0">
-            <div className={LEFT} />
-            <div className={RIGHT}>
-              {/* 두 열이 같은 크기(1fr)를 공유 → 더 긴 버튼 너비에 맞춰 두 버튼이 동일해진다 */}
-              <div className="grid w-fit grid-cols-1 md:grid-cols-2 gap-3">
-                <Link href="/community" className="nb-btn px-7 py-3 text-[15px] max-md:text-[13px]">함께하는 프로그램 보기</Link>
-                <Link href="/atelier" className="nb-btn-outline px-7 py-3 text-[15px] max-md:text-[13px]">작가 아틀리에 보기</Link>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
     </div>
   );
