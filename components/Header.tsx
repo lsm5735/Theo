@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { useLang, useT } from "@/contexts/LangContext";
+import { useLang } from "@/contexts/LangContext";
 
 const NAV = [
   { label: "Show", href: "/show" },
@@ -19,7 +19,6 @@ const ABOUT_LINKS = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { lang, setLang } = useLang();
-  const t = useT();
   const pathname = usePathname();
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
@@ -89,9 +88,6 @@ export default function Header() {
                 {lang === "ko" ? "EN" : "KO"}
               </button>
             </li>
-            <li className="hidden md:flex">
-              <Link href="/#start" className="underlined">{t("btn_start")}</Link>
-            </li>
             <li className="flex md:hidden">
               <button
                 className="underlined flex cursor-pointer items-center gap-x-2"
@@ -136,9 +132,6 @@ export default function Header() {
                 )}
               </li>
             ))}
-            <li className="pt-2">
-              <Link href="/#start" className="link-line" onClick={() => setMenuOpen(false)}>{t("btn_start")}</Link>
-            </li>
           </ul>
         </div>
       )}
