@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
   const name = clip(body.name, 50);
   const email = clip(body.email, 120);
   const message = clip(body.message, 2000);
+  const tag = clip(body.subject, 40) || "[테오 문의]";
 
   if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ ok: false, error: "이름, 이메일, 문의 내용을 확인해 주세요." }, { status: 400 });
@@ -37,7 +38,7 @@ export async function POST(req: NextRequest) {
         from: process.env.INQUIRY_FROM || "Theo Bot <onboarding@resend.dev>",
         to: [INQUIRY_EMAIL],
         reply_to: email,
-        subject: `[테오 문의] ${name}님`,
+        subject: `${tag} ${name}님`,
         html: `<p><b>이름</b> ${esc(name)}</p><p><b>이메일</b> ${esc(email)}</p><p style="white-space:pre-wrap">${esc(message)}</p>`,
       }),
     });

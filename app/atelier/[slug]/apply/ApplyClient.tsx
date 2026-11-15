@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import PageTitle from "@/components/PageTitle";
+import { MOTIVATION_OPTIONS } from "@/lib/programs";
 
 interface Artist {
   id: string;
@@ -31,13 +32,6 @@ interface Props {
 
 type Step = "form" | "done";
 
-const MOTIVATION_OPTIONS = [
-  "평소에 이 작가의 작업이 좋았어요",
-  "취향에 맞는 그림 스타일이에요",
-  "창작 과정이 궁금해서요",
-  "담벼락에서 작업 소식을 보고 싶어요",
-  "소규모 작가를 응원하고 싶어요",
-];
 
 function FieldLabel({ children, required }: { children: React.ReactNode; required?: boolean }) {
   return (
@@ -84,6 +78,11 @@ export default function ApplyClient({ artist, project }: Props) {
   const [agree, setAgree] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  // 완료 화면으로 바뀌면 맨 위부터 보이게 한다 (폼이 길어서 아래로 내려가 있던 스크롤을 올림)
+  useEffect(() => {
+    if (step === "done") window.scrollTo({ top: 0, behavior: "instant" });
+  }, [step]);
+
 
   function validate() {
     const e: Record<string, string> = {};
@@ -112,24 +111,24 @@ export default function ApplyClient({ artist, project }: Props) {
       <div className="min-h-screen bg-paper flex flex-col">
         <Header />
         <div className="flex-1 flex items-center justify-center px-5 py-16">
-          <div className="max-w-[460px] w-full text-center">
+          <div className="max-w-[700px] w-full text-center">
             {/* 별 아이콘 */}
             <div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
+              className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6"
               style={{ background: "var(--sv)" }}
             >
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" className="text-ink">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor" className="text-ink">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             </div>
 
-            <h1 className="text-[26px] font-bold text-ink leading-snug mb-3">
+            <h1 className="text-[44px] font-bold text-ink leading-snug mb-5">
               신청이 완료됐어요
             </h1>
-            <p className="text-[15px] text-navy-500 leading-[1.85] mb-2">
+            <p className="text-[24px] text-navy-500 leading-[1.85] mb-2">
               <b className="text-navy-800">{name}</b>님은 이제
             </p>
-            <p className="text-[15px] text-navy-500 leading-[1.85] mb-8">
+            <p className="text-[24px] text-navy-500 leading-[1.85] mb-8">
               <b className="text-navy-800">{artist.name}</b> 작가의{" "}
               <b className="text-navy-800">{artist.totalSponsors !== undefined ? artist.totalSponsors + 1 : ""}번째 테오</b>입니다.
             </p>
@@ -142,12 +141,12 @@ export default function ApplyClient({ artist, project }: Props) {
                 <Image src={artist.profileImage} alt={artist.name} fill sizes="44px" className="object-cover" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-navy-900 text-[15px]">{artist.name}</p>
-                <p className="text-[13px] text-navy-500 mt-0.5 line-clamp-1">{artist.oneLiner}</p>
+                <p className="font-bold text-navy-900 text-[22px]">{artist.name}</p>
+                <p className="text-[18px] text-navy-500 mt-0.5 line-clamp-1">{artist.oneLiner}</p>
               </div>
             </div>
 
-            <p className="text-[13px] text-navy-400 mb-6 leading-relaxed">
+            <p className="text-[20px] text-navy-400 mb-8 leading-relaxed">
               입력하신 이메일(<b className="text-navy-600">{email}</b>)로<br />
               확인 안내를 보내드릴게요. 창작 과정은 아틀리에 담벼락에서 함께 볼 수 있어요.
             </p>
@@ -155,13 +154,13 @@ export default function ApplyClient({ artist, project }: Props) {
             <div className="flex flex-col gap-2.5">
               <Link
                 href={`/atelier/${artist.slug}`}
-                className="block w-full text-center text-[14.5px] font-bold bg-navy-900 text-white py-3 rounded-xl hover:bg-navy-800 transition-colors"
+                className="block w-full text-center text-[20px] font-bold bg-navy-900 text-white py-3 rounded-xl hover:bg-navy-800 transition-colors"
               >
                 {artist.name} 작가 아틀리에 보기
               </Link>
               <Link
                 href="/atelier"
-                className="block w-full text-center text-[14px] text-navy-500 border border-navy-200 py-3 rounded-xl hover:bg-navy-100 transition-colors"
+                className="block w-full text-center text-[19px] text-navy-500 border border-navy-200 py-3 rounded-xl hover:bg-navy-100 transition-colors"
               >
                 다른 작가 둘러보기
               </Link>

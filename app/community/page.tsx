@@ -36,6 +36,14 @@ const byName = (name: string): Participant => {
 };
 const cover = (name: string) => artistsData.find((x) => x.name === name)!.coverImage.replace("w=1200&h=480", "w=800&h=500");
 
+// 프로그램 종류 → 신청 페이지 주소(/community/<slug>/apply, lib/programs.ts)
+const APPLY_SLUG: Record<ProgramType, string> = {
+  "팝업 전시": "popup",
+  "오픈 스튜디오": "open-studio",
+  "라이브 페인팅": "live-painting",
+  "Theo 아트 나이트": "art-night",
+};
+
 const PROGRAMS: Program[] = [
   {
     id: "prog_001",
@@ -111,7 +119,6 @@ export default function CommunityPage() {
         <section className="px-[var(--gap)] py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-[rgba(7,34,60,.25)] border-y border-[rgba(7,34,60,.25)]">
             {PROGRAMS.map((prog, i) => {
-              const multi = prog.artists.length !== 1;
               return (
                 <article key={prog.id} data-sr="up" data-d={String((i % 4) + 1)} className="prog-card bg-paper flex flex-col p-5 md:last:col-span-2 xl:last:col-span-1">
                   <div className="relative aspect-[4/3] overflow-hidden bg-surface-card mb-5">
@@ -150,7 +157,7 @@ export default function CommunityPage() {
                     </p>
                     <p className="text-[15px] md:text-[14px] text-ink mb-5">{prog.location}</p>
                     <Link
-                      href={multi ? (prog.artists.length ? "/atelier" : "/show") : `/atelier/${prog.artists[0].slug}/apply`}
+                      href={`/community/${APPLY_SLUG[prog.type]}/apply`}
                       className="nb-btn px-6 py-2.5 text-[15px] md:text-[14px]"
                     >
                       신청하기
