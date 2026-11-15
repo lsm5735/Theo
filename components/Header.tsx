@@ -30,17 +30,24 @@ export default function Header() {
       <div className="flex w-full items-center h-16 px-[var(--gap)]">
         {/* 로고 — 왼쪽 라벨 영역 */}
         <div className="md:w-[calc((100vw-var(--gap)*2)*0.25)] shrink-0 flex items-center">
-          <Link href="/" className="flex items-center gap-2" onClick={() => setMenuOpen(false)}>
+          {/* 일반 <a> 로 두어, 어느 페이지에서든 누르면 홈을 처음부터 새로 불러온다(새로고침) */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a href="/" className="flex items-center gap-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo-face.png" alt="THEO" className="w-7 h-7 shrink-0" />
             <b className="logo-wordmark tracking-[0.08em] text-[24px] text-navy-900">Theo</b>
-          </Link>
+          </a>
         </div>
 
         <div className="flex w-full items-center justify-end md:justify-between text-[18px] md:text-[20px]">
           {/* Desktop nav — About, Show, Atelier, Arty. */}
           <nav className="hidden md:flex">
             <ul className="flex gap-x-10">
+              <li className="flex">
+                {/* 일반 <a> — 누르면 랜딩을 새로 불러온다(새로고침) */}
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                <a href="/" className={`underlined ${pathname === "/" ? "underline underline-offset-[3px] decoration-1" : ""}`}>Home</a>
+              </li>
               <li className="flex relative group">
                 <button className="underlined cursor-pointer">About</button>
                 <div className="absolute left-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-150 z-50">
@@ -108,6 +115,10 @@ export default function Header() {
       {menuOpen && (
         <div className="md:hidden absolute left-0 right-0 top-full bg-paper border-b border-ink/40 px-[var(--gap)] pt-6 pb-8">
           <ul className="flex flex-col gap-4">
+            <li className="type-xl leading-none">
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+              <a href="/" className="underlined">Home</a>
+            </li>
             {NAV.map((n) => (
               <li key={n.href} className="type-xl leading-none">
                 <Link href={n.href} className="underlined" onClick={() => setMenuOpen(false)}>{n.label}</Link>
