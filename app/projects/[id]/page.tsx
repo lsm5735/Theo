@@ -57,10 +57,10 @@ export default async function ProjectDetailPage({ params }: Props) {
       <main>
         {/* 타이틀 */}
         <section className="px-[var(--gap)] pt-6 md:pt-10">
-          <Link href={`/atelier/${artist.slug}`} className="link-line text-[14px] inline-block mb-8 md:mb-12">
+          <Link href={`/atelier/${artist.slug}`} className="link-line text-[14px] max-md:text-[12px] inline-block mb-8 md:mb-12">
             {artist.name} 아틀리에
           </Link>
-          <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
+          <div data-sr="fade" className="pr-0 md:pr-[var(--gap)] pb-8 md:pb-14">
             <BigTitle text={project.title} />
           </div>
           <hr className="dots-x" />
@@ -100,15 +100,15 @@ export default async function ProjectDetailPage({ params }: Props) {
             {artist.palette.map((color) => (
               <span key={color} title={color} className="w-7 h-7 rounded-full border border-ink/20" style={{ background: color }} />
             ))}
-            <span className="text-[14px] text-muted ml-2">작가 팔레트</span>
+            <span className="text-[14px] max-md:text-[12px] text-muted ml-2">작가 팔레트</span>
           </div>
           <Link href={`/atelier/${artist.slug}`} className="group flex items-center gap-4">
             <span className="relative w-14 aspect-[1/1.25] overflow-hidden bg-surface-card shrink-0">
               <Image src={artist.profileImage} alt={artist.name} fill sizes="56px" className="object-cover" />
             </span>
             <span>
-              <span className="block text-[19px] underlined group-hover:underline">{artist.name}</span>
-              <span className="block text-[14px] text-muted">{artist.oneLiner}</span>
+              <span className="block text-[19px] max-md:text-[17px] underlined group-hover:underline">{artist.name}</span>
+              <span className="block text-[14px] max-md:text-[12px] text-muted">{artist.oneLiner}</span>
             </span>
           </Link>
         </Row>
@@ -133,7 +133,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         {/* 선물한 테오 명단 */}
         {projectSponsors.length > 0 && (
           <Row label="Theos">
-            <p className="text-[15px] text-muted mb-6">{projectSponsors.length}명의 테오가 이 작품을 응원합니다</p>
+            <p className="text-[15px] max-md:text-[13px] text-muted mb-6">{projectSponsors.length}명의 테오가 이 작품을 응원합니다</p>
             <div>
               {projectSponsors.map((sp) => {
                 const mat = materials.find((m) => m.id === sp.materialId);
@@ -141,12 +141,12 @@ export default async function ProjectDetailPage({ params }: Props) {
                   <div key={sp.id}>
                     <hr className="dots-x" />
                     <div className="py-5 grid grid-cols-[1fr_auto] gap-x-6 gap-y-1">
-                      <span className="text-[18px]">{sp.nickname} 님</span>
-                      <span className="text-[14px] text-muted">{formatDate(sp.date)}</span>
-                      <span className="text-[15px] text-muted col-span-2">
+                      <span className="text-[18px] max-md:text-[16px]">{sp.nickname} 님</span>
+                      <span className="text-[14px] max-md:text-[12px] text-muted">{formatDate(sp.date)}</span>
+                      <span className="text-[15px] max-md:text-[13px] text-muted col-span-2">
                         재료 선물 {sp.amount.toLocaleString()}원{mat ? ` · ${mat.usageNote}` : ""}
                       </span>
-                      {sp.message && <p className="col-span-2 mt-2 text-[16px] leading-relaxed">&ldquo;{sp.message}&rdquo;</p>}
+                      {sp.message && <p className="col-span-2 mt-2 text-[16px] max-md:text-[14px] leading-relaxed">&ldquo;{sp.message}&rdquo;</p>}
                     </div>
                   </div>
                 );
@@ -157,18 +157,18 @@ export default async function ProjectDetailPage({ params }: Props) {
 
         {/* 전달 안내 */}
         <Row label="Delivery">
-          <p className="text-[16px] leading-[1.8] mb-8 max-w-[34rem]">
+          <p className="text-[16px] max-md:text-[14px] leading-[1.8] mb-8 max-w-[34rem]">
             재료가 {artist.name} 작가에게 전달됩니다. 배송지는 공개되지 않습니다.
           </p>
           <ol className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {["선물 완료", "재료 준비 중", "작가에게 가는 중", "작가가 받았어요"].map((step, i) => (
               <li key={step}>
                 <span className="type-label text-muted block mb-2">0{i + 1}</span>
-                <span className="text-[16px]">{step}</span>
+                <span className="text-[16px] max-md:text-[14px]">{step}</span>
               </li>
             ))}
           </ol>
-          <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[15px] mt-10 inline-flex">
+          <Link href={`/sponsor/${artist.id}`} className="nb-btn px-7 py-3 text-[15px] max-md:text-[13px] mt-10 inline-flex">
             재료 선물하기
           </Link>
         </Row>

@@ -75,24 +75,24 @@ function InquiryForm() {
   }
 
   if (state === "sent") {
-    return <p className="text-[16px] leading-[1.7]">문의가 전달됐어요. 남겨 주신 이메일로 답변드릴게요.</p>;
+    return <p className="text-[16px] max-md:text-[14px] leading-[1.7]">문의가 전달됐어요. 남겨 주신 이메일로 답변드릴게요.</p>;
   }
 
   if (state === "fallback") {
     return (
       <div>
-        <p className="text-[16px] leading-[1.7] mb-4">
+        <p className="text-[16px] max-md:text-[14px] leading-[1.7] mb-4">
           지금은 이 화면에서 바로 전송되지 않아요. 아래 버튼을 누르면 메일 앱이 열리고, 내용이 미리 채워져 있어요. 보내기만 눌러 주세요.
         </p>
-        <a href={mailto} className="nb-btn px-6 py-3 text-[15px]">
+        <a href={mailto} className="nb-btn px-6 py-3 text-[15px] max-md:text-[13px]">
           메일 앱으로 보내기
         </a>
-        <p className="text-[13px] text-muted mt-3">받는 곳: {INQUIRY_EMAIL}</p>
+        <p className="text-[13px] max-md:text-[11px] text-muted mt-3">받는 곳: {INQUIRY_EMAIL}</p>
       </div>
     );
   }
 
-  const inputCls = "w-full bg-paper border border-ink/40 px-3 py-2.5 text-[16px] focus:outline-none focus:border-ink";
+  const inputCls = "w-full bg-paper border border-ink/40 px-3 py-2.5 text-[16px] max-md:text-[14px] focus:outline-none focus:border-ink";
 
   return (
     <form onSubmit={submit} noValidate className="space-y-3">
@@ -108,8 +108,8 @@ function InquiryForm() {
         <label className="type-label block mb-1.5">문의 내용</label>
         <textarea className={`${inputCls} min-h-[120px]`} value={message} onChange={(e) => setMessage(e.target.value)} maxLength={2000} placeholder="궁금한 점을 적어 주세요." />
       </div>
-      {error && <p className="text-[14px] text-red-600">{error}</p>}
-      <button type="submit" disabled={state === "sending"} className="nb-btn px-6 py-3 text-[15px] disabled:opacity-60">
+      {error && <p className="text-[14px] max-md:text-[12px] text-red-600">{error}</p>}
+      <button type="submit" disabled={state === "sending"} className="nb-btn px-6 py-3 text-[15px] max-md:text-[13px] disabled:opacity-60">
         {state === "sending" ? "보내는 중…" : "문의 보내기"}
       </button>
     </form>
@@ -216,14 +216,14 @@ export default function BotPage() {
                 return (
                   <li key={m.id} className={m.role === "user" ? "flex justify-end" : ""}>
                     {m.role === "user" ? (
-                      <p className="bg-navy-900 text-white px-4 py-2.5 text-[16px] max-w-[85%]">{m.text}</p>
+                      <p className="bg-navy-900 text-white px-4 py-2.5 text-[16px] max-md:text-[14px] max-w-[85%]">{m.text}</p>
                     ) : (
                       <div className="max-w-[44rem]">
                         <p className="type-label text-muted mb-2">Theo Bot</p>
                         <div className="border border-line bg-card px-5 py-4">
-                          {m.text && <p className="text-[16px] leading-[1.8]" style={{ wordBreak: "keep-all" }}>{m.text}</p>}
+                          {m.text && <p className="text-[16px] max-md:text-[14px] leading-[1.8]" style={{ wordBreak: "keep-all" }}>{m.text}</p>}
                           {m.link && (
-                            <Link href={m.link.href} className="link-line text-[15px] inline-block mt-3">
+                            <Link href={m.link.href} className="link-line text-[15px] max-md:text-[13px] inline-block mt-3">
                               {m.link.label}
                             </Link>
                           )}
@@ -237,7 +237,7 @@ export default function BotPage() {
                                 type="button"
                                 disabled={!active}
                                 onClick={() => onChip(c)}
-                                className={`${c.kind === "inquiry" ? "nb-btn" : "nb-btn-outline"} px-4 py-2 text-[15px] text-left`}
+                                className={`${c.kind === "inquiry" ? "nb-btn" : "nb-btn-outline"} px-4 py-2 text-[15px] max-md:text-[13px] text-left`}
                               >
                                 {c.label}
                               </button>
@@ -257,10 +257,10 @@ export default function BotPage() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="궁금한 점을 입력해 보세요. 예: 환불이 되나요?"
-                className="flex-1 bg-paper border border-ink/40 px-4 py-3 text-[16px] focus:outline-none focus:border-ink"
+                className="flex-1 bg-paper border border-ink/40 px-4 py-3 text-[16px] max-md:text-[14px] focus:outline-none focus:border-ink"
                 maxLength={200}
               />
-              <button type="submit" className="nb-btn px-6 py-3 text-[15px]">보내기</button>
+              <button type="submit" className="nb-btn px-6 py-3 text-[15px] max-md:text-[13px]">보내기</button>
             </form>
           </div>
         </div>

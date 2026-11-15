@@ -55,6 +55,10 @@
     "workImageMore": [
       "/artists/lee-dong-gu-work2.jpg"
     ],
+    "oneLinerMobileBreak": true,
+    "mobileHideImages": [
+      "/artists/lee-dong-gu-work2.jpg"
+    ],
     "buttonColor": "#6f2b28",
     "usageColor": "#8c3632",
     "shopUrl": "https://smartstore.naver.com/atheoart/category/2e96bc5e10ed4a9bb5723f166306c7f8?cp=1"
@@ -130,6 +134,7 @@
     "name": "진형",
     "nameEn": "ZINHYUNG",
     "oneLiner": "거기 누구 있나요? 우린 아직 존재하고 있나요?",
+    "oneLinerMobileBreak": true,
     "careerStage": "신진",
     "artistNote": "저는 대혐오의 파도에 의해 인류가 멸종에 가까워지고 있다는 사실이 무섭습니다.\n어둠의 시대에 혐오의 불꽃에 타버리지 않고 내면의 빛을 스스로 밝히는 것.\n이것이 스스로 멸종의 위기로 들어가려는 인간의 조용한 해답이 되기를 바랍니다.",
     "palette": [

@@ -49,7 +49,7 @@ export default function MyAtelierPage() {
         <Header />
         <div className="max-w-[560px] mx-auto px-5 pt-32 text-center">
           <p className="text-navy-400 mb-6">{t("ma_not_found")}</p>
-          <Link href="/atelier/me" className="nb-btn px-8 py-3.5 rounded-xl font-black text-[16px]">
+          <Link href="/atelier/me" className="nb-btn px-8 py-3.5 rounded-xl font-black text-[16px] max-md:text-[14px]">
             {t("ma_list_btn")}
           </Link>
         </div>
@@ -68,12 +68,12 @@ export default function MyAtelierPage() {
       {/* 소유자 바 */}
       <div className="bg-navy-800 px-5 md:px-8 py-3">
         <div className="max-w-[1080px] mx-auto flex items-center justify-between gap-3">
-          <p className="text-[13.5px] font-semibold text-chiffon/80 min-w-0" style={{ wordBreak: "keep-all" }}>
+          <p className="text-[13.5px] max-md:text-[11.5px] font-semibold text-chiffon/80 min-w-0" style={{ wordBreak: "keep-all" }}>
             {justCreated ? t("ma_created") : t("ma_owner_bar")}
           </p>
           <button
             onClick={() => setSettingsTab("profile")}
-            className="shrink-0 bg-sv text-ink text-[13.5px] font-bold px-4 py-2 rounded-lg hover:bg-sv-soft transition-colors"
+            className="shrink-0 bg-sv text-ink text-[13.5px] max-md:text-[11.5px] font-bold px-4 py-2 rounded-lg hover:bg-sv-soft transition-colors"
           >
             {t("ma_settings")}
           </button>
@@ -90,7 +90,7 @@ export default function MyAtelierPage() {
         <div className="absolute inset-0"
           style={{ background: "linear-gradient(to top,rgba(7,34,60,.7) 0%,rgba(13,59,102,.2) 50%,transparent 100%)" }} />
         <div className="absolute top-4 left-5 md:left-8">
-          <Link href="/atelier/me" className="inline-flex items-center gap-1.5 text-white/80 hover:text-white text-sm font-medium transition-colors">
+          <Link href="/atelier/me" className="inline-flex items-center gap-1.5 text-white/80 hover:text-white text-sm max-md:text-[12px] font-medium transition-colors">
             {t("ma_back_list")}
           </Link>
         </div>
@@ -110,16 +110,16 @@ export default function MyAtelierPage() {
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={atelier.profileImage} alt={atelier.name} className="w-full h-full object-cover" />
                 ) : (
-                  <span className="text-2xl font-black text-navy-500">{atelier.name.slice(0, 1)}</span>
+                  <span className="text-2xl max-md:text-[22px] font-black text-navy-500">{atelier.name.slice(0, 1)}</span>
                 )}
               </button>
               <div className="flex-1 min-w-0 pt-1">
-                <h1 className="text-2xl font-semibold text-ink mb-1">{atelier.name}</h1>
+                <h1 className="text-2xl max-md:text-[22px] font-semibold text-ink mb-1">{atelier.name}</h1>
                 {atelier.oneLiner ? (
-                  <p className="font-myeongjo text-navy-600 text-sm mb-2">{atelier.oneLiner}</p>
+                  <p className="font-myeongjo text-navy-600 text-sm max-md:text-[12px] mb-2">{atelier.oneLiner}</p>
                 ) : (
                   <button onClick={() => setSettingsTab("profile")}
-                    className="text-[14px] text-navy-400 underline underline-offset-2 mb-2 text-left">
+                    className="text-[14px] max-md:text-[12px] text-navy-400 underline underline-offset-2 mb-2 text-left">
                     {t("ma_oneliner_empty")}
                   </button>
                 )}
@@ -133,7 +133,7 @@ export default function MyAtelierPage() {
           <div className="space-y-10 min-w-0">
             {/* 프로젝트 */}
             <section>
-              <h2 className="text-[24px] font-semibold text-ink mb-4">{t("ma_project_title")}</h2>
+              <h2 className="text-[24px] max-md:text-[22px] font-semibold text-ink mb-4">{t("ma_project_title")}</h2>
               {project ? (
                 <div className="bg-card rounded-2xl overflow-hidden border border-line" style={CARD_SHADOW}>
                   {project.image && (
@@ -144,14 +144,14 @@ export default function MyAtelierPage() {
                     </div>
                   )}
                   <div className="p-6">
-                    <p className="font-black text-navy-900 text-[19px] mb-2">{project.title}</p>
-                    <p className="text-sm text-ink leading-relaxed mb-5 whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
+                    <p className="font-black text-navy-900 text-[19px] max-md:text-[17px] mb-2">{project.title}</p>
+                    <p className="text-sm max-md:text-[12px] text-ink leading-relaxed mb-5 whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
                       {project.concept}
                     </p>
-                    <p className="text-xs text-muted">{t("ma_goal")} {project.targetAmount.toLocaleString()}원</p>
+                    <p className="text-xs max-md:text-[10px] text-muted">{t("ma_goal")} {project.targetAmount.toLocaleString()}원</p>
                     <div className="mt-4 pt-4 border-t border-navy-100">
                       <button onClick={() => setSettingsTab("project")}
-                        className="text-xs text-navy-600 hover:text-navy-800 font-semibold transition-colors">
+                        className="text-xs max-md:text-[10px] text-navy-600 hover:text-navy-800 font-semibold transition-colors">
                         {t("ma_settings")}
                       </button>
                     </div>
@@ -160,11 +160,11 @@ export default function MyAtelierPage() {
               ) : (
                 <div className="rounded-2xl border border-dashed border-line-strong p-8 text-center">
                   <p className="font-bold text-navy-700 mb-1.5">{t("ma_project_empty")}</p>
-                  <p className="text-[14px] text-muted leading-[1.7] mb-5 max-w-[360px] mx-auto" style={{ wordBreak: "keep-all" }}>
+                  <p className="text-[14px] max-md:text-[12px] text-muted leading-[1.7] mb-5 max-w-[360px] mx-auto" style={{ wordBreak: "keep-all" }}>
                     {t("ma_project_empty_sub")}
                   </p>
                   <button onClick={() => setSettingsTab("project")}
-                    className="nb-btn px-6 py-3 rounded-xl font-black text-[15px]">
+                    className="nb-btn px-6 py-3 rounded-xl font-black text-[15px] max-md:text-[13px]">
                     {t("ma_project_add")}
                   </button>
                 </div>
@@ -173,9 +173,9 @@ export default function MyAtelierPage() {
 
             {/* 작가노트 */}
             <section>
-              <h2 className="text-[24px] font-semibold text-ink mb-4">{t("ma_note_title")}</h2>
+              <h2 className="text-[24px] max-md:text-[22px] font-semibold text-ink mb-4">{t("ma_note_title")}</h2>
               <div className="bg-card rounded-2xl p-6 border border-line" style={CARD_SHADOW}>
-                <p className="text-[16px] text-navy-900 leading-[2.0] font-myeongjo whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
+                <p className="text-[16px] max-md:text-[14px] text-navy-900 leading-[2.0] font-myeongjo whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
                   {atelier.artistNote}
                 </p>
               </div>
@@ -184,18 +184,18 @@ export default function MyAtelierPage() {
             {/* 필요한 재료 */}
             {atelier.materials.length > 0 && (
               <section>
-                <h2 className="text-[24px] font-semibold text-ink mb-4">{t("ma_materials_title")}</h2>
+                <h2 className="text-[24px] max-md:text-[22px] font-semibold text-ink mb-4">{t("ma_materials_title")}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {atelier.materials.map((m, i) => (
                     <div key={i} className="rounded-2xl border border-line bg-card p-4 flex flex-col" style={CARD_SHADOW}>
-                      <p className="text-[12px] font-bold tracking-[0.14em] uppercase text-navy-400 mb-2 truncate">
+                      <p className="text-[12px] max-md:text-[10px] font-bold tracking-[0.14em] uppercase text-navy-400 mb-2 truncate">
                         {hostOf(m.link)}
                       </p>
-                      <p className="text-[14px] text-navy-800 leading-[1.7] flex-1 mb-3" style={{ wordBreak: "keep-all" }}>
+                      <p className="text-[14px] max-md:text-[12px] text-navy-800 leading-[1.7] flex-1 mb-3" style={{ wordBreak: "keep-all" }}>
                         {m.reason}
                       </p>
                       <a href={m.link} target="_blank" rel="noopener noreferrer"
-                        className="text-[13.5px] font-bold text-navy-700 hover:text-navy-900 transition-colors">
+                        className="text-[13.5px] max-md:text-[11.5px] font-bold text-navy-700 hover:text-navy-900 transition-colors">
                         {t("ma_material_open")}
                       </a>
                     </div>
@@ -212,8 +212,8 @@ export default function MyAtelierPage() {
           <div className="lg:sticky lg:top-24 lg:self-start space-y-4">
             {(sns || atelier.portfolio) && (
               <div className="bg-card rounded-2xl p-5 border border-line">
-                <p className="text-xs font-bold text-navy-700 mb-3">{t("ma_links_title")}</p>
-                <div className="space-y-2.5 text-[14px]">
+                <p className="text-xs max-md:text-[10px] font-bold text-navy-700 mb-3">{t("ma_links_title")}</p>
+                <div className="space-y-2.5 text-[14px] max-md:text-[12px]">
                   {sns && (
                     <a href={sns} target="_blank" rel="noopener noreferrer" className="flex justify-between gap-3 group">
                       <span className="text-navy-400 font-semibold shrink-0">{t("ob_sns")}</span>
@@ -231,7 +231,7 @@ export default function MyAtelierPage() {
             )}
 
             <button onClick={() => setSettingsTab("profile")}
-              className="nb-btn-outline w-full py-3 rounded-xl font-black text-[15px]">
+              className="nb-btn-outline w-full py-3 rounded-xl font-black text-[15px] max-md:text-[13px]">
               {t("ma_settings")}
             </button>
           </div>

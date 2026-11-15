@@ -24,6 +24,8 @@ interface Program {
   location: string;
   capacity: number | null;
   coverImage: string;
+  /** 폰 화면에서 설명 단락 안의 줄바꿈을 이어 붙인다(문단 나눔은 유지) */
+  joinOnMobile?: boolean;
 }
 
 const DATE = "2026. 11. 28 (토)";
@@ -57,6 +59,7 @@ const PROGRAMS: Program[] = [
     location: LOCATION,
     capacity: null,
     coverImage: "/community-open-studio.jpg",
+    joinOnMobile: true,
   },
   {
     id: "prog_002",
@@ -83,6 +86,7 @@ const PROGRAMS: Program[] = [
     location: LOCATION,
     capacity: null,
     coverImage: "/community-art-night.jpg",
+    joinOnMobile: true,
   },
 ];
 
@@ -93,7 +97,7 @@ export default function CommunityPage() {
 
       <main>
         <section className="px-[var(--gap)] pt-10 md:pt-16">
-          <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14 text-sun">
+          <div data-sr="fade" className="pr-0 md:pr-[var(--gap)] pb-8 md:pb-14 text-sun">
             <BigTitle text="Arty" />
           </div>
           <hr className="dots-x" />
@@ -107,7 +111,9 @@ export default function CommunityPage() {
             </div>
             <div className="w-full md:w-[calc((100vw-var(--gap)*2)*0.75)]">
               <p data-sr="up" className="type-m max-w-[60rem]" style={{ wordBreak: "keep-all" }}>
-                <span className="block">Art + Party = Arty 테오와 고흐가 만나는 자리입니다.</span>
+                <span className="block"><span className="max-md:font-bold">Art + Party = Arty</span>{" "}
+                <br className="md:hidden" />
+                테오와 고흐가 만나는 자리입니다.</span>
                 <span className="block mt-3 md:mt-4">작가의 과정에 함께할 수 있는 프로그램을 준비했습니다.</span>
               </p>
             </div>
@@ -137,28 +143,43 @@ export default function CommunityPage() {
                           <img key={a.slug} src={a.image} alt={a.name} className="w-9 h-9 rounded-full object-cover border-2 border-paper" />
                         ))}
                       </div>
-                      <span className="text-[15px]">{prog.artists.map((a) => a.name).join(" · ")} 작가</span>
+                      <span className="text-[15px] max-md:text-[13px]">{prog.artists.map((a) => a.name).join(" · ")} 작가</span>
                     </div>
                   )}
                   {(() => {
                     // 설명의 첫 줄은 굵게 (작가 이름 바로 아래 한 줄)
                     const [head, ...rest] = prog.description.split("\n");
                     return (
-                      <p className="text-[15px] leading-[1.75] text-muted max-w-[34rem] mb-4 whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
+                      <p className="text-[15px] max-md:text-[13px] leading-[1.75] text-muted max-w-[34rem] mb-4 whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
                         <strong className="font-bold text-ink">{head}</strong>
-                        {rest.length > 0 ? "\n" + rest.join("\n") : ""}
+                        {rest.length > 0
+                          ? prog.joinOnMobile
+                            ? // 문단(빈 줄) 안의 줄바꿈은 PC 에서만 두고, 폰에서는 공백으로 이어 붙인다
+                              ("\n" + rest.join("\n")).split("\n\n").map((para, pi) => (
+                                <span key={pi}>
+                                  {pi > 0 ? "\n\n" : ""}
+                                  {para.split("\n").map((ln, li) => (
+                                    <span key={li}>
+                                      {li > 0 && <>{" "}<br className="max-md:hidden" /></>}
+                                      {ln}
+                                    </span>
+                                  ))}
+                                </span>
+                              ))
+                            : "\n" + rest.join("\n")
+                          : ""}
                       </p>
                     );
                   })()}
                   {/* 주소와 버튼을 카드 맨 아래에 붙여서, 카드마다 주소 위치가 같게 한다 */}
                   <div className="mt-auto pt-10 flex flex-col items-start">
-                    <p className="text-[15px] md:text-[14px] text-ink mb-1.5">
+                    <p className="text-[15px] max-md:text-[13px] md:text-[14px] text-ink mb-1.5">
                       {prog.date} {prog.time}
                     </p>
-                    <p className="text-[15px] md:text-[14px] text-ink mb-5">{prog.location}</p>
+                    <p className="text-[15px] max-md:text-[13px] md:text-[14px] text-ink mb-5">{prog.location}</p>
                     <Link
                       href={`/community/${APPLY_SLUG[prog.type]}/apply`}
-                      className="nb-btn px-6 py-2.5 text-[15px] md:text-[14px]"
+                      className="nb-btn px-6 py-2.5 text-[15px] max-md:text-[13px] md:text-[14px]"
                     >
                       신청하기
                     </Link>
@@ -169,7 +190,7 @@ export default function CommunityPage() {
           </div>
         </section>
 
-        <section className="px-[var(--gap)] py-12 text-[15px] md:text-[14px] text-muted leading-relaxed">
+        <section className="px-[var(--gap)] py-12 text-[15px] max-md:text-[13px] md:text-[14px] text-muted leading-relaxed">
           프로그램 신청 및 문의는 각 작가 아틀리에 페이지에서 가능합니다. 선물한 테오만 신청할 수 있는 프로그램이 있을 수 있습니다.
         </section>
       </main>

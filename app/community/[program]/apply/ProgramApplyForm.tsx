@@ -74,12 +74,12 @@ export default function ProgramApplyForm({ program }: { program: ApplyProgram })
   if (state === "sent") {
     return (
       <div>
-        <h1 className="text-[38px] md:text-[46px] leading-snug mb-5" style={{ fontWeight: 700, wordBreak: "keep-all" }}>신청이 접수됐어요</h1>
-        <p className="text-[22px] leading-[1.8] mb-8" style={{ wordBreak: "keep-all" }}>
+        <h1 className="text-[38px] max-md:text-[36px] md:text-[46px] leading-snug mb-5" style={{ fontWeight: 700, wordBreak: "keep-all" }}>신청이 접수됐어요</h1>
+        <p className="text-[22px] max-md:text-[20px] leading-[1.8] mb-8" style={{ wordBreak: "keep-all" }}>
           <b>{name.trim()}</b>님, {program.title} 신청이 들어왔어요.<br />
           남겨 주신 이메일로 안내드릴게요.
         </p>
-        <Link href="/community" className="nb-btn px-8 py-4 text-[19px]">프로그램 목록으로</Link>
+        <Link href="/community" className="nb-btn px-8 py-4 text-[19px] max-md:text-[17px]">프로그램 목록으로</Link>
       </div>
     );
   }
@@ -88,27 +88,27 @@ export default function ProgramApplyForm({ program }: { program: ApplyProgram })
     return (
       <div>
         <h1 className="leading-snug mb-5 whitespace-nowrap" style={{ fontWeight: 700, fontSize: "clamp(20px, 6vw, 36px)" }}>메일로 신청을 마무리해 주세요</h1>
-        <p className="text-[22px] leading-[1.8] mb-5" style={{ wordBreak: "keep-all" }}>
+        <p className="text-[22px] max-md:text-[20px] leading-[1.8] mb-5" style={{ wordBreak: "keep-all" }}>
           지금은 이 화면에서 바로 전송되지 않아요. 아래 버튼을 누르면 메일 앱이 열리고 신청 내용이 미리 채워져 있어요.
           <b> 메일의 보내기까지 눌러야 신청이 접수돼요.</b>
         </p>
-        <a href={mailto} className="inline-flex items-center justify-center min-h-[68px] px-12 py-5 text-[26px] font-bold bg-sv text-ink transition-colors hover:bg-navy-900 hover:text-white">신청 완료하기</a>
-        <p className="text-[17px] text-muted mt-3">받는 곳: {INQUIRY_EMAIL}</p>
+        <a href={mailto} className="inline-flex items-center justify-center min-h-[68px] px-12 py-5 text-[26px] max-md:text-[24px] font-bold bg-sv text-ink transition-colors hover:bg-navy-900 hover:text-white">신청 완료하기</a>
+        <p className="text-[17px] max-md:text-[15px] text-muted mt-3">받는 곳: {INQUIRY_EMAIL}</p>
       </div>
     );
   }
 
-  const inputCls = "w-full bg-paper border border-ink/40 px-3 py-2.5 text-[16px] focus:outline-none focus:border-ink";
-  const errCls = "text-[13px] text-red-600 mt-1";
+  const inputCls = "w-full bg-paper border border-ink/40 px-3 py-2.5 text-[16px] max-md:text-[14px] focus:outline-none focus:border-ink";
+  const errCls = "text-[13px] max-md:text-[11px] text-red-600 mt-1";
 
   return (
     <>
-      <Link href="/community" className="text-[14px] text-muted hover:text-ink transition-colors mb-8 block w-fit">
+      <Link href="/community" className="text-[14px] max-md:text-[12px] text-muted hover:text-ink transition-colors mb-8 block w-fit">
         Arty로
       </Link>
       <p className="type-label mb-2">{program.label}</p>
       <h1 className="type-m mb-2" style={{ fontWeight: 700, wordBreak: "keep-all" }}>{program.title} 신청</h1>
-      <p className="text-[15px] text-muted leading-[1.8] mb-8" style={{ wordBreak: "keep-all" }}>
+      <p className="text-[15px] max-md:text-[13px] text-muted leading-[1.8] mb-8" style={{ wordBreak: "keep-all" }}>
         {program.date}{program.time ? ` ${program.time}` : ""} · {program.location}<br />
         {program.intro}
       </p>
@@ -144,7 +144,7 @@ export default function ProgramApplyForm({ program }: { program: ApplyProgram })
                   }`}
                 >
                   <input type="radio" name="session" value={s} checked={session === s} onChange={() => setSession(s)} className="accent-black" />
-                  <span className="text-[16px]">{s}</span>
+                  <span className="text-[16px] max-md:text-[14px]">{s}</span>
                 </label>
               ))}
             </div>
@@ -163,7 +163,7 @@ export default function ProgramApplyForm({ program }: { program: ApplyProgram })
                 }`}
               >
                 <input type="radio" name="gifted" value={n} checked={gifted === n} onChange={() => setGifted(n)} className="accent-black" />
-                <span className="text-[16px]">{n}</span>
+                <span className="text-[16px] max-md:text-[14px]">{n}</span>
               </label>
             ))}
           </div>
@@ -181,7 +181,7 @@ export default function ProgramApplyForm({ program }: { program: ApplyProgram })
                 }`}
               >
                 <input type="radio" name="motivation" value={m} checked={motivation === m} onChange={() => setMotivation(m)} className="accent-black" />
-                <span className="text-[16px]">{m}</span>
+                <span className="text-[16px] max-md:text-[14px]">{m}</span>
               </label>
             ))}
           </div>
@@ -191,9 +191,9 @@ export default function ProgramApplyForm({ program }: { program: ApplyProgram })
         <div>
           <label className="flex items-start gap-3 cursor-pointer">
             <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-1.5 w-4 h-4 accent-black" />
-            <span className="text-[14.5px] leading-[1.7]">
+            <span className="text-[14.5px] max-md:text-[12.5px] leading-[1.7]">
               <b>개인정보 수집·이용에 동의</b>합니다.
-              <span className="block text-[13px] text-muted mt-0.5">
+              <span className="block text-[13px] max-md:text-[11px] text-muted mt-0.5">
                 수집 항목: 이름, 이메일, 연락처 / 목적: 프로그램 참여 신청 접수 및 안내 /{" "}
                 <Link href="/privacy" className="underline underline-offset-2" target="_blank">개인정보처리방침</Link>
               </span>
@@ -204,7 +204,7 @@ export default function ProgramApplyForm({ program }: { program: ApplyProgram })
 
         {serverError && <p className={errCls}>{serverError}</p>}
 
-        <button type="submit" disabled={state === "sending"} className="nb-btn px-8 py-3 text-[15px] disabled:opacity-50">
+        <button type="submit" disabled={state === "sending"} className="nb-btn px-8 py-3 text-[15px] max-md:text-[13px] disabled:opacity-50">
           {state === "sending" ? "보내는 중…" : "신청하기"}
         </button>
       </form>

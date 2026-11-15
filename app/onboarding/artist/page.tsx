@@ -82,25 +82,25 @@ export default function ArtistOnboarding() {
       <PageTitle text="Artist" />
 
       <div className="max-w-[560px] mx-auto px-5 md:px-8 pt-16 pb-24">
-        <Link href="/" className="text-sm text-navy-400 hover:text-navy-700 transition-colors mb-10 inline-block">
+        <Link href="/" className="text-sm max-md:text-[12px] text-navy-400 hover:text-navy-700 transition-colors mb-10 inline-block">
           {t("ob_back")}
         </Link>
 
-        <p className="text-xs font-bold tracking-[0.22em] text-navy-400 uppercase mb-3">{t("ob_label")}</p>
-        <h1 className="text-3xl md:text-4xl font-semibold text-ink leading-[1.2] mb-3"
+        <p className="text-xs max-md:text-[10px] font-bold tracking-[0.22em] text-navy-400 uppercase mb-3">{t("ob_label")}</p>
+        <h1 className="text-3xl max-md:text-[28px] md:text-4xl font-semibold text-ink leading-[1.2] mb-3"
           style={{ letterSpacing: "-0.02em" }}>
           {t("ob_h1a")}<br />{t("ob_h1b")}
         </h1>
-        <p className="text-[16px] text-muted leading-[1.85] mb-10">
+        <p className="text-[16px] max-md:text-[14px] text-muted leading-[1.85] mb-10">
           {t("ob_sub")}
         </p>
 
         {existingCount > 0 && (
           <div className="rounded-2xl border border-line-strong bg-card px-5 py-4 mb-6">
-            <p className="text-[14px] text-navy-700 leading-[1.7] mb-2" style={{ wordBreak: "keep-all" }}>
+            <p className="text-[14px] max-md:text-[12px] text-navy-700 leading-[1.7] mb-2" style={{ wordBreak: "keep-all" }}>
               {t("ob_exists_pre")}{existingCount}{t("ob_exists_post")}
             </p>
-            <Link href="/atelier/me" className="text-[14px] font-bold text-navy-800 underline underline-offset-2">
+            <Link href="/atelier/me" className="text-[14px] max-md:text-[12px] font-bold text-navy-800 underline underline-offset-2">
               {t("ob_exists_btn")}
             </Link>
           </div>
@@ -108,26 +108,26 @@ export default function ArtistOnboarding() {
 
         <div className="space-y-6">
           <section className="nb-card p-7 space-y-5">
-            <p className="text-xs font-bold tracking-[0.2em] text-navy-400 uppercase mb-2">{t("ob_sec1")}</p>
+            <p className="text-xs max-md:text-[10px] font-bold tracking-[0.2em] text-navy-400 uppercase mb-2">{t("ob_sec1")}</p>
             <ProfileFields draft={draft} errors={errors} onChange={setField} />
           </section>
 
           <section className="nb-card p-7 space-y-5">
-            <p className="text-xs font-bold tracking-[0.2em] text-navy-400 uppercase mb-2">{t("ob_sec2")}</p>
+            <p className="text-xs max-md:text-[10px] font-bold tracking-[0.2em] text-navy-400 uppercase mb-2">{t("ob_sec2")}</p>
             <NoteField value={draft.artistNote} error={errors.artistNote} onChange={(v) => setField("artistNote", v)} />
           </section>
 
           <section className="nb-card p-7 space-y-5">
-            <p className="text-xs font-bold tracking-[0.2em] text-navy-400 uppercase mb-2">{t("ob_sec3")}</p>
+            <p className="text-xs max-md:text-[10px] font-bold tracking-[0.2em] text-navy-400 uppercase mb-2">{t("ob_sec3")}</p>
             <MaterialFields materials={draft.materials} errors={errors} onChange={setMaterials} />
           </section>
 
-          {saveError && <p className="text-red-500 text-xs text-center">{saveError}</p>}
+          {saveError && <p className="text-red-500 text-xs max-md:text-[10px] text-center">{saveError}</p>}
           <button onClick={handleSubmit}
-            className="nb-btn w-full py-4 rounded-xl font-black text-[17px]">
+            className="nb-btn w-full py-4 rounded-xl font-black text-[17px] max-md:text-[15px]">
             {t("ob_submit")}
           </button>
-          <p className="text-center text-xs text-navy-400">{t("ob_demo_note")}</p>
+          <p className="text-center text-xs max-md:text-[10px] text-navy-400">{t("ob_demo_note")}</p>
         </div>
       </div>
     </div>

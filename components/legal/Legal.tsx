@@ -11,9 +11,9 @@ export function LegalShell({ big, title, children }: { big: string; title: strin
       <PageTitle text={big} />
       <main className="px-[var(--gap)]">
         <div className="max-w-[56rem] md:ml-[calc((100vw-var(--gap)*2)*0.25)] py-10 md:py-16">
-          <h1 className="text-[26px] md:text-[34px] font-bold leading-[1.25] mb-8" style={{ wordBreak: "keep-all" }}>{title}</h1>
-          <div className="text-[15.5px] leading-[1.9]" style={{ wordBreak: "keep-all" }}>{children}</div>
-          <p className="mt-14 text-[14px] text-muted">
+          <h1 className="text-[26px] max-md:text-[24px] md:text-[34px] font-bold leading-[1.25] mb-8" style={{ wordBreak: "keep-all" }}>{title}</h1>
+          <div className="text-[15.5px] max-md:text-[13.5px] leading-[1.9]" style={{ wordBreak: "keep-all" }}>{children}</div>
+          <p className="mt-14 text-[14px] max-md:text-[12px] text-muted">
             <Link href="/terms" className="underlined">이용약관</Link>
             <span className="mx-2">·</span>
             <Link href="/privacy" className="underlined">개인정보처리방침</Link>
@@ -28,7 +28,7 @@ export function LegalShell({ big, title, children }: { big: string; title: strin
 export function Art({ h, children }: { h: string; children: ReactNode }) {
   return (
     <section className="mt-9 first:mt-0">
-      <h2 className="text-[18px] md:text-[20px] font-bold leading-snug mb-3">{h}</h2>
+      <h2 className="text-[18px] max-md:text-[16px] md:text-[20px] font-bold leading-snug mb-3">{h}</h2>
       <div className="space-y-2">{children}</div>
     </section>
   );
@@ -73,7 +73,7 @@ export function Ul({ items }: { items: string[] }) {
 export function Tbl({ head, rows, min = "36rem" }: { head: string[]; rows: ReactNode[][]; min?: string }) {
   return (
     <div className="overflow-x-auto border-y border-[rgba(7,34,60,.25)]">
-      <table className="w-full text-[14px] leading-[1.7] border-collapse" style={{ minWidth: min }}>
+      <table className="w-full text-[14px] max-md:text-[12px] leading-[1.7] border-collapse" style={{ minWidth: min }}>
         <thead>
           <tr className="bg-surface-card text-left">
             {head.map((h) => <th key={h} className="font-bold px-3 py-2.5 align-top">{h}</th>)}

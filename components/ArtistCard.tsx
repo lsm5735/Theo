@@ -41,7 +41,7 @@ export default function ArtistCard({ artist, mode = "atelier" }: { artist: Artis
         <Link
           href={href}
           onClick={(e) => e.stopPropagation()}
-          className="mt-4 self-start text-[16px] link-line"
+          className="mt-4 self-start text-[16px] max-md:text-[14px] link-line"
         >
           {mode === "apply" ? "신청하기" : "아틀리에 입장 →"}
         </Link>

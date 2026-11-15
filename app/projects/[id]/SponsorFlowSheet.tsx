@@ -141,14 +141,14 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
       {/* ─── Materials wishlist ─── */}
       <section>
         <div className="flex items-baseline justify-between mb-1">
-          <h2 className="text-[24px] font-semibold text-ink">재료 위시리스트</h2>
+          <h2 className="text-[24px] max-md:text-[22px] font-semibold text-ink">재료 위시리스트</h2>
           {fundedCount > 0 && (
-            <span className="text-xs text-navy-600 font-medium">
+            <span className="text-xs max-md:text-[10px] text-navy-600 font-medium">
               {materials.length}개 중 {fundedCount}개 선물됨
             </span>
           )}
         </div>
-        <p className="text-xs text-muted mb-4">재료를 클릭하면 선물 플로우가 시작됩니다</p>
+        <p className="text-xs max-md:text-[10px] text-muted mb-4">재료를 클릭하면 선물 플로우가 시작됩니다</p>
 
         <div className="space-y-3">
           {materials.map((m) => (
@@ -168,31 +168,31 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
                   <p
-                    className={`text-sm font-semibold leading-snug ${
+                    className={`text-sm max-md:text-[12px] font-semibold leading-snug ${
                       m.isFunded ? "text-navy-500 line-through" : "text-navy-800"
                     }`}
                   >
                     {m.name}
                   </p>
                   {m.isFunded ? (
-                    <span className="shrink-0 text-xs bg-navy-200 text-navy-600 px-2 py-0.5 rounded-full font-medium">
+                    <span className="shrink-0 text-xs max-md:text-[10px] bg-navy-200 text-navy-600 px-2 py-0.5 rounded-full font-medium">
                       선물 완료 ✓
                     </span>
                   ) : (
-                    <span className="shrink-0 text-xs bg-navy-800 text-sv px-2.5 py-0.5 rounded-full font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="shrink-0 text-xs max-md:text-[10px] bg-navy-800 text-sv px-2.5 py-0.5 rounded-full font-bold opacity-0 group-hover:opacity-100 transition-opacity">
                       선물하기
                     </span>
                   )}
                 </div>
                 <p
-                  className={`text-xs mt-1 leading-relaxed font-medium ${
+                  className={`text-xs max-md:text-[10px] mt-1 leading-relaxed font-medium ${
                     m.isFunded ? "text-navy-400" : "text-navy-600"
                   }`}
                 >
                   {m.usageNote}
                 </p>
                 <p
-                  className={`text-sm font-bold mt-1.5 ${
+                  className={`text-sm max-md:text-[12px] font-bold mt-1.5 ${
                     m.isFunded ? "text-navy-400" : "text-gold-text"
                   }`}
                 >
@@ -299,7 +299,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   {step > 1 && step < 4 ? (
                     <button
                       onClick={() => setStep((s) => (s - 1) as Step)}
-                      className="text-sm text-navy-600 hover:text-navy-800 font-medium"
+                      className="text-sm max-md:text-[12px] text-navy-600 hover:text-navy-800 font-medium"
                     >
                       이전
                     </button>
@@ -341,10 +341,10 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
               ══════════════════════════════════════ */}
             {step === 1 && (
               <div className="px-5 pt-6 pb-10">
-                <p className="text-[12px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
+                <p className="text-[12px] max-md:text-[10px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
                   Step 1 · 재료 확인
                 </p>
-                <h3 className="text-xl font-black text-navy-800 mb-6">
+                <h3 className="text-xl max-md:text-[18px] font-black text-navy-800 mb-6">
                   이 재료를 선물할까요?
                 </h3>
 
@@ -356,10 +356,10 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   <div className="flex items-start gap-3">
                     <MaterialIcon note={active.usageNote} />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-navy-800 leading-snug">
+                      <p className="text-sm max-md:text-[12px] font-semibold text-navy-800 leading-snug">
                         {active.name}
                       </p>
-                      <p className="text-xs text-navy-600 font-medium mt-1">
+                      <p className="text-xs max-md:text-[10px] text-navy-600 font-medium mt-1">
                         {active.usageNote}
                       </p>
                     </div>
@@ -369,7 +369,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                 {/* Price breakdown */}
                 <div className="bg-navy-50 rounded-xl p-5 mb-6">
                   <div className="space-y-3">
-                    <div className="flex justify-between items-center text-sm">
+                    <div className="flex justify-between items-center text-sm max-md:text-[12px]">
                       <span className="text-muted">재료값</span>
                       <span className="font-semibold text-navy-800">
                         {active.price.toLocaleString()}원
@@ -377,12 +377,12 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                     </div>
                     <div className="border-t border-navy-200 pt-3 flex justify-between items-baseline">
                       <span className="font-bold text-navy-800">총 결제 금액</span>
-                      <span className="font-black text-navy-800 text-2xl">
+                      <span className="font-black text-navy-800 text-2xl max-md:text-[22px]">
                         {total.toLocaleString()}원
                       </span>
                     </div>
                   </div>
-                  <p className="text-[12px] text-muted mt-3 leading-relaxed">
+                  <p className="text-[12px] max-md:text-[10px] text-muted mt-3 leading-relaxed">
                     재료가 작가에게 전달됩니다.
                   </p>
                 </div>
@@ -401,18 +401,18 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
               ══════════════════════════════════════ */}
             {step === 2 && (
               <div className="px-5 pt-6 pb-10">
-                <p className="text-[12px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
+                <p className="text-[12px] max-md:text-[10px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
                   Step 2 · 메시지
                 </p>
-                <h3 className="text-xl font-black text-navy-800 mb-1">
+                <h3 className="text-xl max-md:text-[18px] font-black text-navy-800 mb-1">
                   작가에게 한마디
                   <br />남겨볼까요?
                 </h3>
-                <p className="text-sm text-muted mb-6">두 항목 모두 선택 사항이에요.</p>
+                <p className="text-sm max-md:text-[12px] text-muted mb-6">두 항목 모두 선택 사항이에요.</p>
 
                 {/* Nickname */}
                 <div className="mb-5">
-                  <label className="block text-xs font-bold text-navy-700 mb-1.5">
+                  <label className="block text-xs max-md:text-[10px] font-bold text-navy-700 mb-1.5">
                     내 닉네임{" "}
                     <span className="font-normal text-muted">
                       (선택 · 완료 화면에 표시됩니다)
@@ -424,13 +424,13 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                     onChange={(e) => setNickname(e.target.value)}
                     placeholder="테오님"
                     maxLength={12}
-                    className="w-full bg-card border border-line focus:border-ink rounded-xl px-4 py-3 text-sm text-ink placeholder:text-muted outline-none transition-colors"
+                    className="w-full bg-card border border-line focus:border-ink rounded-xl px-4 py-3 text-sm max-md:text-[12px] text-ink placeholder:text-muted outline-none transition-colors"
                   />
                 </div>
 
                 {/* Message */}
                 <div className="mb-6">
-                  <label className="block text-xs font-bold text-navy-700 mb-1.5">
+                  <label className="block text-xs max-md:text-[10px] font-bold text-navy-700 mb-1.5">
                     Dear Gogh 메시지{" "}
                     <span className="font-normal text-muted">
                       (선택 · 아틀리에 담벼락에 남겨져요)
@@ -442,9 +442,9 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                     placeholder="응원의 말을 남겨보세요."
                     maxLength={300}
                     rows={4}
-                    className="w-full bg-card border border-line focus:border-ink rounded-xl px-4 py-3 text-sm text-ink placeholder:text-muted resize-none outline-none transition-colors leading-relaxed"
+                    className="w-full bg-card border border-line focus:border-ink rounded-xl px-4 py-3 text-sm max-md:text-[12px] text-ink placeholder:text-muted resize-none outline-none transition-colors leading-relaxed"
                   />
-                  <p className="text-xs text-muted text-right mt-1">
+                  <p className="text-xs max-md:text-[10px] text-muted text-right mt-1">
                     {message.length} / 300
                   </p>
                 </div>
@@ -463,10 +463,10 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
               ══════════════════════════════════════ */}
             {step === 3 && (
               <div className="px-5 pt-6 pb-10">
-                <p className="text-[12px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
+                <p className="text-[12px] max-md:text-[10px] font-bold tracking-[0.16em] text-navy-500 uppercase mb-1">
                   Step 3 · 모의 결제
                 </p>
-                <h3 className="text-xl font-black text-navy-800 mb-6">
+                <h3 className="text-xl max-md:text-[18px] font-black text-navy-800 mb-6">
                   결제를 진행할게요
                 </h3>
 
@@ -475,7 +475,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   className="bg-card rounded-2xl border border-line p-5 mb-6"
                   style={{ boxShadow: "0 4px 16px rgba(23,29,43,.06)" }}
                 >
-                  <div className="space-y-3 text-sm">
+                  <div className="space-y-3 text-sm max-md:text-[12px]">
                     <div className="flex justify-between">
                       <span className="text-muted">작가</span>
                       <span className="font-semibold text-navy-800">{artist.name}</span>
@@ -500,7 +500,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                     )}
                     <div className="border-t border-navy-100 pt-3 flex justify-between items-baseline">
                       <span className="font-bold text-navy-800">총 결제 금액</span>
-                      <span className="font-black text-navy-800 text-2xl">
+                      <span className="font-black text-navy-800 text-2xl max-md:text-[22px]">
                         {total.toLocaleString()}원
                       </span>
                     </div>
@@ -510,7 +510,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                 {/* Pay button */}
                 <button
                   onClick={completeSponsorship}
-                  className="w-full font-black py-4 rounded-xl transition-all text-base flex items-center justify-center gap-2 mb-3"
+                  className="w-full font-black py-4 rounded-xl transition-all text-base max-md:text-[14px] flex items-center justify-center gap-2 mb-3"
                   style={{
                     background: "var(--sv)",
                     color: "var(--ink)",
@@ -531,7 +531,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   {total.toLocaleString()}원 모의 결제하기
                 </button>
 
-                <p className="text-xs text-muted text-center leading-relaxed">
+                <p className="text-xs max-md:text-[10px] text-muted text-center leading-relaxed">
                   * 시연용 데모입니다. 실제 결제는 이루어지지 않습니다.
                 </p>
               </div>
@@ -581,7 +581,7 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
 
                   {/* 하늘 캡션 */}
                   <p
-                    className="sky-caption absolute bottom-4 left-0 right-0 text-center text-xs font-medium pointer-events-none"
+                    className="sky-caption absolute bottom-4 left-0 right-0 text-center text-xs max-md:text-[10px] font-medium pointer-events-none"
                     style={{ color: "rgba(244,211,94,.55)" }}
                   >
                     이 하늘의 첫 별이 됐어요
@@ -594,9 +594,9 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   {/* 씨앗 배지 */}
                   <div className="mt-7 mb-2">
                     <div className="badge-anim w-20 h-20 bg-navy-800 rounded-full flex flex-col items-center justify-center mx-auto">
-                      <span className="text-2xl leading-none mb-0.5">⭐</span>
+                      <span className="text-2xl max-md:text-[22px] leading-none mb-0.5">⭐</span>
                       <span
-                        className="text-[11px] font-black tracking-widest"
+                        className="text-[11px] max-md:text-[9px] font-black tracking-widest"
                         style={{ color: "var(--sv)" }}
                       >
                         씨앗
@@ -604,21 +604,21 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                     </div>
                   </div>
 
-                  <p className="fu1 text-xs text-muted mb-5">씨앗 배지 획득</p>
+                  <p className="fu1 text-xs max-md:text-[10px] text-muted mb-5">씨앗 배지 획득</p>
 
                   {/* 메인 문구 */}
                   <div className="fu2 mb-6">
-                    <p className="text-3xl font-black text-navy-800 leading-tight">
+                    <p className="text-3xl max-md:text-[28px] font-black text-navy-800 leading-tight">
                       {displayName}은 이제
                     </p>
-                    <p className="text-navy-500 text-sm mt-2 mb-0.5 font-medium">
+                    <p className="text-navy-500 text-sm max-md:text-[12px] mt-2 mb-0.5 font-medium">
                       {artist.name} 작가님
                     </p>
-                    <p className="text-navy-700 font-bold text-base leading-snug mb-2">
+                    <p className="text-navy-700 font-bold text-base max-md:text-[14px] leading-snug mb-2">
                       "{project.title}"의
                     </p>
                     <p
-                      className="text-3xl font-black"
+                      className="text-3xl max-md:text-[28px] font-black"
                       style={{
                         color: "var(--sv)",
                         textShadow: "0 2px 12px rgba(244,211,94,.4)",
@@ -630,15 +630,15 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
 
                   {/* 선물한 재료 */}
                   <div className="fu3 bg-chiffon border border-sv/25 rounded-xl p-4 text-left mb-3">
-                    <p className="text-[12px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
+                    <p className="text-[12px] max-md:text-[10px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
                       선물한 재료
                     </p>
-                    <p className="text-sm font-semibold text-navy-800 leading-snug">
+                    <p className="text-sm max-md:text-[12px] font-semibold text-navy-800 leading-snug">
                       {active.name}
                     </p>
-                    <p className="text-xs text-navy-600 mt-0.5">{active.usageNote}</p>
+                    <p className="text-xs max-md:text-[10px] text-navy-600 mt-0.5">{active.usageNote}</p>
                     <p
-                      className="text-sm font-black mt-2"
+                      className="text-sm max-md:text-[12px] font-black mt-2"
                       style={{ color: "var(--gold-text)" }}
                     >
                       재료가 작가에게 전달됩니다.
@@ -648,16 +648,16 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   {/* 메시지 영수증 */}
                   {message.trim() && (
                     <div className="fu3 bg-chiffon border border-sv/25 rounded-xl p-4 text-left mb-3">
-                      <p className="text-[12px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
+                      <p className="text-[12px] max-md:text-[10px] font-bold text-navy-600 mb-1.5 uppercase tracking-wide">
                         Dear Gogh 메시지
                       </p>
-                      <p className="font-myeongjo text-sm text-ink leading-relaxed">
+                      <p className="font-myeongjo text-sm max-md:text-[12px] text-ink leading-relaxed">
                         "{message.trim()}"
                       </p>
                     </div>
                   )}
 
-                  <p className="fu3 text-xs text-muted mb-8 leading-relaxed">
+                  <p className="fu3 text-xs max-md:text-[10px] text-muted mb-8 leading-relaxed">
                     재료가 준비되면 {artist.name} 작가에게 전달됩니다.
                     <br />
                     작가가 받으면 아틀리에 담벼락에 소식이 올라올 거예요.
@@ -667,14 +667,14 @@ export default function SponsorFlowSheet({ materials, artist, project }: Props) 
                   <div className="fu4 flex flex-col gap-3">
                     <button
                       onClick={closeFlow}
-                      className="w-full bg-navy-800 text-white font-bold py-3.5 rounded-xl hover:bg-navy-800 transition-colors text-sm"
+                      className="w-full bg-navy-800 text-white font-bold py-3.5 rounded-xl hover:bg-navy-800 transition-colors text-sm max-md:text-[12px]"
                     >
                       프로젝트로 돌아가기
                     </button>
                     <Link
                       href="/"
                       onClick={closeFlow}
-                      className="w-full bg-card border border-navy-200 text-navy-700 font-semibold py-3.5 rounded-xl hover:bg-navy-100 transition-colors text-sm text-center block"
+                      className="w-full bg-card border border-navy-200 text-navy-700 font-semibold py-3.5 rounded-xl hover:bg-navy-100 transition-colors text-sm max-md:text-[12px] text-center block"
                     >
                       다른 작가 보기
                     </Link>

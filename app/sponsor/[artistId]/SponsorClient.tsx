@@ -265,7 +265,7 @@ export default function SponsorClient({ artistId }: Props) {
 
           {/* Badge label */}
           <p
-            className="text-xs font-bold tracking-[0.22em] uppercase mb-4"
+            className="text-xs max-md:text-[10px] font-bold tracking-[0.22em] uppercase mb-4"
             style={{ color: "var(--sv)", animation: "fadeUp .5s 0.55s both" }}
           >
             {t("done_badge_label")}
@@ -276,7 +276,7 @@ export default function SponsorClient({ artistId }: Props) {
             className="font-semibold leading-snug mb-3 px-5"
             style={{ color: "#fff", animation: "fadeUp .5s 0.65s both" }}
           >
-            <span className="text-lg md:text-xl block mb-1" style={{ color: "rgba(255,255,255,0.7)" }}>
+            <span className="text-lg max-md:text-[16px] md:text-xl block mb-1" style={{ color: "rgba(255,255,255,0.7)" }}>
               {t("done_hero_pre")} {artist.name} {t("done_hero_mid")}
             </span>
             <span
@@ -285,13 +285,13 @@ export default function SponsorClient({ artistId }: Props) {
             >
               {myOrder}{t("done_hero_th")}
             </span>
-            <span className="text-3xl md:text-4xl block mt-1" style={{ color: "#fff" }}>
+            <span className="text-3xl max-md:text-[28px] md:text-4xl block mt-1" style={{ color: "#fff" }}>
               {t("done_hero_post")}
             </span>
           </h1>
 
           <p
-            className="text-sm"
+            className="text-sm max-md:text-[12px]"
             style={{ color: "rgba(255,255,255,0.55)", animation: "fadeUp .5s 0.78s both" }}
           >
             {t("done_hero_sub")}
@@ -317,18 +317,18 @@ export default function SponsorClient({ artistId }: Props) {
                 <Image src={artist.profileImage} alt={artist.name} fill sizes="40px" className="object-cover" />
               </div>
               <div>
-                <p className="font-bold text-navy-900 text-sm">{artist.name}</p>
-                {project && <p className="text-xs text-muted truncate">{project.title}</p>}
+                <p className="font-bold text-navy-900 text-sm max-md:text-[12px]">{artist.name}</p>
+                {project && <p className="text-xs max-md:text-[10px] text-muted truncate">{project.title}</p>}
               </div>
             </div>
 
             <div className="border-t pt-4 space-y-2.5" style={{ borderColor: "rgba(194,164,63,0.2)" }}>
-              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_gift_title")}</p>
-              <div className="flex justify-between text-sm">
+              <p className="text-[11px] max-md:text-[9px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_gift_title")}</p>
+              <div className="flex justify-between text-sm max-md:text-[12px]">
                 <span className="text-muted">{t("done_mat")}</span>
                 <span className="font-semibold text-navy-800 text-right max-w-[60%] leading-snug">{selectedMaterial.name}</span>
               </div>
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-sm max-md:text-[12px]">
                 <span className="text-muted">{t("done_cost")}</span>
                 <span className="font-semibold text-navy-800">{selectedMaterial.price.toLocaleString()}원</span>
               </div>
@@ -337,11 +337,11 @@ export default function SponsorClient({ artistId }: Props) {
                 style={{ borderColor: "rgba(194,164,63,0.2)" }}
               >
                 <span className="text-navy-800">{t("done_total")}</span>
-                <span className="text-navy-800 text-lg">{total.toLocaleString()}원</span>
+                <span className="text-navy-800 text-lg max-md:text-[16px]">{total.toLocaleString()}원</span>
               </div>
             </div>
 
-            <p className="text-[12px] text-muted mt-3 leading-relaxed text-center">
+            <p className="text-[12px] max-md:text-[10px] text-muted mt-3 leading-relaxed text-center">
               {t("done_delivery")}
             </p>
           </div>
@@ -356,8 +356,8 @@ export default function SponsorClient({ artistId }: Props) {
                 animation: "fadeUp .5s 0.95s both",
               }}
             >
-              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_msg_title")}</p>
-              <p className="font-myeongjo text-sm text-ink leading-relaxed">{message}</p>
+              <p className="text-[11px] max-md:text-[9px] font-bold tracking-[0.2em] uppercase text-muted mb-3">{t("done_msg_title")}</p>
+              <p className="font-myeongjo text-sm max-md:text-[12px] text-ink leading-relaxed">{message}</p>
             </div>
           )}
 
@@ -370,7 +370,7 @@ export default function SponsorClient({ artistId }: Props) {
               animation: "fadeUp .5s 1.05s both",
             }}
           >
-            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-muted mb-4">{t("done_next_title")}</p>
+            <p className="text-[11px] max-md:text-[9px] font-bold tracking-[0.2em] uppercase text-muted mb-4">{t("done_next_title")}</p>
             <ol className="space-y-3">
               {NEXT_STEPS.map((step, idx) => (
                 <li key={idx} className="flex items-start gap-3">
@@ -384,17 +384,17 @@ export default function SponsorClient({ artistId }: Props) {
                   >
                     {step.done
                       ? <IconCheckCircle />
-                      : <span className="text-[11px] font-bold">{idx + 1}</span>
+                      : <span className="text-[11px] max-md:text-[9px] font-bold">{idx + 1}</span>
                     }
                   </div>
                   <div className="flex-1 pt-0.5">
                     <p
-                      className="text-sm font-bold leading-tight"
+                      className="text-sm max-md:text-[12px] font-bold leading-tight"
                       style={{ color: step.done ? "var(--navy-800)" : "var(--navy-400)" }}
                     >
                       {step.label}
                     </p>
-                    <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>{step.desc}</p>
+                    <p className="text-xs max-md:text-[10px] mt-0.5" style={{ color: "var(--muted)" }}>{step.desc}</p>
                   </div>
                   {/* Connector line */}
                   {idx < NEXT_STEPS.length - 1 && (
@@ -420,7 +420,7 @@ export default function SponsorClient({ artistId }: Props) {
           >
             <Link
               href="/my"
-              className="flex-1 font-bold py-4 rounded-xl text-sm text-center transition-all"
+              className="flex-1 font-bold py-4 rounded-xl text-sm max-md:text-[12px] text-center transition-all"
               style={{
                 background: "var(--navy-800)",
                 color: "#fff",
@@ -430,7 +430,7 @@ export default function SponsorClient({ artistId }: Props) {
             </Link>
             <Link
               href="/atelier"
-              className="flex-1 font-semibold py-4 rounded-xl text-sm text-center transition-colors"
+              className="flex-1 font-semibold py-4 rounded-xl text-sm max-md:text-[12px] text-center transition-colors"
               style={{
                 background: "var(--card)",
                 border: "1.5px solid var(--line)",
@@ -441,7 +441,7 @@ export default function SponsorClient({ artistId }: Props) {
             </Link>
           </div>
 
-          <p className="text-[12px] text-center mt-5" style={{ color: "var(--muted)" }}>
+          <p className="text-[12px] max-md:text-[10px] text-center mt-5" style={{ color: "var(--muted)" }}>
             {t("sp_demo")}
           </p>
         </div>
@@ -460,7 +460,7 @@ export default function SponsorClient({ artistId }: Props) {
         {/* Back link */}
         <Link
           href={`/atelier/${artist.slug}`}
-          className="inline-flex items-center gap-1.5 text-sm text-navy-600 hover:text-navy-800 font-medium mb-8 transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm max-md:text-[12px] text-navy-600 hover:text-navy-800 font-medium mb-8 transition-colors"
         >
           {artist.name} {t("sp_back")}
         </Link>
@@ -471,10 +471,10 @@ export default function SponsorClient({ artistId }: Props) {
             <Image src={artist.profileImage} alt={artist.name} fill sizes="56px" className="object-cover" />
           </div>
           <div>
-            <p className="text-sv font-bold text-xs tracking-[0.16em] uppercase mb-1">{t("sp_label")}</p>
-            <p className="text-white font-black text-base">{artist.name}</p>
+            <p className="text-sv font-bold text-xs max-md:text-[10px] tracking-[0.16em] uppercase mb-1">{t("sp_label")}</p>
+            <p className="text-white font-black text-base max-md:text-[14px]">{artist.name}</p>
             {project && (
-              <p className="text-white/60 text-xs mt-0.5">{project.title}</p>
+              <p className="text-white/60 text-xs max-md:text-[10px] mt-0.5">{project.title}</p>
             )}
           </div>
         </div>
@@ -482,7 +482,7 @@ export default function SponsorClient({ artistId }: Props) {
         {/* STEP 1: Select material */}
         <section className="mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <span className="w-6 h-6 rounded-full bg-sv text-ink font-black text-xs flex items-center justify-center">
+            <span className="w-6 h-6 rounded-full bg-sv text-ink font-black text-xs max-md:text-[10px] flex items-center justify-center">
               1
             </span>
             <h2 className="font-semibold text-ink">{t("sp_s1")}</h2>
@@ -490,7 +490,7 @@ export default function SponsorClient({ artistId }: Props) {
 
           <div className="space-y-3">
             {availableMaterials.length === 0 ? (
-              <p className="text-sm text-muted text-center py-8">{t("sp_no_materials")}</p>
+              <p className="text-sm max-md:text-[12px] text-muted text-center py-8">{t("sp_no_materials")}</p>
             ) : (
               availableMaterials.map((m) => (
                 <button
@@ -504,9 +504,9 @@ export default function SponsorClient({ artistId }: Props) {
                   style={selected === m.id ? { boxShadow: '0 8px 22px rgba(23,29,43,.06)' } : undefined}
                 >
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-navy-800 text-sm leading-snug">{m.name}</p>
-                    <p className="text-xs text-muted mt-0.5 line-clamp-1">{m.usageNote}</p>
-                    <p className="text-sm font-bold text-gold-text mt-1.5">{m.price.toLocaleString()}원</p>
+                    <p className="font-semibold text-navy-800 text-sm max-md:text-[12px] leading-snug">{m.name}</p>
+                    <p className="text-xs max-md:text-[10px] text-muted mt-0.5 line-clamp-1">{m.usageNote}</p>
+                    <p className="text-sm max-md:text-[12px] font-bold text-gold-text mt-1.5">{m.price.toLocaleString()}원</p>
                   </div>
                   <div
                     className={`w-5 h-5 rounded-full border-2 shrink-0 mt-1 flex items-center justify-center transition-all ${
@@ -526,40 +526,40 @@ export default function SponsorClient({ artistId }: Props) {
         {/* STEP 2: Message */}
         <section className="mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <span className="w-6 h-6 rounded-full bg-sv text-ink font-black text-xs flex items-center justify-center">
+            <span className="w-6 h-6 rounded-full bg-sv text-ink font-black text-xs max-md:text-[10px] flex items-center justify-center">
               2
             </span>
             <h2 className="font-semibold text-ink">
               {t("sp_s2_title")}{" "}
-              <span className="text-muted text-sm font-normal">{t("sp_s2_optional")}</span>
+              <span className="text-muted text-sm max-md:text-[12px] font-normal">{t("sp_s2_optional")}</span>
             </h2>
           </div>
-          <p className="text-xs text-muted mb-3">{t("sp_s2_hint")}</p>
+          <p className="text-xs max-md:text-[10px] text-muted mb-3">{t("sp_s2_hint")}</p>
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder={t("sp_s2_ph")}
             maxLength={500}
             rows={4}
-            className="w-full bg-card border border-line focus:border-ink rounded-2xl p-4 text-sm text-ink placeholder:text-muted resize-none outline-none transition-colors leading-relaxed"
+            className="w-full bg-card border border-line focus:border-ink rounded-2xl p-4 text-sm max-md:text-[12px] text-ink placeholder:text-muted resize-none outline-none transition-colors leading-relaxed"
           />
-          <p className="text-xs text-muted text-right mt-1">{message.length} / 500</p>
+          <p className="text-xs max-md:text-[10px] text-muted text-right mt-1">{message.length} / 500</p>
         </section>
 
         {/* STEP 3: Summary */}
         {selectedMaterial && (
           <div className="bg-card border border-line rounded-2xl p-5 mb-4" style={{ boxShadow: '0 8px 22px rgba(23,29,43,.06)' }}>
             <div className="space-y-2 mb-4 pb-4 border-b border-navy-100">
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-sm max-md:text-[12px]">
                 <span className="text-muted">{t("sp_cost")}</span>
                 <span className="font-medium text-navy-800">{selectedMaterial.price.toLocaleString()}원</span>
               </div>
             </div>
             <div className="flex justify-between">
               <span className="font-bold text-navy-800">{t("sp_total")}</span>
-              <span className="font-black text-navy-800 text-lg">{total.toLocaleString()}원</span>
+              <span className="font-black text-navy-800 text-lg max-md:text-[16px]">{total.toLocaleString()}원</span>
             </div>
-            <p className="text-xs text-muted mt-3 leading-relaxed">
+            <p className="text-xs max-md:text-[10px] text-muted mt-3 leading-relaxed">
               {t("sp_zero_fee")}
             </p>
           </div>
@@ -574,7 +574,7 @@ export default function SponsorClient({ artistId }: Props) {
             if (message.trim()) addWallPost({ wallId: artist.id, role: "theo", authorName: "테오", text: message.trim(), image: "" });
             setDone(true);
           }}
-          className={`w-full py-4 rounded-xl font-bold text-base transition-all ${
+          className={`w-full py-4 rounded-xl font-bold text-base max-md:text-[14px] transition-all ${
             selected
               ? "bg-navy-800 text-white hover:bg-navy-800"
               : "bg-navy-100 text-navy-300 cursor-not-allowed"
@@ -586,7 +586,7 @@ export default function SponsorClient({ artistId }: Props) {
             : t("sp_btn_select")}
         </button>
 
-        <p className="text-xs text-muted text-center mt-4 leading-relaxed">
+        <p className="text-xs max-md:text-[10px] text-muted text-center mt-4 leading-relaxed">
           {t("sp_demo")}
         </p>
 

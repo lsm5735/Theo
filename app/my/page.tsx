@@ -137,7 +137,7 @@ function DeliveryTracker({ step, stepsDisplay }: { step: number; stepsDisplay: s
           return (
             <div key={i} className="flex items-center" style={{ flex: i < stepsDisplay.length - 1 ? "1 1 0" : "none" }}>
               <div
-                className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-[12px] shrink-0"
+                className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-[12px] max-md:text-[10px] shrink-0"
                 style={{
                   background: done ? "var(--navy-800)" : active ? "var(--sv)" : "var(--navy-100)",
                   color: done ? "#fff" : active ? "var(--ink)" : "var(--navy-300)",
@@ -209,8 +209,8 @@ function RoleSwitch({ role, onChange }: { role: Role; onChange: (r: Role) => voi
           onClick={() => onChange(o.id)}
           className={`rounded-lg py-2.5 transition-all ${role === o.id ? "bg-card shadow-sm" : "hover:bg-white/50"}`}
         >
-          <span className={`block text-[15px] font-black ${role === o.id ? "text-navy-900" : "text-navy-500"}`}>{t(o.label)}</span>
-          <span className="block text-[11.5px] text-muted">{t(o.sub)}</span>
+          <span className={`block text-[15px] max-md:text-[13px] font-black ${role === o.id ? "text-navy-900" : "text-navy-500"}`}>{t(o.label)}</span>
+          <span className="block text-[11.5px] max-md:text-[9.5px] text-muted">{t(o.sub)}</span>
         </button>
       ))}
     </div>
@@ -234,19 +234,19 @@ function SponsorshipCard({ sp, stepsDisplay }: { sp: MySponsorship; stepsDisplay
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2 mb-0.5">
-              <span className="font-bold text-navy-800 text-sm">{artist.name}</span>
-              <time className="text-[11px] text-muted shrink-0">{formatDay(sp.sponsoredAt, lang)}{t("my_date_suf")}</time>
+              <span className="font-bold text-navy-800 text-sm max-md:text-[12px]">{artist.name}</span>
+              <time className="text-[11px] max-md:text-[9px] text-muted shrink-0">{formatDay(sp.sponsoredAt, lang)}{t("my_date_suf")}</time>
             </div>
-            <p className="text-xs text-navy-600 truncate">{project.title}</p>
+            <p className="text-xs max-md:text-[10px] text-navy-600 truncate">{project.title}</p>
             <div className="flex items-center gap-2 mt-1">
-              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full" style={{ background: "var(--navy-100)", color: "var(--navy-700)" }}>
+              <span className="text-[11px] max-md:text-[9px] font-bold px-2 py-0.5 rounded-full" style={{ background: "var(--navy-100)", color: "var(--navy-700)" }}>
                 {sp.amount.toLocaleString()}원
               </span>
             </div>
           </div>
         </div>
 
-        <p className="text-[12px] mb-1 truncate" style={{ color: "var(--muted)" }}>
+        <p className="text-[12px] max-md:text-[10px] mb-1 truncate" style={{ color: "var(--muted)" }}>
           <span className="font-semibold" style={{ color: "var(--navy-600)" }}>{t("my_material_pre")}</span>
           {sp.material}
         </p>
@@ -254,7 +254,7 @@ function SponsorshipCard({ sp, stepsDisplay }: { sp: MySponsorship; stepsDisplay
         <DeliveryTracker step={sp.deliveryStep} stepsDisplay={stepsDisplay} />
 
         <div className="mt-4 pt-3 border-t border-navy-100">
-          <Link href={`/atelier/${artist.slug}#wall`} className="text-xs font-bold text-navy-700 hover:text-navy-900 transition-colors">
+          <Link href={`/atelier/${artist.slug}#wall`} className="text-xs max-md:text-[10px] font-bold text-navy-700 hover:text-navy-900 transition-colors">
             {t("my_wall_btn")}
           </Link>
         </div>
@@ -278,12 +278,12 @@ function ArtistUpdate({ post }: { post: WallPost }) {
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between gap-2 mb-0.5">
-          <span className="font-bold text-navy-800 text-sm">{artist.name}</span>
-          <time className="text-[12px] text-muted shrink-0">{formatDay(post.createdAt, lang)}</time>
+          <span className="font-bold text-navy-800 text-sm max-md:text-[12px]">{artist.name}</span>
+          <time className="text-[12px] max-md:text-[10px] text-muted shrink-0">{formatDay(post.createdAt, lang)}</time>
         </div>
-        <p className="font-myeongjo text-navy-700 text-[14px] leading-snug truncate">{firstLine(post.text)}</p>
+        <p className="font-myeongjo text-navy-700 text-[14px] max-md:text-[12px] leading-snug truncate">{firstLine(post.text)}</p>
       </div>
-      <span className="text-navy-300 group-hover:text-navy-500 transition-colors text-base mt-1 shrink-0">›</span>
+      <span className="text-navy-300 group-hover:text-navy-500 transition-colors text-base max-md:text-[14px] mt-1 shrink-0">›</span>
     </Link>
   );
 }
@@ -316,8 +316,8 @@ function TheoView() {
         style={{ background: "linear-gradient(135deg,var(--navy-800) 0%,var(--navy-900) 100%)" }}>
         <div className="absolute -right-8 -top-8 w-52 h-52 rounded-full pointer-events-none" style={{ background: "var(--sv)", opacity: 0.08 }} />
 
-        <p className="text-white font-black text-xl mb-1">{t("my_greeting")}</p>
-        <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,.55)" }}>
+        <p className="text-white font-black text-xl max-md:text-[18px] mb-1">{t("my_greeting")}</p>
+        <p className="text-sm max-md:text-[12px] mb-6" style={{ color: "rgba(255,255,255,.55)" }}>
           {t("my_supporting_pre")}{count}{t("my_supporting_post")}
         </p>
 
@@ -326,9 +326,9 @@ function TheoView() {
             <div className="flex items-center gap-3 mb-3">
               <BadgeIcon name={badge.name} size={52} />
               <div>
-                <p className="text-white font-black text-lg leading-none">{badgeName(badge.name)} {t("my_badge_suf")}</p>
+                <p className="text-white font-black text-lg max-md:text-[16px] leading-none">{badgeName(badge.name)} {t("my_badge_suf")}</p>
                 {nextBadge && (
-                  <p className="text-[12px] mt-0.5" style={{ color: "rgba(255,255,255,.45)" }}>
+                  <p className="text-[12px] max-md:text-[10px] mt-0.5" style={{ color: "rgba(255,255,255,.45)" }}>
                     <BadgeIconInline name={nextBadge.name} /> {badgeName(nextBadge.name)}{t("my_badge_until")} {nextBadge.threshold - count}{t("my_badge_more")}
                   </p>
                 )}
@@ -340,8 +340,8 @@ function TheoView() {
                   <div className="h-full rounded-full" style={{ width: `${progressPct}%`, background: "var(--sv)" }} />
                 </div>
                 <div className="flex justify-between mt-1">
-                  <span className="text-[11px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(badge.name)}</span>
-                  <span className="text-[11px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(nextBadge.name)} {nextBadge.threshold}회</span>
+                  <span className="text-[11px] max-md:text-[9px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(badge.name)}</span>
+                  <span className="text-[11px] max-md:text-[9px]" style={{ color: "rgba(255,255,255,.3)" }}>{badgeName(nextBadge.name)} {nextBadge.threshold}회</span>
                 </div>
               </>
             )}
@@ -349,12 +349,12 @@ function TheoView() {
 
           <div className="flex gap-5 shrink-0">
             <div className="text-right">
-              <p className="text-[11px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_total")}</p>
-              <p className="text-white font-black text-base">{totalAmount.toLocaleString()}원</p>
+              <p className="text-[11px] max-md:text-[9px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_total")}</p>
+              <p className="text-white font-black text-base max-md:text-[14px]">{totalAmount.toLocaleString()}원</p>
             </div>
             <div className="text-right">
-              <p className="text-[11px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_artists")}</p>
-              <p className="text-white font-black text-base">{artistIds.length}{t("my_people_suf")}</p>
+              <p className="text-[11px] max-md:text-[9px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{t("my_stat_artists")}</p>
+              <p className="text-white font-black text-base max-md:text-[14px]">{artistIds.length}{t("my_people_suf")}</p>
             </div>
           </div>
         </div>
@@ -362,7 +362,7 @@ function TheoView() {
 
       {/* ── 내 선물 현황 ── */}
       <section className="mb-10">
-        <h2 className="text-[21px] font-semibold text-ink mb-4">{t("my_section_status")}</h2>
+        <h2 className="text-[21px] max-md:text-[19px] font-semibold text-ink mb-4">{t("my_section_status")}</h2>
         <div className="space-y-4">
           {sponsorships.map((sp) => (
             <SponsorshipCard key={sp.id} sp={sp} stepsDisplay={STEPS_DISPLAY} />
@@ -372,15 +372,15 @@ function TheoView() {
 
       {/* ── 작가 소식 (담벼락) ── */}
       <section>
-        <h2 className="text-[21px] font-semibold text-ink mb-1">{t("my_section_updates")}</h2>
-        <p className="text-xs text-muted mb-4">{t("my_updates_sub")}</p>
+        <h2 className="text-[21px] max-md:text-[19px] font-semibold text-ink mb-1">{t("my_section_updates")}</h2>
+        <p className="text-xs max-md:text-[10px] text-muted mb-4">{t("my_updates_sub")}</p>
         {updates.length > 0 ? (
           <div className="space-y-3">
             {updates.map((post) => <ArtistUpdate key={post.id} post={post} />)}
           </div>
         ) : (
           <div className="rounded-xl p-8 text-center border" style={{ background: "var(--chiffon)", borderColor: "rgba(194,164,63,.2)" }}>
-            <p className="font-myeongjo text-sm text-muted">{t("my_updates_empty")}</p>
+            <p className="font-myeongjo text-sm max-md:text-[12px] text-muted">{t("my_updates_empty")}</p>
           </div>
         )}
       </section>
@@ -415,12 +415,12 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
               // eslint-disable-next-line @next/next/no-img-element
               <img src={atelier.profileImage} alt={atelier.name} className="w-full h-full object-cover" />
             ) : (
-              <span className="text-xl font-black text-chiffon">{atelier.name.slice(0, 1)}</span>
+              <span className="text-xl max-md:text-[18px] font-black text-chiffon">{atelier.name.slice(0, 1)}</span>
             )}
           </div>
           <div className="min-w-0">
-            <p className="text-white font-black text-xl leading-tight">{atelier.name}{t("my_gogh_greeting_suf")}</p>
-            <p className="text-sm truncate" style={{ color: "rgba(255,255,255,.55)" }}>
+            <p className="text-white font-black text-xl max-md:text-[18px] leading-tight">{atelier.name}{t("my_gogh_greeting_suf")}</p>
+            <p className="text-sm max-md:text-[12px] truncate" style={{ color: "rgba(255,255,255,.55)" }}>
               {atelier.oneLiner || t("my_gogh_sub")}
             </p>
           </div>
@@ -428,16 +428,16 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
         <div className="grid grid-cols-3 gap-3">
           {stats.map((s) => (
             <div key={s.label}>
-              <p className="text-[11px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{s.label}</p>
-              <p className="text-white font-black text-lg">{s.value}</p>
+              <p className="text-[11px] max-md:text-[9px] mb-0.5" style={{ color: "rgba(255,255,255,.4)" }}>{s.label}</p>
+              <p className="text-white font-black text-lg max-md:text-[16px]">{s.value}</p>
             </div>
           ))}
         </div>
         <div className="flex gap-2 mt-6">
-          <Link href={base} className="flex-1 text-center bg-sv text-ink font-bold text-[14px] py-2.5 rounded-lg hover:bg-sv-soft transition-colors">
+          <Link href={base} className="flex-1 text-center bg-sv text-ink font-bold text-[14px] max-md:text-[12px] py-2.5 rounded-lg hover:bg-sv-soft transition-colors">
             {t("my_gogh_view")}
           </Link>
-          <Link href={`${base}?settings=profile`} className="flex-1 text-center border border-white/30 text-white font-bold text-[14px] py-2.5 rounded-lg hover:bg-white/10 transition-colors">
+          <Link href={`${base}?settings=profile`} className="flex-1 text-center border border-white/30 text-white font-bold text-[14px] max-md:text-[12px] py-2.5 rounded-lg hover:bg-white/10 transition-colors">
             {t("ma_settings")}
           </Link>
         </div>
@@ -445,22 +445,22 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
 
       {/* ── 내 프로젝트 ── */}
       <section className="mb-10">
-        <h2 className="text-[21px] font-semibold text-ink mb-4">{t("ma_project_title")}</h2>
+        <h2 className="text-[21px] max-md:text-[19px] font-semibold text-ink mb-4">{t("ma_project_title")}</h2>
         {project ? (
           <div className="rounded-2xl border border-line bg-card p-4" style={CARD_SHADOW}>
-            <p className="font-bold text-navy-800 text-sm mb-1">{project.title}</p>
-            <p className="text-xs text-muted line-clamp-2 mb-3">{project.concept}</p>
-            <p className="text-[12px] text-muted">{t("ma_goal")} {project.targetAmount.toLocaleString()}원</p>
+            <p className="font-bold text-navy-800 text-sm max-md:text-[12px] mb-1">{project.title}</p>
+            <p className="text-xs max-md:text-[10px] text-muted line-clamp-2 mb-3">{project.concept}</p>
+            <p className="text-[12px] max-md:text-[10px] text-muted">{t("ma_goal")} {project.targetAmount.toLocaleString()}원</p>
             <div className="mt-3 pt-3 border-t border-navy-100">
-              <Link href={`${base}?settings=project`} className="text-xs font-bold text-navy-700 hover:text-navy-900">
+              <Link href={`${base}?settings=project`} className="text-xs max-md:text-[10px] font-bold text-navy-700 hover:text-navy-900">
                 {t("my_gogh_edit")}
               </Link>
             </div>
           </div>
         ) : (
           <div className="rounded-2xl border border-dashed border-line-strong p-6 text-center">
-            <p className="text-[14px] text-navy-600 mb-3" style={{ wordBreak: "keep-all" }}>{t("ma_project_empty_sub")}</p>
-            <Link href={`${base}?settings=project`} className="nb-btn inline-block px-5 py-2.5 rounded-lg font-black text-[14px]">
+            <p className="text-[14px] max-md:text-[12px] text-navy-600 mb-3" style={{ wordBreak: "keep-all" }}>{t("ma_project_empty_sub")}</p>
+            <Link href={`${base}?settings=project`} className="nb-btn inline-block px-5 py-2.5 rounded-lg font-black text-[14px] max-md:text-[12px]">
               {t("ma_project_add")}
             </Link>
           </div>
@@ -470,8 +470,8 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
       {/* ── 필요한 재료 ── */}
       <section className="mb-10">
         <div className="flex items-baseline justify-between mb-4">
-          <h2 className="text-[21px] font-semibold text-ink">{t("ma_materials_title")}</h2>
-          <Link href={`${base}?settings=materials`} className="text-xs font-semibold text-navy-600 hover:opacity-70">
+          <h2 className="text-[21px] max-md:text-[19px] font-semibold text-ink">{t("ma_materials_title")}</h2>
+          <Link href={`${base}?settings=materials`} className="text-xs max-md:text-[10px] font-semibold text-navy-600 hover:opacity-70">
             {t("my_gogh_edit")}
           </Link>
         </div>
@@ -479,8 +479,8 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
           {atelier.materials.map((m, i) => (
             <a key={i} href={m.link} target="_blank" rel="noopener noreferrer"
               className="block rounded-xl border border-line bg-card px-4 py-3 hover:border-navy-300 transition-colors">
-              <p className="text-[12px] font-bold text-navy-400 mb-0.5">{hostOf(m.link)}</p>
-              <p className="text-[14px] text-navy-800 line-clamp-2" style={{ wordBreak: "keep-all" }}>{m.reason}</p>
+              <p className="text-[12px] max-md:text-[10px] font-bold text-navy-400 mb-0.5">{hostOf(m.link)}</p>
+              <p className="text-[14px] max-md:text-[12px] text-navy-800 line-clamp-2" style={{ wordBreak: "keep-all" }}>{m.reason}</p>
             </a>
           ))}
         </div>
@@ -489,8 +489,8 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
       {/* ── 최근 담벼락 ── */}
       <section>
         <div className="flex items-baseline justify-between mb-4">
-          <h2 className="text-[21px] font-semibold text-ink">{t("my_gogh_wall")}</h2>
-          <Link href={`${base}#wall`} className="text-xs font-semibold text-navy-600 hover:opacity-70">
+          <h2 className="text-[21px] max-md:text-[19px] font-semibold text-ink">{t("my_gogh_wall")}</h2>
+          <Link href={`${base}#wall`} className="text-xs max-md:text-[10px] font-semibold text-navy-600 hover:opacity-70">
             {t("my_gogh_wall_btn")}
           </Link>
         </div>
@@ -499,19 +499,19 @@ function GoghView({ atelier }: { atelier: MyAtelier }) {
             {posts.slice(0, 3).map((p) => (
               <div key={p.id} className="rounded-xl border border-line bg-card px-4 py-3">
                 <div className="flex justify-between gap-2 mb-0.5">
-                  <span className="text-[13px] font-bold text-navy-700">
+                  <span className="text-[13px] max-md:text-[11px] font-bold text-navy-700">
                     {p.role === "artist" ? t("wall_role_artist") : p.authorName}
                   </span>
-                  <time className="text-[12px] text-muted">{formatDay(p.createdAt, lang)}</time>
+                  <time className="text-[12px] max-md:text-[10px] text-muted">{formatDay(p.createdAt, lang)}</time>
                 </div>
-                <p className="text-[14px] text-ink line-clamp-2">{p.text || "📷"}</p>
+                <p className="text-[14px] max-md:text-[12px] text-ink line-clamp-2">{p.text || "📷"}</p>
               </div>
             ))}
           </div>
         ) : (
           <div className="rounded-xl p-6 text-center border" style={{ background: "var(--chiffon)", borderColor: "rgba(194,164,63,.2)" }}>
-            <p className="text-[14px] text-muted mb-3" style={{ wordBreak: "keep-all" }}>{t("my_gogh_wall_empty")}</p>
-            <Link href={`${base}#wall`} className="text-xs font-bold text-navy-800 underline underline-offset-2">
+            <p className="text-[14px] max-md:text-[12px] text-muted mb-3" style={{ wordBreak: "keep-all" }}>{t("my_gogh_wall_empty")}</p>
+            <Link href={`${base}#wall`} className="text-xs max-md:text-[10px] font-bold text-navy-800 underline underline-offset-2">
               {t("my_gogh_wall_btn")}
             </Link>
           </div>
@@ -525,9 +525,9 @@ function GoghEmpty() {
   const t = useT();
   return (
     <div className="rounded-2xl border border-dashed border-line-strong p-10 text-center">
-      <p className="text-[16px] font-black text-navy-800 mb-2">{t("my_gogh_empty")}</p>
-      <p className="text-[14px] text-muted mb-6" style={{ wordBreak: "keep-all" }}>{t("my_gogh_empty_sub")}</p>
-      <Link href="/onboarding/artist" className="nb-btn inline-block px-6 py-3 rounded-xl font-black text-[15px]">
+      <p className="text-[16px] max-md:text-[14px] font-black text-navy-800 mb-2">{t("my_gogh_empty")}</p>
+      <p className="text-[14px] max-md:text-[12px] text-muted mb-6" style={{ wordBreak: "keep-all" }}>{t("my_gogh_empty_sub")}</p>
+      <Link href="/onboarding/artist" className="nb-btn inline-block px-6 py-3 rounded-xl font-black text-[15px] max-md:text-[13px]">
         {t("ma_empty_btn")}
       </Link>
     </div>
@@ -541,14 +541,14 @@ function AtelierPicker({ ateliers, selectedId, onSelect }: { ateliers: MyAtelier
     <div className="flex items-center gap-2 overflow-x-auto mb-5 pb-1" style={{ scrollbarWidth: "none" }}>
       {ateliers.map((a) => (
         <button key={a.id} onClick={() => onSelect(a.id)}
-          className={`shrink-0 text-[14px] font-semibold px-4 py-1.5 rounded-full border transition-all ${
+          className={`shrink-0 text-[14px] max-md:text-[12px] font-semibold px-4 py-1.5 rounded-full border transition-all ${
             a.id === selectedId ? "bg-navy-800 text-white border-navy-800" : "bg-card text-navy-700 border-navy-200 hover:border-navy-500"
           }`}>
           {a.name}
         </button>
       ))}
       <Link href="/onboarding/artist"
-        className="shrink-0 text-[14px] font-semibold px-4 py-1.5 rounded-full border border-dashed border-navy-300 text-navy-500 hover:text-navy-800">
+        className="shrink-0 text-[14px] max-md:text-[12px] font-semibold px-4 py-1.5 rounded-full border border-dashed border-navy-300 text-navy-500 hover:text-navy-800">
         {t("ma_list_new")}
       </Link>
     </div>
@@ -584,10 +584,10 @@ export default function MyDashboard() {
       <PageTitle text="My Theo" />
 
       <main className="max-w-[680px] mx-auto px-5 md:px-8 py-10">
-        <Link href="/" className="text-xs text-muted hover:text-navy-700 transition-colors mb-6 inline-block">
+        <Link href="/" className="text-xs max-md:text-[10px] text-muted hover:text-navy-700 transition-colors mb-6 inline-block">
           {t("my_back")}
         </Link>
-        <p className="text-[11px] font-black tracking-[0.22em] uppercase text-navy-400 mb-3">{t("my_label")}</p>
+        <p className="text-[11px] max-md:text-[9px] font-black tracking-[0.22em] uppercase text-navy-400 mb-3">{t("my_label")}</p>
 
         <RoleSwitch role={role} onChange={changeRole} />
 

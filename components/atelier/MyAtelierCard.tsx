@@ -24,11 +24,11 @@ export default function MyAtelierCard({ atelier }: { atelier: MyAtelier }) {
             // eslint-disable-next-line @next/next/no-img-element
             <img src={atelier.profileImage} alt={atelier.name} className="w-full h-full object-cover" />
           ) : (
-            <span className="text-lg font-black text-navy-500">{atelier.name.slice(0, 1)}</span>
+            <span className="text-lg max-md:text-[16px] font-black text-navy-500">{atelier.name.slice(0, 1)}</span>
           )}
         </div>
         <p className="font-black text-navy-900 group-hover:underline underline-offset-2">{atelier.name}</p>
-        <p className="text-[13.5px] text-muted truncate">
+        <p className="text-[13.5px] max-md:text-[11.5px] text-muted truncate">
           {atelier.project ? atelier.project.title : atelier.oneLiner || t("ma_card_no_project")}
         </p>
       </div>

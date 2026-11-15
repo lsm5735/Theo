@@ -39,7 +39,7 @@ export default function ShowPage() {
 
       <main>
         <section className="px-[var(--gap)] pt-10 md:pt-16">
-          <div data-sr="fade" className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-8 md:pb-14">
+          <div data-sr="fade" className="pr-0 md:pr-[var(--gap)] pb-8 md:pb-14">
             <BigTitle text="[CONTINUE]" />
           </div>
           <hr className="dots-x" />
@@ -58,7 +58,7 @@ export default function ShowPage() {
               <img src="/show-poster.jpg" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-bottom" />
             </div>
           </div>
-          <div className="px-[var(--gap)]"><hr className="dots-x mt-12 md:mt-16" /></div>
+          <div className="px-[var(--gap)]"><hr className="dots-x mt-12 md:mt-16 max-md:hidden" /></div>
         </section>
 
         <Row label="Info">
@@ -66,7 +66,7 @@ export default function ShowPage() {
             {INFO.map((i, n) => (
               <div key={i.label}>
                 {n > 0 && <hr className="dots-x" />}
-                <div data-sr="up" className="grid grid-cols-[6rem_1fr] md:grid-cols-[10rem_1fr] gap-4 py-5">
+                <div data-sr="up" className="grid grid-cols-[4.25rem_1fr] md:grid-cols-[10rem_1fr] gap-3 md:gap-4 py-5">
                   <dt className="type-label text-muted pt-2">{i.label}</dt>
                   <dd className="type-m">{i.value}</dd>
                 </div>
@@ -76,14 +76,14 @@ export default function ShowPage() {
         </Row>
 
         <Row label="About">
-          <p data-sr="up" className="type-m max-w-[44rem] mb-8" style={{ wordBreak: "keep-all" }}>
+          <p data-sr="up" className="type-m max-md:font-bold max-md:text-[21px]! max-w-[44rem] mb-8" style={{ wordBreak: "keep-all" }}>
             당신의 색으로 만들어질 다음 장면은 무엇일까요?
           </p>
           <div className="space-y-8 max-w-[56rem]">
-            <p data-sr="up" className="text-[16.5px] leading-[1.95] text-muted whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
+            <p data-sr="up" className="text-[16.5px] max-md:text-[14.5px] leading-[1.95] text-muted whitespace-pre-line max-md:whitespace-normal" style={{ wordBreak: "keep-all" }}>
               {"그림이 태어나는 과정을 보러 오세요.\n이곳에서 관객은 꽃다발 대신 물감을 보냅니다.\n당신이 고른 색은 작가에게 도착하고, 작가의 손을 거쳐 새로운 장면이 됩니다.\n누군가의 마음이 재료가 되고, 그 재료는 하나의 작품으로 피어납니다."}
             </p>
-            <p data-sr="up" className="text-[16.5px] leading-[1.95] text-muted whitespace-pre-line" style={{ wordBreak: "keep-all" }}>
+            <p data-sr="up" className="text-[16.5px] max-md:text-[14.5px] leading-[1.95] text-muted whitespace-pre-line max-md:whitespace-normal" style={{ wordBreak: "keep-all" }}>
               {"전시장은 작가의 아틀리에로 변합니다.\n벽과 캐비닛에는 스케치, 메모, 습작, 재료, 작가의 작업 과정이 놓여 있습니다.\n이를 통해 관람객은 작품이 수많은 시도와 망설임, 선택과 우연을 지나 지금의 모습에 이르렀음을 마주하게 됩니다."}
             </p>
           </div>
@@ -97,7 +97,7 @@ export default function ShowPage() {
                   <span className="relative block aspect-square w-full max-w-[12rem] mx-auto overflow-hidden rounded-full bg-surface-card transition-transform duration-300 group-hover:scale-[1.04]">
                     <Image src={a.profileImage} alt={a.name} fill sizes="12rem" className="object-cover" />
                   </span>
-                  <span className="mt-4 block text-[18px] font-bold group-hover:underline underline-offset-4">{a.name}</span>
+                  <span className="mt-4 block text-[18px] max-md:text-[16px] font-bold group-hover:underline underline-offset-4">{a.name}</span>
                 </Link>
               </li>
             ))}
@@ -107,9 +107,9 @@ export default function ShowPage() {
         <section className="px-[var(--gap)] py-12 md:py-16">
           <div className="flex flex-col md:flex-row gap-6 md:gap-0">
             <div className={LEFT} />
-            <div className={`${RIGHT} flex flex-wrap gap-3`}>
-              <Link href="/community" className="nb-btn px-7 py-3 text-[15px]">함께하는 프로그램 보기</Link>
-              <Link href="/atelier" className="nb-btn-outline px-7 py-3 text-[15px]">작가 아틀리에 보기</Link>
+            <div className={`${RIGHT} flex flex-wrap gap-3 max-md:grid max-md:w-fit max-md:grid-cols-1`}>
+              <Link href="/community" className="nb-btn px-7 py-3 text-[15px] max-md:text-[13px]">함께하는 프로그램 보기</Link>
+              <Link href="/atelier" className="nb-btn-outline px-7 py-3 text-[15px] max-md:text-[13px]">작가 아틀리에 보기</Link>
             </div>
           </div>
         </section>

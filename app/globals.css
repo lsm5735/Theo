@@ -382,3 +382,25 @@ h1, h2, h3, .font-display {
 @media (max-width: 767px) {
   .type-label { font-size: 13px; }
 }
+
+/* 모바일(767px 이하) 전용 — 글자를 전체적으로 2px씩 줄인다. 데스크톱 값은 건드리지 않는다.
+   (Tailwind 로 지정한 글자 크기는 각 클래스에 max-md:text-[Npx] 로 따로 줄였다)
+   슬로건(푸터 마퀴 .type-label-xl)과 페이지 맨 위 영어 제목(BigTitle)은 줄이지 않는다. */
+@media (max-width: 767px) {
+  body { font-size: 15px; }
+  .type-xxl { font-size: 51px; }
+  .type-xl { font-size: 20px; }
+  .type-l { font-size: 24px; }
+  .type-m { font-size: 20px; }
+  .type-label { font-size: 11px; }
+  .type-section { font-size: 14px; }
+  .nb-tag, .nb-tag-light { font-size: 11px; }
+  .nb-step { font-size: 11px; }
+  .fit-h { font-size: 24px; }
+  .fit-p { font-size: 13px; }
+  .fit-q { font-size: 14px; }
+  .lp-label { font-size: 16px; }
+  .lp-xl { font-size: clamp(23px, 3.3vw, 50px); }
+  .lp-l { font-size: clamp(22px, 2.7vw, 40px); }
+  .lp-m { font-size: clamp(18px, 1.9vw, 28px); }
+}

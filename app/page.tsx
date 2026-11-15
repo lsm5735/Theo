@@ -123,7 +123,7 @@ export default function Home() {
             </div>
             <div className={`${RIGHT} flex flex-wrap items-end justify-between gap-x-8 gap-y-4`}>
               <h2 data-sr="up" className="statement fit-h">테오와 함께하는 작가님들</h2>
-              <Link href="/atelier" className="link-line text-[16px]">
+              <Link href="/atelier" className="link-line text-[16px] max-md:text-[14px]">
                 {t("projects_btn")}
               </Link>
             </div>
@@ -165,7 +165,7 @@ export default function Home() {
               <h3 className="statement lp-m mb-5 xl:min-h-[2.6em]">{s.title}</h3>
               <ul className="space-y-2">
                 {s.items.map((it) => (
-                  <li key={it} className="flex gap-3 text-[16px] leading-[1.7]">
+                  <li key={it} className="flex gap-3 text-[16px] max-md:text-[12px] leading-[1.7]">
                     <span aria-hidden="true">–</span>
                     <span>{it}</span>
                   </li>
@@ -176,9 +176,9 @@ export default function Home() {
               {i < STEPS.length - 1 && (
                 <>
                   {/* 한 줄 배치(sm 이상): 오른쪽 칸으로 → . 2열일 때는 줄이 바뀌는 2번째 칸 제외 */}
-                  <span aria-hidden="true" className={`step-arrow absolute z-10 top-[1.65rem] -right-[19px] w-9 h-9 items-center justify-center bg-[var(--blk)] text-[var(--sun)] text-[18px] ${i === 1 ? "hidden xl:flex" : "hidden sm:flex"}`}>→</span>
+                  <span aria-hidden="true" className={`step-arrow absolute z-10 top-[1.65rem] -right-[19px] w-9 h-9 items-center justify-center bg-[var(--blk)] text-[var(--sun)] text-[18px] max-md:text-[16px] ${i === 1 ? "hidden xl:flex" : "hidden sm:flex"}`}>→</span>
                   {/* 한 줄(모바일): 아래 칸으로 ↓ */}
-                  <span aria-hidden="true" className="sm:hidden absolute z-10 left-1/2 -translate-x-1/2 -bottom-[19px] w-9 h-9 flex items-center justify-center bg-[var(--blk)] text-[var(--sun)] text-[18px]">↓</span>
+                  <span aria-hidden="true" className="sm:hidden absolute z-10 left-1/2 -translate-x-1/2 -bottom-[19px] w-9 h-9 flex items-center justify-center bg-[var(--blk)] text-[var(--sun)] text-[18px] max-md:text-[16px]">↓</span>
                 </>
               )}
             </div>
@@ -197,10 +197,10 @@ export default function Home() {
           </div>
           {/* 두 버튼은 가로 너비가 같도록: 더 긴 쪽 폭에 맞춰 동일한 칸으로 나눈다 */}
           <div data-sr="up" data-d="2" className="grid grid-cols-1 sm:grid-flow-col sm:auto-cols-fr sm:w-fit gap-3 sm:gap-4 mt-12">
-            <Link href="/atelier" className="nb-btn px-7 py-3 text-[15px]">
+            <Link href="/atelier" className="nb-btn px-7 py-3 text-[15px] max-md:text-[13px]">
               {t("btn_patron_main")}({t("btn_patron_sub")})
             </Link>
-            <Link href="/onboarding/artist" className="nb-btn-outline px-7 py-3 text-[15px]">
+            <Link href="/onboarding/artist" className="nb-btn-outline px-7 py-3 text-[15px] max-md:text-[13px]">
               {t("btn_artist_main")}({t("btn_artist_sub")})
             </Link>
           </div>
@@ -216,25 +216,27 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 mb-16">
             <div data-sr="up" data-d="1">
               <hr className="dots-x mb-5" />
-              <h3 className="text-[18px] mb-4">팬의 목소리</h3>
-              <p className="text-[16px] leading-[1.8] mb-4" style={{ wordBreak: "keep-all" }}>
-                “작품을 사는 게 작가님께 가장 큰 도움이 된다는 걸 우리도 알아요.<br />
+              <h3 className="text-[18px] max-md:text-[16px] mb-4">팬의 목소리</h3>
+              <p className="text-[16px] max-md:text-[14px] leading-[1.8] mb-4" style={{ wordBreak: "keep-all" }}>
+                “작품을 사는 게 작가님께 가장 큰 도움이 된다는 걸 우리도 알아요.{" "}
+                {/* 줄바꿈은 PC 에서만, 폰에서는 두 문장을 이어 붙인다 */}
+                <br className="max-md:hidden" />
                 그래도 매번 작품을 살 수는 없잖아요. 그럼 우리는 미술을 좋아하면 안 되나요?”
               </p>
-              <p className="text-[15px] leading-[1.8] text-muted" style={{ wordBreak: "keep-all" }}>
+              <p className="text-[15px] max-md:text-[13px] leading-[1.8] text-muted" style={{ wordBreak: "keep-all" }}>
                 완성작을 사기에는 부담스럽고, SNS 좋아요나 팔로우 만으로는 아무것도 전해지지 않는 것 같아 아쉽습니다.
               </p>
             </div>
             <div data-sr="up" data-d="2">
               <hr className="dots-x mb-5" />
-              <h3 className="text-[18px] mb-4">작가의 현실</h3>
-              <p className="text-[16px] leading-[1.8] mb-4" style={{ wordBreak: "keep-all" }}>
+              <h3 className="text-[18px] max-md:text-[16px] mb-4">작가의 현실</h3>
+              <p className="text-[16px] max-md:text-[14px] leading-[1.8] mb-4" style={{ wordBreak: "keep-all" }}>
                 화려한 전시장에서 꽃다발 가득 축하를 받고, 다시 캄캄한 작업실에 돌아와 다음 작업을 위한 재료비를 걱정합니다.
               </p>
-              <p className="text-[15px] leading-[1.8] text-muted mb-3" style={{ wordBreak: "keep-all" }}>
+              <p className="text-[15px] max-md:text-[13px] leading-[1.8] text-muted mb-3" style={{ wordBreak: "keep-all" }}>
                 새 작업을 시작하고, 전시를 열기 위해서는 재료비가 먼저 나갑니다. 작품에 대한 고민을 하기도 전에 생계를 먼저 생각하게 됩니다.
               </p>
-              <p className="text-[15px] leading-[1.8] text-muted" style={{ wordBreak: "keep-all" }}>
+              <p className="text-[15px] max-md:text-[13px] leading-[1.8] text-muted" style={{ wordBreak: "keep-all" }}>
                 그럼에도 작업을 이어 갈 수 있는 건 작품을 기다려주고 전시를 보러와주는 분들이 있기 때문입니다.
               </p>
             </div>
@@ -256,11 +258,11 @@ export default function Home() {
               <p className="type-label mb-5">Pop-up Exhibition</p>
               <h2 className="mb-8 leading-[.9]" style={{ fontSize: "clamp(40px, 5.6vw, 92px)" }}>[CONTINUE]</h2>
               <hr className="dots-x" />
-              <p className="text-[16px] md:text-[18px] leading-[1.8] py-3">2026. 11. 28 (토) – 11. 29 (일)</p>
+              <p className="text-[16px] max-md:text-[14px] md:text-[18px] leading-[1.8] py-3">2026. 11. 28 (토) – 11. 29 (일)</p>
               <hr className="dots-x" />
-              <p className="text-[16px] md:text-[18px] leading-[1.8] py-3">서울 종로구 창덕궁길 83-1</p>
+              <p className="text-[16px] max-md:text-[14px] md:text-[18px] leading-[1.8] py-3">서울 종로구 창덕궁길 83-1</p>
               <hr className="dots-x mb-8" />
-              <Link href="/show" className="en link-line text-[16px]">Read More</Link>
+              <Link href="/show" className="en link-line text-[16px] max-md:text-[14px]">Read More</Link>
             </div>
           </div>
         </Row>
@@ -278,7 +280,7 @@ export default function Home() {
                 <hr className="dots-x" />
                 <Link href="/community" className="row-fill flex items-baseline justify-between gap-4 py-6 md:py-7">
                   <span className="font-display lp-m">{p.name}</span>
-                  <span className="text-[16px] md:text-[17px] text-muted shrink-0">2026. {p.date}</span>
+                  <span className="text-[16px] max-md:text-[14px] md:text-[17px] text-muted shrink-0">2026. {p.date}</span>
                 </Link>
               </div>
             ))}
@@ -301,7 +303,7 @@ export default function Home() {
               <a
                 data-sr="up" data-d="1"
                 href={DECK_MAILTO}
-                className="nb-btn px-7 py-3 text-[15px]"
+                className="nb-btn px-7 py-3 text-[15px] max-md:text-[13px]"
               >
                 {t("cta_btn")}
               </a>

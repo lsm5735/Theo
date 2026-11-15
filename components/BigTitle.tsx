@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // · 줄바꿈("\n")이 있으면 각 줄을 가로폭에 맞춰 위아래로 쌓는다.
 // · typing: 글자가 타이핑하듯 하나씩 나타난다. (자리는 처음부터 잡혀 있어 레이아웃이 흔들리지 않음)
 
-function Line({ text, shown, minChars }: { text: string; shown: number; minChars: number }) {
+function Svg({ text, shown, minChars, className }: { text: string; shown: number; minChars: number; className: string }) {
   // minChars: 글자 수가 적어도 이 글자 수 기준으로 크기를 잡아, 짧은 제목이 지나치게 커지지 않게 한다
   const n = Math.max(text.length, minChars);
   const width = (1000 * text.length) / n;
@@ -15,7 +15,7 @@ function Line({ text, shown, minChars }: { text: string; shown: number; minChars
   return (
     <svg
       viewBox={`0 0 1000 ${h}`}
-      className="block w-full h-auto overflow-visible"
+      className={`w-full h-auto overflow-visible ${className}`}
       role="presentation"
       style={{ maxHeight: "36rem" }}
     >
@@ -36,6 +36,16 @@ function Line({ text, shown, minChars }: { text: string; shown: number; minChars
             ))}
       </text>
     </svg>
+  );
+}
+
+/** 폰 화면(767px 이하)에서는 글자 수가 적어도 minChars 를 무시하고 가로폭에 꽉 채운다. 넓은 화면은 기존 그대로 */
+function Line({ text, shown, minChars }: { text: string; shown: number; minChars: number }) {
+  return (
+    <>
+      <Svg text={text} shown={shown} minChars={0} className="block md:hidden" />
+      <Svg text={text} shown={shown} minChars={minChars} className="hidden md:block" />
+    </>
   );
 }
 

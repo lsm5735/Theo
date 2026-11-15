@@ -78,7 +78,7 @@ export default function Footer() {
           <div className="flex items-center gap-2 mb-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo-face.png" alt="THEO" className="w-7 h-7" />
-            <b className="logo-wordmark tracking-[0.06em] text-[21px]">Theo</b>
+            <b className="logo-wordmark tracking-[0.06em] text-[21px] max-md:text-[20px]">Theo</b>
           </div>
         </div>
 
@@ -86,7 +86,7 @@ export default function Footer() {
           {cols.map((c) => (
             <div key={c.title}>
               <p className="type-label mb-4">{c.title}</p>
-              <ul className="space-y-2 text-[15px]">
+              <ul className="space-y-2 text-[15px] max-md:text-[13px]">
                 {c.links.map((l) => (
                   <li key={l.label + l.href}>
                     {l.href.startsWith("http") ? (
@@ -105,7 +105,7 @@ export default function Footer() {
       {/* 사업자 정보 */}
       <div className="px-[var(--gap)]">
         <hr className="dots-x" />
-        <address className="not-italic py-6 text-[13px] leading-[1.9] text-muted">
+        <address className="not-italic py-6 text-[13px] max-md:text-[11px] leading-[1.9] text-muted">
           <p className="flex flex-wrap gap-x-4">
             <span>상호명 및 대표자 : {BIZ.name} / {BIZ.ceo}</span>
             <span>
@@ -131,7 +131,7 @@ export default function Footer() {
 
       <div className="px-[var(--gap)]">
         <hr className="dots-x" />
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 py-6 text-[13px] text-muted">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 py-6 text-[13px] max-md:text-[11px] text-muted">
           <span>{t("footer_copy")}</span>
         </div>
       </div>

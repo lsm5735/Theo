@@ -33,11 +33,11 @@ export default function Header() {
           <a href="/" className="flex items-center gap-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo-face.png" alt="THEO" className="w-7 h-7 shrink-0" />
-            <b className="logo-wordmark tracking-[0.08em] text-[24px] text-navy-900">Theo</b>
+            <b className="logo-wordmark tracking-[0.08em] text-[24px] max-md:text-[23px] text-navy-900">Theo</b>
           </a>
         </div>
 
-        <div className="flex w-full items-center justify-end md:justify-between text-[18px] md:text-[20px]">
+        <div className="flex w-full items-center justify-end md:justify-between text-[18px] max-md:text-[16px] md:text-[20px]">
           {/* Desktop nav — Home, Show, Atelier, Arty, About. */}
           <nav className="hidden md:flex">
             <ul className="flex gap-x-10">
@@ -122,7 +122,7 @@ export default function Header() {
           </ul>
           <hr className="dots-x my-6" />
           <p className="type-label mb-3">About</p>
-          <ul className="flex flex-col gap-2 text-[15px]">
+          <ul className="flex flex-col gap-2 text-[15px] max-md:text-[13px]">
             {ABOUT_LINKS.map((l) => (
               <li key={l.label}>
                 {l.external ? (

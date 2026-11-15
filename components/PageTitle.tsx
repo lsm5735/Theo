@@ -4,7 +4,7 @@ import BigTitle from "@/components/BigTitle";
 export default function PageTitle({ text }: { text: string }) {
   return (
     <section className="px-[var(--gap)] pt-8 md:pt-14 w-full">
-      <div className="pr-[calc(var(--gap)*0.5)] md:pr-[var(--gap)] pb-6 md:pb-10">
+      <div className="pr-0 md:pr-[var(--gap)] pb-6 md:pb-10">
         <BigTitle text={text} minChars={10} />
       </div>
       <hr className="dots-x" />
