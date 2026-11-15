@@ -18,10 +18,10 @@ const DECK_MAILTO =
 const SERIF = { fontFamily: "'PT Serif','Noto Sans KR',serif", fontWeight: 400 } as const;
 
 /** 레퍼런스식 2단 행 — 왼쪽 라벨(25%) / 오른쪽 본문(75%) */
-function Row({ label, children, id, tone = "paper", rule = true }: { label: string; children: React.ReactNode; id?: string; tone?: "paper" | "ink" | "sun"; rule?: boolean }) {
+function Row({ label, children, id, tone = "paper", rule = true, tightBottomOnMobile = false }: { label: string; children: React.ReactNode; id?: string; tone?: "paper" | "ink" | "sun"; rule?: boolean; tightBottomOnMobile?: boolean }) {
   return (
     <section className={`px-[var(--gap)] ${tone === "ink" ? "tone-ink" : tone === "sun" ? "tone-sun" : ""}`} id={id}>
-      <div className="flex flex-col md:flex-row py-14 md:py-40 gap-6 md:gap-0">
+      <div className={`${tightBottomOnMobile ? "max-md:pb-10 " : ""}flex flex-col md:flex-row py-14 md:py-40 gap-6 md:gap-0`}>
         <div className={LEFT}>
           <span className="type-section lp-label">{label}</span>
         </div>
@@ -43,7 +43,7 @@ const STEPS = [
   {
     n: "01", label: "ARTIST", title: "작가님이 새로운 프로젝트를 등록해요", img: "/how/step-1.jpg",
     items: [
-      "새로 시작하려는 작품의 구상과 필요한 재료 목록을 올립니다.",
+      "새로운 작품의 구상과 필요한 재료 목록을 올립니다.",
       "작가님의 아틀리에에 입장해 새로운 작품을 준비하기 위한 과정을 살펴보세요.",
       "내가 응원하고 싶은 작가님이 테오에 없다면, 테오에게 작가님 초대를 요청해주세요.",
     ],
@@ -60,7 +60,7 @@ const STEPS = [
   {
     n: "03", label: "WALL", title: "아틀리에 담벼락에서 창작 과정을 함께 해요", img: "/how/step-3.jpg",
     items: [
-      "선물이 작업실에 도착하면 담벼락에 도착 인증 사진이 올라와요.",
+      "선물이 작가님께 도착하면 인증사진이 올라와요.",
       "선물한 테오도 응원 메세지를 남길 수 있어요.",
       "작품이 만들어지는 과정과 완성된 작품의 사진을 확인해보세요.",
     ],
@@ -101,11 +101,11 @@ export default function Home() {
               <span className="type-section lp-label">Intro</span>
             </div>
             <div className={RIGHT}>
-              <h2 data-sr="up" className="fit-h" style={{ wordBreak: "keep-all", ...SERIF }}>
+              <h2 data-sr="up" className="fit-h max-md:font-medium! max-md:text-[25px]!" style={{ wordBreak: "keep-all", ...SERIF }}>
                 꽃다발 대신 물감을 선물하세요.<br />
                 꽃은 시들지만 물감은 작품으로 피어납니다.
               </h2>
-              <div data-sr="up" data-d="1" className="fit-p leading-[1.85] mt-8 text-muted space-y-3" style={{ wordBreak: "keep-all" }}>
+              <div data-sr="up" data-d="1" className="fit-p max-md:text-[15px]! leading-[1.85] mt-8 text-muted space-y-3" style={{ wordBreak: "keep-all" }}>
                 <p>테오는 당신의 ‘응원하고 싶은 마음’을 응원합니다. 작품을 사지 않더라도 작가를 아끼는 그 마음을 누구보다 잘 알기에.</p>
                 <p>꽃에는 작가를 응원하는 소중한 마음이 담겨 있었습니다. 다만 꽃은 며칠이면 시들어 버립니다.</p>
                 <p>꽃 대신 물감을 선물하고, 그 물감이 작품이 되는 과정에 당신이 함께할 수 있다면</p>
@@ -122,8 +122,8 @@ export default function Home() {
               <span className="type-section lp-label">Artists</span>
             </div>
             <div className={`${RIGHT} flex flex-wrap items-end justify-between gap-x-8 gap-y-4`}>
-              <h2 data-sr="up" className="statement fit-h">테오와 함께하는 작가님들</h2>
-              <Link href="/atelier" className="link-line text-[16px] max-md:text-[14px]">
+              <h2 data-sr="up" className="statement fit-h max-md:text-[26px]!">테오와 함께하는 작가님들</h2>
+              <Link href="/atelier" className="link-line text-[16px] max-md:hidden">
                 {t("projects_btn")}
               </Link>
             </div>
@@ -139,8 +139,8 @@ export default function Home() {
         </section>
 
         {/* ═══ 4. HOW IT WORKS — 노랑 한 색 + 진행 바·화살표로 순서 표시 ═══ */}
-        <Row label="How it works" id="how" rule={false}>
-          <h2 data-sr="up" className="statement fit-h">
+        <Row label="How it works" id="how" rule={false} tightBottomOnMobile>
+          <h2 data-sr="up" className="statement fit-h max-md:text-[26px]! max-md:[-webkit-text-stroke:0.2px_currentColor]">
             당신의 선물은 하나의 작품을 함께 만들어가는 일입니다.
           </h2>
         </Row>
@@ -162,10 +162,10 @@ export default function Home() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={s.img} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
               </div>
-              <h3 className="statement lp-m mb-5 xl:min-h-[2.6em]">{s.title}</h3>
+              <h3 className="statement lp-m max-md:font-bold! mb-5 xl:min-h-[2.6em]">{s.title}</h3>
               <ul className="space-y-2">
                 {s.items.map((it) => (
-                  <li key={it} className="flex gap-3 text-[16px] max-md:text-[12px] leading-[1.7]">
+                  <li key={it} className="flex gap-3 text-[16px] max-md:text-[14.5px] leading-[1.7]">
                     <span aria-hidden="true">–</span>
                     <span>{it}</span>
                   </li>
@@ -187,20 +187,20 @@ export default function Home() {
 
         {/* ═══ 2. THEO STORY ═══ */}
         <Row label="Theo Story" tone="ink">
-          <h2 data-sr="up" className="statement fit-h text-sun mb-8">
+          <h2 data-sr="up" className="statement fit-h max-md:text-[25px]! text-sun mb-8">
             모두의 고흐가 되기 전<br />
             나만의 고흐를 만나보세요.
           </h2>
-          <div data-sr="up" data-d="1" className="fit-p leading-[1.85] text-muted space-y-3" style={{ wordBreak: "keep-all" }}>
+          <div data-sr="up" data-d="1" className="fit-p max-md:text-[14px]! leading-[1.85] text-muted space-y-3" style={{ wordBreak: "keep-all" }}>
             <p>반 고흐에게는 평생 그를 응원해준 동생 테오가 있었기에 세계가 사랑하는 명작이 탄생할 수 있었습니다.</p>
             <p>세상이 알아보기 전, 당신이 먼저 발견한 예술가에게 재료를 선물하고, 위대한 작품이 태어나는 과정을 함께 만들어 보세요.</p>
           </div>
           {/* 두 버튼은 가로 너비가 같도록: 더 긴 쪽 폭에 맞춰 동일한 칸으로 나눈다 */}
           <div data-sr="up" data-d="2" className="grid grid-cols-1 sm:grid-flow-col sm:auto-cols-fr sm:w-fit gap-3 sm:gap-4 mt-12">
-            <Link href="/atelier" className="nb-btn px-7 py-3 text-[15px] max-md:text-[13px]">
+            <Link href="/atelier" className="nb-btn px-7 py-3 text-[15px] max-md:text-[14px]">
               {t("btn_patron_main")}({t("btn_patron_sub")})
             </Link>
-            <Link href="/onboarding/artist" className="nb-btn-outline px-7 py-3 text-[15px] max-md:text-[13px]">
+            <Link href="/onboarding/artist" className="nb-btn-outline px-7 py-3 text-[15px] max-md:text-[14px]">
               {t("btn_artist_main")}({t("btn_artist_sub")})
             </Link>
           </div>
@@ -208,7 +208,7 @@ export default function Home() {
 
         {/* ═══ 3. THE GAP ═══ */}
         <Row label="The Gap">
-          <h2 data-sr="up" className="fit-h mb-12" style={{ wordBreak: "keep-all", ...SERIF }}>
+          <h2 data-sr="up" className="fit-h max-md:font-medium! max-md:text-[25px]! mb-12" style={{ wordBreak: "keep-all", ...SERIF }}>
             미술 시장은 커지고 있다는데,<br />
             젊은 예술가들의 현실은 어떤가요?
           </h2>
@@ -216,27 +216,27 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 mb-16">
             <div data-sr="up" data-d="1">
               <hr className="dots-x mb-5" />
-              <h3 className="text-[18px] max-md:text-[16px] mb-4">팬의 목소리</h3>
-              <p className="text-[16px] max-md:text-[14px] leading-[1.8] mb-4" style={{ wordBreak: "keep-all" }}>
+              <h3 className="text-[18px] max-md:text-[17px] mb-4">팬의 목소리</h3>
+              <p className="text-[16px] max-md:text-[15px] max-md:font-medium leading-[1.8] mb-4" style={{ wordBreak: "keep-all" }}>
                 “작품을 사는 게 작가님께 가장 큰 도움이 된다는 걸 우리도 알아요.{" "}
                 {/* 줄바꿈은 PC 에서만, 폰에서는 두 문장을 이어 붙인다 */}
                 <br className="max-md:hidden" />
                 그래도 매번 작품을 살 수는 없잖아요. 그럼 우리는 미술을 좋아하면 안 되나요?”
               </p>
-              <p className="text-[15px] max-md:text-[13px] leading-[1.8] text-muted" style={{ wordBreak: "keep-all" }}>
+              <p className="text-[15px] max-md:text-[14px] leading-[1.8] text-muted" style={{ wordBreak: "keep-all" }}>
                 완성작을 사기에는 부담스럽고, SNS 좋아요나 팔로우 만으로는 아무것도 전해지지 않는 것 같아 아쉽습니다.
               </p>
             </div>
             <div data-sr="up" data-d="2">
               <hr className="dots-x mb-5" />
-              <h3 className="text-[18px] max-md:text-[16px] mb-4">작가의 현실</h3>
-              <p className="text-[16px] max-md:text-[14px] leading-[1.8] mb-4" style={{ wordBreak: "keep-all" }}>
+              <h3 className="text-[18px] max-md:text-[17px] mb-4">작가의 현실</h3>
+              <p className="text-[16px] max-md:text-[15px] max-md:font-medium leading-[1.8] mb-4" style={{ wordBreak: "keep-all" }}>
                 화려한 전시장에서 꽃다발 가득 축하를 받고, 다시 캄캄한 작업실에 돌아와 다음 작업을 위한 재료비를 걱정합니다.
               </p>
-              <p className="text-[15px] max-md:text-[13px] leading-[1.8] text-muted mb-3" style={{ wordBreak: "keep-all" }}>
+              <p className="text-[15px] max-md:text-[14px] leading-[1.8] text-muted mb-3" style={{ wordBreak: "keep-all" }}>
                 새 작업을 시작하고, 전시를 열기 위해서는 재료비가 먼저 나갑니다. 작품에 대한 고민을 하기도 전에 생계를 먼저 생각하게 됩니다.
               </p>
-              <p className="text-[15px] max-md:text-[13px] leading-[1.8] text-muted" style={{ wordBreak: "keep-all" }}>
+              <p className="text-[15px] max-md:text-[14px] leading-[1.8] text-muted" style={{ wordBreak: "keep-all" }}>
                 그럼에도 작업을 이어 갈 수 있는 건 작품을 기다려주고 전시를 보러와주는 분들이 있기 때문입니다.
               </p>
             </div>
@@ -269,7 +269,7 @@ export default function Home() {
 
         {/* ═══ 7. ARTY ═══ */}
         <Row label="Arty" id="community" rule={false}>
-          <h2 data-sr="up" className="statement fit-h mb-14">
+          <h2 data-sr="up" className="statement fit-h max-md:text-[26px]! mb-14">
             내가 함께 만든 작품 앞에서<br />
             우리가 만납니다
           </h2>
