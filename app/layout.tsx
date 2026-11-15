@@ -7,9 +7,25 @@ import Footer from "@/components/Footer";
 import { LangProvider } from "@/contexts/LangContext";
 import { GA_ID } from "@/lib/site";
 
+const DESC = "팬이 작가에게 창작 재료를 선물하고, 작가는 담벼락에 창작 과정을 나누는 관계형 현물 선물 플랫폼";
+
 export const metadata: Metadata = {
-  title: "Theo — 모두의 고흐가 되기 전, 나만의 고흐를 만난다",
-  description: "팬이 작가에게 창작 재료를 선물하고, 작가는 담벼락에 창작 과정을 나누는 관계형 현물 선물 플랫폼",
+  metadataBase: new URL("https://theo-demo.vercel.app"),
+  title: "Theo 나만의 고흐를 만난다",
+  description: DESC,
+  // 링크를 공유했을 때 나오는 카드 — 이미지는 app/opengraph-image.png
+  openGraph: {
+    title: "Theo 꽃다발 대신 물감을 선물하세요",
+    description: DESC,
+    siteName: "Theo",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Theo 꽃다발 대신 물감을 선물하세요",
+    description: DESC,
+  },
 };
 
 export default function RootLayout({
