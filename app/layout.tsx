@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import { LangProvider } from "@/contexts/LangContext";
 import { GA_ID } from "@/lib/site";
 
-const DESC = "팬이 작가에게 창작 재료를 선물하고, 작가는 담벼락에 창작 과정을 나누는 관계형 현물 선물 플랫폼";
+const DESC = "꽃은 시들지만 물감은 작품으로 피어납니다. 재료를 선물하고 전시에서 만나요.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://theo-demo.vercel.app"),
