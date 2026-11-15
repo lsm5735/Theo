@@ -47,8 +47,8 @@ export default function ShowPage() {
 
         {/* 전시 이미지 */}
         <section className="pb-12 md:pb-16">
-          {/* 포스터(843×1191)를 위·아래 반(843×595)으로 나눠 가로로 나란히 붙인다: 왼쪽 = 위쪽 절반, 오른쪽 = 아래쪽 절반. 화면 폭 끝까지 꽉 채운다 */}
-          <div data-sr="up" role="img" aria-label="[CONTINUE] 전시 포스터" className="grid grid-cols-2 w-full overflow-hidden bg-surface-card">
+          {/* 포스터(843×1191)를 위·아래 반(843×595)으로 나눠 가로로 나란히 붙인다: 왼쪽 = 위쪽 절반, 오른쪽 = 아래쪽 절반. 화면 폭 끝까지 꽉 채운다. 폰(md 미만)에서는 위·아래로 이어 붙여 포스터 원본처럼 세로로 크게 보인다 */}
+          <div data-sr="up" role="img" aria-label="[CONTINUE] 전시 포스터" className="grid grid-cols-1 md:grid-cols-2 w-full overflow-hidden bg-surface-card">
             <div className="relative aspect-[843/595.5] overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/show-poster.jpg" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-top" />
