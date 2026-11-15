@@ -13,7 +13,6 @@ const NAV = [
 
 const ABOUT_LINKS = [
   { label: "회사 소개", href: "https://www.okrr.art/", external: true },
-  { label: "서비스 소개", href: "/" },
   { label: "제휴 문의", href: "/partnership" },
 ];
 
@@ -40,7 +39,7 @@ export default function Header() {
         </div>
 
         <div className="flex w-full items-center justify-end md:justify-between text-[18px] md:text-[20px]">
-          {/* Desktop nav — About, Show, Atelier, Arty. */}
+          {/* Desktop nav — Home, Show, Atelier, Arty, About. */}
           <nav className="hidden md:flex">
             <ul className="flex gap-x-10">
               <li className="flex">
@@ -48,6 +47,16 @@ export default function Header() {
                 {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
                 <a href="/" className={`underlined ${pathname === "/" ? "underline underline-offset-[3px] decoration-1" : ""}`}>Home</a>
               </li>
+              {NAV.map((n) => (
+                <li key={n.href} className="flex">
+                  <Link
+                    href={n.href}
+                    className={`underlined ${isActive(n.href) ? "underline underline-offset-[3px] decoration-1" : ""}`}
+                  >
+                    {n.label}
+                  </Link>
+                </li>
+              ))}
               <li className="flex relative group">
                 <button className="underlined cursor-pointer">About</button>
                 <div className="absolute left-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-150 z-50">
@@ -70,16 +79,6 @@ export default function Header() {
                   </ul>
                 </div>
               </li>
-              {NAV.map((n) => (
-                <li key={n.href} className="flex">
-                  <Link
-                    href={n.href}
-                    className={`underlined ${isActive(n.href) ? "underline underline-offset-[3px] decoration-1" : ""}`}
-                  >
-                    {n.label}
-                  </Link>
-                </li>
-              ))}
             </ul>
           </nav>
 
