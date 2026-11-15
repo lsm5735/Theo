@@ -250,10 +250,10 @@ export default function Home() {
         {/* ═══ 6. SHOW — 노란 블록 ═══ */}
         <Row label="Show" tone="sun">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 items-end">
-            <div data-sr="up" className="relative aspect-[843/1191] overflow-hidden bg-surface-card">
+            <Link href="/show" data-sr="up" aria-label="[CONTINUE] 전시 페이지로 이동" className="relative block aspect-[1440/1800] overflow-hidden bg-surface-card">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/show-poster.jpg" alt="팝업 전시 [CONTINUE] 포스터" className="absolute inset-0 w-full h-full object-cover" />
-            </div>
+            </Link>
             <div data-sr="up" data-d="1">
               <p className="type-label mb-5">Pop-up Exhibition</p>
               <h2 className="mb-8 leading-[.9]" style={{ fontSize: "clamp(40px, 5.6vw, 92px)" }}>[CONTINUE]</h2>
