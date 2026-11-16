@@ -138,6 +138,27 @@ export default function Home() {
           <hr className="dots-x" />
         </section>
 
+        {/* ═══ 2. THEO STORY ═══ */}
+        <Row label="Theo Story" tone="ink">
+          <h2 data-sr="up" className="statement fit-h max-md:text-[25px]! text-sun mb-8">
+            모두의 고흐가 되기 전<br />
+            나만의 고흐를 만나보세요.
+          </h2>
+          <div data-sr="up" data-d="1" className="fit-p max-md:text-[14px]! leading-[1.85] text-muted space-y-3" style={{ wordBreak: "keep-all" }}>
+            <p>반 고흐에게는 평생 그를 응원해준 동생 테오가 있었기에 세계가 사랑하는 명작이 탄생할 수 있었습니다.</p>
+            <p>세상이 알아보기 전, 당신이 먼저 발견한 예술가에게 재료를 선물하고, 위대한 작품이 태어나는 과정을 함께 만들어 보세요.</p>
+          </div>
+          {/* 두 버튼은 가로 너비가 같도록: 더 긴 쪽 폭에 맞춰 동일한 칸으로 나눈다 */}
+          <div data-sr="up" data-d="2" className="grid grid-cols-1 sm:grid-flow-col sm:auto-cols-fr sm:w-fit gap-3 sm:gap-4 mt-12">
+            <Link href="/atelier" className="nb-btn px-7 py-3 text-[15px] max-md:text-[14px]">
+              {t("btn_patron_main")}({t("btn_patron_sub")})
+            </Link>
+            <Link href="/onboarding/artist" className="nb-btn-outline px-7 py-3 text-[15px] max-md:text-[14px]">
+              {t("btn_artist_main")}({t("btn_artist_sub")})
+            </Link>
+          </div>
+        </Row>
+
         {/* ═══ 4. HOW IT WORKS — 노랑 한 색 + 진행 바·화살표로 순서 표시 ═══ */}
         <Row label="How it works" id="how" rule={false} tightBottomOnMobile>
           <h2 data-sr="up" className="statement fit-h max-md:text-[26px]! max-md:[-webkit-text-stroke:0.2px_currentColor]">
@@ -184,27 +205,6 @@ export default function Home() {
             </div>
           ))}
         </section>
-
-        {/* ═══ 2. THEO STORY ═══ */}
-        <Row label="Theo Story" tone="ink">
-          <h2 data-sr="up" className="statement fit-h max-md:text-[25px]! text-sun mb-8">
-            모두의 고흐가 되기 전<br />
-            나만의 고흐를 만나보세요.
-          </h2>
-          <div data-sr="up" data-d="1" className="fit-p max-md:text-[14px]! leading-[1.85] text-muted space-y-3" style={{ wordBreak: "keep-all" }}>
-            <p>반 고흐에게는 평생 그를 응원해준 동생 테오가 있었기에 세계가 사랑하는 명작이 탄생할 수 있었습니다.</p>
-            <p>세상이 알아보기 전, 당신이 먼저 발견한 예술가에게 재료를 선물하고, 위대한 작품이 태어나는 과정을 함께 만들어 보세요.</p>
-          </div>
-          {/* 두 버튼은 가로 너비가 같도록: 더 긴 쪽 폭에 맞춰 동일한 칸으로 나눈다 */}
-          <div data-sr="up" data-d="2" className="grid grid-cols-1 sm:grid-flow-col sm:auto-cols-fr sm:w-fit gap-3 sm:gap-4 mt-12">
-            <Link href="/atelier" className="nb-btn px-7 py-3 text-[15px] max-md:text-[14px]">
-              {t("btn_patron_main")}({t("btn_patron_sub")})
-            </Link>
-            <Link href="/onboarding/artist" className="nb-btn-outline px-7 py-3 text-[15px] max-md:text-[14px]">
-              {t("btn_artist_main")}({t("btn_artist_sub")})
-            </Link>
-          </div>
-        </Row>
 
         {/* ═══ 3. THE GAP ═══ */}
         <Row label="The Gap">
