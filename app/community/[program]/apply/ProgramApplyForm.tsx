@@ -10,6 +10,18 @@ import { GIFT_ARTISTS, MOTIVATION_OPTIONS, type ApplyProgram } from "@/lib/progr
 
 type State = "idle" | "sending" | "sent" | "fallback" | "error";
 
+// 참가비가 있는 프로그램: 신청 마지막 화면에 입금 안내
+function DepositNotice({ deposit }: { deposit: NonNullable<ApplyProgram["deposit"]> }) {
+  return (
+    <div className="bg-sv text-ink px-5 py-5 mb-8">
+      <p className="text-[18px] max-md:text-[16px] leading-[1.8]" style={{ wordBreak: "keep-all" }}>
+        {deposit.bank} <b>{deposit.account}</b> {deposit.holder}로 입금하시면, <b>신청이 완료됩니다.</b>
+      </p>
+      <p className="text-[14px] max-md:text-[12.5px] mt-1">참가비 {deposit.fee}</p>
+    </div>
+  );
+}
+
 export default function ProgramApplyForm({ program }: { program: ApplyProgram }) {
   const sessions = program.sessions;
   const eventLine = `${program.title} (${program.date} · ${program.location})`;
@@ -79,6 +91,7 @@ export default function ProgramApplyForm({ program }: { program: ApplyProgram })
           <b>{name.trim()}</b>님, {program.title} 신청이 들어왔어요.<br />
           남겨 주신 이메일로 안내드릴게요.
         </p>
+        {program.deposit && <DepositNotice deposit={program.deposit} />}
         <Link href="/community" className="nb-btn px-8 py-4 text-[19px] max-md:text-[17px]">프로그램 목록으로</Link>
       </div>
     );
@@ -93,7 +106,8 @@ export default function ProgramApplyForm({ program }: { program: ApplyProgram })
           <b> 메일의 보내기까지 눌러야 신청이 접수돼요.</b>
         </p>
         <a href={mailto} className="inline-flex items-center justify-center min-h-[68px] px-12 py-5 text-[26px] max-md:text-[24px] font-bold bg-sv text-ink transition-colors hover:bg-navy-900 hover:text-white">신청 완료하기</a>
-        <p className="text-[17px] max-md:text-[15px] text-muted mt-3">받는 곳: {INQUIRY_EMAIL}</p>
+        <p className="text-[17px] max-md:text-[15px] text-muted mt-3 mb-8">받는 곳: {INQUIRY_EMAIL}</p>
+        {program.deposit && <DepositNotice deposit={program.deposit} />}
       </div>
     );
   }

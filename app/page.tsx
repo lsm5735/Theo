@@ -36,7 +36,7 @@ function Row({ label, children, id, tone = "paper", rule = true, tightBottomOnMo
 const PROGRAMS = [
   { name: "오픈 스튜디오", date: "11. 28" },
   { name: "라이브 페인팅", date: "11. 28" },
-  { name: "Theo 아트 나이트", date: "11. 28" },
+  { name: "Theo 아트 나이트", date: "11. 28", fee: "참가비 10,000원" },
 ];
 
 const STEPS = [
@@ -280,7 +280,9 @@ export default function Home() {
                 <hr className="dots-x" />
                 <Link href="/community" className="row-fill flex items-baseline justify-between gap-4 py-6 md:py-7">
                   <span className="font-display lp-m">{p.name}</span>
-                  <span className="text-[16px] max-md:text-[14px] md:text-[17px] text-muted shrink-0">2026. {p.date}</span>
+                  <span className="text-[16px] max-md:text-[14px] md:text-[17px] text-muted shrink-0 text-right">
+                    {"fee" in p && <span className="block md:inline md:mr-4">{p.fee}</span>}2026. {p.date}
+                  </span>
                 </Link>
               </div>
             ))}

@@ -12,6 +12,8 @@ export interface ApplyProgram {
   /** 회차를 고르게 할 때만. 없으면 time 하나로 고정 */
   sessions?: string[];
   time?: string;
+  /** 참가비 입금 안내 — 있으면 신청 마지막 화면에 입금 계좌가 보인다 */
+  deposit?: { fee: string; bank: string; account: string; holder: string };
 }
 
 const DATE = "2026. 11. 28 (토)";
@@ -43,12 +45,13 @@ export const APPLY_PROGRAMS: ApplyProgram[] = [
     date: DATE,
     location: LOCATION,
     sessions: ["1회차 6:00 - 7:00 pm", "2회차 7:00 - 8:00 pm"],
+    deposit: { fee: "10,000원", bank: "토스뱅크", account: "1002-8336-4554", holder: "오크르(Okrr)" },
     intro: "웰컴드링크(맥주)를 마시며 작가와 가까이에서 이야기 나누는 저녁이에요.",
   },
 ];
 
 /** 선물한 작가를 고르는 선택지 (순서 고정) */
-export const GIFT_ARTISTS = ["김동형", "이동구", "전예진", "진형"];
+export const GIFT_ARTISTS = ["김동형", "이동구", "전예진", "진형", "없음"];
 
 /** 신청 동기 선택지 — 작가 선물 신청서와 프로그램 신청서가 같이 쓴다 */
 export const MOTIVATION_OPTIONS = [

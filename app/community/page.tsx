@@ -23,6 +23,8 @@ interface Program {
   time: string;
   location: string;
   capacity: number | null;
+  /** 참가비 안내 (있을 때만 표시) */
+  fee?: string;
   coverImage: string;
   /** 폰 화면에서 설명 단락 안의 줄바꿈을 이어 붙인다(문단 나눔은 유지) */
   joinOnMobile?: boolean;
@@ -85,6 +87,7 @@ const PROGRAMS: Program[] = [
     time: "1회차 6:00 - 7:00 pm / 2회차 7:00 - 8:00 pm",
     location: LOCATION,
     capacity: null,
+    fee: "참가비 10,000원",
     coverImage: "/community-art-night.jpg",
     joinOnMobile: true,
   },
@@ -176,7 +179,8 @@ export default function CommunityPage() {
                     <p className="text-[15px] max-md:text-[13px] md:text-[14px] text-ink mb-1.5">
                       {prog.date} {prog.time}
                     </p>
-                    <p className="text-[15px] max-md:text-[13px] md:text-[14px] text-ink mb-5">{prog.location}</p>
+                    <p className={`text-[15px] max-md:text-[13px] md:text-[14px] text-ink ${prog.fee ? "mb-1.5" : "mb-5"}`}>{prog.location}</p>
+                    {prog.fee && <p className="text-[15px] max-md:text-[13px] md:text-[14px] text-ink font-bold mb-5">{prog.fee}</p>}
                     <Link
                       href={`/community/${APPLY_SLUG[prog.type]}/apply`}
                       className="nb-btn px-6 py-2.5 text-[15px] max-md:text-[13px] md:text-[14px]"
